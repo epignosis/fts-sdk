@@ -16,5 +16,5 @@ namespace Epignosis\Sdk\Abstraction;
  */
 interface ConfigurationInterface
 {
-
+  public function GetByKey($key);
 }

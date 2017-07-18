@@ -17,4 +17,7 @@ namespace Epignosis\Sdk\Abstraction;
 interface LoggerInterface
 {
 
+  public function ClearLog();
+  public function GetLog();
+  public function Log($success = true, array $data = [], $sensitive = false);
 }

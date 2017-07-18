@@ -3,6 +3,7 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
+use Epignosis\Sdk\Failure\EpignosisSdk as EpignosisSdkException;
 use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
@@ -36,7 +37,11 @@ class Operator extends AbstractSdk
   public function Create(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Post($data);
+      return $this->_GetClientInterface()->Post (
+        $this->_configurationInterface->GetByKey('Service.EndPoint.Create'),
+        $data,
+        $this->_configurationInterface->GetByKey('Service.OptionList')
+      );
     } catch (\Exception $exception) {
       throw new DocumentException (
         DocumentException::FTS_CREATE_FAILURE, $exception, ['Data' => $data]
@@ -61,7 +66,11 @@ class Operator extends AbstractSdk
   public function Delete(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Delete($data);
+      return $this->_GetClientInterface()->Delete (
+        $this->_configurationInterface->GetByKey('Service.EndPoint.Delete'),
+        $data,
+        $this->_configurationInterface->GetByKey('Service.OptionList')
+      );
     } catch (\Exception $exception) {
       throw new DocumentException (
         DocumentException::FTS_DELETE_FAILURE, $exception, ['Data' => $data]
@@ -86,7 +95,11 @@ class Operator extends AbstractSdk
   public function Retrieve(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Get($data);
+      return $this->_GetClientInterface()->Get (
+        $this->_configurationInterface->GetByKey('Service.EndPoint.Retrieve'),
+        $data,
+        $this->_configurationInterface->GetByKey('Service.OptionList')
+      );
     } catch (\Exception $exception) {
       throw new DocumentException (
         DocumentException::FTS_RETRIEVE_FAILURE, $exception, ['Data' => $data]
@@ -111,7 +124,11 @@ class Operator extends AbstractSdk
   public function Update(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Put($data);
+      return $this->_GetClientInterface()->Put (
+        $this->_configurationInterface->GetByKey('Service.EndPoint.Update'),
+        $data,
+        $this->_configurationInterface->GetByKey('Service.OptionList')
+      );
     } catch (\Exception $exception) {
       throw new DocumentException (
         DocumentException::FTS_UPDATE_FAILURE, $exception, ['Data' => $data]

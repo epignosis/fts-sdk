@@ -3,9 +3,9 @@
 namespace Epignosis\Sdk\Failure;
 
 /**
- * Class Sdk
+ * Class EpignosisSdk
  *
- * The SDK exception.
+ * The Epignosis SDK exception.
  *
  * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
@@ -14,7 +14,7 @@ namespace Epignosis\Sdk\Failure;
  * @package     Epignosis\Sdk\Failure
  * @since       1.0.0-dev
  */
-class Sdk extends \Exception
+class EpignosisSdk extends \Exception
 {
   use EpignosisSdkTrait;
 
@@ -61,7 +61,7 @@ class Sdk extends \Exception
 
 
   /**
-   * Document constructor.
+   * EpignosisSdk constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)

@@ -16,5 +16,8 @@ namespace Epignosis\Sdk\Abstraction;
  */
 interface ClientInterface
 {
-
+  public function Delete($url, array $data = [], array $optionList = []);
+  public function Get($url, array $data = [], array $optionList = []);
+  public function Post($url, array $data = [], array $optionList = []);
+  public function Put($url, array $data = [], array $optionList = []);
 }
