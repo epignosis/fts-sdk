@@ -3,7 +3,7 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\FullTextSearch as FullTextSearchException;
+use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
  * Class FullTextSearch
@@ -19,103 +19,103 @@ use Epignosis\Sdk\FullTextSearch\Failure\FullTextSearch as FullTextSearchExcepti
  */
 class Operator extends AbstractSdk
 {
-    /**
-     * Creates the requested document.
-     *
-     * @param   array $data
-     *            - The data of the document to be created. (Required)
-     *
-     * @return  array
-     *
-     * @since   1.0.0-dev
-     *
-     * @throws  FullTextSearchException
-     *            - In case that is not possible to successfully complete the creation of
-     *              the document.
-     */
-    public function Create(array $data)
-    {
-        try {
-            return $this->_GetClientInterface()->Post($data);
-        } catch (\Exception $exception) {
-            throw new FullTextSearchException (
-                FullTextSearchException::FTS_CREATE_FAILURE, $exception, ['Data' => $data]
-            );
-        }
+  /**
+  * Creates the requested document.
+  *
+  * @param   array $data
+  *            - The data of the document to be created. (Required)
+  *
+  * @return  array
+  *
+  * @since   1.0.0-dev
+  *
+  * @throws  DocumentException
+  *            - In case that is not possible to successfully complete, the creation of
+  *              the requested document.
+  */
+  public function Create(array $data)
+  {
+    try {
+      return $this->_GetClientInterface()->Post($data);
+    } catch (\Exception $exception) {
+      throw new DocumentException (
+        DocumentException::FTS_CREATE_FAILURE, $exception, ['Data' => $data]
+      );
     }
+  }
 
-    /**
-     * Deletes the requested document.
-     *
-     * @param   array $data
-     *            - The data of the document to be deleted. (Required)
-     *
-     * @return  array
-     *
-     * @since   1.0.0-dev
-     *
-     * @throws  FullTextSearchException
-     *            - In case that is not possible to successfully complete the deletion of
-     *              the document.
-     */
-    public function Delete(array $data)
-    {
-        try {
-            return $this->_GetClientInterface()->Delete($data);
-        } catch (\Exception $exception) {
-            throw new FullTextSearchException (
-                FullTextSearchException::FTS_DELETE_FAILURE, $exception, ['Data' => $data]
-            );
-        }
+  /**
+  * Deletes the requested document.
+  *
+  * @param   array $data
+  *            - The data of the document to be deleted. (Required)
+  *
+  * @return  array
+  *
+  * @since   1.0.0-dev
+  *
+  * @throws  DocumentException
+  *            - In case that is not possible to successfully complete, the deletion of
+  *              the requested document.
+  */
+  public function Delete(array $data)
+  {
+    try {
+      return $this->_GetClientInterface()->Delete($data);
+    } catch (\Exception $exception) {
+      throw new DocumentException (
+        DocumentException::FTS_DELETE_FAILURE, $exception, ['Data' => $data]
+      );
     }
+  }
 
-    /**
-     * Retrieves and returns the requested document.
-     *
-     * @param   array $data
-     *            - The data of the document to be retrieved and returned. (Required)
-     *
-     * @return  array
-     *
-     * @since   1.0.0-dev
-     *
-     * @throws  FullTextSearchException
-     *            - In case that is not possible to successfully complete the retrieval of
-     *              the document.
-     */
-    public function Retrieve(array $data)
-    {
-        try {
-            return $this->_GetClientInterface()->Get($data);
-        } catch (\Exception $exception) {
-            throw new FullTextSearchException (
-                FullTextSearchException::FTS_READ_FAILURE, $exception, ['Data' => $data]
-            );
-        }
+  /**
+  * Retrieves and returns the requested document.
+  *
+  * @param   array $data
+  *            - The data of the document to be retrieved and returned. (Required)
+  *
+  * @return  array
+  *
+  * @since   1.0.0-dev
+  *
+  * @throws  DocumentException
+  *            - In case that is not possible to successfully complete, the retrieval of
+  *              the requested document.
+  */
+  public function Retrieve(array $data)
+  {
+    try {
+      return $this->_GetClientInterface()->Get($data);
+    } catch (\Exception $exception) {
+      throw new DocumentException (
+        DocumentException::FTS_RETRIEVE_FAILURE, $exception, ['Data' => $data]
+      );
     }
+  }
 
-    /**
-     * Updates the requested document.
-     *
-     * @param   array $data
-     *            - The data of the document to be updated. (Required)
-     *
-     * @return  array
-     *
-     * @since   1.0.0-dev
-     *
-     * @throws  FullTextSearchException
-     *            - In case that is not possible to successfully complete the update of the
-     *              document.
-     */
-    public function Update(array $data)
-    {
-        try {
-            return $this->_GetClientInterface()->Put($data);
-        } catch (\Exception $exception) {
-            throw new FullTextSearchException (
-                FullTextSearchException::FTS_UPDATE_FAILURE, $exception, ['Data' => $data]
-            );
-        }
+  /**
+  * Updates the requested document.
+  *
+  * @param   array $data
+  *            - The data of the document to be updated. (Required)
+  *
+  * @return  array
+  *
+  * @since   1.0.0-dev
+  *
+  * @throws  DocumentException
+  *            - In case that is not possible to successfully complete, the update of the
+  *              requested document.
+  */
+  public function Update(array $data)
+  {
+    try {
+      return $this->_GetClientInterface()->Put($data);
+    } catch (\Exception $exception) {
+      throw new DocumentException (
+        DocumentException::FTS_UPDATE_FAILURE, $exception, ['Data' => $data]
+      );
     }
+  }
 }
