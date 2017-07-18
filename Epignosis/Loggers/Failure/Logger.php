@@ -1,6 +1,8 @@
 <?php
 
-namespace Epignosis\Sdk\Failure;
+namespace Epignosis\Loggers\Failure;
+
+use Epignosis\Failure\EpignosisSdkTrait;
 
 /**
  * Class Logger
@@ -8,9 +10,9 @@ namespace Epignosis\Sdk\Failure;
  * The logger interface exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Failure
+ * @category    Epignosis\Loggers\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Failure
+ * @package     Epignosis\Loggers\Failure
  * @since       1.0.0-dev
  */
 class Logger extends \Exception
