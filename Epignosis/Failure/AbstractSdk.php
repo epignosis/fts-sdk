@@ -7,7 +7,6 @@ namespace Epignosis\Failure;
  *
  * The abstract SDK exception.
  *
- * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved

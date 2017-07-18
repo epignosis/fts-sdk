@@ -7,7 +7,6 @@ namespace Epignosis\Failure;
  *
  * This trait, provides to any exception, the basic exception functionality.
  *
- * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved

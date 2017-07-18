@@ -7,7 +7,6 @@ namespace Epignosis\Sdk\Failure;
  *
  * The configuration interface exception.
  *
- * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved

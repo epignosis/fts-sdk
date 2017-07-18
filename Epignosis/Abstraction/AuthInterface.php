@@ -7,7 +7,6 @@ namespace Epignosis\Sdk\Abstraction;
  *
  * The auth interface.
  *
- * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\Abstraction
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved

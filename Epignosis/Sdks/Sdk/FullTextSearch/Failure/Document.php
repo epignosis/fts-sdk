@@ -9,7 +9,6 @@ use Epignosis\Failure\EpignosisSdkTrait;
  *
  * The Document FullTextSearch SDK exception.
  *
- * @application FullTextSearch Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdks\Sdk\FullTextSearch\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved

@@ -1,17 +1,18 @@
 <?php
 
-namespace Epignosis\Sdk\Failure;
+namespace Epignosis\Clients\Failure;
+
+use Epignosis\Failure\EpignosisSdkTrait;
 
 /**
  * Class Client
  *
  * The client interface exception.
  *
- * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Failure
+ * @category    Epignosis\Clients\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Failure
+ * @package     Epignosis\Clients\Failure
  * @since       1.0.0-dev
  */
 class Client extends \Exception

@@ -9,7 +9,6 @@ use Epignosis\Sdk\Failure\Logger as LoggerException;
  *
  * The logger interface.
  *
- * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\Abstraction
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
