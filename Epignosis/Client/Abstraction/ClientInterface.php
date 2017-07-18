@@ -1,8 +1,8 @@
 <?php
 
-namespace Epignosis\Clients\Abstraction;
+namespace Epignosis\Client\Abstraction;
 
-use Epignosis\Clients\Failure\Client as ClientException;
+use Epignosis\Client\Failure\Client as ClientException;
 
 /**
  * Interface ClientInterface
@@ -10,9 +10,9 @@ use Epignosis\Clients\Failure\Client as ClientException;
  * The client interface.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Clients\Abstraction
+ * @category    Epignosis\Client\Abstraction
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Clients\Abstraction
+ * @package     Epignosis\Client\Abstraction
  * @since       1.0.0-dev
  */
 interface ClientInterface
