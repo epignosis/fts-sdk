@@ -130,7 +130,7 @@ abstract class AbstractSdk
     }
   }
 
-  protected function _GetDecodedResponse($data = null, array $optionList= [])
+  protected function _GetDecodedResponse($data = null, array $optionList = [])
   {
     return [];
   }
@@ -281,8 +281,7 @@ abstract class AbstractSdk
   public function GetNotificationEvent()
   {
     try {
-      // @todo
-      return [];
+      return []; // @todo
     } catch (\Exception $exception) {
       throw new AbstractSdkException (
         AbstractSdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception

@@ -58,7 +58,7 @@ class Document extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_CREATE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_CREATE_FAILURE, $exception, ['Data' => $data]
       );
     }
   }
@@ -90,7 +90,7 @@ class Document extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_DELETE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_DELETE_FAILURE, $exception, ['Data' => $data]
       );
     }
   }
@@ -122,7 +122,7 @@ class Document extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_RETRIEVE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_RETRIEVE_FAILURE, $exception, ['Data' => $data]
       );
     }
   }
@@ -156,7 +156,9 @@ class Document extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_RETRIEVE_MANY_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE,
+        $exception,
+        ['Data' => $data]
       );
     }
   }
@@ -188,7 +190,7 @@ class Document extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_UPDATE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_UPDATE_FAILURE, $exception, ['Data' => $data]
       );
     }
   }

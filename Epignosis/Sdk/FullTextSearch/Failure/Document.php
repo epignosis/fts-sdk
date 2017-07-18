@@ -27,7 +27,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_CREATE_FAILURE = 1;
+  const FTS_DOCUMENT_CREATE_FAILURE = 1;
 
   /**
    * Used in case that is not possible to successfully complete, the deletion of the
@@ -36,7 +36,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DELETE_FAILURE = 2;
+  const FTS_DOCUMENT_DELETE_FAILURE = 2;
 
   /**
    * Used in case that is not possible to successfully complete, the retrieval of the
@@ -45,7 +45,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_RETRIEVE_FAILURE = 3;
+  const FTS_DOCUMENT_RETRIEVE_FAILURE = 3;
 
   /**
    * Used in case that is not possible to successfully complete, the retrieval of the
@@ -54,7 +54,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_RETRIEVE_MANY_FAILURE = 4;
+  const FTS_DOCUMENT_RETRIEVE_MANY_FAILURE = 4;
 
   /**
    * Used in case that is not possible to successfully complete, the update of the
@@ -63,7 +63,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_UPDATE_FAILURE = 5;
+  const FTS_DOCUMENT_UPDATE_FAILURE = 5;
 
 
   /**
@@ -88,20 +88,20 @@ class Document extends \Exception
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::FTS_CREATE_FAILURE] =
-      'FTS_CREATE_FAILURE';
+    self::$_failureMessageList[self::FTS_DOCUMENT_CREATE_FAILURE] =
+      'FTS_DOCUMENT_CREATE_FAILURE';
 
-    self::$_failureMessageList[self::FTS_DELETE_FAILURE] =
-      'FTS_DELETE_FAILURE';
+    self::$_failureMessageList[self::FTS_DOCUMENT_DELETE_FAILURE] =
+      'FTS_DOCUMENT_DELETE_FAILURE';
 
-    self::$_failureMessageList[self::FTS_RETRIEVE_FAILURE] =
-      'FTS_RETRIEVE_FAILURE';
+    self::$_failureMessageList[self::FTS_DOCUMENT_RETRIEVE_FAILURE] =
+      'FTS_DOCUMENT_RETRIEVE_FAILURE';
 
-    self::$_failureMessageList[self::FTS_RETRIEVE_MANY_FAILURE] =
-      'FTS_RETRIEVE_MANY_FAILURE';
+    self::$_failureMessageList[self::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE] =
+      'FTS_DOCUMENT_RETRIEVE_MANY_FAILURE';
 
-    self::$_failureMessageList[self::FTS_UPDATE_FAILURE] =
-      'FTS_UPDATE_FAILURE';
+    self::$_failureMessageList[self::FTS_DOCUMENT_UPDATE_FAILURE] =
+      'FTS_DOCUMENT_UPDATE_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 
