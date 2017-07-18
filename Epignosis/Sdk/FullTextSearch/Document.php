@@ -3,13 +3,13 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
+use Epignosis\Sdk\FullTextSearch\Configuration\Document as DocumentConfiguration;
 use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
- * Class Operator
+ * Class Document
  *
- * The full-text search operator SDK. With this SDK, one, can create, delete, update, and
- * retrieve documents from the full-text search service.
+ * The full-text search document SDK.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdks\Sdk\FullTextSearch
@@ -17,10 +17,10 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
  * @package     Epignosis\Sdks\Sdk\FullTextSearch
  * @since       1.0.0-dev
  */
-class Operator extends AbstractSdk
+class Document extends AbstractSdk
 {
   /**
-   * Returns the configuration of the full-text search operator SDK.
+   * Returns the configuration of the full-text search document SDK.
    *
    * @return  array
    *
@@ -28,7 +28,7 @@ class Operator extends AbstractSdk
    */
   protected function _GetSdkConfiguration()
   {
-    return [];
+    return DocumentConfiguration::GetAll();
   }
 
   /**
@@ -50,11 +50,11 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Post (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Create'),
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Create'),
           $data,
-          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('ServiceResponse')
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -82,11 +82,11 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Delete (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Delete'),
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Delete'),
           $data,
-          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('ServiceResponse')
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -114,11 +114,11 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Retrieve'),
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Retrieve'),
           $data,
-          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('ServiceResponse')
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -147,12 +147,12 @@ class Operator extends AbstractSdk
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
           $this->_configurationInterface->GetByKey (
-            'ServiceRequest.EndPoint.RetrieveMany'
+            'Service.Request.EndPoint.RetrieveMany'
           ),
           $data,
-          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('ServiceResponse')
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -180,11 +180,11 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Put (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Update'),
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Update'),
           $data,
-          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('ServiceResponse')
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
