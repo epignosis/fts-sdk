@@ -44,6 +44,15 @@ abstract class AbstractSdk
   protected $_clientFactory = null;
 
   /**
+   * The SDK configuration
+   *
+   * @default []
+   * @since   1.0.0-dev
+   * @var     array
+   */
+  protected $_configurationSdk = [];
+
+  /**
    * The configuration interface.
    *
    * @default null
@@ -71,6 +80,18 @@ abstract class AbstractSdk
   protected $_loggerFactory = null;
 
 
+  protected function _GetConfigurationService($type, $operation)
+  {
+    $private = sprintf('Service.%s.Private.%s', $type, $operation);
+    $public = sprintf('Service.%s.Public', $type);
+
+    return
+      $this->_configurationInterface->GetFromKey($private) +
+      $this->_configurationInterface->GetFromKey($public);
+  }
+
+  abstract protected function _PrepareSdk();
+
   /**
    * Returns the auth interface.
    *
@@ -86,8 +107,8 @@ abstract class AbstractSdk
     try {
       try {
         return $this->_authFactory->GetCached (
-          $this->_configurationInterface->GetByKey('Auth.Type'),
-          $this->_configurationInterface->GetByKey('Auth.Configuration')
+          $this->_configurationInterface->GetFromKey('Auth.Type'),
+          $this->_configurationInterface->GetFromKey('Auth.Configuration')
         );
       } catch (\Exception $exception) {
         return $this->_authFactory->GetDefaultCached();
@@ -114,8 +135,8 @@ abstract class AbstractSdk
     try {
       try {
         return $this->_clientFactory->GetCached (
-          $this->_configurationInterface->GetByKey('Client.Type'),
-          $this->_configurationInterface->GetByKey('Client.Configuration')
+          $this->_configurationInterface->GetFromKey('Client.Type'),
+          $this->_configurationInterface->GetFromKey('Client.Configuration')
         );
       } catch (\Exception $exception) {
         return $this->_clientFactory->GetDefaultCached();
@@ -147,8 +168,8 @@ abstract class AbstractSdk
     try {
       try {
         return $this->_factoryLogger->GetCached (
-          $this->_configurationInterface->GetByKey('Logger.Type'),
-          $this->_configurationInterface->GetByKey('Logger.Configuration')
+          $this->_configurationInterface->GetFromKey('Logger.Type'),
+          $this->_configurationInterface->GetFromKey('Logger.Configuration')
         );
       } catch (\Exception $exception) {
         return $this->_factoryLogger->GetDefaultCached();
@@ -163,29 +184,16 @@ abstract class AbstractSdk
   /**
    * Constructs the full-text search SDK.
    *
-   * @param   AuthFactory $authFactory
-   *            - The auth factory. (Required)
-   *
-   * @param   ClientFactory $clientFactory
-   *            - The client factory. (Required)
-   *
-   * @param   LoggerFactory $loggerFactory
-   *            - The logger factory. (Required)
-   *
    * @param   ConfigurationInterface $configurationInterface
    *            - The configuration interface. (Required)
    *
    * @since   1.0.0-dev
    */
-  public function __construct (
-               AuthFactory $authFactory,
-             ClientFactory $clientFactory,
-             LoggerFactory $loggerFactory,
-    ConfigurationInterface $configurationInterface)
+  public function __construct(ConfigurationInterface $configurationInterface)
   {
-    $this->_authFactory = $authFactory;
-    $this->_clientFactory = $clientFactory;
-    $this->_loggerFactory = $loggerFactory;
+    $this->_authFactory = new AuthFactory;
+    $this->_clientFactory = new ClientFactory;
+    $this->_loggerFactory = new LoggerFactory;
     $this->_configurationInterface = $configurationInterface;
   }
 
@@ -278,6 +286,9 @@ abstract class AbstractSdk
   public function GetNotificationEvent()
   {
     try {
+      $this->_GetAuthInterface()->AuthenticateServerResponse();
+
+
       return []; // @todo
     } catch (\Exception $exception) {
       throw new AbstractSdkException (

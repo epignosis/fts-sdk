@@ -3,7 +3,6 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Configuration\Document as DocumentConfiguration;
 use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
@@ -20,27 +19,38 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 class Document extends AbstractSdk
 {
   /**
-   * Returns the configuration of the full-text search document SDK.
+   * Prepares the full-text search document SDK.
    *
    * @return  Document
    *
    * @since   1.0.0-dev
-   *
-   * @throws  DocumentException
-   *            - In case that is not possible to configure the full-text search document
-   *              SDK.
    */
-  protected function _Configure()
+  protected function _PrepareSdk()
   {
-    try {
-      $this->_configurationInterface->Configure(DocumentConfiguration::GetAll());
-    } catch (\Exception $exception) {
-      throw new DocumentException (
-        DocumentException::SDK_FTS_CONFIGURE_FAILURE,
-        $exception,
-        ['Configuration' => DocumentConfiguration::GetAll()]
-      );
-    }
+    $this->_configurationSdk = [
+      'Service' => [
+        'Request' => [
+          'Private' => [
+            'Create' => [],
+            'Delete' => [],
+            'Retrieve' => [],
+            'RetrieveMany' => [],
+            'Update' => []
+          ],
+          'Public' => []
+        ],
+        'Response' => [
+          'Private' => [
+            'Create' => [],
+            'Delete' => [],
+            'Retrieve' => [],
+            'RetrieveMany' => [],
+            'Update' => []
+          ],
+          'Public' => []
+        ]
+      ]
+    ];
 
     return $this;
   }
@@ -63,15 +73,13 @@ class Document extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Post (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Create'),
-          $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_GetConfigurationService('Request', 'Create'), $data
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_GetConfigurationService('Response', 'Create')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_CREATE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_CREATE_FAILURE, $exception
       );
     }
   }
@@ -94,15 +102,13 @@ class Document extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Delete (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Delete'),
-          $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_GetConfigurationService('Request', 'Delete'), $data
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_GetConfigurationService('Response', 'Delete')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_DELETE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_DELETE_FAILURE, $exception
       );
     }
   }
@@ -125,15 +131,13 @@ class Document extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Retrieve'),
-          $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_GetConfigurationService('Request', 'Retrieve'), $data
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_GetConfigurationService('Response', 'Retrieve')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_RETRIEVE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_RETRIEVE_FAILURE, $exception
       );
     }
   }
@@ -156,19 +160,13 @@ class Document extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
-          $this->_configurationInterface->GetByKey (
-            'Service.Request.EndPoint.RetrieveMany'
-          ),
-          $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_GetConfigurationService('Request', 'RetrieveMany'), $data
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_GetConfigurationService('Response', 'RetrieveMany')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE,
-        $exception,
-        ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE, $exception
       );
     }
   }
@@ -191,15 +189,13 @@ class Document extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Put (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Update'),
-          $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_GetConfigurationService('Request', 'Update'), $data
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_GetConfigurationService('Response', 'Update')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_UPDATE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_DOCUMENT_UPDATE_FAILURE, $exception
       );
     }
   }

@@ -26,9 +26,6 @@ interface ClientInterface
    * @param   array $data
    *            - The data to be used. (Optional, [])
    *
-   * @param   array $optionList
-   *            - The list of options to be used. (Optional, [])
-   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -37,7 +34,7 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/DELETE
    *              request.
    */
-  public function Delete($url, array $data = [], array $optionList = []);
+  public function Delete($url, array $data = []);
 
   /**
    * HTTP/GET
@@ -48,9 +45,6 @@ interface ClientInterface
    * @param   array $data
    *            - The data to be used. (Optional, [])
    *
-   * @param   array $optionList
-   *            - The list of options to be used. (Optional, [])
-   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -59,7 +53,7 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/GET
    *              request.
    */
-  public function Get($url, array $data = [], array $optionList = []);
+  public function Get($url, array $data = []);
 
   /**
    * HTTP/POST
@@ -70,9 +64,6 @@ interface ClientInterface
    * @param   array $data
    *            - The data to be used. (Optional, [])
    *
-   * @param   array $optionList
-   *            - The list of options to be used. (Optional, [])
-   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -81,7 +72,7 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/POST
    *              request.
    */
-  public function Post($url, array $data = [], array $optionList = []);
+  public function Post($url, array $data = []);
 
   /**
    * HTTP/PUT
@@ -92,9 +83,6 @@ interface ClientInterface
    * @param   array $data
    *            - The data to be used. (Optional, [])
    *
-   * @param   array $optionList
-   *            - The list of options to be used. (Optional, [])
-   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -103,5 +91,5 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/PUT
    *              request.
    */
-  public function Put($url, array $data = [], array $optionList = []);
+  public function Put($url, array $data = []);
 }

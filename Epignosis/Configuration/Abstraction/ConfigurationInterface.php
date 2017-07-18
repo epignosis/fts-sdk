@@ -46,5 +46,5 @@ interface ConfigurationInterface
    *            - In case that is not possible to return the value of the requested
    *              configuration key.
    */
-  public function GetByKey($key);
+  public function GetFromKey($key);
 }
