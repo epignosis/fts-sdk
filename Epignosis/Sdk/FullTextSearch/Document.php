@@ -3,7 +3,6 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
-use Epignosis\Sdk\Failure\EpignosisSdk as EpignosisSdkException;
 use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
