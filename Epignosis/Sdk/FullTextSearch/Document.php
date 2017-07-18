@@ -22,13 +22,27 @@ class Document extends AbstractSdk
   /**
    * Returns the configuration of the full-text search document SDK.
    *
-   * @return  array
+   * @return  Document
    *
    * @since   1.0.0-dev
+   *
+   * @throws  DocumentException
+   *            - In case that is not possible to configure the full-text search document
+   *              SDK.
    */
-  protected function _GetSdkConfiguration()
+  protected function _Configure()
   {
-    return DocumentConfiguration::GetAll();
+    try {
+      $this->_configurationInterface->Configure(DocumentConfiguration::GetAll());
+    } catch (\Exception $exception) {
+      throw new DocumentException (
+        DocumentException::SDK_FTS_CONFIGURE_FAILURE,
+        $exception,
+        ['Configuration' => DocumentConfiguration::GetAll()]
+      );
+    }
+
+    return $this;
   }
 
   /**
@@ -42,8 +56,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  DocumentException
-   *            - In case that is not possible to successfully complete, the creation of
-   *              the requested document.
+   *            - In case that is not possible to create the requested document.
    */
   public function Create(array $data)
   {
@@ -74,8 +87,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  DocumentException
-   *            - In case that is not possible to successfully complete, the deletion of
-   *              the requested document.
+   *            - In case that is not possible to delete the requested document.
    */
   public function Delete(array $data)
   {
@@ -106,8 +118,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  DocumentException
-   *            - In case that is not possible to successfully complete, the retrieval of
-   *              the requested document.
+   *            - In case that is not possible to retrieve the requested document.
    */
   public function Retrieve(array $data)
   {
@@ -138,8 +149,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  DocumentException
-   *            - In case that is not possible to successfully complete, the retrieval of
-   *              the documents.
+   *            - In case that is not possible to retrieve the requested documents.
    */
   public function RetrieveMany(array $data)
   {
@@ -174,8 +184,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  DocumentException
-   *            - In case that is not possible to successfully complete, the update of the
-   *              requested document.
+   *            - In case that is not possible to update the requested document.
    */
   public function Update(array $data)
   {

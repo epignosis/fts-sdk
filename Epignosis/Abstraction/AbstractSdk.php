@@ -71,9 +71,6 @@ abstract class AbstractSdk
   protected $_loggerFactory = null;
 
 
-  // @todo
-  abstract protected function _GetSdkConfiguration();
-
   /**
    * Returns the auth interface.
    *
