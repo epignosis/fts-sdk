@@ -1,9 +1,9 @@
 <?php
 
-namespace Epignosis\Sdk\FullTextSearch;
+namespace Epignosis\Sdks\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
+use Epignosis\Sdks\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
  * Class FullTextSearch
@@ -12,9 +12,9 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
  * retrieve documents from the full-text search service.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\FullTextSearch
+ * @category    Epignosis\Sdks\Sdk\FullTextSearch
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\FullTextSearch
+ * @package     Epignosis\Sdks\Sdk\FullTextSearch
  * @since       1.0.0-dev
  */
 class Operator extends AbstractSdk
