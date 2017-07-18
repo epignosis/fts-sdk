@@ -2,7 +2,7 @@
 
 namespace Epignosis\Sdk\FullTextSearch\Failure;
 
-use Epignosis\Failure\EpignosisSdkTrait;
+use Epignosis\Failure\Sdk;
 
 /**
  * Class Document
@@ -15,18 +15,15 @@ use Epignosis\Failure\EpignosisSdkTrait;
  * @package     Epignosis\Sdk\FullTextSearch\Failure
  * @since       1.0.0-dev
  */
-class Document extends \Exception
+class Document extends Sdk
 {
-  use EpignosisSdkTrait;
-
-
   /**
    * Used in case that is not possible to create the requested document.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DOCUMENT_CREATE_FAILURE = 1;
+  const SDK_FTS_DOCUMENT_CREATE_FAILURE = 7;
 
   /**
    * Used in case that is not possible to delete the requested document.
@@ -34,7 +31,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DOCUMENT_DELETE_FAILURE = 2;
+  const SDK_FTS_DOCUMENT_DELETE_FAILURE = 8;
 
   /**
    * Used in case that is not possible to retrieve the requested document.
@@ -42,7 +39,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DOCUMENT_RETRIEVE_FAILURE = 3;
+  const SDK_FTS_DOCUMENT_RETRIEVE_FAILURE = 9;
 
   /**
    * Used in case that is not possible to retrieve the requested documents.
@@ -50,7 +47,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DOCUMENT_RETRIEVE_MANY_FAILURE = 4;
+  const SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE = 10;
 
   /**
    * Used in case that is not possible to update the requested document.
@@ -58,7 +55,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DOCUMENT_UPDATE_FAILURE = 5;
+  const SDK_FTS_DOCUMENT_UPDATE_FAILURE = 11;
 
   /**
    * Used in case that is not possible to configure the full-text search document SDK.
@@ -66,7 +63,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_CONFIGURE_FAILURE = 6;
+  const SDK_FTS_CONFIGURE_FAILURE = 12;
 
 
   /**
@@ -91,26 +88,26 @@ class Document extends \Exception
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::FTS_DOCUMENT_CREATE_FAILURE] =
-      'FTS_DOCUMENT_CREATE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_CREATE_FAILURE] =
+      'SDK_FTS_DOCUMENT_CREATE_FAILURE';
 
-    self::$_failureMessageList[self::FTS_DOCUMENT_DELETE_FAILURE] =
-      'FTS_DOCUMENT_DELETE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_DELETE_FAILURE] =
+      'SDK_FTS_DOCUMENT_DELETE_FAILURE';
 
-    self::$_failureMessageList[self::FTS_DOCUMENT_RETRIEVE_FAILURE] =
-      'FTS_DOCUMENT_RETRIEVE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_RETRIEVE_FAILURE] =
+      'SDK_FTS_DOCUMENT_RETRIEVE_FAILURE';
 
-    self::$_failureMessageList[self::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE] =
-      'FTS_DOCUMENT_RETRIEVE_MANY_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE] =
+      'SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE';
 
-    self::$_failureMessageList[self::FTS_DOCUMENT_UPDATE_FAILURE] =
-      'FTS_DOCUMENT_UPDATE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_UPDATE_FAILURE] =
+      'SDK_FTS_DOCUMENT_UPDATE_FAILURE';
 
     self::$_failureMessageList[self::SDK_FTS_CONFIGURE_FAILURE] =
       'SDK_FTS_CONFIGURE_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 
-    parent::__construct($this->GetFailureMessage($code), $code, $exception);
+    parent::__construct($code, $exception, $additionalFailureInformation);
   }
 }
