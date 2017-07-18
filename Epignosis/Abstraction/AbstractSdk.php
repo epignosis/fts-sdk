@@ -44,15 +44,6 @@ abstract class AbstractSdk
   protected $_clientFactory = null;
 
   /**
-   * The SDK configuration
-   *
-   * @default []
-   * @since   1.0.0-dev
-   * @var     array
-   */
-  protected $_configurationSdk = [];
-
-  /**
    * The configuration interface.
    *
    * @default null
