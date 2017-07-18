@@ -3,7 +3,7 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
+use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentException;
 
 /**
  * Class Document
@@ -65,7 +65,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  DocumentException
+   * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to create the requested document.
    */
   public function Create(array $data)
@@ -78,8 +78,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationService('Response', 'Create')
       );
     } catch (\Exception $exception) {
-      throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_CREATE_FAILURE, $exception
+      throw new FullTextSearchDocumentException (
+        FullTextSearchDocumentException::FTS_DOCUMENT_CREATE_FAILURE, $exception
       );
     }
   }
@@ -94,7 +94,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  DocumentException
+   * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to delete the requested document.
    */
   public function Delete(array $data)
@@ -107,8 +107,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationService('Response', 'Delete')
       );
     } catch (\Exception $exception) {
-      throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_DELETE_FAILURE, $exception
+      throw new FullTextSearchDocumentException (
+        FullTextSearchDocumentException::FTS_DOCUMENT_DELETE_FAILURE, $exception
       );
     }
   }
@@ -123,7 +123,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  DocumentException
+   * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to retrieve the requested document.
    */
   public function Retrieve(array $data)
@@ -136,8 +136,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationService('Response', 'Retrieve')
       );
     } catch (\Exception $exception) {
-      throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_RETRIEVE_FAILURE, $exception
+      throw new FullTextSearchDocumentException (
+        FullTextSearchDocumentException::FTS_DOCUMENT_RETRIEVE_FAILURE, $exception
       );
     }
   }
@@ -152,7 +152,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  DocumentException
+   * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to retrieve the requested documents.
    */
   public function RetrieveMany(array $data)
@@ -165,8 +165,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationService('Response', 'RetrieveMany')
       );
     } catch (\Exception $exception) {
-      throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE, $exception
+      throw new FullTextSearchDocumentException (
+        FullTextSearchDocumentException::FTS_DOCUMENT_RETRIEVE_MANY_FAILURE, $exception
       );
     }
   }
@@ -181,7 +181,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  DocumentException
+   * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to update the requested document.
    */
   public function Update(array $data)
@@ -194,8 +194,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationService('Response', 'Update')
       );
     } catch (\Exception $exception) {
-      throw new DocumentException (
-        DocumentException::FTS_DOCUMENT_UPDATE_FAILURE, $exception
+      throw new FullTextSearchDocumentException (
+        FullTextSearchDocumentException::FTS_DOCUMENT_UPDATE_FAILURE, $exception
       );
     }
   }

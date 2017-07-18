@@ -3,9 +3,9 @@
 namespace Epignosis\Failure;
 
 /**
- * Class AbstractSdk
+ * Class Sdk
  *
- * The abstract SDK exception.
+ * The SDK exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Failure
@@ -13,7 +13,7 @@ namespace Epignosis\Failure;
  * @package     Epignosis\Failure
  * @since       1.0.0-dev
  */
-class AbstractSdk extends \Exception
+class Sdk extends \Exception
 {
   use EpignosisSdkTrait;
 
@@ -66,17 +66,9 @@ class AbstractSdk extends \Exception
    */
   const SDK_GET_LOG_FAILURE = 6;
 
-  /**
-   * Used in case that is not possible to return the notification event.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_GET_NOTIFICATION_EVENT_FAILURE = 7;
-
 
   /**
-   * AbstractSdk constructor.
+   * Sdk constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
@@ -114,9 +106,6 @@ class AbstractSdk extends \Exception
 
     self::$_failureMessageList[self::SDK_GET_LOG_FAILURE] =
       'SDK_GET_LOG_FAILURE';
-
-    self::$_failureMessageList[self::SDK_GET_NOTIFICATION_EVENT_FAILURE] =
-      'SDK_GET_NOTIFICATION_EVENT_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 
