@@ -1,22 +1,20 @@
 <?php
 
-namespace Epignosis\Sdk\FullTextSearch\Failure;
-
-use Epignosis\Sdk\Failure\EpignosisSdkTrait;
+namespace Epignosis\Sdk\Failure;
 
 /**
- * Class Document
+ * Class Sdk
  *
- * The Document FullTextSearch SDK exception.
+ * The SDK exception.
  *
- * @application FullTextSearch Epignosis SDK
+ * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\FullTextSearch\Failure
+ * @category    Epignosis\Sdk\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\FullTextSearch\Failure
+ * @package     Epignosis\Sdk\Failure
  * @since       1.0.0-dev
  */
-class Document extends \Exception
+class Sdk extends \Exception
 {
   use EpignosisSdkTrait;
 
@@ -28,7 +26,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_CREATE_FAILURE = 1;
+  const SDK_GET_AUTH_INTERFACE_FAILURE = 1;
 
   /**
    * Used in case that is not possible to successfully complete, the deletion of the
@@ -37,7 +35,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_DELETE_FAILURE = 2;
+  const SDK_GET_CLIENT_INTERFACE_FAILURE = 2;
 
   /**
    * Used in case that is not possible to successfully complete, the retrieval of the
@@ -46,7 +44,7 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_RETRIEVE_FAILURE = 3;
+  const SDK_GET_LOGGER_INTERFACE_FAILURE = 3;
 
   /**
    * Used in case that is not possible to successfully complete, the update of the
@@ -55,7 +53,11 @@ class Document extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_UPDATE_FAILURE = 4;
+  const SDK_CLEAR_LOG_FAILURE = 4;
+
+  const SDK_CONFIGURE_FAILURE = 5;
+  const SDK_GET_LOG_FAILURE = 6;
+  const SDK_GET_NOTIFICATION_EVENT_FAILURE = 7;
 
 
   /**

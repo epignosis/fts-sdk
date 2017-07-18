@@ -2,6 +2,11 @@
 
 namespace Epignosis\Sdk\Abstraction;
 
+use Epignosis\Sdk\Factory\Auth as AuthFactory;
+use Epignosis\Sdk\Factory\Client as ClientFactory;
+use Epignosis\Sdk\Factory\Logger as LoggerFactory;
+use Epignosis\Sdk\Failure\Sdk as SdkException;
+
 /**
  * Abstract Class AbstractSdk
  *
@@ -60,7 +65,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to return the auth interface.
    */
   protected function _GetAuthInterface()
@@ -75,9 +80,7 @@ abstract class AbstractSdk
         return $this->_authFactory->GetDefaultCached();
       }
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_GET_AUTH_INTERFACE_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_GET_AUTH_INTERFACE_FAILURE, $exception);
     }
   }
 
@@ -88,7 +91,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to return the client interface.
    */
   protected function _GetClientInterface()
@@ -103,9 +106,7 @@ abstract class AbstractSdk
         return $this->_clientFactory->GetDefaultCached();
       }
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_GET_CLIENT_INTERFACE_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_GET_CLIENT_INTERFACE_FAILURE, $exception);
     }
   }
 
@@ -116,7 +117,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to return the logger interface.
    */
   protected function _GetLoggerInterface()
@@ -131,9 +132,7 @@ abstract class AbstractSdk
         return $this->_factoryLogger->GetDefaultCached();
       }
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_GET_LOGGER_INTERFACE_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_GET_LOGGER_INTERFACE_FAILURE, $exception);
     }
   }
 
@@ -155,9 +154,9 @@ abstract class AbstractSdk
    * @since   1.0.0-dev
    */
   public function __construct (
-    AuthFactory $authFactory,
-    ClientFactory $clientFactory,
-    LoggerFactory $loggerFactory,
+               AuthFactory $authFactory,
+             ClientFactory $clientFactory,
+             LoggerFactory $loggerFactory,
     ConfigurationInterface $configurationInterface)
   {
     $this->_authFactory = $authFactory;
@@ -173,7 +172,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to clear the log.
    */
   public function ClearLog()
@@ -181,9 +180,7 @@ abstract class AbstractSdk
     try {
       $this->_GetLoggerInterface()->ClearLog();
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_CLEAR_LOG_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_CLEAR_LOG_FAILURE, $exception);
     }
 
     return $this;
@@ -195,11 +192,11 @@ abstract class AbstractSdk
    * @param   array $configuration
    *            - The configuration to be used. (Required)
    *
-   * @return  FullTextSearch
+   * @return  AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to configure the full-text search SDK.
    */
   public function Configure(array $configuration)
@@ -207,8 +204,8 @@ abstract class AbstractSdk
     try {
       $this->_configurationInterface->Configure($configuration);
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_CONFIGURE_FAILURE,
+      throw new SdkException (
+        SdkException::SDK_CONFIGURE_FAILURE,
         $exception,
         ['Configuration' => $configuration]
       );
@@ -224,7 +221,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to return the log.
    */
   public function GetLog()
@@ -232,9 +229,7 @@ abstract class AbstractSdk
     try {
       return $this->_GetLoggerInterface()->GetLog();
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_GET_LOG_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_GET_LOG_FAILURE, $exception);
     }
   }
 
@@ -247,16 +242,17 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchException
+   * @throws  SdkException
    *            - In case that is not possible to return the notification event.
    */
   public function GetNotificationEvent()
   {
     try {
       // @todo
+      return [];
     } catch (\Exception $exception) {
-      throw new FullTextSearchException (
-        FullTextSearchException::FTS_GET_NOTIFICATION_EVENT_FAILURE, $exception
+      throw new SdkException (
+        SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
       );
     }
   }
