@@ -2,6 +2,8 @@
 
 namespace Epignosis\Sdk\Abstraction;
 
+use Epignosis\Sdk\Failure\Configuration as ConfigurationException;
+
 /**
  * Interface ConfigurationInterface
  *
@@ -16,5 +18,19 @@ namespace Epignosis\Sdk\Abstraction;
  */
 interface ConfigurationInterface
 {
+  /**
+   * Returns the value of the requested configuration key.
+   *
+   * @param   string $key
+   *            - The key to return its value. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  ConfigurationException
+   *            - In case that is not possible to return the value of the requested
+   *              configuration key.
+   */
   public function GetByKey($key);
 }
