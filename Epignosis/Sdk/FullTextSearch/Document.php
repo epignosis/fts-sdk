@@ -29,7 +29,7 @@ class Document extends AbstractSdk
   {
     return [
       'Request' => [
-        'Private' => [
+        'Scoped' => [
           'Create' => [],
           'Delete' => [],
           'Retrieve' => [],
@@ -39,7 +39,7 @@ class Document extends AbstractSdk
         'Shared' => []
       ],
       'Response' => [
-        'Private' => [
+        'Scoped' => [
           'Create' => [],
           'Delete' => [],
           'Retrieve' => [],
@@ -67,7 +67,7 @@ class Document extends AbstractSdk
   public function Create(array $data)
   {
     try {
-      return $this->_GetResponse (
+      return $this->_GetParsedResponse (
         $this->_GetClientInterface()->Post (
           $this->_GetConfigurationPrivate('Request', 'Create'), $data
         ),
@@ -96,7 +96,7 @@ class Document extends AbstractSdk
   public function Delete(array $data)
   {
     try {
-      return $this->_GetResponse (
+      return $this->_GetParsedResponse (
         $this->_GetClientInterface()->Delete (
           $this->_GetConfigurationPrivate('Request', 'Delete'), $data
         ),
@@ -125,7 +125,7 @@ class Document extends AbstractSdk
   public function Retrieve(array $data)
   {
     try {
-      return $this->_GetResponse (
+      return $this->_GetParsedResponse (
         $this->_GetClientInterface()->Get (
           $this->_GetConfigurationPrivate('Request', 'Retrieve'), $data
         ),
@@ -154,7 +154,7 @@ class Document extends AbstractSdk
   public function RetrieveMany(array $data)
   {
     try {
-      return $this->_GetResponse (
+      return $this->_GetParsedResponse (
         $this->_GetClientInterface()->Get (
           $this->_GetConfigurationPrivate('Request', 'RetrieveMany'), $data
         ),
@@ -183,7 +183,7 @@ class Document extends AbstractSdk
   public function Update(array $data)
   {
     try {
-      return $this->_GetResponse (
+      return $this->_GetParsedResponse (
         $this->_GetClientInterface()->Put (
           $this->_GetConfigurationPrivate('Request', 'Update'), $data
         ),

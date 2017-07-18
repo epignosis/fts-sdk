@@ -82,12 +82,12 @@ abstract class AbstractSdk
 
   protected function _GetConfigurationPrivate($type, $operation)
   {
-    $private = sprintf('Private.%s.Private.%s', $type, $operation);
-    $public = sprintf('Private.%s.Shared', $type);
+    $scoped = sprintf('Private.%s.Scoped.%s', $type, $operation);
+    $shared = sprintf('Private.%s.Shared', $type);
 
     return
-      $this->_configurationInterface->GetFromKey($private) +
-      $this->_configurationInterface->GetFromKey($public);
+      $this->_configurationInterface->GetFromKey($scoped) +
+      $this->_configurationInterface->GetFromKey($shared);
   }
 
   abstract protected function _GetConfigurationSdk();
@@ -148,7 +148,7 @@ abstract class AbstractSdk
     }
   }
 
-  protected function _GetResponse($data = null, array $optionList = [])
+  protected function _GetParsedResponse($data = null, array $optionList = [])
   {
     return [];
   }
