@@ -1,6 +1,6 @@
 <?php
 
-namespace Epignosis\Auths\Failure;
+namespace Epignosis\Auth\Failure;
 
 use Epignosis\Failure\EpignosisSdkTrait;
 
@@ -10,9 +10,9 @@ use Epignosis\Failure\EpignosisSdkTrait;
  * The auth interface exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Auths\Failure
+ * @category    Epignosis\Auth\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Auths\Failure
+ * @package     Epignosis\Auth\Failure
  * @since       1.0.0-dev
  */
 class Auth extends \Exception

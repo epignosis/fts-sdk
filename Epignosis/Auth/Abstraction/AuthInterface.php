@@ -1,6 +1,6 @@
 <?php
 
-namespace Epignosis\Sdk\Abstraction;
+namespace Epignosis\Auth\Abstraction;
 
 /**
  * Interface AuthInterface
@@ -8,9 +8,9 @@ namespace Epignosis\Sdk\Abstraction;
  * The auth interface.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Abstraction
+ * @category    Epignosis\Auth\Abstraction
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Abstraction
+ * @package     Epignosis\Auth\Abstraction
  * @since       1.0.0-dev
  */
 interface AuthInterface
