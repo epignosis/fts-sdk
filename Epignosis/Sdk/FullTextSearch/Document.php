@@ -36,10 +36,13 @@ class Operator extends AbstractSdk
   public function Create(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Post (
-        $this->_configurationInterface->GetByKey('Service.EndPoint.Create'),
-        $data,
-        $this->_configurationInterface->GetByKey('Service.OptionList')
+      return $this->_GetDecodedResponse (
+        $this->_GetClientInterface()->Post (
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Create'),
+          $data,
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+        ),
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -65,10 +68,13 @@ class Operator extends AbstractSdk
   public function Delete(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Delete (
-        $this->_configurationInterface->GetByKey('Service.EndPoint.Delete'),
-        $data,
-        $this->_configurationInterface->GetByKey('Service.OptionList')
+      return $this->_GetDecodedResponse (
+        $this->_GetClientInterface()->Delete (
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Delete'),
+          $data,
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+        ),
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -94,10 +100,13 @@ class Operator extends AbstractSdk
   public function Retrieve(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Get (
-        $this->_configurationInterface->GetByKey('Service.EndPoint.Retrieve'),
-        $data,
-        $this->_configurationInterface->GetByKey('Service.OptionList')
+      return $this->_GetDecodedResponse (
+        $this->_GetClientInterface()->Get (
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Retrieve'),
+          $data,
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+        ),
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -123,10 +132,13 @@ class Operator extends AbstractSdk
   public function Update(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Put (
-        $this->_configurationInterface->GetByKey('Service.EndPoint.Update'),
-        $data,
-        $this->_configurationInterface->GetByKey('Service.OptionList')
+      return $this->_GetDecodedResponse (
+        $this->_GetClientInterface()->Put (
+          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Update'),
+          $data,
+          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+        ),
+        $this->_configurationInterface->GetByKey('Service.Response')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (

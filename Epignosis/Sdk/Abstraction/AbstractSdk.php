@@ -110,6 +110,11 @@ abstract class AbstractSdk
     }
   }
 
+  protected function _GetDecodedResponse($data = null, array $optionList= [])
+  {
+    return [];
+  }
+
   /**
    * Returns the logger interface.
    *
