@@ -48,13 +48,22 @@ class Document extends \Exception
   const FTS_RETRIEVE_FAILURE = 3;
 
   /**
+   * Used in case that is not possible to successfully complete, the retrieval of the
+   * documents.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const FTS_RETRIEVE_MANY_FAILURE = 4;
+
+  /**
    * Used in case that is not possible to successfully complete, the update of the
    * requested document.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const FTS_UPDATE_FAILURE = 4;
+  const FTS_UPDATE_FAILURE = 5;
 
 
   /**
@@ -87,6 +96,9 @@ class Document extends \Exception
 
     self::$_failureMessageList[self::FTS_RETRIEVE_FAILURE] =
       'FTS_RETRIEVE_FAILURE';
+
+    self::$_failureMessageList[self::FTS_RETRIEVE_MANY_FAILURE] =
+      'FTS_RETRIEVE_MANY_FAILURE';
 
     self::$_failureMessageList[self::FTS_UPDATE_FAILURE] =
       'FTS_UPDATE_FAILURE';

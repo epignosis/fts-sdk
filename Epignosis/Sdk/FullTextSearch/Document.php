@@ -50,7 +50,7 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Post (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointCreate'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Create'),
           $data,
           $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
@@ -82,7 +82,7 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Delete (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointDelete'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Delete'),
           $data,
           $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
@@ -114,7 +114,7 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointRetrieve'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Retrieve'),
           $data,
           $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
@@ -146,7 +146,9 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointRetrieveMany'),
+          $this->_configurationInterface->GetByKey (
+            'ServiceRequest.EndPoint.RetrieveMany'
+          ),
           $data,
           $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
@@ -154,7 +156,7 @@ class Operator extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
-        DocumentException::FTS_RETRIEVE_FAILURE, $exception, ['Data' => $data]
+        DocumentException::FTS_RETRIEVE_MANY_FAILURE, $exception, ['Data' => $data]
       );
     }
   }
@@ -178,7 +180,7 @@ class Operator extends AbstractSdk
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Put (
-          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointUpdate'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPoint.Update'),
           $data,
           $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
