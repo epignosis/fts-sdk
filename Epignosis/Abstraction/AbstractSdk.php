@@ -80,17 +80,17 @@ abstract class AbstractSdk
   protected $_loggerFactory = null;
 
 
-  protected function _GetConfigurationService($type, $operation)
+  protected function _GetConfigurationPrivate($type, $operation)
   {
-    $private = sprintf('Service.%s.Private.%s', $type, $operation);
-    $public = sprintf('Service.%s.Public', $type);
+    $private = sprintf('Private.%s.Private.%s', $type, $operation);
+    $public = sprintf('Private.%s.Shared', $type);
 
     return
       $this->_configurationInterface->GetFromKey($private) +
       $this->_configurationInterface->GetFromKey($public);
   }
 
-  abstract protected function _PrepareSdk();
+  abstract protected function _GetConfigurationSdk();
 
   /**
    * Returns the auth interface.
@@ -148,7 +148,7 @@ abstract class AbstractSdk
     }
   }
 
-  protected function _GetDecodedResponse($data = null, array $optionList = [])
+  protected function _GetResponse($data = null, array $optionList = [])
   {
     return [];
   }
@@ -197,6 +197,17 @@ abstract class AbstractSdk
     $this->_configurationInterface = $configurationInterface;
   }
 
+
+
+
+
+
+
+
+
+
+
+
   /**
    * Clears the log.
    *
@@ -212,9 +223,7 @@ abstract class AbstractSdk
     try {
       $this->_GetLoggerInterface()->ClearLog();
     } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_CLEAR_LOG_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_CLEAR_LOG_FAILURE, $exception);
     }
 
     return $this;
@@ -236,9 +245,10 @@ abstract class AbstractSdk
   public function Configure(array $configuration)
   {
     try {
-      $this->_configurationInterface->Configure (
-        $this->_GetSdkConfiguration() + $configuration
-      );
+      $this->_configurationInterface->Configure ([
+        'Private' => $this->_GetConfigurationSdk(),
+        'Public' => $configuration
+      ]);
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_CONFIGURE_FAILURE, $exception
@@ -263,9 +273,7 @@ abstract class AbstractSdk
     try {
       return $this->_GetLoggerInterface()->GetLog();
     } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_GET_LOG_FAILURE, $exception
-      );
+      throw new SdkException(SdkException::SDK_GET_LOG_FAILURE, $exception);
     }
   }
 }

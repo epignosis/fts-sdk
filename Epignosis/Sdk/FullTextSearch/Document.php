@@ -19,40 +19,36 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentExcep
 class Document extends AbstractSdk
 {
   /**
-   * Prepares the full-text search document SDK.
+   * Returns the configuration of the full-text search document SDK.
    *
-   * @return  Document
+   * @return  array
    *
    * @since   1.0.0-dev
    */
-  protected function _PrepareSdk()
+  protected function _GetConfigurationSdk()
   {
-    $this->_configurationSdk = [
-      'Service' => [
-        'Request' => [
-          'Private' => [
-            'Create' => [],
-            'Delete' => [],
-            'Retrieve' => [],
-            'RetrieveMany' => [],
-            'Update' => []
-          ],
-          'Public' => []
+    return [
+      'Request' => [
+        'Private' => [
+          'Create' => [],
+          'Delete' => [],
+          'Retrieve' => [],
+          'RetrieveMany' => [],
+          'Update' => []
         ],
-        'Response' => [
-          'Private' => [
-            'Create' => [],
-            'Delete' => [],
-            'Retrieve' => [],
-            'RetrieveMany' => [],
-            'Update' => []
-          ],
-          'Public' => []
-        ]
+        'Shared' => []
+      ],
+      'Response' => [
+        'Private' => [
+          'Create' => [],
+          'Delete' => [],
+          'Retrieve' => [],
+          'RetrieveMany' => [],
+          'Update' => []
+        ],
+        'Shared' => []
       ]
     ];
-
-    return $this;
   }
 
   /**
@@ -71,11 +67,11 @@ class Document extends AbstractSdk
   public function Create(array $data)
   {
     try {
-      return $this->_GetDecodedResponse (
+      return $this->_GetResponse (
         $this->_GetClientInterface()->Post (
-          $this->_GetConfigurationService('Request', 'Create'), $data
+          $this->_GetConfigurationPrivate('Request', 'Create'), $data
         ),
-        $this->_GetConfigurationService('Response', 'Create')
+        $this->_GetConfigurationPrivate('Response', 'Create')
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -100,11 +96,11 @@ class Document extends AbstractSdk
   public function Delete(array $data)
   {
     try {
-      return $this->_GetDecodedResponse (
+      return $this->_GetResponse (
         $this->_GetClientInterface()->Delete (
-          $this->_GetConfigurationService('Request', 'Delete'), $data
+          $this->_GetConfigurationPrivate('Request', 'Delete'), $data
         ),
-        $this->_GetConfigurationService('Response', 'Delete')
+        $this->_GetConfigurationPrivate('Response', 'Delete')
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -129,11 +125,11 @@ class Document extends AbstractSdk
   public function Retrieve(array $data)
   {
     try {
-      return $this->_GetDecodedResponse (
+      return $this->_GetResponse (
         $this->_GetClientInterface()->Get (
-          $this->_GetConfigurationService('Request', 'Retrieve'), $data
+          $this->_GetConfigurationPrivate('Request', 'Retrieve'), $data
         ),
-        $this->_GetConfigurationService('Response', 'Retrieve')
+        $this->_GetConfigurationPrivate('Response', 'Retrieve')
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -158,11 +154,11 @@ class Document extends AbstractSdk
   public function RetrieveMany(array $data)
   {
     try {
-      return $this->_GetDecodedResponse (
+      return $this->_GetResponse (
         $this->_GetClientInterface()->Get (
-          $this->_GetConfigurationService('Request', 'RetrieveMany'), $data
+          $this->_GetConfigurationPrivate('Request', 'RetrieveMany'), $data
         ),
-        $this->_GetConfigurationService('Response', 'RetrieveMany')
+        $this->_GetConfigurationPrivate('Response', 'RetrieveMany')
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -187,11 +183,11 @@ class Document extends AbstractSdk
   public function Update(array $data)
   {
     try {
-      return $this->_GetDecodedResponse (
+      return $this->_GetResponse (
         $this->_GetClientInterface()->Put (
-          $this->_GetConfigurationService('Request', 'Update'), $data
+          $this->_GetConfigurationPrivate('Request', 'Update'), $data
         ),
-        $this->_GetConfigurationService('Response', 'Update')
+        $this->_GetConfigurationPrivate('Response', 'Update')
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
