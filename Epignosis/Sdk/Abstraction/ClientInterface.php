@@ -2,7 +2,7 @@
 
 namespace Epignosis\Sdk\Abstraction;
 
-interface AuthInterface
+interface ClientInterface
 {
 
 }
