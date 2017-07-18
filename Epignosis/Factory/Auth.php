@@ -2,6 +2,8 @@
 
 namespace Epignosis\Factory;
 
+use Epignosis\Factory\Abstraction\FactoryInterface;
+
 /**
  * Class Auth
  *
