@@ -1,9 +1,9 @@
 <?php
 
-namespace Epignosis\Sdks\Sdk\FullTextSearch;
+namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Sdk\Abstraction\AbstractSdk;
-use Epignosis\Sdks\Sdk\FullTextSearch\Failure\Document as DocumentException;
+use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
  * Class FullTextSearch

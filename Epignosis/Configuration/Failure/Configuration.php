@@ -1,21 +1,21 @@
 <?php
 
-namespace Epignosis\Loggers\Failure;
+namespace Epignosis\Configuration\Failure;
 
 use Epignosis\Failure\EpignosisSdkTrait;
 
 /**
- * Class Logger
+ * Class Configuration
  *
- * The logger interface exception.
+ * The configuration interface exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Loggers\Failure
+ * @category    Epignosis\Configuration\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Loggers\Failure
+ * @package     Epignosis\Configuration\Failure
  * @since       1.0.0-dev
  */
-class Logger extends \Exception
+class Configuration extends \Exception
 {
   use EpignosisSdkTrait;
 }

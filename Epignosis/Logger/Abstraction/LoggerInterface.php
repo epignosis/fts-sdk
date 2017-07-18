@@ -1,8 +1,8 @@
 <?php
 
-namespace Epignosis\Loggers\Abstraction;
+namespace Epignosis\Logger\Abstraction;
 
-use Epignosis\Loggers\Failure\Logger as LoggerException;
+use Epignosis\Logger\Failure\Logger as LoggerException;
 
 /**
  * Interface LoggerInterface
@@ -10,9 +10,9 @@ use Epignosis\Loggers\Failure\Logger as LoggerException;
  * The logger interface.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Loggers\Abstraction
+ * @category    Epignosis\Logger\Abstraction
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Loggers\Abstraction
+ * @package     Epignosis\Logger\Abstraction
  * @since       1.0.0-dev
  */
 interface LoggerInterface

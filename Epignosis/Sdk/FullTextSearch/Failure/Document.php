@@ -1,6 +1,6 @@
 <?php
 
-namespace Epignosis\Sdks\Sdk\FullTextSearch\Failure;
+namespace Epignosis\Sdk\FullTextSearch\Failure;
 
 use Epignosis\Failure\EpignosisSdkTrait;
 
@@ -10,9 +10,9 @@ use Epignosis\Failure\EpignosisSdkTrait;
  * The Document FullTextSearch SDK exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdks\Sdk\FullTextSearch\Failure
+ * @category    Epignosis\Sdk\FullTextSearch\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdks\Sdk\FullTextSearch\Failure
+ * @package     Epignosis\Sdk\FullTextSearch\Failure
  * @since       1.0.0-dev
  */
 class Document extends \Exception
