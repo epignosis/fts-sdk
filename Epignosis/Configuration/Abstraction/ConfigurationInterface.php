@@ -1,8 +1,8 @@
 <?php
 
-namespace Epignosis\Sdk\Abstraction;
+namespace Epignosis\Configuration\Abstraction;
 
-use Epignosis\Sdk\Failure\Configuration as ConfigurationException;
+use Epignosis\Configuration\Failure\Configuration as ConfigurationException;
 
 /**
  * Interface ConfigurationInterface
@@ -10,9 +10,9 @@ use Epignosis\Sdk\Failure\Configuration as ConfigurationException;
  * The configuration interface.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Abstraction
+ * @category    Epignosis\Configuration\Abstraction
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Abstraction
+ * @package     Epignosis\Configuration\Abstraction
  * @since       1.0.0-dev
  */
 interface ConfigurationInterface

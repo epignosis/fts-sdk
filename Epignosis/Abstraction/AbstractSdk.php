@@ -2,10 +2,14 @@
 
 namespace Epignosis\Sdk\Abstraction;
 
-use Epignosis\Sdk\Factory\Auth as AuthFactory;
-use Epignosis\Sdk\Factory\Client as ClientFactory;
-use Epignosis\Sdk\Factory\Logger as LoggerFactory;
-use Epignosis\Sdk\Failure\Sdk as SdkException;
+use Epignosis\Auth\Abstraction\AuthInterface;
+use Epignosis\Client\Abstraction\ClientInterface;
+use Epignosis\Configuration\Abstraction\ConfigurationInterface;
+use Epignosis\Logger\Abstraction\LoggerInterface;
+use Epignosis\Factory\Auth as AuthFactory;
+use Epignosis\Factory\Client as ClientFactory;
+use Epignosis\Factory\Logger as LoggerFactory;
+use Epignosis\Failure\AbstractSdk as AbstractSdkException;
 
 /**
  * Abstract Class AbstractSdk
@@ -64,7 +68,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to return the auth interface.
    */
   protected function _GetAuthInterface()
@@ -79,7 +83,9 @@ abstract class AbstractSdk
         return $this->_authFactory->GetDefaultCached();
       }
     } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_GET_AUTH_INTERFACE_FAILURE, $exception);
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_GET_AUTH_INTERFACE_FAILURE, $exception
+      );
     }
   }
 
@@ -90,7 +96,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to return the client interface.
    */
   protected function _GetClientInterface()
@@ -105,7 +111,9 @@ abstract class AbstractSdk
         return $this->_clientFactory->GetDefaultCached();
       }
     } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_GET_CLIENT_INTERFACE_FAILURE, $exception);
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_GET_CLIENT_INTERFACE_FAILURE, $exception
+      );
     }
   }
 
@@ -121,7 +129,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to return the logger interface.
    */
   protected function _GetLoggerInterface()
@@ -136,7 +144,9 @@ abstract class AbstractSdk
         return $this->_factoryLogger->GetDefaultCached();
       }
     } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_GET_LOGGER_INTERFACE_FAILURE, $exception);
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_GET_LOGGER_INTERFACE_FAILURE, $exception
+      );
     }
   }
 
@@ -176,7 +186,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to clear the log.
    */
   public function ClearLog()
@@ -184,7 +194,9 @@ abstract class AbstractSdk
     try {
       $this->_GetLoggerInterface()->ClearLog();
     } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_CLEAR_LOG_FAILURE, $exception);
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_CLEAR_LOG_FAILURE, $exception
+      );
     }
 
     return $this;
@@ -200,7 +212,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to configure the full-text search SDK.
    */
   public function Configure(array $configuration)
@@ -210,8 +222,8 @@ abstract class AbstractSdk
         $configuration + $this->_configurationSdk
       );
     } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_CONFIGURE_FAILURE,
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_CONFIGURE_FAILURE,
         $exception,
         ['Configuration' => $configuration]
       );
@@ -227,7 +239,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to return the log.
    */
   public function GetLog()
@@ -235,7 +247,9 @@ abstract class AbstractSdk
     try {
       return $this->_GetLoggerInterface()->GetLog();
     } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_GET_LOG_FAILURE, $exception);
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_GET_LOG_FAILURE, $exception
+      );
     }
   }
 
@@ -248,7 +262,7 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkException
+   * @throws  AbstractSdkException
    *            - In case that is not possible to return the notification event.
    */
   public function GetNotificationEvent()
@@ -257,8 +271,8 @@ abstract class AbstractSdk
       // @todo
       return [];
     } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
+      throw new AbstractSdkException (
+        AbstractSdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
       );
     }
   }
