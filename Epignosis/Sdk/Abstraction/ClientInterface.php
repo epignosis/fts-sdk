@@ -2,6 +2,8 @@
 
 namespace Epignosis\Sdk\Abstraction;
 
+use Epignosis\Sdk\Failure\Client as ClientException;
+
 /**
  * Interface ClientInterface
  *
@@ -16,8 +18,91 @@ namespace Epignosis\Sdk\Abstraction;
  */
 interface ClientInterface
 {
+  /**
+   * HTTP/DELETE
+   *
+   * @param   string $url
+   *            - The HTTP url. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @param   array $optionList
+   *            - The list of options to be used. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  ClientException
+   *            - In case that is not possible to successfully complete, the HTTP/DELETE
+   *              request.
+   */
   public function Delete($url, array $data = [], array $optionList = []);
+
+  /**
+   * HTTP/GET
+   *
+   * @param   string $url
+   *            - The HTTP url. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @param   array $optionList
+   *            - The list of options to be used. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  ClientException
+   *            - In case that is not possible to successfully complete, the HTTP/GET
+   *              request.
+   */
   public function Get($url, array $data = [], array $optionList = []);
+
+  /**
+   * HTTP/POST
+   *
+   * @param   string $url
+   *            - The HTTP url. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @param   array $optionList
+   *            - The list of options to be used. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  ClientException
+   *            - In case that is not possible to successfully complete, the HTTP/POST
+   *              request.
+   */
   public function Post($url, array $data = [], array $optionList = []);
+
+  /**
+   * HTTP/PUT
+   *
+   * @param   string $url
+   *            - The HTTP url. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @param   array $optionList
+   *            - The list of options to be used. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  ClientException
+   *            - In case that is not possible to successfully complete, the HTTP/PUT
+   *              request.
+   */
   public function Put($url, array $data = [], array $optionList = []);
 }

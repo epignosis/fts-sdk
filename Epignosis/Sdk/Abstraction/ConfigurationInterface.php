@@ -19,6 +19,21 @@ use Epignosis\Sdk\Failure\Configuration as ConfigurationException;
 interface ConfigurationInterface
 {
   /**
+   * Configures the implemented object.
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  ConfigurationInterface
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  ConfigurationException
+   *            - In case that is not possible to configure the implemented object.
+   */
+  public function Configure(array $configuration);
+
+  /**
    * Returns the value of the requested configuration key.
    *
    * @param   string $key

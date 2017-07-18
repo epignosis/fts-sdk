@@ -202,7 +202,9 @@ abstract class AbstractSdk
   public function Configure(array $configuration)
   {
     try {
-      $this->_configurationInterface->Configure($configuration);
+      $this->_configurationInterface->Configure (
+        $configuration + $this->_configurationSdk
+      );
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_CONFIGURE_FAILURE,
