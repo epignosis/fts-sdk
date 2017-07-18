@@ -3,9 +3,9 @@
 namespace Epignosis\Sdk\Abstraction;
 
 /**
- * Interface AuthInterface
+ * Interface ConfigurationInterface
  *
- * The auth interface.
+ * The configuration interface.
  *
  * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
@@ -14,7 +14,7 @@ namespace Epignosis\Sdk\Abstraction;
  * @package     Epignosis\Sdk\Abstraction
  * @since       1.0.0-dev
  */
-interface AuthInterface
+interface ConfigurationInterface
 {
 
 }
