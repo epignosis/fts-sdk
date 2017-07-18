@@ -181,6 +181,17 @@ abstract class AbstractSdk
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+
   /**
    * Constructs the full-text search SDK.
    *
@@ -196,17 +207,6 @@ abstract class AbstractSdk
     $this->_loggerFactory = new LoggerFactory;
     $this->_configurationInterface = $configurationInterface;
   }
-
-
-
-
-
-
-
-
-
-
-
 
   /**
    * Clears the log.
