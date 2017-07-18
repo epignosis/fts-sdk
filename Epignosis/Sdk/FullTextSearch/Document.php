@@ -6,7 +6,7 @@ use Epignosis\Sdk\Abstraction\AbstractSdk;
 use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 
 /**
- * Class FullTextSearch
+ * Class Operator
  *
  * The full-text search operator SDK. With this SDK, one, can create, delete, update, and
  * retrieve documents from the full-text search service.
@@ -20,29 +20,41 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as DocumentException;
 class Operator extends AbstractSdk
 {
   /**
-  * Creates the requested document.
-  *
-  * @param   array $data
-  *            - The data of the document to be created. (Required)
-  *
-  * @return  array
-  *
-  * @since   1.0.0-dev
-  *
-  * @throws  DocumentException
-  *            - In case that is not possible to successfully complete, the creation of
-  *              the requested document.
-  */
+   * Returns the configuration of the full-text search operator SDK.
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  protected function _GetSdkConfiguration()
+  {
+    return [];
+  }
+
+  /**
+   * Creates the requested document.
+   *
+   * @param   array $data
+   *            - The data of the document to be created. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  DocumentException
+   *            - In case that is not possible to successfully complete, the creation of
+   *              the requested document.
+   */
   public function Create(array $data)
   {
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Post (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Create'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointCreate'),
           $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_configurationInterface->GetByKey('ServiceResponse')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -52,29 +64,29 @@ class Operator extends AbstractSdk
   }
 
   /**
-  * Deletes the requested document.
-  *
-  * @param   array $data
-  *            - The data of the document to be deleted. (Required)
-  *
-  * @return  array
-  *
-  * @since   1.0.0-dev
-  *
-  * @throws  DocumentException
-  *            - In case that is not possible to successfully complete, the deletion of
-  *              the requested document.
-  */
+   * Deletes the requested document.
+   *
+   * @param   array $data
+   *            - The data of the document to be deleted. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  DocumentException
+   *            - In case that is not possible to successfully complete, the deletion of
+   *              the requested document.
+   */
   public function Delete(array $data)
   {
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Delete (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Delete'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointDelete'),
           $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_configurationInterface->GetByKey('ServiceResponse')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -84,29 +96,29 @@ class Operator extends AbstractSdk
   }
 
   /**
-  * Retrieves and returns the requested document.
-  *
-  * @param   array $data
-  *            - The data of the document to be retrieved and returned. (Required)
-  *
-  * @return  array
-  *
-  * @since   1.0.0-dev
-  *
-  * @throws  DocumentException
-  *            - In case that is not possible to successfully complete, the retrieval of
-  *              the requested document.
-  */
+   * Retrieves the requested document.
+   *
+   * @param   array $data
+   *            - The data of the document to be retrieved. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  DocumentException
+   *            - In case that is not possible to successfully complete, the retrieval of
+   *              the requested document.
+   */
   public function Retrieve(array $data)
   {
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Get (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Retrieve'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointRetrieve'),
           $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_configurationInterface->GetByKey('ServiceResponse')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
@@ -116,29 +128,61 @@ class Operator extends AbstractSdk
   }
 
   /**
-  * Updates the requested document.
-  *
-  * @param   array $data
-  *            - The data of the document to be updated. (Required)
-  *
-  * @return  array
-  *
-  * @since   1.0.0-dev
-  *
-  * @throws  DocumentException
-  *            - In case that is not possible to successfully complete, the update of the
-  *              requested document.
-  */
+   * Retrieves many documents.
+   *
+   * @param   array $data
+   *            - The data of the documents to be retrieved. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  DocumentException
+   *            - In case that is not possible to successfully complete, the retrieval of
+   *              the documents.
+   */
+  public function RetrieveMany(array $data)
+  {
+    try {
+      return $this->_GetDecodedResponse (
+        $this->_GetClientInterface()->Get (
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointRetrieveMany'),
+          $data,
+          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
+        ),
+        $this->_configurationInterface->GetByKey('ServiceResponse')
+      );
+    } catch (\Exception $exception) {
+      throw new DocumentException (
+        DocumentException::FTS_RETRIEVE_FAILURE, $exception, ['Data' => $data]
+      );
+    }
+  }
+
+  /**
+   * Updates the requested document.
+   *
+   * @param   array $data
+   *            - The data of the document to be updated. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  DocumentException
+   *            - In case that is not possible to successfully complete, the update of the
+   *              requested document.
+   */
   public function Update(array $data)
   {
     try {
       return $this->_GetDecodedResponse (
         $this->_GetClientInterface()->Put (
-          $this->_configurationInterface->GetByKey('Service.Request.EndPoint.Update'),
+          $this->_configurationInterface->GetByKey('ServiceRequest.EndPointUpdate'),
           $data,
-          $this->_configurationInterface->GetByKey('Service.Request.OptionList')
+          $this->_configurationInterface->GetByKey('ServiceRequest.OptionList')
         ),
-        $this->_configurationInterface->GetByKey('Service.Response')
+        $this->_configurationInterface->GetByKey('ServiceResponse')
       );
     } catch (\Exception $exception) {
       throw new DocumentException (
