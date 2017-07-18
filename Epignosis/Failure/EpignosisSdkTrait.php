@@ -1,6 +1,6 @@
 <?php
 
-namespace Epignosis\Sdk\Failure;
+namespace Epignosis\Failure;
 
 /**
  * Trait EpignosisSdkTrait
@@ -9,9 +9,9 @@ namespace Epignosis\Sdk\Failure;
  *
  * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Failure
+ * @category    Epignosis\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Failure
+ * @package     Epignosis\Failure
  * @since       1.0.0-dev
  */
 trait EpignosisSdkTrait

@@ -1,20 +1,20 @@
 <?php
 
-namespace Epignosis\Sdk\Failure;
+namespace Epignosis\Failure;
 
 /**
- * Class EpignosisSdk
+ * Class AbstractSdk
  *
- * The Epignosis SDK exception.
+ * The abstract SDK exception.
  *
  * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Failure
+ * @category    Epignosis\Failure
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Failure
+ * @package     Epignosis\Failure
  * @since       1.0.0-dev
  */
-class EpignosisSdk extends \Exception
+class AbstractSdk extends \Exception
 {
   use EpignosisSdkTrait;
 
@@ -77,7 +77,7 @@ class EpignosisSdk extends \Exception
 
 
   /**
-   * EpignosisSdk constructor.
+   * AbstractSdk constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)

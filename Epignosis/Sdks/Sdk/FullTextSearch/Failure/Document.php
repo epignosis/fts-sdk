@@ -2,7 +2,7 @@
 
 namespace Epignosis\Sdks\Sdk\FullTextSearch\Failure;
 
-use Epignosis\Sdk\Failure\EpignosisSdkTrait;
+use Epignosis\Failure\EpignosisSdkTrait;
 
 /**
  * Class Document

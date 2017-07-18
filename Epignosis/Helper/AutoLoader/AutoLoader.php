@@ -1,6 +1,6 @@
 <?php
 
-namespace Epignosis\Sdk\Helper\AutoLoader;
+namespace Epignosis\Helper\AutoLoader;
 
 /**
  * Class AutoLoader
@@ -9,9 +9,9 @@ namespace Epignosis\Sdk\Helper\AutoLoader;
  *
  * @application Epignosis SDK
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdk\Helper\AutoLoader
+ * @category    Epignosis\Helper\AutoLoader
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdk\Helper\AutoLoader
+ * @package     Epignosis\Helper\AutoLoader
  * @since       1.0.0-dev
  */
 class AutoLoader
