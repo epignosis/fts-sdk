@@ -61,6 +61,9 @@ abstract class AbstractSdk
   protected $_loggerFactory = null;
 
 
+  // @todo
+  abstract protected function _GetSdkConfiguration();
+
   /**
    * Returns the auth interface.
    *
@@ -182,7 +185,7 @@ abstract class AbstractSdk
   /**
    * Clears the log.
    *
-   * @return  FullTextSearch
+   * @return  AbstractSdk
    *
    * @since   1.0.0-dev
    *
@@ -219,7 +222,7 @@ abstract class AbstractSdk
   {
     try {
       $this->_configurationInterface->Configure (
-        $configuration + $this->_configurationSdk
+        $configuration + $this->_GetSdkConfiguration()
       );
     } catch (\Exception $exception) {
       throw new AbstractSdkException (
