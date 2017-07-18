@@ -1,1 +1,1 @@
-# fts-sdk
+# Full-Text Search SDK
