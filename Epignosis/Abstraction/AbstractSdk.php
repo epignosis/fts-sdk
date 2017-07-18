@@ -232,7 +232,7 @@ abstract class AbstractSdk
   {
     try {
       $this->_configurationInterface->Configure (
-        $configuration + $this->_GetSdkConfiguration()
+        $this->_GetSdkConfiguration() + $configuration
       );
     } catch (\Exception $exception) {
       throw new AbstractSdkException (
