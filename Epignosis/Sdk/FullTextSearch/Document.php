@@ -162,7 +162,8 @@ class Document extends AbstractSdk
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE, $exception
+        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE,
+        $exception
       );
     }
   }
