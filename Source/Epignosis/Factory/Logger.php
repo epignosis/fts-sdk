@@ -3,6 +3,8 @@
 namespace Epignosis\Factory;
 
 use Epignosis\Factory\Abstraction\FactoryInterface;
+use Epignosis\Factory\Abstraction\FactoryTrait;
+use Epignosis\Factory\Failure\Logger as LoggerException;
 
 /**
  * Class Logger
@@ -17,5 +19,36 @@ use Epignosis\Factory\Abstraction\FactoryInterface;
  */
 class Logger implements FactoryInterface
 {
+  use FactoryTrait;
 
+
+  /**
+   * Logger constructor.
+   */
+  public function __construct()
+  {
+    $this->_adapterDefault = 'Memory';
+  }
+
+  /**
+   * Returns a new instance of the requested logger adapter.
+   *
+   * @param   string $adapter
+   *            - The logger adapter to return a new instance of it. (Required)
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  LoggerException
+   *            - In case that is not possible to return a new instance of the requested
+   *              logger adapter.
+   */
+  public function Get($adapter, array $configuration = [])
+  {
+
+  }
 }
