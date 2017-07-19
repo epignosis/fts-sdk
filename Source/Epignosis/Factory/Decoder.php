@@ -3,6 +3,8 @@
 namespace Epignosis\Factory;
 
 use Epignosis\Factory\Abstraction\FactoryInterface;
+use Epignosis\Factory\Abstraction\FactoryTrait;
+use Epignosis\Factory\Failure\Decoder as DecoderException;
 
 /**
  * Class Decoder
@@ -17,5 +19,46 @@ use Epignosis\Factory\Abstraction\FactoryInterface;
  */
 class Decoder implements FactoryInterface
 {
+  use FactoryTrait;
 
+
+  /**
+   * Decoder constructor.
+   */
+  public function __construct()
+  {
+    $this->_adapterDefault = 'Memory';
+  }
+
+  /**
+   * Returns a new instance of the requested decoder adapter.
+   *
+   * @param   string $adapter
+   *            - The decoder adapter to return a new instance of it. (Required)
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  DecoderException
+   *            - In case that is not possible to return a new instance of the requested
+   *              decoder adapter.
+   */
+  public function Get($adapter, array $configuration = [])
+  {
+    try {
+      $adapterClass = 'Epignosis\Decoder\\' . $adapter;
+
+      return new $adapterClass($configuration);
+    } catch (\Exception $exception) {
+      throw new DecoderException (
+        DecoderException::FACTORY_DECODER_FAILURE,
+        $exception,
+        ['Adapter' => $adapter, 'Configuration' => $configuration]
+      );
+    }
+  }
 }
