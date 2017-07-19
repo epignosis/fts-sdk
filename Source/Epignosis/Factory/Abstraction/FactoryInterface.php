@@ -2,6 +2,8 @@
 
 namespace Epignosis\Factory\Abstraction;
 
+use Epignosis\Factory\Failure\Factory as FactoryException;
+
 /**
  * Interface FactoryInterface
  *
@@ -15,8 +17,73 @@ namespace Epignosis\Factory\Abstraction;
  */
 interface FactoryInterface
 {
-  public function Get($entity, array $configuration = []);
-  public function GetCached($entity, array $configuration = []);
+  /**
+   * Returns a new instance of the requested adapter.
+   *
+   * @param   string $adapter
+   *            - The adapter to return a new instance of it. (Required)
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  FactoryException
+   *            - In case that is not possible to return a new instance of the requested
+   *              adapter.
+   */
+  public function Get($adapter, array $configuration = []);
+
+  /**
+   * Returns a cached instance of the requested adapter.
+   *
+   * @param   string $adapter
+   *            - The adapter to return a cached instance of it. (Required)
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  FactoryException
+   *            - In case that is not possible to return a cached instance of the
+   *              requested adapter.
+   */
+  public function GetCached($adapter, array $configuration = []);
+
+  /**
+   * Returns a cached instance of the default adapter.
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  FactoryException
+   *            - In case that is not possible to return a cached instance of the default
+   *              adapter.
+   */
   public function GetCachedDefault(array $configuration = []);
+
+  /**
+   * Returns a new instance of the default adapter.
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  FactoryException
+   *            - In case that is not possible to return a new instance of the default
+   *              adapter.
+   */
   public function GetDefault(array $configuration = []);
 }

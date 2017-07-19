@@ -7,7 +7,7 @@ use Epignosis\Failure\EpignosisSdkTrait;
 /**
  * Class Configuration
  *
- * The configuration interface exception.
+ * The configuration exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Helper\Configuration\Failure
