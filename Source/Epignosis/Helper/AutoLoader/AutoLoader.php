@@ -97,7 +97,7 @@ class AutoLoader
    */
   private function _GetDefaultNamespaceList()
   {
-    return [dirname(__NAMESPACE__, 3) => dirname(__DIR__, 4)];
+    return [];
   }
 
   /**
