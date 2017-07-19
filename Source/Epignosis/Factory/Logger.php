@@ -49,6 +49,16 @@ class Logger implements FactoryInterface
    */
   public function Get($adapter, array $configuration = [])
   {
+    try {
+      $adapterClass = 'Epignosis\Logger\\' . $adapter;
 
+      return new $adapterClass($configuration);
+    } catch (\Exception $exception) {
+      throw new LoggerException (
+        LoggerException::FACTORY_LOGGER_FAILURE,
+        $exception,
+        ['Adapter' => $adapter, 'Configuration' => $configuration]
+      );
+    }
   }
 }
