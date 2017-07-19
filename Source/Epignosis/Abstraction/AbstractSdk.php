@@ -71,6 +71,13 @@ abstract class AbstractSdk
   protected $_loggerFactory = null;
 
 
+
+
+
+
+
+
+
   protected function _GetConfigurationPrivate($type, $operation)
   {
     $scoped = sprintf('Private.%s.Scoped.%s', $type, $operation);
@@ -79,6 +86,11 @@ abstract class AbstractSdk
     return
       $this->_configurationInterface->GetFromKey($scoped) +
       $this->_configurationInterface->GetFromKey($shared);
+  }
+
+  protected function _GetParsedResponse($data = null, array $optionList = [])
+  {
+    return [];
   }
 
   abstract protected function _GetConfigurationSdk();
@@ -130,18 +142,15 @@ abstract class AbstractSdk
           $this->_configurationInterface->GetFromKey('Client.Configuration')
         );
       } catch (\Exception $exception) {
-        return $this->_clientFactory->GetDefaultCached();
+        return $this->_clientFactory->GetCachedDefault (
+          $this->_configurationInterface->GetFromKey('Client.Configuration')
+        );
       }
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_CLIENT_INTERFACE_FAILURE, $exception
       );
     }
-  }
-
-  protected function _GetParsedResponse($data = null, array $optionList = [])
-  {
-    return [];
   }
 
   /**
@@ -158,12 +167,14 @@ abstract class AbstractSdk
   {
     try {
       try {
-        return $this->_factoryLogger->GetCached (
+        return $this->_loggerFactory->GetCached (
           $this->_configurationInterface->GetFromKey('Logger.Type'),
           $this->_configurationInterface->GetFromKey('Logger.Configuration')
         );
       } catch (\Exception $exception) {
-        return $this->_factoryLogger->GetDefaultCached();
+        return $this->_loggerFactory->GetCachedDefault (
+          $this->_configurationInterface->GetFromKey('Logger.Configuration')
+        );
       }
     } catch (\Exception $exception) {
       throw new SdkException (
@@ -171,17 +182,6 @@ abstract class AbstractSdk
       );
     }
   }
-
-
-
-
-
-
-
-
-
-
-
 
   /**
    * Constructs the full-text search SDK.

@@ -15,5 +15,8 @@ namespace Epignosis\Factory\Abstraction;
  */
 interface FactoryInterface
 {
-
+  public function Get($entity, array $configuration = []);
+  public function GetCached($entity, array $configuration = []);
+  public function GetCachedDefault(array $configuration = []);
+  public function GetDefault(array $configuration = []);
 }
