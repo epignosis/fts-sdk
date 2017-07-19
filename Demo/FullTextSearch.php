@@ -32,7 +32,9 @@ require
   'AutoLoader' . \DIRECTORY_SEPARATOR .
   'AutoLoader.php';
 
-(new AutoLoader(true))->SetNamespaceList(['Epignosis' => $epignosisFilePath]);
+(new AutoLoader(true))
+  ->SetNamespaceList(['Epignosis' => dirname($epignosisFilePath)])
+  ->RegisterSelf();
 
 /**
  * SDK Configuration Initialization
