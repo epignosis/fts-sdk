@@ -11,9 +11,9 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentExcep
  * The full-text search document SDK.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Sdks\Sdk\FullTextSearch
+ * @category    Epignosis\Sdk\FullTextSearch
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Sdks\Sdk\FullTextSearch
+ * @package     Epignosis\Sdk\FullTextSearch
  * @since       1.0.0-dev
  */
 class Document extends AbstractSdk
