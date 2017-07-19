@@ -95,6 +95,16 @@ abstract class AbstractSdk
 
   abstract protected function _GetConfigurationSdk();
 
+
+
+
+
+
+
+
+
+
+
   /**
    * Returns the auth interface.
    *
@@ -114,7 +124,9 @@ abstract class AbstractSdk
           $this->_configurationInterface->GetFromKey('Auth.Configuration')
         );
       } catch (\Exception $exception) {
-        return $this->_authFactory->GetDefaultCached();
+        return $this->_authFactory->GetCachedDefault (
+          $this->_configurationInterface->GetFromKey('Auth.Configuration')
+        );
       }
     } catch (\Exception $exception) {
       throw new SdkException (
