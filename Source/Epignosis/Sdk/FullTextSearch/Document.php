@@ -2,7 +2,7 @@
 
 namespace Epignosis\Sdk\FullTextSearch;
 
-use Epignosis\Sdk\Abstraction\AbstractSdk;
+use Epignosis\Abstraction\AbstractSdk;
 use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentException;
 
 /**
