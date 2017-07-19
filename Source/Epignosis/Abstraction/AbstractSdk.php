@@ -71,7 +71,14 @@ abstract class AbstractSdk
   protected $_loggerFactory = null;
 
 
-
+  /**
+   * Returns the configuration of the referenced SDK.
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  abstract protected function _GetConfigurationSdk();
 
 
 
@@ -93,7 +100,7 @@ abstract class AbstractSdk
     return [];
   }
 
-  abstract protected function _GetConfigurationSdk();
+
 
 
 
