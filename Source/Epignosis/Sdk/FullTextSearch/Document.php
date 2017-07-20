@@ -85,7 +85,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationEndPoint('Create'), $data
+        $this->_GetConfigurationAction('Create'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -111,7 +111,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Delete (
-        $this->_GetConfigurationEndPoint('Delete'), $data
+        $this->_GetConfigurationAction('Delete'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -137,7 +137,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Retrieve (
-        $this->_GetConfigurationEndPoint('Retrieve'), $data
+        $this->_GetConfigurationAction('Retrieve'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -163,7 +163,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Retrieve (
-        $this->_GetConfigurationEndPoint('RetrieveMany'), $data
+        $this->_GetConfigurationAction('RetrieveMany'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -190,7 +190,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Update (
-        $this->_GetConfigurationEndPoint('Update'), $data
+        $this->_GetConfigurationAction('Update'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (

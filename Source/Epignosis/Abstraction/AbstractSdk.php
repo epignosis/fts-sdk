@@ -142,14 +142,14 @@ abstract class AbstractSdk
   /**
    * Returns the logger interface.
    *
-   * @param   string $endPoint
-   *            - The end-point to return its configuration. (Required)
+   * @param   string $action
+   *            - The action to return its configuration. (Required)
    *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  protected function _GetConfigurationEndPoint($endPoint)
+  protected function _GetConfigurationAction($action)
   {
     $serviceConfiguration = $this->_configuration['Private']['Service'];
 
@@ -158,7 +158,7 @@ abstract class AbstractSdk
         sprintf (
           '%s/%s/',
           rtrim($serviceConfiguration['BaseEndPoint'], '/'),
-          trim($serviceConfiguration['ActionList'][$endPoint]['Path'], '/')
+          trim($serviceConfiguration['ActionList'][$action]['Path'], '/')
         ),
         '/'
       )
