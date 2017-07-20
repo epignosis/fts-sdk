@@ -92,16 +92,16 @@ abstract class AbstractSdk
   protected function _GetAuthInterface()
   {
     try {
-      try {
+      if (isset($this->_configuration['Auth']['Type'])) {
         return $this->_authFactory->GetCached (
           $this->_configuration['Auth']['Type'],
           $this->_configuration['Auth']['Configuration']
         );
-      } catch (\Exception $exception) {
-        return $this->_authFactory->GetCachedDefault (
-          $this->_configuration['Auth']['Configuration']
-        );
       }
+
+      return $this->_authFactory->GetCachedDefault (
+        $this->_configuration['Auth']['Configuration']
+      );
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_AUTH_INTERFACE_FAILURE, $exception
@@ -122,16 +122,16 @@ abstract class AbstractSdk
   protected function _GetClientInterface()
   {
     try {
-      try {
+      if (isset($this->_configuration['Client']['Type'])) {
         return $this->_clientFactory->GetCached (
           $this->_configuration['Client']['Type'],
           $this->_configuration['Client']['Configuration']
         );
-      } catch (\Exception $exception) {
-        return $this->_clientFactory->GetCachedDefault (
-          $this->_configuration['Client']['Configuration']
-        );
       }
+
+      return $this->_clientFactory->GetCachedDefault (
+        $this->_configuration['Client']['Configuration']
+      );
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_CLIENT_INTERFACE_FAILURE, $exception
@@ -167,16 +167,16 @@ abstract class AbstractSdk
   protected function _GetLoggerInterface()
   {
     try {
-      try {
+      if (isset($this->_configuration['Auth']['Type'])) {
         return $this->_loggerFactory->GetCached (
           $this->_configuration['Logger']['Type'],
           $this->_configuration['Logger']['Configuration']
         );
-      } catch (\Exception $exception) {
-        return $this->_loggerFactory->GetCachedDefault (
-          $this->_configuration['Logger']['Configuration']
-        );
       }
+
+      return $this->_loggerFactory->GetCachedDefault (
+        $this->_configuration['Logger']['Configuration']
+      );
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_LOGGER_INTERFACE_FAILURE, $exception
