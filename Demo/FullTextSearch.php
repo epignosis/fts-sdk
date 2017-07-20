@@ -52,8 +52,6 @@ $configuration = [
  */
 $fullTextSearchDocumentSdk = new Document($configuration['FullTextSearch']['Document']);
 
-echo '<pre>'; print_r($fullTextSearchDocumentSdk); echo '</pre>';
-
 /**
  * Presentation
  * --------------------------------------------------------------------------------------
