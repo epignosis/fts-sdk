@@ -188,6 +188,7 @@ abstract class AbstractSdk
   {
     return [
       'EndPoint' => $this->_GetServiceActionEndPoint($action),
+      'HeaderList' => $this->_configuration['Private']['Service']['HeaderList'],
       'RequiresAuth' => $this->_ServiceActionRequiresAuth($action)
     ];
   }

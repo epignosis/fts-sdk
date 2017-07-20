@@ -60,7 +60,7 @@ class Document extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => 'http://fts.pro.efrontlearning.com/',
-        'HttpHeader' => [
+        'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
         ]
