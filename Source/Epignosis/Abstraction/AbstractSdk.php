@@ -116,7 +116,6 @@ abstract class AbstractSdk
 
 
 
-
   /**
    * Returns the auth interface.
    *
