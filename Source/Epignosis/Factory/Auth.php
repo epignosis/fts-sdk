@@ -37,7 +37,7 @@ class Auth implements FactoryInterface
    *            - The auth adapter to return a new instance of it. (Required)
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -47,7 +47,7 @@ class Auth implements FactoryInterface
    *            - In case that is not possible to return a new instance of the requested
    *              auth adapter.
    */
-  public function Get($adapter, array $configuration = [])
+  public function Get($adapter, $configuration = [])
   {
     try {
       $adapterClass = 'Epignosis\Auth\\' . $adapter;

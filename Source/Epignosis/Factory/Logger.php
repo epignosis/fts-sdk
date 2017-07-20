@@ -37,7 +37,7 @@ class Logger implements FactoryInterface
    *            - The logger adapter to return a new instance of it. (Required)
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -47,7 +47,7 @@ class Logger implements FactoryInterface
    *            - In case that is not possible to return a new instance of the requested
    *              logger adapter.
    */
-  public function Get($adapter, array $configuration = [])
+  public function Get($adapter, $configuration = [])
   {
     try {
       $adapterClass = 'Epignosis\Logger\\' . $adapter;

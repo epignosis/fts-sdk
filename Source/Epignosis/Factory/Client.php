@@ -37,7 +37,7 @@ class Client implements FactoryInterface
    *            - The client adapter to return a new instance of it. (Required)
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -47,7 +47,7 @@ class Client implements FactoryInterface
    *            - In case that is not possible to return a new instance of the requested
    *              client adapter.
    */
-  public function Get($adapter, array $configuration = [])
+  public function Get($adapter, $configuration = [])
   {
     try {
       $adapterClass = 'Epignosis\Client\\' . $adapter;
