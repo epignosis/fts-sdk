@@ -57,6 +57,10 @@ trait FactoryTrait
   {
     if (!isset($this->_adapterRegistry[$adapter])) {
       $this->_adapterRegistry[$adapter] = $this->Get($adapter, $configuration);
+    } else {
+      if (method_exists($this->_adapterRegistry[$adapter], 'Configure')) {
+        $this->_adapterRegistry[$adapter]->Configure($configuration);
+      }
     }
 
     return $this->_adapterRegistry[$adapter];
