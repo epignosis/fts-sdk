@@ -157,15 +157,17 @@ abstract class AbstractSdk
   protected function _GetAuthInterface()
   {
     try {
-      if (isset($this->_configuration['Auth']['Type'])) {
+      $authInterfaceConfiguration = $this->_GetAuthInterfaceConfiguration();
+
+      if (isset($clientInterfaceConfiguration['Type'])) {
         return $this->_authFactory->GetCached (
-          $this->_configuration['Auth']['Type'],
-          $this->_configuration['Auth']['Configuration']
+          $authInterfaceConfiguration['Type'],
+          $authInterfaceConfiguration['Configuration']
         );
       }
 
       return $this->_authFactory->GetCachedDefault (
-        $this->_configuration['Auth']['Configuration']
+        $authInterfaceConfiguration['Configuration']
       );
     } catch (\Exception $exception) {
       throw new SdkException (
@@ -187,15 +189,17 @@ abstract class AbstractSdk
   protected function _GetClientInterface()
   {
     try {
-      if (isset($this->_configuration['Client']['Type'])) {
+      $clientInterfaceConfiguration = $this->_GetClientInterfaceConfiguration();
+
+      if (isset($clientInterfaceConfiguration['Type'])) {
         return $this->_clientFactory->GetCached (
-          $this->_configuration['Client']['Type'],
-          $this->_configuration['Client']['Configuration']
+          $clientInterfaceConfiguration['Type'],
+          $clientInterfaceConfiguration['Configuration']
         );
       }
 
       return $this->_clientFactory->GetCachedDefault (
-        $this->_configuration['Client']['Configuration']
+        $clientInterfaceConfiguration['Configuration']
       );
     } catch (\Exception $exception) {
       throw new SdkException (
