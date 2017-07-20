@@ -2,6 +2,8 @@
 
 namespace Epignosis\Auth\Abstraction;
 
+use Epignosis\Auth\Failure\Auth as AuthException;
+
 /**
  * Interface AuthInterface
  *
@@ -15,5 +17,15 @@ namespace Epignosis\Auth\Abstraction;
  */
 interface AuthInterface
 {
-
+  /**
+   * Authenticates the request.
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  AuthException
+   *            - In case that is not possible to authenticate the request.
+   */
+  public function AuthenticateRequest();
 }

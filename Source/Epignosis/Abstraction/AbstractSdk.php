@@ -272,10 +272,19 @@ abstract class AbstractSdk
    */
   protected function _GetConfigurationServiceAction($action)
   {
+    $serviceConfiguration = $this->_configuration['Private']['Service'];
+    $headerList = $serviceConfiguration['HeaderList'];
+    $actionRequiresAuth = $this->_ServiceActionRequiresAuth($action);
+
+    if ($actionRequiresAuth) {
+      $headerList[$serviceConfiguration['Auth']['HeaderName']] =
+        $this->_GetAuthInterface()->AuthenticateRequest();
+    }
+
     return [
       'EndPoint' => $this->_GetServiceActionEndPoint($action),
-      'HeaderList' => $this->_configuration['Private']['Service']['HeaderList'],
-      'RequiresAuth' => $this->_ServiceActionRequiresAuth($action)
+      'HeaderList' => $headerList,
+      'RequiresAuth' => $actionRequiresAuth
     ];
   }
 

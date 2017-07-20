@@ -44,7 +44,7 @@ class Document extends AbstractSdk
       ],
       'Service' => [
         'Auth' => [
-          'Position' => 'Header',
+          'HeaderName' => 'ERS',
           'Status' => true,
         ],
         'ActionList' => [
