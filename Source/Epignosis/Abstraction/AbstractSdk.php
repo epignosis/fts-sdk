@@ -85,24 +85,9 @@ abstract class AbstractSdk
 
 
 
-  protected function _GetConfigurationPrivate($type, $operation)
-  {
-    $scoped = sprintf('Private.%s.Scoped.%s', $type, $operation);
-    $shared = sprintf('Private.%s.Shared', $type);
-
-    return
-      $this->_configuration->GetFromKey($scoped) +
-      $this->_configuration->GetFromKey($shared);
-  }
-
-  protected function _GetParsedResponse($data = null, array $optionList = [])
+  protected function _GetConfigurationEndPoint($endPoint)
   {
     return [];
-  }
-
-  private function _CheckRequirementList()
-  {
-    // php version
   }
 
 
@@ -213,9 +198,16 @@ abstract class AbstractSdk
    *            - The configuration to be used. (Optional, [])
    *
    * @since   1.0.0-dev
+   *
+   * @throws  SdkException
+   *            - In case that the PHP version is not supported (< 5.6.0).
    */
   public function __construct(array $configuration = [])
   {
+    if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+      throw new SdkException(SdkException::SDK_REQUIREMENT_PHP_VERSION);
+    }
+
     $this->_authFactory = new AuthFactory;
     $this->_clientFactory = new ClientFactory;
     $this->_loggerFactory = new LoggerFactory;

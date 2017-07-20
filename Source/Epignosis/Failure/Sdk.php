@@ -24,7 +24,7 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_AUTH_INTERFACE_FAILURE = 1;
+  const SDK_GET_AUTH_INTERFACE_FAILURE = 2;
 
   /**
    * Used in case that is not possible to return the client interface.
@@ -32,7 +32,7 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_CLIENT_INTERFACE_FAILURE = 2;
+  const SDK_GET_CLIENT_INTERFACE_FAILURE = 3;
 
   /**
    * Used in case that is not possible to return the logger interface.
@@ -40,7 +40,7 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_LOGGER_INTERFACE_FAILURE = 3;
+  const SDK_GET_LOGGER_INTERFACE_FAILURE = 4;
 
   /**
    * Used in case that is not possible to clear the log.
@@ -48,7 +48,7 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_CLEAR_LOG_FAILURE = 4;
+  const SDK_CLEAR_LOG_FAILURE = 5;
 
   /**
    * Used in case that is not possible to configure the SDK.
@@ -56,7 +56,7 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_CONFIGURE_FAILURE = 5;
+  const SDK_CONFIGURE_FAILURE = 6;
 
   /**
    * Used in case that is not possible to return the log.
@@ -64,7 +64,15 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_LOG_FAILURE = 6;
+  const SDK_GET_LOG_FAILURE = 7;
+
+  /**
+   * Used in case that the PHP version is not supported (< 5.6.0).
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const SDK_REQUIREMENT_PHP_VERSION = 1;
 
 
   /**
@@ -106,6 +114,9 @@ class Sdk extends \Exception
 
     self::$_failureMessageList[self::SDK_GET_LOG_FAILURE] =
       'SDK_GET_LOG_FAILURE';
+
+    self::$_failureMessageList[self::SDK_REQUIREMENT_PHP_VERSION] =
+      'SDK_REQUIREMENT_PHP_VERSION';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

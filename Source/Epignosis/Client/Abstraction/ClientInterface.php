@@ -20,8 +20,8 @@ interface ClientInterface
   /**
    * HTTP/DELETE
    *
-   * @param   string $url
-   *            - The HTTP url. (Required)
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
    *
    * @param   array $data
    *            - The data to be used. (Optional, [])
@@ -34,13 +34,13 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/DELETE
    *              request.
    */
-  public function Delete($url, array $data = []);
+  public function Delete(array $configuration, array $data = []);
 
   /**
    * HTTP/GET
    *
-   * @param   string $url
-   *            - The HTTP url. (Required)
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
    *
    * @param   array $data
    *            - The data to be used. (Optional, [])
@@ -53,13 +53,13 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/GET
    *              request.
    */
-  public function Get($url, array $data = []);
+  public function Get(array $configuration, array $data = []);
 
   /**
    * HTTP/POST
    *
-   * @param   string $url
-   *            - The HTTP url. (Required)
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
    *
    * @param   array $data
    *            - The data to be used. (Optional, [])
@@ -72,13 +72,13 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/POST
    *              request.
    */
-  public function Post($url, array $data = []);
+  public function Post(array $configuration, array $data = []);
 
   /**
    * HTTP/PUT
    *
-   * @param   string $url
-   *            - The HTTP url. (Required)
+   * @param   array $configuration
+   *            - The configuration to be used. (Required)
    *
    * @param   array $data
    *            - The data to be used. (Optional, [])
@@ -91,5 +91,5 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the HTTP/PUT
    *              request.
    */
-  public function Put($url, array $data = []);
+  public function Put(array $configuration, array $data = []);
 }

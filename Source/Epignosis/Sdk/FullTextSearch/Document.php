@@ -28,26 +28,21 @@ class Document extends AbstractSdk
   protected function _GetConfigurationSdk()
   {
     return [
-      'Request' => [
-        'Scoped' => [
-          'Create' => [],
-          'Delete' => [],
-          'Retrieve' => [],
-          'RetrieveMany' => [],
-          'Update' => []
-        ],
-        'Shared' => []
+      'Scoped' => [
+        'Create' => [],
+        'Delete' => [],
+        'Retrieve' => [],
+        'RetrieveMany' => [],
+        'Update' => [
+          'Http' => [
+            'Header' => [
+              'Accept' => 'application/vnd.epignosis.v10+json',
+              'Accept-Language' => 'en-US'
+            ]
+          ]
+        ]
       ],
-      'Response' => [
-        'Scoped' => [
-          'Create' => [],
-          'Delete' => [],
-          'Retrieve' => [],
-          'RetrieveMany' => [],
-          'Update' => []
-        ],
-        'Shared' => []
-      ]
+      'Shared' => []
     ];
   }
 
@@ -67,11 +62,8 @@ class Document extends AbstractSdk
   public function Create(array $data)
   {
     try {
-      return $this->_GetParsedResponse (
-        $this->_GetClientInterface()->Post (
-          $this->_GetConfigurationPrivate('Request', 'Create'), $data
-        ),
-        $this->_GetConfigurationPrivate('Response', 'Create')
+      return $this->_GetClientInterface()->Post (
+        $this->_GetConfigurationEndPoint('Create'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -96,11 +88,8 @@ class Document extends AbstractSdk
   public function Delete(array $data)
   {
     try {
-      return $this->_GetParsedResponse (
-        $this->_GetClientInterface()->Delete (
-          $this->_GetConfigurationPrivate('Request', 'Delete'), $data
-        ),
-        $this->_GetConfigurationPrivate('Response', 'Delete')
+      return $this->_GetClientInterface()->Delete (
+        $this->_GetConfigurationEndPoint('Delete'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -125,11 +114,8 @@ class Document extends AbstractSdk
   public function Retrieve(array $data)
   {
     try {
-      return $this->_GetParsedResponse (
-        $this->_GetClientInterface()->Get (
-          $this->_GetConfigurationPrivate('Request', 'Retrieve'), $data
-        ),
-        $this->_GetConfigurationPrivate('Response', 'Retrieve')
+      return $this->_GetClientInterface()->Get (
+        $this->_GetConfigurationEndPoint('Retrieve'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -154,11 +140,8 @@ class Document extends AbstractSdk
   public function RetrieveMany(array $data)
   {
     try {
-      return $this->_GetParsedResponse (
-        $this->_GetClientInterface()->Get (
-          $this->_GetConfigurationPrivate('Request', 'RetrieveMany'), $data
-        ),
-        $this->_GetConfigurationPrivate('Response', 'RetrieveMany')
+      return $this->_GetClientInterface()->Get (
+        $this->_GetConfigurationEndPoint('RetrieveMany'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -184,11 +167,8 @@ class Document extends AbstractSdk
   public function Update(array $data)
   {
     try {
-      return $this->_GetParsedResponse (
-        $this->_GetClientInterface()->Put (
-          $this->_GetConfigurationPrivate('Request', 'Update'), $data
-        ),
-        $this->_GetConfigurationPrivate('Response', 'Update')
+      return $this->_GetClientInterface()->Put (
+        $this->_GetConfigurationEndPoint('Update'), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
