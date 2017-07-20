@@ -9,7 +9,6 @@ use Epignosis\Factory\Auth as AuthFactory;
 use Epignosis\Factory\Client as ClientFactory;
 use Epignosis\Factory\Logger as LoggerFactory;
 use Epignosis\Failure\Sdk as SdkException;
-use Epignosis\Helper\Configuration\Configuration;
 use Epignosis\Logger\Abstraction\LoggerInterface;
 
 /**
@@ -46,11 +45,11 @@ abstract class AbstractSdk
   /**
    * The configuration.
    *
-   * @default null
+   * @default []
    * @since   1.0.0-dev
-   * @var     Configuration
+   * @var     array
    */
-  protected $_configuration = null;
+  protected $_configuration = [];
 
   /**
    * The decoder factory.
