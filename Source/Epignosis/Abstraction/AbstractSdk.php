@@ -80,7 +80,34 @@ abstract class AbstractSdk
   abstract protected function _GetConfigurationSdk();
 
   /**
+   * Returns the logger interface configuration.
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetLoggerInterfaceConfiguration()
+  {
+    if (isset($this->_configuration['Private']['Logger']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Private']['Logger']['Type'];
+    }
+
+    if (isset($this->_configuration['Public']['Logger']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Public']['Logger']['Type'];
+    }
+
+    $configuration['Configuration'] =
+      (array) $this->_configuration['Public']['Logger']['Configuration'] +
+      (array) $this->_configuration['Private']['Logger']['Configuration'];
+
+    return $configuration;
+  }
+
+  /**
    * Returns the end-point of the requested service action.
+   *
+   * @param   string $action
+   *            - The action to return its end-point. (Required)
    *
    * @return  string
    *
@@ -102,6 +129,9 @@ abstract class AbstractSdk
 
   /**
    * Returns whether the requested service action requires authentication, or not.
+   *
+   * @param   string $action
+   *            - The action to return its auth requirement. (Required)
    *
    * @return  bool
    *
@@ -206,15 +236,17 @@ abstract class AbstractSdk
   protected function _GetLoggerInterface()
   {
     try {
-      if (isset($this->_configuration['Auth']['Type'])) {
+      $loggerInterfaceConfiguration = $this->_GetLoggerInterfaceConfiguration();
+
+      if (isset($loggerInterfaceConfiguration['Type'])) {
         return $this->_loggerFactory->GetCached (
-          $this->_configuration['Logger']['Type'],
-          $this->_configuration['Logger']['Configuration']
+          $loggerInterfaceConfiguration['Type'],
+          $loggerInterfaceConfiguration['Configuration']
         );
       }
 
       return $this->_loggerFactory->GetCachedDefault (
-        $this->_configuration['Logger']['Configuration']
+        $loggerInterfaceConfiguration['Configuration']
       );
     } catch (\Exception $exception) {
       throw new SdkException (
