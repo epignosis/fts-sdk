@@ -47,13 +47,17 @@ $configuration = [
 ];
 
 /**
- * Full-Text Search Document SDK Initialization
+ * Full-Text Search Document SDK Demonstration
  * --------------------------------------------------------------------------------------
  */
-$fullTextSearchDocumentSdk = new Document($configuration['FullTextSearch']['Document']);
+try {
+  $fullTextSearchDocumentSdk = new Document($configuration['FullTextSearch']['Document']);
+} catch (\Exception $exception) {
+
+}
 
 /**
- * Presentation
+ * Full-Text Search Document SDK Result Presentation
  * --------------------------------------------------------------------------------------
  */
 echo sprintf (

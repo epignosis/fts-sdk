@@ -100,6 +100,11 @@ abstract class AbstractSdk
     return [];
   }
 
+  private function _CheckRequirementList()
+  {
+    // php version
+  }
+
 
 
 
