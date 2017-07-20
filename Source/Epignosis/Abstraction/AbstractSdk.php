@@ -80,27 +80,6 @@ abstract class AbstractSdk
    */
   abstract protected function _GetConfigurationSdk();
 
-
-
-
-
-
-  protected function _GetConfigurationEndPoint($endPoint)
-  {
-    return [];
-  }
-
-
-
-
-
-
-
-
-
-
-
-
   /**
    * Returns the auth interface.
    *
@@ -164,6 +143,21 @@ abstract class AbstractSdk
   /**
    * Returns the logger interface.
    *
+   * @param   string $endPoint
+   *            - The end-point to return its configuration. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  protected function _GetConfigurationEndPoint($endPoint)
+  {
+    return [];
+  }
+
+  /**
+   * Returns the logger interface.
+   *
    * @return  LoggerInterface
    *
    * @since   1.0.0-dev
@@ -192,7 +186,7 @@ abstract class AbstractSdk
   }
 
   /**
-   * Constructs the full-text search SDK.
+   * AbstractSdk constructor.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Optional, [])
@@ -211,7 +205,6 @@ abstract class AbstractSdk
     $this->_authFactory = new AuthFactory;
     $this->_clientFactory = new ClientFactory;
     $this->_loggerFactory = new LoggerFactory;
-    $this->_configuration = new Configuration;
 
     $this->Configure($configuration);
   }
@@ -238,7 +231,7 @@ abstract class AbstractSdk
   }
 
   /**
-   * Configures the full-text search SDK.
+   * Configures the referenced SDK.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -246,22 +239,13 @@ abstract class AbstractSdk
    * @return  AbstractSdk
    *
    * @since   1.0.0-dev
-   *
-   * @throws  SdkException
-   *            - In case that is not possible to configure the full-text search SDK.
    */
   public function Configure(array $configuration)
   {
-    try {
-      $this->_configuration->Configure ([
-        'Private' => $this->_GetConfigurationSdk(),
-        'Public' => $configuration
-      ]);
-    } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_CONFIGURE_FAILURE, $exception
-      );
-    }
+    $this->_configuration = [
+      'Private' => $this->_GetConfigurationSdk(),
+      'Public' => $configuration
+    ];
 
     return $this;
   }
