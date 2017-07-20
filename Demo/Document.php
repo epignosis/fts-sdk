@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Full-Text Search SDK Demonstration
+ * Full-Text Search Document SDK Demonstration
  * --------------------------------------------------------------------------------------
  */
 namespace Demo;
@@ -47,22 +47,21 @@ require
   ->RegisterSelf();
 
 /**
- * SDK Configuration Initialization
+ * Full-Text Search Document SDK Configuration Initialization
  * --------------------------------------------------------------------------------------
  */
-$configuration = [
-  'FullTextSearch' => [
-    'Document' => []
-  ]
-];
+$configuration = [];
 
 /**
  * Full-Text Search Document SDK Demonstration
  * --------------------------------------------------------------------------------------
  */
 try {
-  $fullTextSearchDocumentSdk = new Document($configuration['FullTextSearch']['Document']);
+
+  $fullTextSearchDocumentSdk = new Document($configuration);
+
 } catch (\Exception $exception) {
+
   /** @var $originalException \Exception */
   /** @noinspection PhpUndefinedMethodInspection */
   $originalException = $exception->GetOriginalException();
@@ -82,6 +81,8 @@ try {
       $originalException->getCode()
     );
 
+} finally {
+
   if (isset($fullTextSearchDocumentSdk)) {
     $log = null;
 
@@ -95,13 +96,10 @@ try {
       $log
     );
   }
-}
 
-/**
- * Full-Text Search Document SDK Result Presentation
- * --------------------------------------------------------------------------------------
- */
-echo sprintf (
-  'This script was executed in, <b>%s</b> sec.',
-  round(microtime(true) - $_SERVER['DEMO_NOW'], 2)
-);
+  echo sprintf (
+    'This script was executed in, <b>%s</b> sec.',
+    round(microtime(true) - $_SERVER['DEMO_NOW'], 2)
+  );
+
+}
