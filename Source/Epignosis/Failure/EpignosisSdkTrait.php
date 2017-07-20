@@ -86,22 +86,22 @@ trait EpignosisSdkTrait
   }
 
   /**
-   * Returns the original throwable.
+   * Returns the original exception.
    *
    * @return  \Exception
    *
    * @since   1.0.0-dev
    */
-  public function GetOriginalThrowable()
+  public function GetOriginalException()
   {
-    /** @var $originalThrowable \Exception */
-    $originalThrowable = $this;
+    /** @var $originalException \Exception */
+    $originalException = $this;
 
-    while ($originalThrowable->getPrevious()) {
-      $originalThrowable = $originalThrowable->getPrevious();
+    while ($originalException->getPrevious()) {
+      $originalException = $originalException->getPrevious();
     }
 
-    return $originalThrowable;
+    return $originalException;
   }
 
   /**

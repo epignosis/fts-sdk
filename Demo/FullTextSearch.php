@@ -17,18 +17,13 @@ $_SERVER['DEMO_NOW'] = microtime(true);
 date_default_timezone_set('UTC');
 
 /**
- * Check Script Requirements
+ * Check Server API
  * --------------------------------------------------------------------------------------
  */
-if (0 > version_compare(phpversion(), $configuration['Requirement']['PHP']['Version'])) {
-
-  exit(2);
-}
-
 if (false !== stripos(php_sapi_name(), 'cli', 0) || isset($_SERVER['argv'])) {
+  echo 'Command line interface (CLI) is not allowed. Script execution was terminated.';
 
-
-  exit(3);
+  exit(1);
 }
 
 /**
@@ -68,7 +63,38 @@ $configuration = [
 try {
   $fullTextSearchDocumentSdk = new Document($configuration['FullTextSearch']['Document']);
 } catch (\Exception $exception) {
+  /** @var $originalException \Exception */
+  /** @noinspection PhpUndefinedMethodInspection */
+  $originalException = $exception->GetOriginalException();
 
+  echo
+    sprintf (
+      '<b>Exception</b>: %s (%s)',
+      $exception->getMessage(),
+      $exception->getCode()
+    ),
+
+    '<br>',
+
+    sprintf (
+      '<b>Original Exception</b>: %s (%s)',
+      $originalException->getMessage(),
+      $originalException->getCode()
+    );
+
+  if (isset($fullTextSearchDocumentSdk)) {
+    $log = null;
+
+    /** @noinspection PhpUndefinedMethodInspection */
+    foreach ($fullTextSearchDocumentSdk->GetLog() as $logRecord) {
+      print_r($logRecord);exit;
+    }
+
+    echo sprintf(
+      '<br><br><b>Log Report</b><br>',
+      $log
+    );
+  }
 }
 
 /**
