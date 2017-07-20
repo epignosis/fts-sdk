@@ -151,7 +151,7 @@ abstract class AbstractSdk
    */
   protected function _GetConfigurationEndPoint($endPoint)
   {
-    return [];
+    return [$endPoint];
   }
 
   /**
