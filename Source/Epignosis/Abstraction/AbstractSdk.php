@@ -88,8 +88,8 @@ abstract class AbstractSdk
    */
   private function _GetAuthInterfaceConfiguration()
   {
-    if (isset($this->_configuration['Private']['Auth']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Private']['Auth']['Type'];
+    if (isset($this->_configuration['Private']['Sdk']['Auth']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Private']['Sdk']['Auth']['Type'];
     }
 
     if (isset($this->_configuration['Public']['Auth']['Type'])) {
@@ -98,7 +98,7 @@ abstract class AbstractSdk
 
     $configuration['Configuration'] =
       (array) $this->_configuration['Public']['Auth']['Configuration'] +
-      (array) $this->_configuration['Private']['Auth']['Configuration'];
+      (array) $this->_configuration['Private']['Sdk']['Auth']['Configuration'];
 
     return $configuration;
   }
@@ -112,8 +112,8 @@ abstract class AbstractSdk
    */
   private function _GetClientInterfaceConfiguration()
   {
-    if (isset($this->_configuration['Private']['Client']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Private']['Client']['Type'];
+    if (isset($this->_configuration['Private']['Sdk']['Client']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Private']['Sdk']['Client']['Type'];
     }
 
     if (isset($this->_configuration['Public']['Client']['Type'])) {
@@ -122,7 +122,7 @@ abstract class AbstractSdk
 
     $configuration['Configuration'] =
       (array) $this->_configuration['Public']['Client']['Configuration'] +
-      (array) $this->_configuration['Private']['Client']['Configuration'];
+      (array) $this->_configuration['Private']['Sdk']['Client']['Configuration'];
 
     return $configuration;
   }
@@ -136,8 +136,8 @@ abstract class AbstractSdk
    */
   private function _GetLoggerInterfaceConfiguration()
   {
-    if (isset($this->_configuration['Private']['Logger']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Private']['Logger']['Type'];
+    if (isset($this->_configuration['Private']['Sdk']['Logger']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Private']['Sdk']['Logger']['Type'];
     }
 
     if (isset($this->_configuration['Public']['Logger']['Type'])) {
@@ -146,7 +146,7 @@ abstract class AbstractSdk
 
     $configuration['Configuration'] =
       (array) $this->_configuration['Public']['Logger']['Configuration'] +
-      (array) $this->_configuration['Private']['Logger']['Configuration'];
+      (array) $this->_configuration['Private']['Sdk']['Logger']['Configuration'];
 
     return $configuration;
   }
@@ -187,9 +187,13 @@ abstract class AbstractSdk
    */
   private function _ServiceActionRequiresAuth($action)
   {
-    return
-      $this->_configuration['Private']['Service']['Auth'] ||
-      $this->_configuration['Private']['Service']['ActionList'][$action]['Auth'];
+    $serviceConfiguration = $this->_configuration['Private']['Service'];
+
+    if (isset($serviceConfiguration['ActionList'][$action]['Auth']['Status'])) {
+      return (bool) $serviceConfiguration['ActionList'][$action]['Auth']['Status'];
+    }
+
+    return $serviceConfiguration['Auth']['Status'];
   }
 
   /**

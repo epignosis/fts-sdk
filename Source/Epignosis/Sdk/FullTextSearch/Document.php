@@ -28,11 +28,25 @@ class Document extends AbstractSdk
   protected function _GetConfigurationSdk()
   {
     return [
-      'Auth' => [],
-      'Client' => [],
-      'Logger' => [],
+      'Sdk' => [
+        'Auth' => [
+          'Configuration' => [],
+          'Type' => 'Signature'
+        ],
+        'Client' => [
+          'Configuration' => [],
+          'Type' => 'Http'
+        ],
+        'Logger' => [
+          'Configuration' => [],
+          'Type' => 'Memory'
+        ],
+      ],
       'Service' => [
-        'Auth' => true,
+        'Auth' => [
+          'Position' => 'Header',
+          'Status' => true,
+        ],
         'ActionList' => [
           'Create' => [
             'Path' => 'document'
@@ -63,6 +77,9 @@ class Document extends AbstractSdk
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
+        ],
+        'Log' => [
+          'Status' => true
         ]
       ]
     ];
