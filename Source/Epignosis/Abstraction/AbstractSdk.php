@@ -80,6 +80,54 @@ abstract class AbstractSdk
   abstract protected function _GetConfigurationSdk();
 
   /**
+   * Returns the auth interface configuration.
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetAuthInterfaceConfiguration()
+  {
+    if (isset($this->_configuration['Private']['Auth']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Private']['Auth']['Type'];
+    }
+
+    if (isset($this->_configuration['Public']['Auth']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Public']['Auth']['Type'];
+    }
+
+    $configuration['Configuration'] =
+      (array) $this->_configuration['Public']['Auth']['Configuration'] +
+      (array) $this->_configuration['Private']['Auth']['Configuration'];
+
+    return $configuration;
+  }
+
+  /**
+   * Returns the client interface configuration.
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetClientInterfaceConfiguration()
+  {
+    if (isset($this->_configuration['Private']['Client']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Private']['Client']['Type'];
+    }
+
+    if (isset($this->_configuration['Public']['Client']['Type'])) {
+      $configuration['Type'] = $this->_configuration['Public']['Client']['Type'];
+    }
+
+    $configuration['Configuration'] =
+      (array) $this->_configuration['Public']['Client']['Configuration'] +
+      (array) $this->_configuration['Private']['Client']['Configuration'];
+
+    return $configuration;
+  }
+
+  /**
    * Returns the logger interface configuration.
    *
    * @return  array
