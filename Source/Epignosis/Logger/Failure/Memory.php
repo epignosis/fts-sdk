@@ -2,12 +2,10 @@
 
 namespace Epignosis\Logger\Failure;
 
-use Epignosis\Failure\EpignosisSdkTrait;
-
 /**
- * Class Logger
+ * Class Memory
  *
- * The logger base exception.
+ * The memory logger exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Logger\Failure
@@ -15,7 +13,7 @@ use Epignosis\Failure\EpignosisSdkTrait;
  * @package     Epignosis\Logger\Failure
  * @since       1.0.0-dev
  */
-class Logger extends \Exception
+class Memory extends Logger
 {
-  use EpignosisSdkTrait;
+
 }

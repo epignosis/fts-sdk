@@ -7,7 +7,7 @@ use Epignosis\Failure\EpignosisSdkTrait;
 /**
  * Class Auth
  *
- * The auth interface exception.
+ * The auth base exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Auth\Failure

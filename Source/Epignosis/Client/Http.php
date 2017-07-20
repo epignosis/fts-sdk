@@ -1,21 +1,11 @@
 <?php
 
-namespace Epignosis\Client\Abstraction;
+namespace Epignosis\Client;
 
-use Epignosis\Client\Failure\Client as ClientException;
+use Epignosis\Client\Abstraction\ClientInterface;
 
-/**
- * Interface ClientInterface
- *
- * The client interface.
- *
- * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Client\Abstraction
- * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Client\Abstraction
- * @since       1.0.0-dev
- */
-interface ClientInterface
+
+class Http implements ClientInterface
 {
   /**
    * Performs a creation operation.
@@ -34,7 +24,10 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the creation
    *              operation.
    */
-  public function Create(array $configuration, array $data = []);
+  public function Create(array $configuration, array $data = [])
+  {
+
+  }
 
   /**
    * Performs a delete operation.
@@ -53,7 +46,10 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the delete
    *              operation.
    */
-  public function Delete(array $configuration, array $data = []);
+  public function Delete(array $configuration, array $data = [])
+  {
+
+  }
 
   /**
    * Performs a retrieval operation.
@@ -72,7 +68,10 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the retrieval
    *              operation.
    */
-  public function Retrieve(array $configuration, array $data = []);
+  public function Retrieve(array $configuration, array $data = [])
+  {
+
+  }
 
   /**
    * Performs an update operation.
@@ -91,5 +90,8 @@ interface ClientInterface
    *            - In case that is not possible to successfully complete, the update
    *              operation.
    */
-  public function Update(array $configuration, array $data = []);
+  public function Update(array $configuration, array $data = [])
+  {
+
+  }
 }

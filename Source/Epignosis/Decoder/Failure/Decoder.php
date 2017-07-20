@@ -7,7 +7,7 @@ use Epignosis\Failure\EpignosisSdkTrait;
 /**
  * Class Decoder
  *
- * The decoder interface exception.
+ * The decoder base exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Decoder\Failure

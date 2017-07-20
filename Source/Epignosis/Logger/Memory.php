@@ -3,7 +3,7 @@
 namespace Epignosis\Logger;
 
 use Epignosis\Logger\Abstraction\LoggerInterface;
-use Epignosis\Logger\Failure\Logger as LoggerException;
+use Epignosis\Logger\Failure\Memory as MemoryLoggerException;
 
 /**
  * Class Memory
@@ -35,7 +35,7 @@ class Memory implements LoggerInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  LoggerException
+   * @throws  MemoryLoggerException
    *            - In case that is not possible to clear the log.
    */
   public function ClearLog()
@@ -52,7 +52,7 @@ class Memory implements LoggerInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  LoggerException
+   * @throws  MemoryLoggerException
    *            - In case that is not possible to return the log.
    */
   public function GetLog()
@@ -76,7 +76,7 @@ class Memory implements LoggerInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  LoggerException
+   * @throws  MemoryLoggerException
    *            - In case that is not possible to log the requested information.
    */
   public function Log($message, $success = true, $sensitive = false)

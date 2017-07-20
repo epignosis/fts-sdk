@@ -7,7 +7,7 @@ use Epignosis\Failure\EpignosisSdkTrait;
 /**
  * Class Client
  *
- * The client interface exception.
+ * The client base exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Client\Failure

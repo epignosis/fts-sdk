@@ -84,7 +84,7 @@ class Document extends AbstractSdk
   public function Create(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Post (
+      return $this->_GetClientInterface()->Create (
         $this->_GetConfigurationEndPoint('Create'), $data
       );
     } catch (\Exception $exception) {
@@ -136,7 +136,7 @@ class Document extends AbstractSdk
   public function Retrieve(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Get (
+      return $this->_GetClientInterface()->Retrieve (
         $this->_GetConfigurationEndPoint('Retrieve'), $data
       );
     } catch (\Exception $exception) {
@@ -162,7 +162,7 @@ class Document extends AbstractSdk
   public function RetrieveMany(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Get (
+      return $this->_GetClientInterface()->Retrieve (
         $this->_GetConfigurationEndPoint('RetrieveMany'), $data
       );
     } catch (\Exception $exception) {
@@ -189,7 +189,7 @@ class Document extends AbstractSdk
   public function Update(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Put (
+      return $this->_GetClientInterface()->Update (
         $this->_GetConfigurationEndPoint('Update'), $data
       );
     } catch (\Exception $exception) {
