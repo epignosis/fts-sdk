@@ -1,22 +1,33 @@
 <?php
 
-namespace Epignosis\Logger\Abstraction;
+namespace Epignosis\Logger;
 
+use Epignosis\Logger\Abstraction\LoggerInterface;
 use Epignosis\Logger\Failure\Logger as LoggerException;
 
 /**
- * Interface LoggerInterface
+ * Class Memory
  *
- * The logger interface.
+ * The memory logger.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Logger\Abstraction
+ * @category    Epignosis\Logger
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Logger\Abstraction
+ * @package     Epignosis\Logger
  * @since       1.0.0-dev
  */
-interface LoggerInterface
+class Memory implements LoggerInterface
 {
+  /**
+   * The log repository.
+   *
+   * @default []
+   * @since   1.0.0-dev
+   * @var     array
+   */
+  private $_log = [];
+
+
   /**
    * Clears the log.
    *
@@ -27,7 +38,12 @@ interface LoggerInterface
    * @throws  LoggerException
    *            - In case that is not possible to clear the log.
    */
-  public function ClearLog();
+  public function ClearLog()
+  {
+    $this->_log = [];
+
+    return $this;
+  }
 
   /**
    * Returns the log.
@@ -39,7 +55,10 @@ interface LoggerInterface
    * @throws  LoggerException
    *            - In case that is not possible to return the log.
    */
-  public function GetLog();
+  public function GetLog()
+  {
+    return $this->_log;
+  }
 
   /**
    * Logs the requested message.
@@ -60,5 +79,14 @@ interface LoggerInterface
    * @throws  LoggerException
    *            - In case that is not possible to log the requested information.
    */
-  public function Log($message, $success = true, $sensitive = false);
+  public function Log($message, $success = true, $sensitive = false)
+  {
+    $this->_log[] = [
+      'Message' => $message,
+      'Sensitive' => (bool) $sensitive,
+      'Success' => (bool) $success
+    ];
+
+    return $this;
+  }
 }

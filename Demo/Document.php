@@ -79,7 +79,9 @@ try {
       '<b>Original Exception</b>: %s (%s)',
       $originalException->getMessage(),
       $originalException->getCode()
-    );
+    ),
+
+    '<br><br>';
 
 } finally {
 
@@ -91,10 +93,7 @@ try {
       print_r($logRecord);exit;
     }
 
-    echo sprintf(
-      '<br><br><b>Log Report</b><br>',
-      $log
-    );
+    echo sprintf('<b>Log Report</b><br><br>', $log);
   }
 
   echo sprintf (
