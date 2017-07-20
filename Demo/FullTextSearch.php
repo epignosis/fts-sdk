@@ -17,6 +17,21 @@ $_SERVER['DEMO_NOW'] = microtime(true);
 date_default_timezone_set('UTC');
 
 /**
+ * Check Script Requirements
+ * --------------------------------------------------------------------------------------
+ */
+if (0 > version_compare(phpversion(), $configuration['Requirement']['PHP']['Version'])) {
+
+  exit(2);
+}
+
+if (false !== stripos(php_sapi_name(), 'cli', 0) || isset($_SERVER['argv'])) {
+
+
+  exit(3);
+}
+
+/**
  * AutoLoader Initialization
  * --------------------------------------------------------------------------------------
  */
