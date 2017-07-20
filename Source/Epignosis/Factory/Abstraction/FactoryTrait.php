@@ -43,7 +43,7 @@ trait FactoryTrait
    *            - The adapter to return a cached instance of it. (Required)
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -53,7 +53,7 @@ trait FactoryTrait
    *            - In case that is not possible to return a cached instance of the
    *              requested adapter.
    */
-  public function GetCached($adapter, array $configuration = [])
+  public function GetCached($adapter, $configuration = [])
   {
     if (!isset($this->_adapterRegistry[$adapter])) {
       $this->_adapterRegistry[$adapter] = $this->Get($adapter, $configuration);
@@ -66,7 +66,7 @@ trait FactoryTrait
    * Returns a cached instance of the default adapter.
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -76,7 +76,7 @@ trait FactoryTrait
    *            - In case that is not possible to return a cached instance of the default
    *              adapter.
    */
-  public function GetCachedDefault(array $configuration = [])
+  public function GetCachedDefault($configuration = [])
   {
     return $this->GetCached($this->_adapterDefault, $configuration);
   }
@@ -85,7 +85,7 @@ trait FactoryTrait
    * Returns a new instance of the default adapter.
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -95,7 +95,7 @@ trait FactoryTrait
    *            - In case that is not possible to return a new instance of the default
    *              adapter.
    */
-  public function GetDefault(array $configuration = [])
+  public function GetDefault($configuration = [])
   {
     return $this->Get($this->_adapterDefault, $configuration);
   }

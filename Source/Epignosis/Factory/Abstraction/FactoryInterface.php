@@ -24,7 +24,7 @@ interface FactoryInterface
    *            - The adapter to return a new instance of it. (Required)
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -34,7 +34,7 @@ interface FactoryInterface
    *            - In case that is not possible to return a new instance of the requested
    *              adapter.
    */
-  public function Get($adapter, array $configuration = []);
+  public function Get($adapter, $configuration = []);
 
   /**
    * Returns a cached instance of the requested adapter.
@@ -43,7 +43,7 @@ interface FactoryInterface
    *            - The adapter to return a cached instance of it. (Required)
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -53,13 +53,13 @@ interface FactoryInterface
    *            - In case that is not possible to return a cached instance of the
    *              requested adapter.
    */
-  public function GetCached($adapter, array $configuration = []);
+  public function GetCached($adapter, $configuration = []);
 
   /**
    * Returns a cached instance of the default adapter.
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -69,13 +69,13 @@ interface FactoryInterface
    *            - In case that is not possible to return a cached instance of the default
    *              adapter.
    */
-  public function GetCachedDefault(array $configuration = []);
+  public function GetCachedDefault($configuration = []);
 
   /**
    * Returns a new instance of the default adapter.
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Required)
+   *            - The configuration to be used. (Optional, [])
    *
    * @return  mixed
    *
@@ -85,5 +85,5 @@ interface FactoryInterface
    *            - In case that is not possible to return a new instance of the default
    *              adapter.
    */
-  public function GetDefault(array $configuration = []);
+  public function GetDefault($configuration = []);
 }
