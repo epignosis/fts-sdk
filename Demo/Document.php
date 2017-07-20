@@ -104,6 +104,17 @@ try {
 
 } finally {
 
+  echo
+    sprintf (
+      '<b>Create Document</b><pre>%s</pre>',
+      print_r($data['Document'], true)
+    ),
+
+    sprintf (
+      '<b>Document Creation Response</b><pre>%s</pre>',
+      print_r($response['Document'], true)
+    );
+
   if (isset($fullTextSearchDocumentSdk)) {
     $log = null;
 
