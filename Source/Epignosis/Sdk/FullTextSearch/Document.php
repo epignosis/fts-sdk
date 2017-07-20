@@ -32,6 +32,7 @@ class Document extends AbstractSdk
       'Client' => [],
       'Logger' => [],
       'Service' => [
+        'Auth' => true,
         'ActionList' => [
           'Create' => [
             'Path' => 'document'

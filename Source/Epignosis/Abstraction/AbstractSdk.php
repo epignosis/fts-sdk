@@ -151,7 +151,18 @@ abstract class AbstractSdk
    */
   protected function _GetConfigurationEndPoint($endPoint)
   {
-    return [$endPoint];
+    $serviceConfiguration = $this->_configuration['Private']['Service'];
+
+    return [
+      'EndPoint' => rtrim (
+        sprintf (
+          '%s/%s/',
+          rtrim($serviceConfiguration['BaseEndPoint'], '/'),
+          trim($serviceConfiguration['ActionList'][$endPoint]['Path'], '/')
+        ),
+        '/'
+      )
+    ];
   }
 
   /**

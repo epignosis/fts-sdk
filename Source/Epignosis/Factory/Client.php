@@ -27,7 +27,7 @@ class Client implements FactoryInterface
    */
   public function __construct()
   {
-    $this->_adapterDefault = 'Memory';
+    $this->_adapterDefault = 'Http';
   }
 
   /**

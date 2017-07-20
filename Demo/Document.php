@@ -47,10 +47,18 @@ require
   ->RegisterSelf();
 
 /**
- * Full-Text Search Document SDK Configuration Initialization
+ * Full-Text Search Document SDK Configuration
  * --------------------------------------------------------------------------------------
  */
 $configuration = [];
+
+/**
+ * Full-Text Search Document SDK Data
+ * --------------------------------------------------------------------------------------
+ */
+$data = [
+  'Document' => []
+];
 
 /**
  * Full-Text Search Document SDK Demonstration
@@ -58,7 +66,18 @@ $configuration = [];
  */
 try {
 
+  /**
+   * Full-Text Search Document SDK Initialization
+   * ------------------------------------------------------------------------------------
+   */
+  $response = [];
   $fullTextSearchDocumentSdk = new Document($configuration);
+
+  /**
+   * Create Document through the Full-Text Search Document SDK
+   * ------------------------------------------------------------------------------------
+   */
+  $response['Document'] = $fullTextSearchDocumentSdk->Create($data['Document']);
 
 } catch (\Exception $exception) {
 
