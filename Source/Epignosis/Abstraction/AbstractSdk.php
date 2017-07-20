@@ -94,12 +94,12 @@ abstract class AbstractSdk
     try {
       try {
         return $this->_authFactory->GetCached (
-          $this->_configuration->GetFromKey('Auth.Type'),
-          $this->_configuration->GetFromKey('Auth.Configuration')
+          $this->_configuration['Auth']['Type'],
+          $this->_configuration['Auth']['Configuration']
         );
       } catch (\Exception $exception) {
         return $this->_authFactory->GetCachedDefault (
-          $this->_configuration->GetFromKey('Auth.Configuration')
+          $this->_configuration['Auth']['Configuration']
         );
       }
     } catch (\Exception $exception) {
@@ -124,12 +124,12 @@ abstract class AbstractSdk
     try {
       try {
         return $this->_clientFactory->GetCached (
-          $this->_configuration->GetFromKey('Client.Type'),
-          $this->_configuration->GetFromKey('Client.Configuration')
+          $this->_configuration['Client']['Type'],
+          $this->_configuration['Client']['Configuration']
         );
       } catch (\Exception $exception) {
         return $this->_clientFactory->GetCachedDefault (
-          $this->_configuration->GetFromKey('Client.Configuration')
+          $this->_configuration['Client']['Configuration']
         );
       }
     } catch (\Exception $exception) {
@@ -169,12 +169,12 @@ abstract class AbstractSdk
     try {
       try {
         return $this->_loggerFactory->GetCached (
-          $this->_configuration->GetFromKey('Logger.Type'),
-          $this->_configuration->GetFromKey('Logger.Configuration')
+          $this->_configuration['Logger']['Type'],
+          $this->_configuration['Logger']['Configuration']
         );
       } catch (\Exception $exception) {
         return $this->_loggerFactory->GetCachedDefault (
-          $this->_configuration->GetFromKey('Logger.Configuration')
+          $this->_configuration['Logger']['Configuration']
         );
       }
     } catch (\Exception $exception) {
