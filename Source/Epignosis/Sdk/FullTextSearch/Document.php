@@ -28,21 +28,42 @@ class Document extends AbstractSdk
   protected function _GetConfigurationSdk()
   {
     return [
-      'Scoped' => [
-        'Create' => [],
-        'Delete' => [],
-        'Retrieve' => [],
-        'RetrieveMany' => [],
-        'Update' => [
-          'Http' => [
-            'Header' => [
-              'Accept' => 'application/vnd.epignosis.v10+json',
-              'Accept-Language' => 'en-US'
-            ]
+      'Auth' => [],
+      'Client' => [],
+      'Logger' => [],
+      'Service' => [
+        'ActionList' => [
+          'Create' => [
+            'Path' => 'document'
+          ],
+          'Delete' => [
+            'Parameter' => [
+              'DocumentId' => 'Integer'
+            ],
+            'Path' => 'document/%s'
+          ],
+          'Retrieve' => [
+            'Parameter' => [
+              'DocumentId' => 'Integer'
+            ],
+            'Path' => 'document/%s'
+          ],
+          'RetrieveMany' => [
+            'Path' => 'documents'
+          ],
+          'Update' => [
+            'Parameter' => [
+              'DocumentId' => 'Integer'
+            ],
+            'Path' => 'document/%s'
           ]
+        ],
+        'BaseEndPoint' => 'http://fts.pro.efrontlearning.com/',
+        'HttpHeader' => [
+          'Accept' => 'application/vnd.epignosis.v10+json',
+          'Accept-Language' => 'en-US'
         ]
-      ],
-      'Shared' => []
+      ]
     ];
   }
 
