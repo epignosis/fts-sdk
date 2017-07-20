@@ -37,6 +37,7 @@ class Http implements ClientInterface
    */
   public function Create(array $configuration, array $data = [])
   {
+    print_r($configuration);
     return [];
   }
 

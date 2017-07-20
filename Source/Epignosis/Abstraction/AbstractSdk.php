@@ -80,6 +80,41 @@ abstract class AbstractSdk
   abstract protected function _GetConfigurationSdk();
 
   /**
+   * Returns the end-point of the requested service action.
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetServiceActionEndPoint($action)
+  {
+    $serviceConfiguration = $this->_configuration['Private']['Service'];
+
+    return rtrim (
+      sprintf (
+        '%s/%s/',
+        rtrim($serviceConfiguration['BaseEndPoint'], '/'),
+        trim($serviceConfiguration['ActionList'][$action]['Path'], '/')
+      ),
+      '/'
+    );
+  }
+
+  /**
+   * Returns whether the requested service action requires authentication, or not.
+   *
+   * @return  bool
+   *
+   * @since   1.0.0-dev
+   */
+  private function _ServiceActionRequiresAuth($action)
+  {
+    return
+      $this->_configuration['Private']['Service']['Auth'] ||
+      $this->_configuration['Private']['Service']['ActionList'][$action]['Auth'];
+  }
+
+  /**
    * Returns the auth interface.
    *
    * @return  AuthInterface
@@ -140,7 +175,7 @@ abstract class AbstractSdk
   }
 
   /**
-   * Returns the logger interface.
+   * Returns the configuration of the requested service action.
    *
    * @param   string $action
    *            - The action to return its configuration. (Required)
@@ -149,19 +184,11 @@ abstract class AbstractSdk
    *
    * @since   1.0.0-dev
    */
-  protected function _GetConfigurationAction($action)
+  protected function _GetConfigurationServiceAction($action)
   {
-    $serviceConfiguration = $this->_configuration['Private']['Service'];
-
     return [
-      'EndPoint' => rtrim (
-        sprintf (
-          '%s/%s/',
-          rtrim($serviceConfiguration['BaseEndPoint'], '/'),
-          trim($serviceConfiguration['ActionList'][$action]['Path'], '/')
-        ),
-        '/'
-      )
+      'EndPoint' => $this->_GetServiceActionEndPoint($action),
+      'RequiresAuth' => $this->_ServiceActionRequiresAuth($action)
     ];
   }
 
