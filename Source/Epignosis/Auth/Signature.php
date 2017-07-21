@@ -154,6 +154,9 @@ class Signature implements AuthInterface
    * @param   string $operationType
    *            - The operation type to be used. (Required)
    *
+   * @param   array $data
+   *            - The data to be signed. (Required)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -161,8 +164,9 @@ class Signature implements AuthInterface
    * @throws  SignatureException
    *            - In case that is not possible to sign the request.
    */
-  public function GetSignedRequest(array $authInformation, $operationType)
+  public function GetSignedRequest(array $authInformation, $operationType, array $data)
   {
+    print_r($data);exit;
     $this
       ->_CheckFunctionAvailability('mb_strlen')
       ->_CheckFunctionAvailability('mb_substr')

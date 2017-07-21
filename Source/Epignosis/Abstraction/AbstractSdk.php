@@ -169,11 +169,14 @@ abstract class AbstractSdk
    * @param   string $action
    *            - The action to return its configuration. (Required)
    *
+   * @param   array $data
+   *            - The data of the requested action. (Required)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  protected function _GetConfigurationServiceAction($action)
+  protected function _GetConfigurationServiceAction($action, array $data)
   {
     $serviceConfiguration = $this->_configuration['Private']['Service'];
     $actionRequiresAuth = $this->_ServiceActionRequiresAuth($action);
@@ -181,7 +184,8 @@ abstract class AbstractSdk
     if ($actionRequiresAuth) {
       list($headerName, $headerValue) = $this->_GetAuthInterface()->GetSignedRequest (
         (array) $this->_configuration['Public']['Auth'],
-        $serviceConfiguration['ActionList'][$action]['OperationType']
+        $serviceConfiguration['ActionList'][$action]['OperationType'],
+        $data
       );
 
       $serviceConfiguration['HeaderList'][$headerName] = $headerValue;
@@ -230,7 +234,7 @@ abstract class AbstractSdk
   {
     $this->_configuration = [
       'Private' => $this->_GetConfigurationSdkService(),
-      'Public' => $configuration
+      'Public' => (array) $configuration
     ];
 
     return $this;
