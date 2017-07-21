@@ -141,7 +141,7 @@ abstract class AbstractSdk
   {
     try {
       return $this->_authFactory->GetCached (
-        'SignatureToken', $this->_configuration['Public']['Auth']['Configuration']
+        'SignatureToken', $this->_configuration['Private']['Service']['Auth']
       );
     } catch (\Exception $exception) {
       throw new SdkException (
@@ -163,10 +163,8 @@ abstract class AbstractSdk
   protected function _GetClientInterface()
   {
     try {
-      $clientInterfaceConfiguration = $this->_GetClientInterfaceConfiguration();
-
       return $this->_clientFactory->GetCached (
-        'Http', $clientInterfaceConfiguration['Configuration']
+        'Http', $this->_GetClientInterfaceConfiguration()
       );
     } catch (\Exception $exception) {
       throw new SdkException (
