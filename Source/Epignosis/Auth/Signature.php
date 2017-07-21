@@ -4,12 +4,12 @@ namespace Epignosis\Auth;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
 use Epignosis\Auth\Abstraction\AuthTrait;
-use Epignosis\Auth\Failure\SignatureToken as SignatureTokenException;
+use Epignosis\Auth\Failure\Signature as SignatureException;
 
 /**
- * Class SignatureToken
+ * Class Signature
  *
- * The signature-token auth.
+ * The signature auth.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Auth
@@ -17,7 +17,7 @@ use Epignosis\Auth\Failure\SignatureToken as SignatureTokenException;
  * @package     Epignosis\Auth
  * @since       1.0.0-dev
  */
-class SignatureToken implements AuthInterface
+class Signature implements AuthInterface
 {
   use AuthTrait;
 
@@ -28,18 +28,18 @@ class SignatureToken implements AuthInterface
    * @param   string $functionName
    *            - The function name to be checked. (Required)
    *
-   * @return  SignatureToken
+   * @return  Signature
    *
    * @since   1.0.0-dev
    *
-   * @throws  SignatureTokenException
+   * @throws  SignatureException
    *            - In case that the requested function name is not available.
    */
   private function _CheckFunctionAvailability($functionName)
   {
     if (!function_exists($functionName)) {
-      throw new SignatureTokenException (
-        SignatureTokenException::AUTH_ADAPTER_SIGNATURE_TOKEN_FUNCTION_NOT_EXIST,
+      throw new SignatureException (
+        SignatureException::AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST,
         null,
         ['Function' => $functionName]
       );
@@ -158,7 +158,7 @@ class SignatureToken implements AuthInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  SignatureTokenException
+   * @throws  SignatureException
    *            - In case that is not possible to sign the request.
    */
   public function GetSignedRequest(array $authInformation, $operationType)

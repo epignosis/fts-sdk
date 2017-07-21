@@ -3,9 +3,9 @@
 namespace Epignosis\Auth\Failure;
 
 /**
- * Class SignatureToken
+ * Class Signature
  *
- * The signature-token auth exception.
+ * The signature auth exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Auth\Failure
@@ -13,7 +13,7 @@ namespace Epignosis\Auth\Failure;
  * @package     Epignosis\Auth\Failure
  * @since       1.0.0-dev
  */
-class SignatureToken extends Auth
+class Signature extends Auth
 {
   /**
    * Used in case that the requested function name is not available.
@@ -21,11 +21,11 @@ class SignatureToken extends Auth
    * @since   1.0.0-dev
    * @var     int
    */
-  const AUTH_ADAPTER_SIGNATURE_TOKEN_FUNCTION_NOT_EXIST = 1;
+  const AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST = 1;
 
 
   /**
-   * SignatureToken constructor.
+   * Signature constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
@@ -46,8 +46,8 @@ class SignatureToken extends Auth
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::AUTH_ADAPTER_SIGNATURE_TOKEN_FUNCTION_NOT_EXIST] =
-      'AUTH_ADAPTER_SIGNATURE_TOKEN_FUNCTION_NOT_EXIST';
+    self::$_failureMessageList[self::AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST] =
+      'AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 
