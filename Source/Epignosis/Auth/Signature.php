@@ -85,7 +85,7 @@ class Signature implements AuthInterface
     $sourceLength = mb_strlen($source, '8bit');
 
     for ($i = 0; $i + 3 <= $sourceLength; $i += 3) {
-      $chunk = unpack('C*', $this->_SafeSubstring($source, $i, 3));
+      $chunk = unpack('C*', mb_substr($source, $i, 3, '8bit'));
 
       $b0 = $chunk[1];
       $b1 = $chunk[2];
@@ -99,7 +99,13 @@ class Signature implements AuthInterface
     }
 
     if ($i < $sourceLength) {
-      $chunk = unpack('C*', $this->_SafeSubstring($source, $i, $sourceLength - $i));
+      if (0 == $sourceLength - $i) {
+        $sourceSubstring = null;
+      } else {
+        $sourceSubstring = mb_substr($source, $i, $sourceLength - $i, '8bit');
+      }
+
+      $chunk = unpack('C*', $sourceSubstring);
       $b0 = $chunk[1];
 
       if ($i + 1 < $sourceLength) {
@@ -122,27 +128,26 @@ class Signature implements AuthInterface
   }
 
   /**
-   * Returns a part of the requested string.
+   * Sorts the requested data, and returns the result.
    *
-   * @param   string $string
-   *            - See http://php.net/manual/en/function.substr.php for more information.
-   *              (Required)
+   * @param   array $data
+   *            - The data to be sorted. (Required)
    *
-   * @param   int $start
-   *            - See http://php.net/manual/en/function.substr.php for more information.
-   *              (Optional, 0)
-   *
-   * @param   int $length
-   *            - See http://php.net/manual/en/function.substr.php for more information.
-   *              (Optional, null)
-   *
-   * @return  bool|string
+   * @return  array
    *
    * @since   1.0.0-dev
    */
-  private function _SafeSubstring($string, $start = 0, $length = null)
+  private function _GetSortedData(array $data)
   {
-    return 0 == $length ? null : mb_substr($string, $start, $length, '8bit');
+    ksort($data);
+
+    foreach ($data as $k => $v) {
+      if (is_array($v)) {
+        $data[$k] = $this->_GetSortedData($v);
+      }
+    }
+
+    return $data;
   }
 
   /**
@@ -166,14 +171,15 @@ class Signature implements AuthInterface
    */
   public function GetSignedRequest(array $authInformation, $operationType, array $data)
   {
-    print_r($data);exit;
     $this
       ->_CheckFunctionAvailability('mb_strlen')
       ->_CheckFunctionAvailability('mb_substr')
       ->_CheckFunctionAvailability('openssl_encrypt')
       ->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
 
-    $dataToSign = $iv = null;
+    $data = $this->_GetSortedData($data);
+
+    $iv = null;
     $secure = false;
 
     while (!$secure) {
@@ -181,7 +187,7 @@ class Signature implements AuthInterface
     }
 
     $cipherText = openssl_encrypt (
-      $dataToSign,
+      $data,
       $this->_authConfiguration['CryptoAlgorithm'],
       $authInformation['Key']['Encryption'][$operationType],
       \OPENSSL_RAW_DATA,
