@@ -3,6 +3,7 @@
 namespace Epignosis\Auth;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
+use Epignosis\Auth\Abstraction\AuthTrait;
 use Epignosis\Auth\Failure\SignatureToken as SignatureTokenException;
 
 /**
@@ -18,6 +19,9 @@ use Epignosis\Auth\Failure\SignatureToken as SignatureTokenException;
  */
 class SignatureToken implements AuthInterface
 {
+  use AuthTrait;
+
+
   /**
    * Authenticates the request.
    *
@@ -33,6 +37,7 @@ class SignatureToken implements AuthInterface
    */
   public function AuthenticateRequest(array $authInformation)
   {
+    echo '<prE>'; print_R($this);exit;
     return [];
   }
 }
