@@ -123,13 +123,16 @@ class SignatureToken implements AuthInterface
    * Returns a part of the requested string.
    *
    * @param   string $string
-   *            - The string to return a part. (Required)
+   *            - See http://php.net/manual/en/function.substr.php for more information.
+   *              (Required)
    *
    * @param   int $start
-   *            - The start position. (Optional, 0)
+   *            - See http://php.net/manual/en/function.substr.php for more information.
+   *              (Optional, 0)
    *
    * @param   int $length
-   *            - (Optional, null)
+   *            - See http://php.net/manual/en/function.substr.php for more information.
+   *              (Optional, null)
    *
    * @return  bool|string
    *
