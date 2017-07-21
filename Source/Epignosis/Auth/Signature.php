@@ -70,7 +70,7 @@ class Signature implements AuthInterface
   }
 
   /**
-   * Encodes the requested source into Base64.
+   * Encodes the requested source into Base64 (time safe).
    *
    * @param   string $source
    *            - The source to be Base64 encoded. (Required)
