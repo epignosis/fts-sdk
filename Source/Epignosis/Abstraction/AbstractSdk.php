@@ -198,8 +198,7 @@ abstract class AbstractSdk
 
     return [
       'EndPoint' => $this->_GetServiceActionEndPoint($action),
-      'HeaderList' => $headerList,
-      'RequiresAuth' => $actionRequiresAuth
+      'HeaderList' => $headerList
     ];
   }
 
