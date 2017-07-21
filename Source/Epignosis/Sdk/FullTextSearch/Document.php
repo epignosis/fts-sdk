@@ -63,18 +63,18 @@ class Document extends AbstractSdk
             'Path' => 'document/%s'
           ],
           'Retrieve' => [
-            'OperationType' => 'Read',
+            'OperationType' => ['Read'],
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s'
           ],
           'RetrieveMany' => [
-            'OperationType' => 'Read',
+            'OperationType' => ['Read'],
             'Path' => 'documents'
           ],
           'Update' => [
-            'OperationType' => 'Write',
+            'OperationType' => ['Write', 'Master'],
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
