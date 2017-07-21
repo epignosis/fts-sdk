@@ -33,48 +33,36 @@ class Document extends AbstractSdk
       ],
       'Service' => [
         'Auth' => [
-          'Crypto' => [
-            'Algorithm' => 'AES-128-CBC',
-            'Raw' => true
-          ],
-          'Hash' => [
-            'Algorithm' => 'sha256',
-            'MessageAuth' => true,
-            'Raw' => true,
-          ],
-          'Signature' => [
-            'Name' => 'EA-AUTH-SIGNATURE'
-          ],
-          'Status' => true,
-          'Token' => [
-            'Name' => 'EA-AUTH-TOKEN'
-          ]
+          'CryptoAlgorithm' => 'AES-128-CBC',
+          'HashAlgorithm' => 'sha256',
+          'SignatureName' => 'EA-AUTH-SIGNATURE',
+          'Status' => true
         ],
         'ActionList' => [
           'Create' => [
-            'OperationType' => ['Write'],
+            'OperationType' => 'Write',
             'Path' => 'document'
           ],
           'Delete' => [
-            'OperationType' => ['Write', 'Master'],
+            'OperationType' => 'Write',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s'
           ],
           'Retrieve' => [
-            'OperationType' => ['Read'],
+            'OperationType' => 'Read',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s'
           ],
           'RetrieveMany' => [
-            'OperationType' => ['Read'],
+            'OperationType' => 'Read',
             'Path' => 'documents'
           ],
           'Update' => [
-            'OperationType' => ['Write', 'Master'],
+            'OperationType' => 'Write',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],

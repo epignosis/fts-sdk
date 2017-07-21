@@ -4,7 +4,6 @@ namespace Epignosis\Abstraction;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
 use Epignosis\Client\Abstraction\ClientInterface;
-use Epignosis\Decoder\Abstraction\DecoderInterface;
 use Epignosis\Factory\Auth as AuthFactory;
 use Epignosis\Factory\Client as ClientFactory;
 use Epignosis\Failure\Sdk as SdkException;
@@ -48,15 +47,6 @@ abstract class AbstractSdk
    * @var     array
    */
   protected $_configuration = [];
-
-  /**
-   * The decoder factory.
-   *
-   * @default null
-   * @since   1.0.0-dev
-   * @var     DecoderInterface
-   */
-  protected $_decoderFactory = null;
 
 
   /**

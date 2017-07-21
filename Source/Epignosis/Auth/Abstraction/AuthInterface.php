@@ -18,12 +18,12 @@ use Epignosis\Auth\Failure\Auth as AuthException;
 interface AuthInterface
 {
   /**
-   * Authenticates the request.
+   * Signs the request.
    *
    * @param   array $authInformation
    *            - The auth information to be used. (Required)
    *
-   * @param   array $operationType
+   * @param   string $operationType
    *            - The operation type to be used. (Required)
    *
    * @return  array
@@ -31,7 +31,7 @@ interface AuthInterface
    * @since   1.0.0-dev
    *
    * @throws  AuthException
-   *            - In case that is not possible to authenticate the request.
+   *            - In case that is not possible to sign the request.
    */
-  public function AuthenticateRequest(array $authInformation, array $operationType);
+  public function GetSignedRequest(array $authInformation, $operationType);
 }
