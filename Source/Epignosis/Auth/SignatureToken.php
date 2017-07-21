@@ -49,59 +49,76 @@ class SignatureToken implements AuthInterface
   }
 
   /**
-   * Encodes 8-bit integers into 6-bit.
+   * Encodes the requested integer from 8-bit to 6-bit.
    *
-   * @param   int $source
-   *            - The source to be encoded. (Required)
+   * @param   int $integer
+   *            - The integer to be encoded. (Required)
    *
    * @return  string
    *
    * @since   1.0.0-dev
    */
-  private function _Encode6Bits($source)
+  private function _Encode6Bits($integer)
   {
     $diff = 0x41;
-    $diff += ((25 - $source) >> 8) & 6;
-    $diff -= ((51 - $source) >> 8) & 75;
-    $diff -= ((61 - $source) >> 8) & 15;
-    $diff += ((62 - $source) >> 8) & 3;
+    $diff += ((25 - $integer) >> 8) & 6;
+    $diff -= ((51 - $integer) >> 8) & 75;
+    $diff -= ((61 - $integer) >> 8) & 15;
+    $diff += ((62 - $integer) >> 8) & 3;
 
-    return \pack('C', $source + $diff);
+    return pack('C', $integer + $diff);
   }
 
-  private function _EncodeBase64($src)
+  /**
+   * Encodes the requested source into Base64.
+   *
+   * @param   string $source
+   *            - The source to be Base64 encoded. (Required)
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _EncodeBase64($source)
   {
-    $dest = '';
-    $srcLen = $this->_SafeStringLength($src);
-    // Main loop (no padding):
-    for ($i = 0; $i + 3 <= $srcLen; $i += 3) {
-      $chunk = \unpack('C*', $this->_SafeSubstring($src, $i, 3));
+    $destination = null;
+    $sourceLength = $this->_SafeStringLength($source);
+
+    for ($i = 0; $i + 3 <= $sourceLength; $i += 3) {
+      $chunk = unpack('C*', $this->_SafeSubstring($source, $i, 3));
+
       $b0 = $chunk[1];
       $b1 = $chunk[2];
       $b2 = $chunk[3];
-      $dest .=
-        $this->_Encode6Bits(               $b0 >> 2       ) .
+
+      $destination .=
+        $this->_Encode6Bits($b0 >> 2) .
         $this->_Encode6Bits((($b0 << 4) | ($b1 >> 4)) & 63) .
         $this->_Encode6Bits((($b1 << 2) | ($b2 >> 6)) & 63) .
-        $this->_Encode6Bits(  $b2                     & 63);
+        $this->_Encode6Bits($b2 & 63);
     }
-    // The last chunk, which may have padding:
-    if ($i < $srcLen) {
-      $chunk = \unpack('C*', $this->_SafeSubstring($src, $i, $srcLen - $i));
+
+    if ($i < $sourceLength) {
+      $chunk = unpack('C*', $this->_SafeSubstring($source, $i, $sourceLength - $i));
       $b0 = $chunk[1];
-      if ($i + 1 < $srcLen) {
+
+      if ($i + 1 < $sourceLength) {
         $b1 = $chunk[2];
-        $dest .=
-          $this->_Encode6Bits(               $b0 >> 2       ) .
+
+        $destination .=
+          $this->_Encode6Bits($b0 >> 2) .
           $this->_Encode6Bits((($b0 << 4) | ($b1 >> 4)) & 63) .
-          $this->_Encode6Bits( ($b1 << 2)               & 63) . '=';
+          $this->_Encode6Bits(($b1 << 2) & 63) .
+          '=';
       } else {
-        $dest .=
+        $destination .=
           $this->_Encode6Bits( $b0 >> 2) .
-          $this->_Encode6Bits(($b0 << 4) & 63) . '==';
+          $this->_Encode6Bits(($b0 << 4) & 63) .
+          '==';
       }
     }
-    return $dest;
+
+    return $destination;
   }
 
   /**
