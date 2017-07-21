@@ -41,7 +41,7 @@ class SignatureToken implements AuthInterface
       throw new SignatureTokenException (
         SignatureTokenException::AUTH_ADAPTER_SIGNATURE_TOKEN_FUNCTION_NOT_EXIST,
         null,
-        ['Function' => 'openssl_encrypt']
+        ['Function' => $functionName]
       );
     }
 
@@ -82,7 +82,7 @@ class SignatureToken implements AuthInterface
   private function _EncodeBase64($source)
   {
     $destination = null;
-    $sourceLength = $this->_SafeStringLength($source);
+    $sourceLength = mb_strlen($source, '8bit');
 
     for ($i = 0; $i + 3 <= $sourceLength; $i += 3) {
       $chunk = unpack('C*', $this->_SafeSubstring($source, $i, 3));
@@ -122,21 +122,6 @@ class SignatureToken implements AuthInterface
   }
 
   /**
-   * Returns the length of the requested string.
-   *
-   * @param   string $string
-   *            - The string to return its length. (Required)
-   *
-   * @return  int
-   *
-   * @since   1.0.0-dev
-   */
-  private function _SafeStringLength($string)
-  {
-    return function_exists('mb_strlen') ? mb_strlen($string, '8bit') : strlen($string);
-  }
-
-  /**
    * Returns a part of the requested string.
    *
    * @param   string $string
@@ -155,16 +140,9 @@ class SignatureToken implements AuthInterface
    *
    * @since   1.0.0-dev
    */
-  private function _SafeSubstring($string, $start = 0, $length = null) {
-    if (0 == $length) {
-      return null;
-    }
-
-    if (function_exists('mb_substr')) {
-      return mb_substr($string, $start, $length, '8bit');
-    }
-
-    return null !== $length ? substr($string, $start, $length) : substr($string, $start);
+  private function _SafeSubstring($string, $start = 0, $length = null)
+  {
+    return 0 == $length ? null : mb_substr($string, $start, $length, '8bit');
   }
 
   /**
@@ -185,8 +163,11 @@ class SignatureToken implements AuthInterface
    */
   public function GetSignedRequest(array $authInformation, $operationType)
   {
-    $this->_CheckFunctionAvailability('openssl_encrypt');
-    $this->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
+    $this
+      ->_CheckFunctionAvailability('mb_strlen')
+      ->_CheckFunctionAvailability('mb_substr')
+      ->_CheckFunctionAvailability('openssl_encrypt')
+      ->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
 
     $dataToSign = $iv = null;
     $secure = false;
