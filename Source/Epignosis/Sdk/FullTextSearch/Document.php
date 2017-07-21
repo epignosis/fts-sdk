@@ -19,50 +19,62 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentExcep
 class Document extends AbstractSdk
 {
   /**
-   * Returns the configuration of the full-text search document SDK.
+   * Returns the configuration of the full-text search document SDK and its service.
    *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  protected function _GetConfigurationSdk()
+  protected function _GetConfigurationSdkService()
   {
     return [
       'Sdk' => [
-        'Auth' => [
-          'Configuration' => [],
-          'Type' => 'Signature'
-        ],
-        'Client' => [
-          'Configuration' => [],
-          'Type' => 'Http'
-        ]
+        'Client' => []
       ],
       'Service' => [
         'Auth' => [
-          'HeaderName' => 'ERS',
+          'Crypto' => [
+            'Algorithm' => '',
+            'Raw' => true
+          ],
+          'Hash' => [
+            'Algorithm' => 'sha256',
+            'MessageAuth' => true,
+            'Raw' => true,
+          ],
+          'Signature' => [
+            'Name' => 'EA-AUTH-SIGNATURE'
+          ],
           'Status' => true,
+          'Token' => [
+            'Name' => 'EA-AUTH-TOKEN'
+          ]
         ],
         'ActionList' => [
           'Create' => [
+            'OperationType' => ['Write'],
             'Path' => 'document'
           ],
           'Delete' => [
+            'OperationType' => ['Write', 'Master'],
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s'
           ],
           'Retrieve' => [
+            'OperationType' => 'Read',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s'
           ],
           'RetrieveMany' => [
+            'OperationType' => 'Read',
             'Path' => 'documents'
           ],
           'Update' => [
+            'OperationType' => 'Write',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],

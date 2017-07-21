@@ -60,13 +60,13 @@ abstract class AbstractSdk
 
 
   /**
-   * Returns the configuration of the referenced SDK.
+   * Returns the configuration of the full-text search document SDK and its service.
    *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  abstract protected function _GetConfigurationSdk();
+  abstract protected function _GetConfigurationSdkService();
 
   /**
    * Returns the auth interface configuration.
@@ -176,7 +176,7 @@ abstract class AbstractSdk
     try {
       $authInterfaceConfiguration = $this->_GetAuthInterfaceConfiguration();
 
-      if (isset($clientInterfaceConfiguration['Type'])) {
+      if (isset($authInterfaceConfiguration['Type'])) {
         return $this->_authFactory->GetCached (
           $authInterfaceConfiguration['Type'],
           $authInterfaceConfiguration['Configuration']
@@ -289,7 +289,7 @@ abstract class AbstractSdk
   public function Configure(array $configuration)
   {
     $this->_configuration = [
-      'Private' => $this->_GetConfigurationSdk(),
+      'Private' => $this->_GetConfigurationSdkService(),
       'Public' => $configuration
     ];
 
