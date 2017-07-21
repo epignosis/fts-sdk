@@ -195,28 +195,24 @@ class SignatureToken implements AuthInterface
       $iv = openssl_random_pseudo_bytes(16, $secure);
     }
 
-    $cipherText = $this->_Encode6Bits (
-      openssl_encrypt (
-        $dataToSign,
-        $this->_authConfiguration['CryptoAlgorithm'],
-        $authInformation['Key']['Encryption'][$operationType],
-        \OPENSSL_RAW_DATA,
-        $iv
-      )
+    $cipherText = openssl_encrypt (
+      $dataToSign,
+      $this->_authConfiguration['CryptoAlgorithm'],
+      $authInformation['Key']['Encryption'][$operationType],
+      \OPENSSL_RAW_DATA,
+      $iv
     );
 
-    $hashMac = $this->_EncodeBase64 (
-      hash_hmac (
-        $this->_authConfiguration['HashAlgorithm'],
-        $cipherText,
-        $authInformation['Key']['Private'][$operationType],
-        true
-      )
+    $hashMac = hash_hmac (
+      $this->_authConfiguration['HashAlgorithm'],
+      $cipherText,
+      $authInformation['Key']['Private'][$operationType],
+      true
     );
 
     return [
       $this->_authConfiguration['SignatureName'],
-      sprintf('%s;%s;%s', $cipherText, $iv, $hashMac)
+      $this->_EncodeBase64($hashMac . $iv . $cipherText)
     ];
   }
 }
