@@ -34,7 +34,7 @@ class Document extends AbstractSdk
       'Service' => [
         'Auth' => [
           'Crypto' => [
-            'Algorithm' => '',
+            'Algorithm' => 'AES-128-CBC',
             'Raw' => true
           ],
           'Hash' => [
