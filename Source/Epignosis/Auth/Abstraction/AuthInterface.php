@@ -23,6 +23,9 @@ interface AuthInterface
    * @param   array $authInformation
    *            - The auth information to be used. (Required)
    *
+   * @param   array $operationType
+   *            - The operation type to be used. (Required)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -30,5 +33,5 @@ interface AuthInterface
    * @throws  AuthException
    *            - In case that is not possible to authenticate the request.
    */
-  public function AuthenticateRequest(array $authInformation);
+  public function AuthenticateRequest(array $authInformation, array $operationType);
 }

@@ -30,21 +30,19 @@ class Printer
     $originalException = $exception->GetOriginalException();
 
     echo
-    sprintf (
-      '<b>Exception</b>: %s (%s)',
-      $exception->getMessage(),
-      $exception->getCode()
-    ),
+      sprintf (
+        '<b>Exception</b>: %s (%s)',
+        $exception->getMessage(),
+        $exception->getCode()
+      ),
 
-    '<br>',
+      '<br>',
 
-    sprintf (
-      '<b>Original Exception</b>: %s (%s)',
-      $originalException->getMessage(),
-      $originalException->getCode()
-    ),
-
-    '<br><br>';
+      sprintf (
+        '<b>Original Exception</b>: %s (%s)<br>',
+        $originalException->getMessage(),
+        $originalException->getCode()
+      );
   }
 
   /**
