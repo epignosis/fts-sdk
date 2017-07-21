@@ -57,7 +57,20 @@ $configuration = [];
  * --------------------------------------------------------------------------------------
  */
 $data = [
-  'Document' => []
+  'Document' => [
+    'Create' => [
+      // Only Content:
+      [],
+      // Only File URL:
+      [],
+      // Content + File URL:
+      [],
+      // File URLs:
+      [],
+      // Content + File URLs:
+      []
+    ]
+  ]
 ];
 
 /**
@@ -77,7 +90,11 @@ try {
    * Create Document through the Full-Text Search Document SDK
    * ------------------------------------------------------------------------------------
    */
-  $response['Document'] = $fullTextSearchDocumentSdk->Create($data['Document']);
+  foreach ($data['Document']['Create'] as $dataDocumentCreate) {
+    $response['Document']['Create'][] = $fullTextSearchDocumentSdk->Create (
+      $dataDocumentCreate
+    );
+  }
 
 } catch (\Exception $exception) {
 
@@ -104,16 +121,18 @@ try {
 
 } finally {
 
-  echo
-    sprintf (
-      '<b>Create Document</b><pre>%s</pre>',
-      print_r($data['Document'], true)
-    ),
+  foreach ($response['Document']['Create'] as $key => $responseDocumentCreate) {
+    echo
+      sprintf (
+        '<b>Create Document</b><pre>%s</pre>',
+        print_r($data['Document']['Create'][$key], true)
+      ),
 
-    sprintf (
-      '<b>Document Creation Response</b><pre>%s</pre>',
-      print_r($response['Document'], true)
-    );
+      sprintf (
+        '<b>Document Creation Response</b><pre>%s</pre>',
+        print_r($responseDocumentCreate, true)
+      );
+  }
 
   echo sprintf (
     'This script was executed in, <b>%s</b> sec.',
