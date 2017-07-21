@@ -77,19 +77,9 @@ abstract class AbstractSdk
    */
   private function _GetClientInterfaceConfiguration()
   {
-    if (isset($this->_configuration['Private']['Sdk']['Client']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Private']['Sdk']['Client']['Type'];
-    }
-
-    if (isset($this->_configuration['Public']['Client']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Public']['Client']['Type'];
-    }
-
-    $configuration['Configuration'] =
-      (array) $this->_configuration['Public']['Client']['Configuration'] +
-      (array) $this->_configuration['Private']['Sdk']['Client']['Configuration'];
-
-    return $configuration;
+    return
+      (array) $this->_configuration['Public']['Client'] +
+      (array) $this->_configuration['Private']['Sdk']['Client'];
   }
 
   /**
@@ -202,8 +192,8 @@ abstract class AbstractSdk
     $actionRequiresAuth = $this->_ServiceActionRequiresAuth($action);
 
     if ($actionRequiresAuth) {
-      $headerList[$serviceConfiguration['Auth']['HeaderName']] =
-        $this->_GetAuthInterface()->AuthenticateRequest();
+      list($headerName, $headerValue) = $this->_GetAuthInterface()->AuthenticateRequest();
+      $headerList[$headerName] = $headerValue;
     }
 
     return [
