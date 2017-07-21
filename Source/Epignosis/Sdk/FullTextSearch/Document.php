@@ -36,11 +36,7 @@ class Document extends AbstractSdk
         'Client' => [
           'Configuration' => [],
           'Type' => 'Http'
-        ],
-        'Logger' => [
-          'Configuration' => [],
-          'Type' => 'Memory'
-        ],
+        ]
       ],
       'Service' => [
         'Auth' => [
@@ -77,9 +73,6 @@ class Document extends AbstractSdk
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
-        ],
-        'Log' => [
-          'Status' => true
         ]
       ]
     ];
