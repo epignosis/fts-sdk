@@ -35,36 +35,12 @@ class Sdk extends \Exception
   const SDK_GET_CLIENT_INTERFACE_FAILURE = 3;
 
   /**
-   * Used in case that is not possible to return the logger interface.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_GET_LOGGER_INTERFACE_FAILURE = 4;
-
-  /**
-   * Used in case that is not possible to clear the log.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_CLEAR_LOG_FAILURE = 5;
-
-  /**
    * Used in case that is not possible to configure the SDK.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_CONFIGURE_FAILURE = 6;
-
-  /**
-   * Used in case that is not possible to return the log.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_GET_LOG_FAILURE = 7;
+  const SDK_CONFIGURE_FAILURE = 4;
 
   /**
    * Used in case that the PHP version is not supported (< 5.6.0).
@@ -103,17 +79,8 @@ class Sdk extends \Exception
     self::$_failureMessageList[self::SDK_GET_CLIENT_INTERFACE_FAILURE] =
       'SDK_GET_CLIENT_INTERFACE_FAILURE';
 
-    self::$_failureMessageList[self::SDK_GET_LOGGER_INTERFACE_FAILURE] =
-      'SDK_GET_LOGGER_INTERFACE_FAILURE';
-
-    self::$_failureMessageList[self::SDK_CLEAR_LOG_FAILURE] =
-      'SDK_CLEAR_LOG_FAILURE';
-
     self::$_failureMessageList[self::SDK_CONFIGURE_FAILURE] =
       'SDK_CONFIGURE_FAILURE';
-
-    self::$_failureMessageList[self::SDK_GET_LOG_FAILURE] =
-      'SDK_GET_LOG_FAILURE';
 
     self::$_failureMessageList[self::SDK_REQUIREMENT_PHP_VERSION] =
       'SDK_REQUIREMENT_PHP_VERSION';

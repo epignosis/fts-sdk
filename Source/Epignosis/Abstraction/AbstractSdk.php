@@ -7,9 +7,7 @@ use Epignosis\Client\Abstraction\ClientInterface;
 use Epignosis\Decoder\Abstraction\DecoderInterface;
 use Epignosis\Factory\Auth as AuthFactory;
 use Epignosis\Factory\Client as ClientFactory;
-use Epignosis\Factory\Logger as LoggerFactory;
 use Epignosis\Failure\Sdk as SdkException;
-use Epignosis\Logger\Abstraction\LoggerInterface;
 
 /**
  * Abstract Class AbstractSdk
@@ -59,15 +57,6 @@ abstract class AbstractSdk
    * @var     DecoderInterface
    */
   protected $_decoderFactory = null;
-
-  /**
-   * The logger factory.
-   *
-   * @default null
-   * @since   1.0.0-dev
-   * @var     LoggerFactory
-   */
-  protected $_loggerFactory = null;
 
 
   /**
@@ -123,30 +112,6 @@ abstract class AbstractSdk
     $configuration['Configuration'] =
       (array) $this->_configuration['Public']['Client']['Configuration'] +
       (array) $this->_configuration['Private']['Sdk']['Client']['Configuration'];
-
-    return $configuration;
-  }
-
-  /**
-   * Returns the logger interface configuration.
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   */
-  private function _GetLoggerInterfaceConfiguration()
-  {
-    if (isset($this->_configuration['Private']['Sdk']['Logger']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Private']['Sdk']['Logger']['Type'];
-    }
-
-    if (isset($this->_configuration['Public']['Logger']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Public']['Logger']['Type'];
-    }
-
-    $configuration['Configuration'] =
-      (array) $this->_configuration['Public']['Logger']['Configuration'] +
-      (array) $this->_configuration['Private']['Sdk']['Logger']['Configuration'];
 
     return $configuration;
   }
@@ -289,38 +254,6 @@ abstract class AbstractSdk
   }
 
   /**
-   * Returns the logger interface.
-   *
-   * @return  LoggerInterface
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  SdkException
-   *            - In case that is not possible to return the logger interface.
-   */
-  protected function _GetLoggerInterface()
-  {
-    try {
-      $loggerInterfaceConfiguration = $this->_GetLoggerInterfaceConfiguration();
-
-      if (isset($loggerInterfaceConfiguration['Type'])) {
-        return $this->_loggerFactory->GetCached (
-          $loggerInterfaceConfiguration['Type'],
-          $loggerInterfaceConfiguration['Configuration']
-        );
-      }
-
-      return $this->_loggerFactory->GetCachedDefault (
-        $loggerInterfaceConfiguration['Configuration']
-      );
-    } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_GET_LOGGER_INTERFACE_FAILURE, $exception
-      );
-    }
-  }
-
-  /**
    * AbstractSdk constructor.
    *
    * @param   array $configuration
@@ -339,30 +272,8 @@ abstract class AbstractSdk
 
     $this->_authFactory = new AuthFactory;
     $this->_clientFactory = new ClientFactory;
-    $this->_loggerFactory = new LoggerFactory;
 
     $this->Configure($configuration);
-  }
-
-  /**
-   * Clears the log.
-   *
-   * @return  AbstractSdk
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  SdkException
-   *            - In case that is not possible to clear the log.
-   */
-  public function ClearLog()
-  {
-    try {
-      $this->_GetLoggerInterface()->ClearLog();
-    } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_CLEAR_LOG_FAILURE, $exception);
-    }
-
-    return $this;
   }
 
   /**
@@ -383,24 +294,5 @@ abstract class AbstractSdk
     ];
 
     return $this;
-  }
-
-  /**
-   * Returns the log.
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  SdkException
-   *            - In case that is not possible to return the log.
-   */
-  public function GetLog()
-  {
-    try {
-      return $this->_GetLoggerInterface()->GetLog();
-    } catch (\Exception $exception) {
-      throw new SdkException(SdkException::SDK_GET_LOG_FAILURE, $exception);
-    }
   }
 }

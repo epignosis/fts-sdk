@@ -115,17 +115,6 @@ try {
       print_r($response['Document'], true)
     );
 
-  if (isset($fullTextSearchDocumentSdk)) {
-    $log = null;
-
-    /** @noinspection PhpUndefinedMethodInspection */
-    foreach ($fullTextSearchDocumentSdk->GetLog() as $logRecord) {
-      print_r($logRecord);exit;
-    }
-
-    echo sprintf('<b>Log Report</b><br><br>', $log);
-  }
-
   echo sprintf (
     'This script was executed in, <b>%s</b> sec.',
     round(microtime(true) - $_SERVER['DEMO_NOW'], 2)
