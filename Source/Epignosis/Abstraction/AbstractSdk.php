@@ -131,7 +131,7 @@ abstract class AbstractSdk
   {
     try {
       return $this->_authFactory->GetCached (
-        'SignatureToken', $this->_configuration['Private']['Service']['Auth']
+        'Signature', $this->_configuration['Private']['Service']['Auth']
       );
     } catch (\Exception $exception) {
       throw new SdkException (
