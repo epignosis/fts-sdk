@@ -99,13 +99,7 @@ class Signature implements AuthInterface
     }
 
     if ($i < $sourceLength) {
-      if (0 == $sourceLength - $i) {
-        $sourceSubstring = null;
-      } else {
-        $sourceSubstring = mb_substr($source, $i, $sourceLength - $i, '8bit');
-      }
-
-      $chunk = unpack('C*', $sourceSubstring);
+      $chunk = unpack('C*', mb_substr($source, $i, $sourceLength - $i, '8bit'));
       $b0 = $chunk[1];
 
       if ($i + 1 < $sourceLength) {
