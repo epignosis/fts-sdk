@@ -171,8 +171,6 @@ class Signature implements AuthInterface
       ->_CheckFunctionAvailability('openssl_encrypt')
       ->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
 
-    $data = $this->_GetSortedData($data);
-
     $iv = null;
     $secure = false;
 
@@ -181,7 +179,7 @@ class Signature implements AuthInterface
     }
 
     $cipherText = openssl_encrypt (
-      $data,
+      serialize($this->_GetSortedData($data)),
       $this->_authConfiguration['CryptoAlgorithm'],
       $authInformation['Key']['Encryption'][$operationType],
       \OPENSSL_RAW_DATA,
