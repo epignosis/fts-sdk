@@ -3,9 +3,9 @@
 namespace Epignosis\Auth\Failure;
 
 /**
- * Class Signature
+ * Class SignatureToken
  *
- * The signature auth exception.
+ * The signature-token auth exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Auth\Failure
@@ -13,7 +13,7 @@ namespace Epignosis\Auth\Failure;
  * @package     Epignosis\Auth\Failure
  * @since       1.0.0-dev
  */
-class Signature extends Auth
+class SignatureToken extends Auth
 {
 
 }

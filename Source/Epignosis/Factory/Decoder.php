@@ -23,14 +23,6 @@ class Decoder implements FactoryInterface
 
 
   /**
-   * Decoder constructor.
-   */
-  public function __construct()
-  {
-    $this->_adapterDefault = 'Json';
-  }
-
-  /**
    * Returns a new instance of the requested decoder adapter.
    *
    * @param   string $adapter

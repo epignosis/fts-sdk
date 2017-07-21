@@ -3,12 +3,12 @@
 namespace Epignosis\Auth;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
-use Epignosis\Auth\Failure\Signature as SignatureException;
+use Epignosis\Auth\Failure\SignatureToken as SignatureTokenException;
 
 /**
- * Class Signature
+ * Class SignatureToken
  *
- * The signature auth.
+ * The signature-token auth.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Auth
@@ -16,7 +16,7 @@ use Epignosis\Auth\Failure\Signature as SignatureException;
  * @package     Epignosis\Auth
  * @since       1.0.0-dev
  */
-class Signature implements AuthInterface
+class SignatureToken implements AuthInterface
 {
   /**
    * Authenticates the request.
@@ -25,7 +25,7 @@ class Signature implements AuthInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  SignatureException
+   * @throws  SignatureTokenException
    *            - In case that is not possible to authenticate the request.
    */
   public function AuthenticateRequest()

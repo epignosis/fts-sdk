@@ -69,30 +69,6 @@ abstract class AbstractSdk
   abstract protected function _GetConfigurationSdkService();
 
   /**
-   * Returns the auth interface configuration.
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   */
-  private function _GetAuthInterfaceConfiguration()
-  {
-    if (isset($this->_configuration['Private']['Sdk']['Auth']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Private']['Sdk']['Auth']['Type'];
-    }
-
-    if (isset($this->_configuration['Public']['Auth']['Type'])) {
-      $configuration['Type'] = $this->_configuration['Public']['Auth']['Type'];
-    }
-
-    $configuration['Configuration'] =
-      (array) $this->_configuration['Public']['Auth']['Configuration'] +
-      (array) $this->_configuration['Private']['Sdk']['Auth']['Configuration'];
-
-    return $configuration;
-  }
-
-  /**
    * Returns the client interface configuration.
    *
    * @return  array
@@ -174,17 +150,8 @@ abstract class AbstractSdk
   protected function _GetAuthInterface()
   {
     try {
-      $authInterfaceConfiguration = $this->_GetAuthInterfaceConfiguration();
-
-      if (isset($authInterfaceConfiguration['Type'])) {
-        return $this->_authFactory->GetCached (
-          $authInterfaceConfiguration['Type'],
-          $authInterfaceConfiguration['Configuration']
-        );
-      }
-
-      return $this->_authFactory->GetCachedDefault (
-        $authInterfaceConfiguration['Configuration']
+      return $this->_authFactory->GetCached (
+        'SignatureToken', $this->_configuration['Public']['Auth']['Configuration']
       );
     } catch (\Exception $exception) {
       throw new SdkException (
@@ -208,15 +175,8 @@ abstract class AbstractSdk
     try {
       $clientInterfaceConfiguration = $this->_GetClientInterfaceConfiguration();
 
-      if (isset($clientInterfaceConfiguration['Type'])) {
-        return $this->_clientFactory->GetCached (
-          $clientInterfaceConfiguration['Type'],
-          $clientInterfaceConfiguration['Configuration']
-        );
-      }
-
-      return $this->_clientFactory->GetCachedDefault (
-        $clientInterfaceConfiguration['Configuration']
+      return $this->_clientFactory->GetCached (
+        'Http', $clientInterfaceConfiguration['Configuration']
       );
     } catch (\Exception $exception) {
       throw new SdkException (

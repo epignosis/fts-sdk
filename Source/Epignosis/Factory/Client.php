@@ -23,14 +23,6 @@ class Client implements FactoryInterface
 
 
   /**
-   * Client constructor.
-   */
-  public function __construct()
-  {
-    $this->_adapterDefault = 'Http';
-  }
-
-  /**
    * Returns a new instance of the requested client adapter.
    *
    * @param   string $adapter

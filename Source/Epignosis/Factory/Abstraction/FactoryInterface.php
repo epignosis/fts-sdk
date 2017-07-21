@@ -54,36 +54,4 @@ interface FactoryInterface
    *              requested adapter.
    */
   public function GetCached($adapter, $configuration = []);
-
-  /**
-   * Returns a cached instance of the default adapter.
-   *
-   * @param   array $configuration
-   *            - The configuration to be used. (Optional, [])
-   *
-   * @return  mixed
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  FactoryException
-   *            - In case that is not possible to return a cached instance of the default
-   *              adapter.
-   */
-  public function GetCachedDefault($configuration = []);
-
-  /**
-   * Returns a new instance of the default adapter.
-   *
-   * @param   array $configuration
-   *            - The configuration to be used. (Optional, [])
-   *
-   * @return  mixed
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  FactoryException
-   *            - In case that is not possible to return a new instance of the default
-   *              adapter.
-   */
-  public function GetDefault($configuration = []);
 }

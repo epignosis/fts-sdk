@@ -23,14 +23,6 @@ class Auth implements FactoryInterface
 
 
   /**
-   * Auth constructor.
-   */
-  public function __construct()
-  {
-    $this->_adapterDefault = 'Signature';
-  }
-
-  /**
    * Returns a new instance of the requested auth adapter.
    *
    * @param   string $adapter
