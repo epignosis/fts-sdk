@@ -192,7 +192,10 @@ abstract class AbstractSdk
     $actionRequiresAuth = $this->_ServiceActionRequiresAuth($action);
 
     if ($actionRequiresAuth) {
-      list($headerName, $headerValue) = $this->_GetAuthInterface()->AuthenticateRequest();
+      list($headerName, $headerValue) = $this->_GetAuthInterface()->AuthenticateRequest (
+        (array) $this->_configuration['Public']['Auth']['Configuration']
+      );
+
       $headerList[$headerName] = $headerValue;
     }
 

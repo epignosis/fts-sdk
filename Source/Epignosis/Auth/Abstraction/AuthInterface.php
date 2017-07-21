@@ -20,12 +20,15 @@ interface AuthInterface
   /**
    * Authenticates the request.
    *
-   * @return  string
+   * @param   array $authInformation
+   *            - The auth information to be used. (Required)
+   *
+   * @return  array
    *
    * @since   1.0.0-dev
    *
    * @throws  AuthException
    *            - In case that is not possible to authenticate the request.
    */
-  public function AuthenticateRequest();
+  public function AuthenticateRequest(array $authInformation);
 }
