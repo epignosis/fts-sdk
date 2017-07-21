@@ -50,7 +50,21 @@ require
  * Full-Text Search Document SDK Configuration
  * --------------------------------------------------------------------------------------
  */
-$configuration = [];
+$configuration = [
+  'Auth' => [
+    'Key' => [
+      'Private' => [
+        'Read' => null,
+        'Write' => null
+      ],
+      'Public' => [
+        'Read' => null,
+        'Write' => null
+      ],
+      'Master' => null
+    ]
+  ]
+];
 
 /**
  * Full-Text Search Document SDK Data
