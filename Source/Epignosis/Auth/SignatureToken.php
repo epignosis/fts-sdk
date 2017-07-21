@@ -48,31 +48,25 @@ class SignatureToken implements AuthInterface
     return $this;
   }
 
-
-
-
-  private function _SafeStringLength($str)
+  /**
+   * Encodes 8-bit integers into 6-bit.
+   *
+   * @param   int $source
+   *            - The source to be encoded. (Required)
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _Encode6Bits($source)
   {
-    if (\function_exists('mb_strlen')) {
-      return \mb_strlen($str, '8bit');
-    } else {
-      return \strlen($str);
-    }
-  }
+    $diff = 0x41;
+    $diff += ((25 - $source) >> 8) & 6;
+    $diff -= ((51 - $source) >> 8) & 75;
+    $diff -= ((61 - $source) >> 8) & 15;
+    $diff += ((62 - $source) >> 8) & 3;
 
-  private function _SafeSubstring($str, $start = 0, $length = null) {
-    if ($length === 0) {
-      return '';
-    }
-    if (\function_exists('mb_substr')) {
-      return \mb_substr($str, $start, $length, '8bit');
-    }
-    // Unlike mb_substr(), substr() doesn't accept NULL for length
-    if ($length !== null) {
-      return \substr($str, $start, $length);
-    } else {
-      return \substr($str, $start);
-    }
+    return \pack('C', $source + $diff);
   }
 
   private function _EncodeBase64($src)
@@ -111,24 +105,46 @@ class SignatureToken implements AuthInterface
   }
 
   /**
-   * Uses bitwise operators instead of table-lookups to turn 8-bit integers
-   * into 6-bit integers.
+   * Returns the length of the requested string.
    *
-   * @param int $src
-   * @return string
+   * @param   string $string
+   *            - The string to return its length. (Required)
+   *
+   * @return  int
+   *
+   * @since   1.0.0-dev
    */
-  private function _Encode6Bits($src)
+  private function _SafeStringLength($string)
   {
-    $diff = 0x41;
-    // if ($src > 25) $diff += 0x61 - 0x41 - 26; // 6
-    $diff += ((25 - $src) >> 8) & 6;
-    // if ($src > 51) $diff += 0x30 - 0x61 - 26; // -75
-    $diff -= ((51 - $src) >> 8) & 75;
-    // if ($src > 61) $diff += 0x2b - 0x30 - 10; // -15
-    $diff -= ((61 - $src) >> 8) & 15;
-    // if ($src > 62) $diff += 0x2f - 0x2b - 1; // 3
-    $diff += ((62 - $src) >> 8) & 3;
-    return \pack('C', $src + $diff);
+    return function_exists('mb_strlen') ? mb_strlen($string, '8bit') : strlen($string);
+  }
+
+  /**
+   * Returns a part of the requested string.
+   *
+   * @param   string $string
+   *            - The string to return a part. (Required)
+   *
+   * @param   int $start
+   *            - The start position. (Optional, 0)
+   *
+   * @param   int $length
+   *            - (Optional, null)
+   *
+   * @return  bool|string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _SafeSubstring($string, $start = 0, $length = null) {
+    if (0 == $length) {
+      return null;
+    }
+
+    if (function_exists('mb_substr')) {
+      return mb_substr($string, $start, $length, '8bit');
+    }
+
+    return null !== $length ? substr($string, $start, $length) : substr($string, $start);
   }
 
   /**
