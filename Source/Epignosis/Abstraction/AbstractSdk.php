@@ -180,7 +180,10 @@ abstract class AbstractSdk
   {
     $configuration = [
       'EndPoint' => $this->_GetServiceActionEndPoint($action),
-      'HeaderList' => $this->_configuration['Private']['Service']['HeaderList']
+      'HeaderList' => array_merge (
+        $this->_configuration['Private']['Service']['HeaderList'],
+        ['FTS-TIMESTAMP' => time()]
+      )
     ];
 
     if ($this->_ServiceActionRequiresAuth($action)) {

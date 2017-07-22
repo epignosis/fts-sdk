@@ -35,7 +35,7 @@ class Document extends AbstractSdk
         'Auth' => [
           'CryptoAlgorithm' => 'AES-128-CBC',
           'HashAlgorithm' => 'sha256',
-          'SignatureName' => 'EA-AUTH-SIGNATURE',
+          'SignatureName' => 'FTS-AUTH-SIGNATURE',
           'Status' => true
         ],
         'ActionList' => [
