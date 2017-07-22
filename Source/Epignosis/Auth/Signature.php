@@ -39,7 +39,7 @@ class Signature implements AuthInterface
   {
     if (!function_exists($functionName)) {
       throw new SignatureException (
-        SignatureException::AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST,
+        SignatureException::AUTH_SIGNATURE_FUNCTION_NOT_EXIST,
         null,
         ['Function' => $functionName]
       );
@@ -165,6 +165,7 @@ class Signature implements AuthInterface
    */
   public function GetSignedRequest(array $authInformation, $operationType, array $data)
   {
+    /** @noinspection SpellCheckingInspection */
     $this
       ->_CheckFunctionAvailability('mb_strlen')
       ->_CheckFunctionAvailability('mb_substr')
@@ -178,10 +179,18 @@ class Signature implements AuthInterface
       $iv = openssl_random_pseudo_bytes(16, $secure);
     }
 
+    if (32 != mb_strlen($authInformation['Key']['Crypto'][$operationType], '8bit')) {
+      throw new SignatureException (
+        SignatureException::AUTH_SIGNATURE_KEY_CRYPTO_NOT_VALID,
+        null,
+        ['CryptoKey' => $authInformation['Key']['Crypto'][$operationType]]
+      );
+    }
+
     $cipherText = openssl_encrypt (
       serialize($this->_GetSortedData($data)),
       $this->_authConfiguration['CryptoAlgorithm'],
-      $authInformation['Key']['Encryption'][$operationType],
+      $authInformation['Key']['Crypto'][$operationType],
       \OPENSSL_RAW_DATA,
       $iv
     );

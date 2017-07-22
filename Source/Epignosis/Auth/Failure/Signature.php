@@ -21,7 +21,15 @@ class Signature extends Auth
    * @since   1.0.0-dev
    * @var     int
    */
-  const AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST = 1;
+  const AUTH_SIGNATURE_FUNCTION_NOT_EXIST = 1;
+
+  /**
+   * Used in case that the requested crypto key, is not valid.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const AUTH_SIGNATURE_KEY_CRYPTO_NOT_VALID = 2;
 
 
   /**
@@ -46,8 +54,11 @@ class Signature extends Auth
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST] =
-      'AUTH_ADAPTER_SIGNATURE_FUNCTION_NOT_EXIST';
+    self::$_failureMessageList[self::AUTH_SIGNATURE_FUNCTION_NOT_EXIST] =
+      'AUTH_SIGNATURE_FUNCTION_NOT_EXIST';
+
+    self::$_failureMessageList[self::AUTH_SIGNATURE_KEY_CRYPTO_NOT_VALID] =
+      'AUTH_SIGNATURE_KEY_CRYPTO_NOT_VALID';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

@@ -3,7 +3,7 @@
 $configuration = [
   'Auth' => [
     'Key' => [
-      'Encryption' => [
+      'Crypto' => [
         'Read' => null,
         'Write' => null
       ],
