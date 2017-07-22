@@ -4,18 +4,18 @@ $configuration = [
   'Auth' => [
     'Key' => [
       'Crypto' => [
-        'Read' => null,
-        'Write' => null
+        'Read' => 'Demo',
+        'Write' => 'Demo'
       ],
 
       'Private' => [
-        'Read' => null,
-        'Write' => null
+        'Read' => 'Demo',
+        'Write' => 'Demo'
       ],
 
       'Public' => [
-        'Read' => null,
-        'Write' => null
+        'Read' => 'Demo',
+        'Write' => 'Demo'
       ]
     ]
   ]

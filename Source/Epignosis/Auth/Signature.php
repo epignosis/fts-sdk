@@ -191,14 +191,6 @@ class Signature implements AuthInterface
       ->_CheckFunctionAvailability('openssl_encrypt')
       ->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
 
-    if (32 != mb_strlen($authInformation['Key']['Crypto'][$operationType], '8bit')) {
-      throw new SignatureException (
-        SignatureException::AUTH_SIGNATURE_KEY_CRYPTO_NOT_VALID,
-        null,
-        ['CryptoKey' => $authInformation['Key']['Crypto'][$operationType]]
-      );
-    }
-
     $iv = $this->_GetInitializationVector();
 
     $cipherText = openssl_encrypt (
