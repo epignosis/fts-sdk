@@ -25,7 +25,10 @@ try {
 
   /** @noinspection PhpUndefinedVariableInspection */
   Printer::PrintResponse (function() use ($notificationEventInformation) {
-    echo 'OK';
+    echo sprintf (
+      '<b>Notification Event Information</b><pre>%s</pre>',
+      print_r($notificationEventInformation, true)
+    );
   });
 
 }
