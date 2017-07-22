@@ -131,8 +131,7 @@ class Signature implements AuthInterface
    */
   private function _GetInitializationVector()
   {
-    $iv = false;
-    $secure = false;
+    $iv = $secure = false;
 
     while (!$secure || !$iv) {
       $iv = openssl_random_pseudo_bytes(16, $secure);
