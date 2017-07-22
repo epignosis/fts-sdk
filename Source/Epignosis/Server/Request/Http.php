@@ -1,19 +1,21 @@
 <?php
 
-namespace Epignosis\Server\Abstraction;
+namespace Epignosis\Server\Request;
+
+use Epignosis\Server\Abstraction\RequestInterface;
 
 /**
- * Interface RequestInterface
+ * Class Http
  *
- * The request interface.
+ * The HTTP request.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
- * @category    Epignosis\Server\Abstraction
+ * @category    Epignosis\Server\Request
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
- * @package     Epignosis\Server\Abstraction
+ * @package     Epignosis\Server\Request
  * @since       1.0.0-dev
  */
-interface RequestInterface
+class Http implements RequestInterface
 {
   /**
    * Returns the parameter list of the requested source. If the requested source does not
@@ -26,5 +28,8 @@ interface RequestInterface
    *
    * @since   1.0.0-dev
    */
-  public function GetParameterList($source = null);
+  public function GetParameterList($source = null)
+  {
+    return [];
+  }
 }

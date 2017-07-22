@@ -5,6 +5,7 @@ namespace Epignosis\Server;
 use Epignosis\Server\Abstraction\RequestInterface;
 use Epignosis\Server\Abstraction\ServerInterface;
 use Epignosis\Server\Failure\Http as HttpServerException;
+use Epignosis\Server\Request\Http as HttpRequest;
 
 /**
  * Class Http
