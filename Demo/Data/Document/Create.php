@@ -10,7 +10,8 @@ $data = [
     'Id' => [
       'Unit' => 1,
       'Course' => 13,
-      'Lesson' => 20
+      'Lesson' => 20,
+      'Domain' => null
     ],
 
     'Title' => '(1.0) Introduction to Programming',
