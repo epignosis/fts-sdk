@@ -5,7 +5,7 @@ namespace Epignosis\Client\Failure;
 /**
  * Class Http
  *
- * The http client exception.
+ * The HTTP client exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Client\Failure

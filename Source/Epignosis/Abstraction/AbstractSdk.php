@@ -250,6 +250,7 @@ abstract class AbstractSdk
 
     $this->_authFactory = new AuthFactory;
     $this->_clientFactory = new ClientFactory;
+    $this->_serverFactory = new ServerFactory;
 
     $this->Configure($configuration);
   }

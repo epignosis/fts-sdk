@@ -2,6 +2,8 @@
 
 namespace Epignosis\Server\Abstraction;
 
+use Epignosis\Server\Failure\Server as ServerException;
+
 /**
  * Interface ServerInterface
  *
@@ -21,6 +23,9 @@ interface ServerInterface
    * @return  RequestInterface
    *
    * @since   1.0.0-dev
+   *
+   * @throws  ServerException
+   *            - In case that is not possible to return the request interface.
    */
   public function GetRequestInterface();
 }
