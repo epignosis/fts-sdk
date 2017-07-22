@@ -36,23 +36,19 @@ try {
 } finally {
 
   Printer::PrintResponse (function() use ($responseList, $data) {
-    echo '<hr>';
-
     foreach ($responseList as $key => $response) {
       echo
         sprintf (
           '<b>Create Document #%s</b><pre>%s</pre>',
-          $key,
+          $key + 1,
           print_r($data[$key], true)
         ),
 
         sprintf (
           '<b>Document Creation Response #%s</b><pre>%s</pre>',
-          $key,
+          $key + 1,
           print_r($response, true)
-        ),
-
-        '<hr>';
+        );
     }
   });
 

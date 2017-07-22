@@ -68,9 +68,12 @@ class Printer
   {
     $callable();
 
-    echo sprintf (
-      'This script was executed in, <b>%s</b> sec.',
-      round(microtime(true) - $_SERVER['DEMO_NOW'], 2)
-    );
+    echo
+      '<hr>',
+
+      sprintf (
+        'This script was executed in, <b>%s</b> sec.',
+        round(microtime(true) - $_SERVER['DEMO_NOW'], 2)
+      );
   }
 }
