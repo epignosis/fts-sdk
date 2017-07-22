@@ -193,9 +193,6 @@ class Signature implements AuthInterface
 
     $iv = $this->_GetInitializationVector();
 
-    echo '<pre>';
-    print_r($this->_GetSortedData($data));exit;
-
     $cipherText = openssl_encrypt (
       serialize($this->_GetSortedData($data)),
       $this->_authConfiguration['CryptoAlgorithm'],
