@@ -254,7 +254,8 @@ abstract class AbstractSdk
   public function GetNotificationEvent()
   {
     try {
-
+      // @todo
+      return [];
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
