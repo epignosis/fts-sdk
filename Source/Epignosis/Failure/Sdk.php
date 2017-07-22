@@ -19,12 +19,20 @@ class Sdk extends \Exception
 
 
   /**
+   * Used in case that is not possible to configure the SDK.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const SDK_CONFIGURE_FAILURE = 2;
+
+  /**
    * Used in case that is not possible to return the auth interface.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_AUTH_INTERFACE_FAILURE = 2;
+  const SDK_GET_AUTH_INTERFACE_FAILURE = 3;
 
   /**
    * Used in case that is not possible to return the client interface.
@@ -32,15 +40,16 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_CLIENT_INTERFACE_FAILURE = 3;
+  const SDK_GET_CLIENT_INTERFACE_FAILURE = 4;
 
   /**
-   * Used in case that is not possible to configure the SDK.
+   * Used in case that is not possible to return the information of the requested
+   * notification event.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_CONFIGURE_FAILURE = 4;
+  const SDK_GET_NOTIFICATION_EVENT_FAILURE = 5;
 
   /**
    * Used in case that the PHP version is not supported (< 5.6.0).
@@ -73,14 +82,17 @@ class Sdk extends \Exception
   {
     $this->_timestamp = time();
 
+    self::$_failureMessageList[self::SDK_CONFIGURE_FAILURE] =
+      'SDK_CONFIGURE_FAILURE';
+
     self::$_failureMessageList[self::SDK_GET_AUTH_INTERFACE_FAILURE] =
       'SDK_GET_AUTH_INTERFACE_FAILURE';
 
     self::$_failureMessageList[self::SDK_GET_CLIENT_INTERFACE_FAILURE] =
       'SDK_GET_CLIENT_INTERFACE_FAILURE';
 
-    self::$_failureMessageList[self::SDK_CONFIGURE_FAILURE] =
-      'SDK_CONFIGURE_FAILURE';
+    self::$_failureMessageList[self::SDK_GET_NOTIFICATION_EVENT_FAILURE] =
+      'SDK_GET_NOTIFICATION_EVENT_FAILURE';
 
     self::$_failureMessageList[self::SDK_REQUIREMENT_PHP_VERSION] =
       'SDK_REQUIREMENT_PHP_VERSION';

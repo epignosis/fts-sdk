@@ -239,4 +239,26 @@ abstract class AbstractSdk
 
     return $this;
   }
+
+  /**
+   * Returns information regarding the requested notification event.
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  SdkException
+   *            - In case that is not possible to return the information of the requested
+   *              notification event.
+   */
+  public function GetNotificationEvent()
+  {
+    try {
+
+    } catch (\Exception $exception) {
+      throw new SdkException (
+        SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
+      );
+    }
+  }
 }
