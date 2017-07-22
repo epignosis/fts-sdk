@@ -256,8 +256,13 @@ abstract class AbstractSdk
   public function GetNotificationEvent()
   {
     try {
-      // @todo
-      return [];
+      $methodType = $this->_GetAuthInterface()->AuthenticateRequest (
+        $this->_GetServerInterface()->GetRequestInterface()
+      );
+
+      return $this->_GetServerInterface()->GetRequestInterface()->GetParameterList (
+        $methodType
+      );
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
