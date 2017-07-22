@@ -184,7 +184,7 @@ abstract class AbstractSdk
     if ($actionRequiresAuth) {
       list($headerName, $headerValue) = $this->_GetAuthInterface()->GetSignedRequest (
         (array) $this->_configuration['Public']['Auth'],
-        $serviceConfiguration['ActionList'][$action]['OperationType'],
+        $serviceConfiguration['ActionList'][$action],
         $data
       );
 

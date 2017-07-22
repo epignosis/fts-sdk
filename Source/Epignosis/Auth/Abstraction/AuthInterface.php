@@ -23,8 +23,8 @@ interface AuthInterface
    * @param   array $authInformation
    *            - The auth information to be used. (Required)
    *
-   * @param   string $operationType
-   *            - The operation type to be used. (Required)
+   * @param   array $operationInformation
+   *            - The operation information to be used. (Required)
    *
    * @param   array $data
    *            - The data to be signed. (Required)
@@ -36,5 +36,8 @@ interface AuthInterface
    * @throws  AuthException
    *            - In case that is not possible to sign the request.
    */
-  public function GetSignedRequest(array $authInformation, $operationType, array $data);
+  public function GetSignedRequest (
+    array $authInformation,
+    array $operationInformation,
+    array $data);
 }

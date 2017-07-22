@@ -169,8 +169,8 @@ class Signature implements AuthInterface
    * @param   array $authInformation
    *            - The auth information to be used. (Required)
    *
-   * @param   string $operationType
-   *            - The operation type to be used. (Required)
+   * @param   array $operationInformation
+   *            - The operation information to be used. (Required)
    *
    * @param   array $data
    *            - The data to be signed. (Required)
@@ -182,7 +182,10 @@ class Signature implements AuthInterface
    * @throws  SignatureException
    *            - In case that is not possible to sign the request.
    */
-  public function GetSignedRequest(array $authInformation, $operationType, array $data)
+  public function GetSignedRequest (
+    array $authInformation,
+    array $operationInformation,
+    array $data)
   {
     /** @noinspection SpellCheckingInspection */
     $this
@@ -196,7 +199,7 @@ class Signature implements AuthInterface
     $cipherText = openssl_encrypt (
       serialize($this->_GetSortedData($data)),
       $this->_authConfiguration['CryptoAlgorithm'],
-      $authInformation['Key']['Crypto'][$operationType],
+      $authInformation['Key']['Crypto'][$operationInformation['OperationType']],
       \OPENSSL_RAW_DATA,
       $iv
     );
@@ -204,7 +207,7 @@ class Signature implements AuthInterface
     $hashMac = hash_hmac (
       $this->_authConfiguration['HashAlgorithm'],
       $cipherText,
-      $authInformation['Key']['Private'][$operationType],
+      $authInformation['Key']['Private'][$operationInformation['OperationType']],
       true
     );
 
