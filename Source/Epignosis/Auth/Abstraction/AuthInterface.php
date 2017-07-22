@@ -18,6 +18,21 @@ use Epignosis\Auth\Failure\Auth as AuthException;
 interface AuthInterface
 {
   /**
+   * Authenticates the server request and returns its method type.
+   *
+   * @param   RequestInterface
+   *            - The request interface. (Required)
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  AuthException
+   *            - In case that is not possible to authenticate the server request.
+   */
+  public function AuthenticateServerRequest(RequestInterface $requestInterface);
+
+  /**
    * Signs the request.
    *
    * @param   array $authInformation

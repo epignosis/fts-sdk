@@ -4,12 +4,12 @@ namespace Epignosis\Factory;
 
 use Epignosis\Factory\Abstraction\FactoryInterface;
 use Epignosis\Factory\Abstraction\FactoryTrait;
-use Epignosis\Factory\Failure\Decoder as DecoderException;
+use Epignosis\Factory\Failure\Server as ServerException;
 
 /**
- * Class Decoder
+ * Class Server
  *
- * The decoder factory class.
+ * The server factory class.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Factory
@@ -17,16 +17,16 @@ use Epignosis\Factory\Failure\Decoder as DecoderException;
  * @package     Epignosis\Factory
  * @since       1.0.0-dev
  */
-class Decoder implements FactoryInterface
+class Server implements FactoryInterface
 {
   use FactoryTrait;
 
 
   /**
-   * Returns a new instance of the requested decoder adapter.
+   * Returns a new instance of the requested server adapter.
    *
    * @param   string $adapter
-   *            - The decoder adapter to return a new instance of it. (Required)
+   *            - The server adapter to return a new instance of it. (Required)
    *
    * @param   array $configuration
    *            - The configuration to be used. (Optional, [])
@@ -35,19 +35,19 @@ class Decoder implements FactoryInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  DecoderException
+   * @throws  ServerException
    *            - In case that is not possible to return a new instance of the requested
-   *              decoder adapter.
+   *              server adapter.
    */
   public function Get($adapter, $configuration = [])
   {
     try {
-      $adapterClass = 'Epignosis\Decoder\\' . $adapter;
+      $adapterClass = 'Epignosis\Server\\' . $adapter;
 
       return new $adapterClass($configuration);
     } catch (\Exception $exception) {
-      throw new DecoderException (
-        DecoderException::FACTORY_DECODER_FAILURE,
+      throw new ServerException (
+        ServerException::FACTORY_SERVER_FAILURE,
         $exception,
         ['Adapter' => $adapter, 'Configuration' => $configuration]
       );

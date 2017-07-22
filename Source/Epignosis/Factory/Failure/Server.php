@@ -3,9 +3,9 @@
 namespace Epignosis\Factory\Failure;
 
 /**
- * Class Decoder
+ * Class Server
  *
- * The decoder factory exception.
+ * The server factory exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Factory\Failure
@@ -13,20 +13,20 @@ namespace Epignosis\Factory\Failure;
  * @package     Epignosis\Factory\Failure
  * @since       1.0.0-dev
  */
-class Decoder extends Factory
+class Server extends Factory
 {
   /**
-   * Used in case that is not possible to create an instance of the requested decoder
+   * Used in case that is not possible to create an instance of the requested server
    * adapter.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const FACTORY_DECODER_FAILURE = 1;
+  const FACTORY_SERVER_FAILURE = 1;
 
 
   /**
-   * Decoder constructor.
+   * Server constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
@@ -47,7 +47,7 @@ class Decoder extends Factory
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::FACTORY_DECODER_FAILURE] = 'FACTORY_DECODER_FAILURE';
+    self::$_failureMessageList[self::FACTORY_SERVER_FAILURE] = 'FACTORY_SERVER_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

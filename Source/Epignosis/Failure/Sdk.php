@@ -49,7 +49,15 @@ class Sdk extends \Exception
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_GET_NOTIFICATION_EVENT_FAILURE = 5;
+  const SDK_GET_NOTIFICATION_EVENT_FAILURE = 6;
+
+  /**
+   * Used in case that is not possible to return the server interface.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const SDK_GET_SERVER_INTERFACE_FAILURE = 5;
 
   /**
    * Used in case that the PHP version is not supported (< 5.6.0).
@@ -93,6 +101,9 @@ class Sdk extends \Exception
 
     self::$_failureMessageList[self::SDK_GET_NOTIFICATION_EVENT_FAILURE] =
       'SDK_GET_NOTIFICATION_EVENT_FAILURE';
+
+    self::$_failureMessageList[self::SDK_GET_SERVER_INTERFACE_FAILURE] =
+      'SDK_GET_SERVER_INTERFACE_FAILURE';
 
     self::$_failureMessageList[self::SDK_REQUIREMENT_PHP_VERSION] =
       'SDK_REQUIREMENT_PHP_VERSION';

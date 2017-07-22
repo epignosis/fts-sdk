@@ -4,8 +4,10 @@ namespace Epignosis\Abstraction;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
 use Epignosis\Client\Abstraction\ClientInterface;
+use Epignosis\Server\Abstraction\ServerInterface;
 use Epignosis\Factory\Auth as AuthFactory;
 use Epignosis\Factory\Client as ClientFactory;
+use Epignosis\Factory\Server as ServerFactory;
 use Epignosis\Failure\Sdk as SdkException;
 
 /**
@@ -28,7 +30,7 @@ abstract class AbstractSdk
    * @since   1.0.0-dev
    * @var     AuthFactory
    */
-  protected $_authFactory = null;
+  private $_authFactory = null;
 
   /**
    * The client factory.
@@ -37,7 +39,7 @@ abstract class AbstractSdk
    * @since   1.0.0-dev
    * @var     ClientFactory
    */
-  protected $_clientFactory = null;
+  private $_clientFactory = null;
 
   /**
    * The configuration.
@@ -46,7 +48,16 @@ abstract class AbstractSdk
    * @since   1.0.0-dev
    * @var     array
    */
-  protected $_configuration = [];
+  private $_configuration = [];
+
+  /**
+   * The server factory.
+   *
+   * @default null
+   * @since   1.0.0-dev
+   * @var     ServerFactory
+   */
+  private $_serverFactory = null;
 
 
   /**
@@ -57,6 +68,29 @@ abstract class AbstractSdk
    * @since   1.0.0-dev
    */
   abstract protected function _GetConfigurationSdkService();
+
+  /**
+   * Returns the auth interface.
+   *
+   * @return  AuthInterface
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  SdkException
+   *            - In case that is not possible to return the auth interface.
+   */
+  private function _GetAuthInterface()
+  {
+    try {
+      return $this->_authFactory->GetCached (
+        'Signature', $this->_configuration['Private']['Service']['Auth']
+      );
+    } catch (\Exception $exception) {
+      throw new SdkException (
+        SdkException::SDK_GET_AUTH_INTERFACE_FAILURE, $exception
+      );
+    }
+  }
 
   /**
    * Returns the client interface configuration.
@@ -70,6 +104,27 @@ abstract class AbstractSdk
     return
       (array) $this->_configuration['Public']['Client'] +
       (array) $this->_configuration['Private']['Sdk']['Client'];
+  }
+
+  /**
+   * Returns the server interface.
+   *
+   * @return  ServerInterface
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  SdkException
+   *            - In case that is not possible to return the server interface.
+   */
+  private function _GetServerInterface()
+  {
+    try {
+      return $this->_authFactory->GetCached('Http');
+    } catch (\Exception $exception) {
+      throw new SdkException (
+        SdkException::SDK_GET_SERVER_INTERFACE_FAILURE, $exception
+      );
+    }
   }
 
   /**
@@ -115,29 +170,6 @@ abstract class AbstractSdk
     }
 
     return $serviceConfiguration['Auth']['Status'];
-  }
-
-  /**
-   * Returns the auth interface.
-   *
-   * @return  AuthInterface
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  SdkException
-   *            - In case that is not possible to return the auth interface.
-   */
-  protected function _GetAuthInterface()
-  {
-    try {
-      return $this->_authFactory->GetCached (
-        'Signature', $this->_configuration['Private']['Service']['Auth']
-      );
-    } catch (\Exception $exception) {
-      throw new SdkException (
-        SdkException::SDK_GET_AUTH_INTERFACE_FAILURE, $exception
-      );
-    }
   }
 
   /**
@@ -256,12 +288,10 @@ abstract class AbstractSdk
   public function GetNotificationEvent()
   {
     try {
-      $methodType = $this->_GetAuthInterface()->AuthenticateRequest (
-        $this->_GetServerInterface()->GetRequestInterface()
-      );
-
       return $this->_GetServerInterface()->GetRequestInterface()->GetParameterList (
-        $methodType
+        $this->_GetAuthInterface()->AuthenticateServerRequest (
+          $this->_GetServerInterface()->GetRequestInterface()
+        )
       );
     } catch (\Exception $exception) {
       throw new SdkException (
