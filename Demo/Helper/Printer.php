@@ -28,20 +28,31 @@ class Printer
     /** @var $originalException \Exception */
     /** @noinspection PhpUndefinedMethodInspection */
     $originalException = $exception->GetOriginalException();
+    $additionalFailureInformation = null;
+
+    /** @noinspection PhpUndefinedMethodInspection */
+    foreach ($originalException->GetAdditionalFailureInformation() as $key => $value) {
+      $additionalFailureInformation .= sprintf('&ensp;%s: %s<br>', $key, $value);
+    }
+
+    if (null == $additionalFailureInformation) {
+      $additionalFailureInformation = '-';
+    }
 
     echo
       sprintf (
-        '<b>Exception</b>: %s (%s)',
+        '<b>Exception</b><br>&ensp;%s (%s)<br><br>',
         $exception->getMessage(),
         $exception->getCode()
       ),
-
-      '<br>',
-
       sprintf (
-        '<b>Original Exception</b>: %s (%s)<br>',
+        '<b>Original Exception</b><br>&ensp;%s (%s)<br><br>',
         $originalException->getMessage(),
         $originalException->getCode()
+      ),
+      sprintf (
+        '<b>Additional Exception Information</b><br>%s<br>',
+        $additionalFailureInformation
       );
   }
 
