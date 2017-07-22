@@ -5,6 +5,7 @@ namespace Epignosis\Auth;
 use Epignosis\Auth\Abstraction\AuthInterface;
 use Epignosis\Auth\Abstraction\AuthTrait;
 use Epignosis\Auth\Failure\Signature as SignatureException;
+use Epignosis\Server\Abstraction\RequestInterface;
 
 /**
  * Class Signature
@@ -161,6 +162,24 @@ class Signature implements AuthInterface
     }
 
     return $data;
+  }
+
+  /**
+   * Authenticates the server request and returns its method type.
+   *
+   * @param   RequestInterface $requestInterface
+   *            - The request interface. (Required)
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  SignatureException
+   *            - In case that is not possible to authenticate the server request.
+   */
+  public function AuthenticateServerRequest(RequestInterface $requestInterface)
+  {
+    return null;
   }
 
   /**

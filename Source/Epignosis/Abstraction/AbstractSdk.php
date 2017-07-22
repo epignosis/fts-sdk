@@ -119,7 +119,7 @@ abstract class AbstractSdk
   private function _GetServerInterface()
   {
     try {
-      return $this->_authFactory->GetCached('Http');
+      return $this->_serverFactory->GetCached('Http');
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_SERVER_INTERFACE_FAILURE, $exception

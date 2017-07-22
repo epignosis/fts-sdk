@@ -3,6 +3,7 @@
 namespace Epignosis\Auth\Abstraction;
 
 use Epignosis\Auth\Failure\Auth as AuthException;
+use Epignosis\Server\Abstraction\RequestInterface;
 
 /**
  * Interface AuthInterface
@@ -20,7 +21,7 @@ interface AuthInterface
   /**
    * Authenticates the server request and returns its method type.
    *
-   * @param   RequestInterface
+   * @param   RequestInterface $requestInterface
    *            - The request interface. (Required)
    *
    * @return  string
