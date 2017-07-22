@@ -2,45 +2,32 @@
 
 $data = [
 
-  // Only Content:
+  /**
+   * Document #1
+   */
   [
     'UnitId' => 1,
-    'Content' => 'Hello World'
-  ],
+    'Title' => '(1.0) Introduction to Programming',
 
-  // Only File URL:
-  [
-    'UnitId' => 2,
-    'UrlList' => [
-      'https://www.efrontlearning.com/'
-    ]
-  ],
+    'RequirementList' => [
 
-  // Content + File URL:
-  [
-    'UnitId' => 3,
-    'Content' => 'Hello World',
-    'UrlList' => [
-      'https://www.efrontlearning.com/'
-    ]
-  ],
+      'Availability' => [
+        'From' => null,
+        'To' => null
+      ],
+      'CourseList' => [],
+      'Unit' => null
 
-  // File URLs:
-  [
-    'UnitId' => 4,
-    'UrlList' => [
-      'https://www.efrontlearning.com/',
-      'https://www.talentlms.com/'
-    ]
-  ],
+    ],
 
-  // Content + File URLs:
-  [
-    'UnitId' => 5,
-    'Content' => 'Hello World',
-    'UrlList' => [
-      'https://www.efrontlearning.com/',
-      'https://www.talentlms.com/'
+    'Content' => [
+
+      'UrlList' => [],
+      'Text' =>
+        'A program is a set of instructions that tell the computer to do various ' .
+        'things; sometimes the instruction it has to perform depends on what happened ' .
+        'when it performed a previous instruction.'
+
     ]
   ]
 
