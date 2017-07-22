@@ -20,6 +20,7 @@ require
   'Create.php';
 
 try {
+
   $responseList = [];
   /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchDocumentSdk = new Document($configuration);
