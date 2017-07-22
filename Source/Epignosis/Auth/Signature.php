@@ -122,6 +122,25 @@ class Signature implements AuthInterface
   }
 
   /**
+   * Returns the initialization vector.
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetInitializationVector()
+  {
+    $iv = false;
+    $secure = false;
+
+    while (!$secure || !$iv) {
+      $iv = openssl_random_pseudo_bytes(16, $secure);
+    }
+
+    return $iv;
+  }
+
+  /**
    * Sorts the requested data, and returns the result.
    *
    * @param   array $data
@@ -172,13 +191,6 @@ class Signature implements AuthInterface
       ->_CheckFunctionAvailability('openssl_encrypt')
       ->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
 
-    $iv = null;
-    $secure = false;
-
-    while (!$secure) {
-      $iv = openssl_random_pseudo_bytes(16, $secure);
-    }
-
     if (32 != mb_strlen($authInformation['Key']['Crypto'][$operationType], '8bit')) {
       throw new SignatureException (
         SignatureException::AUTH_SIGNATURE_KEY_CRYPTO_NOT_VALID,
@@ -186,6 +198,8 @@ class Signature implements AuthInterface
         ['CryptoKey' => $authInformation['Key']['Crypto'][$operationType]]
       );
     }
+
+    $iv = $this->_GetInitializationVector();
 
     $cipherText = openssl_encrypt (
       serialize($this->_GetSortedData($data)),
