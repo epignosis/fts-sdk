@@ -18,18 +18,14 @@ use Epignosis\Server\Abstraction\RequestInterface;
 class Http implements RequestInterface
 {
   /**
-   * Returns the parameter list of the requested source. If the requested source does not
-   * exist or it is equivalent to null, an empty array list will be returned.
-   *
-   * @param   string $source
-   *            - The source to return its parameter list. (Optional, null)
+   * Returns the post parameter list.
    *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  public function GetParameterList($source = null)
+  public function GetPostList()
   {
-    return [];
+    return $_POST;
   }
 }

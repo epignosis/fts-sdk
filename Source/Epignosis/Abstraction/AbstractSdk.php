@@ -289,11 +289,11 @@ abstract class AbstractSdk
   public function GetNotificationEvent()
   {
     try {
-      return $this->_GetServerInterface()->GetRequestInterface()->GetParameterList (
-        $this->_GetAuthInterface()->AuthenticateServerRequest (
-          $this->_GetServerInterface()->GetRequestInterface()
-        )
+      $this->_GetAuthInterface()->AuthenticateServerRequest (
+        $this->_GetServerInterface()->GetRequestInterface()
       );
+
+      return $this->_GetServerInterface()->GetRequestInterface()->GetPostList();
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception
