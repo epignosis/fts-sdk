@@ -13,8 +13,7 @@ $data = [
     'Id' => [
       'Unit' => 1,
       'Course' => 13,
-      'Lesson' => 20,
-      'Domain' => null
+      'Lesson' => 20
     ],
 
     'RequirementList' => [
@@ -24,14 +23,16 @@ $data = [
         'To' => null
       ],
 
+      'Domain' => null,
+
       'CourseList' => [],
       'Unit' => null
 
     ],
 
-    'Order' => [
+    'Classification' => [
       'Custom' => 6,
-      'Product' => 17
+      'Fixed' => 17
     ],
 
     'Content' => [
