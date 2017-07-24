@@ -56,9 +56,7 @@ class Http implements ClientInterface
       );
     }
 
-    return $this->_GetResponseContentDecoded (
-      $httpContent, $configuration['HeaderList']['Accept']
-    );
+    return $this->_GetResponseContentDecoded($httpContent);
   }
 
   /**
@@ -85,14 +83,10 @@ class Http implements ClientInterface
   }
 
   /**
-   * Returns the decoded response content.
+   * Returns the decoded response content. Only JSON is supported so far.
    *
    * @param   string $content
    *            - The content to be decoded. (Required)
-   *
-   * @param   array $httpHeaderAccept
-   *            - The HTTP accept header, in order to detect the formatting of the
-   *              response. (Required)
    *
    * @return  array
    *
@@ -101,29 +95,19 @@ class Http implements ClientInterface
    * @throws  HttpClientException
    *            - In case that is not possible to return the decoded response content.
    */
-  private function _GetResponseContentDecoded($content, $httpHeaderAccept)
+  private function _GetResponseContentDecoded($content)
   {
-    $responseContentType = null;
+    $responseContentDecoded = json_decode($content, true);
 
-    if ('json' == strtolower($responseContentType)) {
-      $responseContentDecoded = json_decode($content, true);
-
-      if (false === $responseContentDecoded || !is_array($responseContentDecoded)) {
-        throw new HttpClientException (
-          HttpClientException::CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE,
-          null,
-          ['Response' => ['ContentType' => $responseContentType]]
-        );
-      }
-
-      return $responseContentDecoded;
+    if (false === $responseContentDecoded || !is_array($responseContentDecoded)) {
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE,
+        null,
+        ['Response' => ['Content' => $content]]
+      );
     }
 
-    throw new HttpClientException (
-      HttpClientException::CLIENT_HTTP_RESPONSE_CONTENT_TYPE_NOT_VALID,
-      null,
-      ['Response' => ['ContentType' => $responseContentType]]
-    );
+    return $responseContentDecoded;
   }
 
   /**
