@@ -26,7 +26,7 @@ class Http implements ClientInterface
       throw new HttpClientException (
         HttpClientException::CLIENT_HTTP_CREATE_FAILURE,
         null,
-        ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]
+        ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]]
       );
     }
 
