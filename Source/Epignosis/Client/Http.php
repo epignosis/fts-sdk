@@ -18,39 +18,13 @@ use Epignosis\Client\Failure\Http as HttpClientException;
  */
 class Http implements ClientInterface
 {
-  /**
-   * Checks the availability of the requested extension.
-   *
-   * @param   string $extension
-   *            - The extension to be checked. (Required)
-   *
-   * @return  Http
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  HttpClientException
-   *            - In case that the requested extension is not available.
-   */
-  private function _CheckExtension($extension)
-  {
-    if (!extension_loaded($extension)) {
-      throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_EXTENSION_NOT_AVAILABLE,
-        null,
-        ['Extension' => $extension]
-      );
-    }
-
-    return $this;
-  }
-
   private function _Execute($http, array $configuration)
   {
     $httpContent = curl_exec($http);
 
     if (false === $httpContent) {
       throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_CREATE_FAULURE,
+        HttpClientException::CLIENT_HTTP_CREATE_FAILURE,
         null,
         ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]
       );
@@ -62,7 +36,7 @@ class Http implements ClientInterface
 
     if (!in_array($httpStatus, $configuration['Response']['SuccessCode'])) {
       throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_CREATE_FAULURE,
+        HttpClientException::CLIENT_HTTP_CREATE_FAILURE,
         null,
         ['Response' => ['Code' => $httpStatus]]
       );
@@ -78,7 +52,9 @@ class Http implements ClientInterface
     $http = curl_init();
 
     if (false === $http) {
-      throw new HttpClientException(HttpClientException::HTTP_INITIALIZATION_FAILURE);
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_INITIALIZATION_FAILURE
+      );
     }
 
     return $http;
@@ -103,6 +79,25 @@ class Http implements ClientInterface
   }
 
   /**
+   * Http constructor.
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  HttpClientException
+   *            - In case that the cURL PHP extension is not available.
+   */
+  public function __construct()
+  {
+    if (!extension_loaded('curl')) {
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_EXTENSION_NOT_AVAILABLE,
+        null,
+        ['Extension' => 'curl']
+      );
+    }
+  }
+
+  /**
    * Performs a creation operation.
    *
    * @param   array $configuration
@@ -121,8 +116,6 @@ class Http implements ClientInterface
    */
   public function Create(array $configuration, array $data = [])
   {
-    $this->_CheckExtension('curl');
-
     $http = $this->_GetHttp();
 
     $this->_SetOptionList (
