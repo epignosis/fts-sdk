@@ -4,7 +4,7 @@ namespace Epignosis\Auth;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
 use Epignosis\Auth\Abstraction\AuthTrait;
-use Epignosis\Auth\Failure\Signature as SignatureException;
+use Epignosis\Auth\Failure\Signature as AuthSignatureException;
 use Epignosis\Server\Abstraction\RequestInterface;
 
 /**
@@ -22,32 +22,6 @@ class Signature implements AuthInterface
 {
   use AuthTrait;
 
-
-  /**
-   * Checks the availability of the requested function.
-   *
-   * @param   string $function
-   *            - The function to be checked. (Required)
-   *
-   * @return  Signature
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  SignatureException
-   *            - In case that the requested function is not available.
-   */
-  private function _CheckFunctionAvailability($function)
-  {
-    if (!function_exists($function)) {
-      throw new SignatureException (
-        SignatureException::AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE,
-        null,
-        ['Function' => $function]
-      );
-    }
-
-    return $this;
-  }
 
   /**
    * Encodes the requested integer from 8-bit to 6-bit.
@@ -164,6 +138,32 @@ class Signature implements AuthInterface
   }
 
   /**
+   * Signature constructor.
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  AuthSignatureException
+   *            - In case that the cURL PHP extension is not available.
+   */
+  public function __construct()
+  {
+    $functionList = [
+      'mb_strlen', 'mb_substr',
+      'openssl_encrypt', 'openssl_random_pseudo_bytes'
+    ];
+
+    foreach ($functionList as $function) {
+      if (!function_exists($function)) {
+        throw new AuthSignatureException (
+          AuthSignatureException::AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE,
+          null,
+          ['Extension' => $function]
+        );
+      }
+    }
+  }
+
+  /**
    * Authenticates the server request and returns its method type.
    *
    * @param   RequestInterface $requestInterface
@@ -173,7 +173,7 @@ class Signature implements AuthInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  SignatureException
+   * @throws  AuthSignatureException
    *            - In case that is not possible to authenticate the server request.
    */
   public function AuthenticateServerRequest(RequestInterface $requestInterface)
@@ -197,7 +197,7 @@ class Signature implements AuthInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  SignatureException
+   * @throws  AuthSignatureException
    *            - In case that is not possible to sign the request.
    */
   public function GetSignedRequest (
@@ -205,13 +205,6 @@ class Signature implements AuthInterface
     array $operationInformation,
     array $data)
   {
-    /** @noinspection SpellCheckingInspection */
-    $this
-      ->_CheckFunctionAvailability('mb_strlen')
-      ->_CheckFunctionAvailability('mb_substr')
-      ->_CheckFunctionAvailability('openssl_encrypt')
-      ->_CheckFunctionAvailability('openssl_random_pseudo_bytes');
-
     $iv = $this->_GetInitializationVector();
 
     $cipherText = openssl_encrypt (

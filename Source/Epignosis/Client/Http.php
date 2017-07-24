@@ -82,7 +82,7 @@ class Http implements ClientInterface
    * @since   1.0.0-dev
    *
    * @throws  HttpClientException
-   *            - In case that the cURL PHP extension is not available.
+   *            - In case that a required function is not available.
    */
   public function __construct()
   {

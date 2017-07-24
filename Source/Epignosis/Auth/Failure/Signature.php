@@ -16,7 +16,7 @@ namespace Epignosis\Auth\Failure;
 class Signature extends Auth
 {
   /**
-   * Used in case that the requested function name is not available.
+   * Used in case that a required function is not available.
    *
    * @since   1.0.0-dev
    * @var     int
