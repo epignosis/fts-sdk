@@ -172,6 +172,7 @@ class Http implements ClientInterface
    */
   public function __construct()
   {
+    /** @noinspection SpellCheckingInspection */
     $functionList = [
       'curl_close',
       'curl_errno', 'curl_error', 'curl_exec',
