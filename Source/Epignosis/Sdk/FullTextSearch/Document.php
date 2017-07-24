@@ -41,32 +41,47 @@ class Document extends AbstractSdk
         'ActionList' => [
           'Create' => [
             'OperationType' => 'Write',
-            'Path' => 'document'
+            'Path' => 'document',
+            'Success' => [
+              'ResponseCode' => [201, 202]
+            ]
           ],
           'Delete' => [
             'OperationType' => 'Write',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
-            'Path' => 'document/%s'
+            'Path' => 'document/%s',
+            'Success' => [
+              'ResponseCode' => [200, 202]
+            ]
           ],
           'Retrieve' => [
             'OperationType' => 'Read',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
-            'Path' => 'document/%s'
+            'Path' => 'document/%s',
+            'Success' => [
+              'ResponseCode' => [200]
+            ]
           ],
           'RetrieveMany' => [
             'OperationType' => 'Read',
-            'Path' => 'documents'
+            'Path' => 'documents',
+            'Success' => [
+              'ResponseCode' => [200]
+            ]
           ],
           'Update' => [
             'OperationType' => 'Write',
             'Parameter' => [
               'DocumentId' => 'Integer'
             ],
-            'Path' => 'document/%s'
+            'Path' => 'document/%s',
+            'Success' => [
+              'ResponseCode' => [200, 202]
+            ]
           ]
         ],
         'BaseEndPoint' => 'http://fts.pro.efrontlearning.com/',
