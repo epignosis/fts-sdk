@@ -83,6 +83,27 @@ class Http implements ClientInterface
   }
 
   /**
+   * Returns the formatted HTTP header list.
+   *
+   * @param   mixed $httpHeaderList
+   *            - The HTTP header list to be formatted. (Optional, null)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetHttpHeaderList($httpHeaderList = null)
+  {
+    $_httpHeaderList = [];
+
+    foreach ($httpHeaderList as $httpHeaderName => $httpHeaderValue) {
+      $_httpHeaderList[] = trim(sprintf('%s: %s', $httpHeaderName, $httpHeaderValue));
+    }
+
+    return $_httpHeaderList;
+  }
+
+  /**
    * Returns the decoded response content. Only JSON is supported so far.
    *
    * @param   string $content
@@ -198,7 +219,7 @@ class Http implements ClientInterface
         CURLOPT_POSTFIELDS => http_build_query($data),
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_TIMEOUT => $configuration['Request']['Timeout'],
-        CURLOPT_HTTPHEADER => $configuration['HeaderList']
+        CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList'])
       ]
     );
 
