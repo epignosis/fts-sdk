@@ -24,12 +24,12 @@ class Http extends Client
   const CLIENT_HTTP_CREATE_FAILURE = 4;
 
   /**
-   * Used in case that the cURL PHP extension is not available.
+   * Used in case that a required function is not available.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const CLIENT_HTTP_EXTENSION_NOT_AVAILABLE = 1;
+  const CLIENT_HTTP_FUNCTION_NOT_AVAILABLE = 1;
 
   /**
    * Used in case that is not possible to initialize the HTTP client.
@@ -73,8 +73,8 @@ class Http extends Client
     self::$_failureMessageList[self::CLIENT_HTTP_CREATE_FAILURE] =
       'CLIENT_HTTP_CREATE_FAILURE';
 
-    self::$_failureMessageList[self::CLIENT_HTTP_EXTENSION_NOT_AVAILABLE] =
-      'CLIENT_HTTP_EXTENSION_NOT_AVAILABLE';
+    self::$_failureMessageList[self::CLIENT_HTTP_FUNCTION_NOT_AVAILABLE] =
+      'CLIENT_HTTP_FUNCTION_NOT_AVAILABLE';
 
     self::$_failureMessageList[self::CLIENT_HTTP_INITIALIZATION_FAILURE] =
       'CLIENT_HTTP_INITIALIZATION_FAILURE';

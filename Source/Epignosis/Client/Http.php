@@ -32,8 +32,6 @@ class Http implements ClientInterface
 
     $httpStatus = curl_getinfo($http, CURLINFO_HTTP_CODE);
 
-    curl_close($http);
-
     if (!in_array($httpStatus, $configuration['Response']['SuccessCode'])) {
       throw new HttpClientException (
         HttpClientException::CLIENT_HTTP_CREATE_FAILURE,
@@ -88,12 +86,22 @@ class Http implements ClientInterface
    */
   public function __construct()
   {
-    if (!extension_loaded('curl')) {
-      throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_EXTENSION_NOT_AVAILABLE,
-        null,
-        ['Extension' => 'curl']
-      );
+    $functionList = [
+      'curl_close',
+      'curl_errno', 'curl_error', 'curl_exec',
+      'curl_getinfo',
+      'curl_init',
+      'curl_setopt'
+    ];
+
+    foreach ($functionList as $function) {
+      if (!function_exists($function)) {
+        throw new HttpClientException (
+          HttpClientException::CLIENT_HTTP_FUNCTION_NOT_AVAILABLE,
+          null,
+          ['Extension' => $function]
+        );
+      }
     }
   }
 
