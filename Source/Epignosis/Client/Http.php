@@ -18,13 +18,29 @@ use Epignosis\Client\Failure\Http as HttpClientException;
  */
 class Http implements ClientInterface
 {
+  /**
+   * Executes the requested HTTP operation.
+   *
+   * @param   resource $http
+   *            - The HTTP resource handler. (Required)
+   *
+   * @param   array $configuration
+   *            - The configuration to be set. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  HttpClientException
+   *            - In case that is not possible to execute the requested HTTP operation.
+   */
   private function _Execute($http, array $configuration)
   {
     $httpContent = curl_exec($http);
 
     if (false === $httpContent) {
       throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_CREATE_FAILURE,
+        HttpClientException::CLIENT_HTTP_OPERATION_FAILURE,
         null,
         ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]]
       );
@@ -34,7 +50,7 @@ class Http implements ClientInterface
 
     if (!in_array($httpStatus, $configuration['Response']['SuccessCode'])) {
       throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_CREATE_FAILURE,
+        HttpClientException::CLIENT_HTTP_OPERATION_FAILURE,
         null,
         ['Response' => ['Code' => $httpStatus]]
       );
@@ -70,7 +86,25 @@ class Http implements ClientInterface
 
   private function _GetResponseContentDecoded($content, $httpHeaderAccept)
   {
-    return [];
+    $responseContentType = null;
+
+    if ('json' == strtolower($responseContentType)) {
+      $responseContentDecoded = json_decode($content, true);
+
+      if (false === $responseContentDecoded) {
+        throw new HttpClientException (
+          HttpClientException::CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE,
+          null,
+          ['Response' => ['ContentType' => $responseContentType]]
+        );
+      }
+    }
+
+    throw new HttpClientException (
+      HttpClientException::CLIENT_HTTP_RESPONSE_CONTENT_TYPE_UNKNOWN,
+      null,
+      ['Response' => ['ContentType' => $responseContentType]]
+    );
   }
 
   /**
