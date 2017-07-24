@@ -3,7 +3,6 @@
 namespace Epignosis\Auth;
 
 use Epignosis\Auth\Abstraction\AuthInterface;
-use Epignosis\Auth\Abstraction\AuthTrait;
 use Epignosis\Auth\Failure\Signature as AuthSignatureException;
 use Epignosis\Server\Abstraction\RequestInterface;
 
@@ -20,7 +19,14 @@ use Epignosis\Server\Abstraction\RequestInterface;
  */
 class Signature implements AuthInterface
 {
-  use AuthTrait;
+  /**
+   * The auth configuration.
+   *
+   * @default []
+   * @since   1.0.0-dev
+   * @var     array
+   */
+  private $_authConfiguration = [];
 
 
   /**
@@ -140,12 +146,15 @@ class Signature implements AuthInterface
   /**
    * Signature constructor.
    *
+   * @param   array $authConfiguration
+   *            - The auth configuration to be used. (Required)
+   *
    * @since   1.0.0-dev
    *
    * @throws  AuthSignatureException
    *            - In case that the cURL PHP extension is not available.
    */
-  public function __construct()
+  public function __construct(array $authConfiguration)
   {
     $functionList = [
       'mb_strlen', 'mb_substr',
@@ -161,6 +170,8 @@ class Signature implements AuthInterface
         );
       }
     }
+
+    $this->_authConfiguration = (array) $authConfiguration;
   }
 
   /**
