@@ -32,7 +32,7 @@ class Http extends Client
   const CLIENT_HTTP_FUNCTION_NOT_AVAILABLE = 1;
 
   /**
-   * Used in case that is not possible to initialize the HTTP client.
+   * Used in case that is not possible to initialize the HTTP resource handler.
    *
    * @since   1.0.0-dev
    * @var     int

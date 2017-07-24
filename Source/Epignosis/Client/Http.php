@@ -45,6 +45,16 @@ class Http implements ClientInterface
     );
   }
 
+  /**
+   * Returns the HTTP resource handler.
+   *
+   * @return  resource
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  HttpClientException
+   *            - In case that is not possible to initialize the HTTP resource handler.
+   */
   private function _GetHttp()
   {
     $http = curl_init();
