@@ -93,7 +93,7 @@ class Document extends AbstractSdk
             ]
           ]
         ],
-        'BaseEndPoint' => 'http://fts.pro.efrontlearning.com/',
+        'BaseEndPoint' => 'http://xarhsdev.gr/fts/',
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
