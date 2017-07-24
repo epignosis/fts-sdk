@@ -50,50 +50,36 @@ class Document extends AbstractSdk
         'ActionList' => [
           'Create' => [
             'OperationType' => 'Write',
-            'Path' => 'document',
             'Response' => [
               'SuccessCode' => [201, 202]
             ]
           ],
           'Delete' => [
             'OperationType' => 'Write',
-            'Parameter' => [
-              'DocumentId' => 'Integer'
-            ],
-            'Path' => 'document/%s',
             'Response' => [
               'SuccessCode' => [200, 202]
             ]
           ],
           'Retrieve' => [
             'OperationType' => 'Read',
-            'Parameter' => [
-              'DocumentId' => 'Integer'
-            ],
-            'Path' => 'document/%s',
             'Response' => [
               'SuccessCode' => [200]
             ]
           ],
           'RetrieveMany' => [
             'OperationType' => 'Read',
-            'Path' => 'documents',
             'Response' => [
               'SuccessCode' => [200]
             ]
           ],
           'Update' => [
             'OperationType' => 'Write',
-            'Parameter' => [
-              'DocumentId' => 'Integer'
-            ],
-            'Path' => 'document/%s',
             'Response' => [
               'SuccessCode' => [200, 202]
             ]
           ]
         ],
-        'BaseEndPoint' => 'http://xarhsdev.gr/fts/',
+        'BaseEndPoint' => 'http://xarhsdev.gr/fts/document/',
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
