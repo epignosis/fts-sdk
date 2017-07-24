@@ -31,8 +31,7 @@ interface ClientInterface
    * @since   1.0.0-dev
    *
    * @throws  ClientException
-   *            - In case that is not possible to successfully complete, the creation
-   *              operation.
+   *            - In case that is not possible to successfully complete the operation.
    */
   public function Create(array $configuration, array $data = []);
 
@@ -50,8 +49,7 @@ interface ClientInterface
    * @since   1.0.0-dev
    *
    * @throws  ClientException
-   *            - In case that is not possible to successfully complete, the delete
-   *              operation.
+   *            - In case that is not possible to successfully complete the operation.
    */
   public function Delete(array $configuration, array $data = []);
 
@@ -69,8 +67,7 @@ interface ClientInterface
    * @since   1.0.0-dev
    *
    * @throws  ClientException
-   *            - In case that is not possible to successfully complete, the retrieval
-   *              operation.
+   *            - In case that is not possible to successfully complete the operation.
    */
   public function Retrieve(array $configuration, array $data = []);
 
@@ -88,8 +85,7 @@ interface ClientInterface
    * @since   1.0.0-dev
    *
    * @throws  ClientException
-   *            - In case that is not possible to successfully complete, the update
-   *              operation.
+   *            - In case that is not possible to successfully complete the operation.
    */
   public function Update(array $configuration, array $data = []);
 }

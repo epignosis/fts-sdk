@@ -16,7 +16,7 @@ namespace Epignosis\Client\Failure;
 class Http extends Client
 {
   /**
-   * Used in case that is not possible to successfully complete, the creation operation.
+   * Used in case that is not possible to successfully complete the operation.
    *
    * @since   1.0.0-dev
    * @var     int
