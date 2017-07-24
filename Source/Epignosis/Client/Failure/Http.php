@@ -15,6 +15,12 @@ namespace Epignosis\Client\Failure;
  */
 class Http extends Client
 {
+  /**
+   * Used in case that is not possible to successfully complete, the creation operation.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
   const CLIENT_HTTP_CREATE_FAILURE = 4;
 
   /**
@@ -25,8 +31,20 @@ class Http extends Client
    */
   const CLIENT_HTTP_EXTENSION_NOT_AVAILABLE = 1;
 
+  /**
+   * Used in case that is not possible to initialize the HTTP client.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
   const CLIENT_HTTP_INITIALIZATION_FAILURE = 2;
 
+  /**
+   * Used in case that is not possible to set an HTTP option.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
   const CLIENT_HTTP_SET_OPTION_FAILURE = 3;
 
 
@@ -52,8 +70,17 @@ class Http extends Client
   {
     $this->_timestamp = time();
 
+    self::$_failureMessageList[self::CLIENT_HTTP_CREATE_FAILURE] =
+      'CLIENT_HTTP_CREATE_FAILURE';
+
     self::$_failureMessageList[self::CLIENT_HTTP_EXTENSION_NOT_AVAILABLE] =
       'CLIENT_HTTP_EXTENSION_NOT_AVAILABLE';
+
+    self::$_failureMessageList[self::CLIENT_HTTP_INITIALIZATION_FAILURE] =
+      'CLIENT_HTTP_INITIALIZATION_FAILURE';
+
+    self::$_failureMessageList[self::CLIENT_HTTP_SET_OPTION_FAILURE] =
+      'CLIENT_HTTP_SET_OPTION_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 
