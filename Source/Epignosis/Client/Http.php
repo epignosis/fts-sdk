@@ -87,18 +87,19 @@ class Http implements ClientInterface
   /**
    * Returns the decoded response content.
    *
-   * @param   resource $http
-   *            - The HTTP resource handler. (Required)
+   * @param   string $content
+   *            - The content to be decoded. (Required)
    *
-   * @param   array $optionList
-   *            - The option list to be set. (Required)
+   * @param   array $httpHeaderAccept
+   *            - The HTTP accept header, in order to detect the formatting of the
+   *              response. (Required)
    *
-   * @return  Http
+   * @return  array
    *
    * @since   1.0.0-dev
    *
    * @throws  HttpClientException
-   *            - In case that is not possible to set an HTTP option.
+   *            - In case that is not possible to return the decoded response content.
    */
   private function _GetResponseContentDecoded($content, $httpHeaderAccept)
   {

@@ -19,6 +19,15 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentExcep
 class Document extends AbstractSdk
 {
   /**
+   * The version of the Document SDK.
+   *
+   * @since   1.0.0-dev
+   * @var     string
+   */
+  const SDK_VERSION = '1.0.0-dev';
+
+
+  /**
    * Returns the configuration of the full-text search document SDK and its service.
    *
    * @return  array
