@@ -84,6 +84,22 @@ class Http implements ClientInterface
     return $http;
   }
 
+  /**
+   * Returns the decoded response content.
+   *
+   * @param   resource $http
+   *            - The HTTP resource handler. (Required)
+   *
+   * @param   array $optionList
+   *            - The option list to be set. (Required)
+   *
+   * @return  Http
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  HttpClientException
+   *            - In case that is not possible to set an HTTP option.
+   */
   private function _GetResponseContentDecoded($content, $httpHeaderAccept)
   {
     $responseContentType = null;
@@ -91,17 +107,19 @@ class Http implements ClientInterface
     if ('json' == strtolower($responseContentType)) {
       $responseContentDecoded = json_decode($content, true);
 
-      if (false === $responseContentDecoded) {
+      if (false === $responseContentDecoded || !is_array($responseContentDecoded)) {
         throw new HttpClientException (
           HttpClientException::CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE,
           null,
           ['Response' => ['ContentType' => $responseContentType]]
         );
       }
+
+      return $responseContentDecoded;
     }
 
     throw new HttpClientException (
-      HttpClientException::CLIENT_HTTP_RESPONSE_CONTENT_TYPE_UNKNOWN,
+      HttpClientException::CLIENT_HTTP_RESPONSE_CONTENT_TYPE_NOT_VALID,
       null,
       ['Response' => ['ContentType' => $responseContentType]]
     );

@@ -40,6 +40,22 @@ class Http extends Client
   const CLIENT_HTTP_OPERATION_FAILURE = 4;
 
   /**
+   * Used in case that the response content type, is not valid.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const CLIENT_HTTP_RESPONSE_CONTENT_TYPE_NOT_VALID = 6;
+
+  /**
+   * Used in case that the response decoding process, fails.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE = 5;
+
+  /**
    * Used in case that is not possible to set an HTTP option.
    *
    * @since   1.0.0-dev
@@ -78,6 +94,12 @@ class Http extends Client
 
     self::$_failureMessageList[self::CLIENT_HTTP_OPERATION_FAILURE] =
       'CLIENT_HTTP_OPERATION_FAILURE';
+
+    self::$_failureMessageList[self::CLIENT_HTTP_RESPONSE_CONTENT_TYPE_NOT_VALID] =
+      'CLIENT_HTTP_RESPONSE_CONTENT_TYPE_NOT_VALID';
+
+    self::$_failureMessageList[self::CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE] =
+      'CLIENT_HTTP_RESPONSE_DECODING_PROCESS_FAILURE';
 
     self::$_failureMessageList[self::CLIENT_HTTP_SET_OPTION_FAILURE] =
       'CLIENT_HTTP_SET_OPTION_FAILURE';
