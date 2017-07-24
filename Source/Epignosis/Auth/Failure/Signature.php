@@ -21,7 +21,7 @@ class Signature extends Auth
    * @since   1.0.0-dev
    * @var     int
    */
-  const AUTH_SIGNATURE_FUNCTION_NOT_EXIST = 1;
+  const AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE = 1;
 
 
   /**
@@ -46,8 +46,8 @@ class Signature extends Auth
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::AUTH_SIGNATURE_FUNCTION_NOT_EXIST] =
-      'AUTH_SIGNATURE_FUNCTION_NOT_EXIST';
+    self::$_failureMessageList[self::AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE] =
+      'AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

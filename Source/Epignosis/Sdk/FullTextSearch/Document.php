@@ -42,8 +42,8 @@ class Document extends AbstractSdk
           'Create' => [
             'OperationType' => 'Write',
             'Path' => 'document',
-            'Success' => [
-              'ResponseCode' => [201, 202]
+            'Response' => [
+              'SuccessCode' => [201, 202]
             ]
           ],
           'Delete' => [
@@ -52,8 +52,8 @@ class Document extends AbstractSdk
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s',
-            'Success' => [
-              'ResponseCode' => [200, 202]
+            'Response' => [
+              'SuccessCode' => [200, 202]
             ]
           ],
           'Retrieve' => [
@@ -62,15 +62,15 @@ class Document extends AbstractSdk
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s',
-            'Success' => [
-              'ResponseCode' => [200]
+            'Response' => [
+              'SuccessCode' => [200]
             ]
           ],
           'RetrieveMany' => [
             'OperationType' => 'Read',
             'Path' => 'documents',
-            'Success' => [
-              'ResponseCode' => [200]
+            'Response' => [
+              'SuccessCode' => [200]
             ]
           ],
           'Update' => [
@@ -79,8 +79,8 @@ class Document extends AbstractSdk
               'DocumentId' => 'Integer'
             ],
             'Path' => 'document/%s',
-            'Success' => [
-              'ResponseCode' => [200, 202]
+            'Response' => [
+              'SuccessCode' => [200, 202]
             ]
           ]
         ],
@@ -88,7 +88,8 @@ class Document extends AbstractSdk
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
-        ]
+        ],
+        'Timeout' => 15
       ]
     ];
   }

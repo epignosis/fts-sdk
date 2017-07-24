@@ -210,23 +210,33 @@ abstract class AbstractSdk
    */
   protected function _GetConfigurationServiceAction($action, array $data)
   {
+    $serviceConfiguration = $this->_configuration['Private']['Service'];
+
     $configuration = [
       'EndPoint' => $this->_GetServiceActionEndPoint($action),
       'HeaderList' => array_merge (
-        $this->_configuration['Private']['Service']['HeaderList'],
-        ['FTS-TIMESTAMP' => time()]
+        $serviceConfiguration['HeaderList'], ['FTS-TIMESTAMP' => time()]
       )
     ];
 
     if ($this->_ServiceActionRequiresAuth($action)) {
       list($headerName, $headerValue) = $this->_GetAuthInterface()->GetSignedRequest (
         (array) $this->_configuration['Public']['Auth'],
-        $this->_configuration['Private']['Service']['ActionList'][$action],
+        $serviceConfiguration['ActionList'][$action],
         ['Data' => $data, 'Action' => $configuration]
       );
 
       $configuration['HeaderList'][$headerName] = $headerValue;
     }
+
+    $configuration['Request'] = [
+      'Timeout' => $this->_configuration['Private']['Service']['Timeout']
+    ];
+
+    $configuration['Response'] = [
+      'SuccessCode' =>
+        $serviceConfiguration['ActionList'][$action]['Response']['SuccessCode']
+    ];
 
     return $configuration;
   }

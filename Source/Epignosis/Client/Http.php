@@ -19,6 +19,90 @@ use Epignosis\Client\Failure\Http as HttpClientException;
 class Http implements ClientInterface
 {
   /**
+   * Checks the availability of the requested extension.
+   *
+   * @param   string $extension
+   *            - The extension to be checked. (Required)
+   *
+   * @return  Http
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  HttpClientException
+   *            - In case that the requested extension is not available.
+   */
+  private function _CheckExtension($extension)
+  {
+    if (!extension_loaded($extension)) {
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_EXTENSION_NOT_AVAILABLE,
+        null,
+        ['Extension' => $extension]
+      );
+    }
+
+    return $this;
+  }
+
+  private function _Execute($http, array $configuration)
+  {
+    $httpContent = curl_exec($http);
+
+    if (false === $httpContent) {
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_CREATE_FAULURE,
+        null,
+        ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]
+      );
+    }
+
+    $httpStatus = curl_getinfo($http, CURLINFO_HTTP_CODE);
+
+    curl_close($http);
+
+    if (!in_array($httpStatus, $configuration['Response']['SuccessCode'])) {
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_CREATE_FAULURE,
+        null,
+        ['Response' => ['Code' => $httpStatus]]
+      );
+    }
+
+    return $this->_GetResponseContentDecoded (
+      $httpContent, $configuration['HeaderList']['Accept']
+    );
+  }
+
+  private function _GetHttp()
+  {
+    $http = curl_init();
+
+    if (false === $http) {
+      throw new HttpClientException(HttpClientException::HTTP_INITIALIZATION_FAILURE);
+    }
+
+    return $http;
+  }
+
+  private function _GetResponseContentDecoded($content, $httpHeaderAccept)
+  {
+    return [];
+  }
+
+  private function _SetOptionList($http, array $optionList)
+  {
+    foreach ($optionList as $key => $value) {
+      if (false == curl_setopt($http, $key, $value)) {
+        throw new HttpClientException (
+          HttpClientException::CLIENT_HTTP_SET_OPTION_FAILURE,
+          null,
+          ['Option' => ['Key' => $key, 'Value' => $value]]
+        );
+      }
+    }
+  }
+
+  /**
    * Performs a creation operation.
    *
    * @param   array $configuration
@@ -37,7 +121,27 @@ class Http implements ClientInterface
    */
   public function Create(array $configuration, array $data = [])
   {
-    return [];
+    $this->_CheckExtension('curl');
+
+    $http = $this->_GetHttp();
+
+    $this->_SetOptionList (
+      $http,
+      [
+        CURLOPT_URL => $configuration['EndPoint'],
+        CURLOPT_POST => 1,
+        CURLOPT_POSTFIELDS => http_build_query($data),
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_TIMEOUT => $configuration['Request']['Timeout'],
+        CURLOPT_HTTPHEADER => $configuration['HeaderList']
+      ]
+    );
+
+    $response = $this->_Execute($http, $configuration);
+
+    curl_close($http);
+
+    return $response;
   }
 
   /**

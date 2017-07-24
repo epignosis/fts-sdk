@@ -24,25 +24,25 @@ class Signature implements AuthInterface
 
 
   /**
-   * Checks the availability of the requested function name.
+   * Checks the availability of the requested function.
    *
-   * @param   string $functionName
-   *            - The function name to be checked. (Required)
+   * @param   string $function
+   *            - The function to be checked. (Required)
    *
    * @return  Signature
    *
    * @since   1.0.0-dev
    *
    * @throws  SignatureException
-   *            - In case that the requested function name is not available.
+   *            - In case that the requested function is not available.
    */
-  private function _CheckFunctionAvailability($functionName)
+  private function _CheckFunctionAvailability($function)
   {
-    if (!function_exists($functionName)) {
+    if (!function_exists($function)) {
       throw new SignatureException (
-        SignatureException::AUTH_SIGNATURE_FUNCTION_NOT_EXIST,
+        SignatureException::AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE,
         null,
-        ['Function' => $functionName]
+        ['Function' => $function]
       );
     }
 
