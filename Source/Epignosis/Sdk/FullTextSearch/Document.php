@@ -66,12 +66,6 @@ class Document extends AbstractSdk
               'SuccessCode' => [200]
             ]
           ],
-          'RetrieveMany' => [
-            'OperationType' => 'Read',
-            'Response' => [
-              'SuccessCode' => [200]
-            ]
-          ],
           'Update' => [
             'OperationType' => 'Write',
             'Response' => [
@@ -163,33 +157,6 @@ class Document extends AbstractSdk
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
         FullTextSearchDocumentException::SDK_FTS_DOCUMENT_RETRIEVE_FAILURE, $exception
-      );
-    }
-  }
-
-  /**
-   * Retrieves many documents.
-   *
-   * @param   array $data
-   *            - The data of the documents to be retrieved. (Required)
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  FullTextSearchDocumentException
-   *            - In case that is not possible to retrieve the requested documents.
-   */
-  public function RetrieveMany(array $data)
-  {
-    try {
-      return $this->_GetClientInterface()->Retrieve (
-        $this->_GetConfigurationServiceAction('RetrieveMany', $data), $data
-      );
-    } catch (\Exception $exception) {
-      throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE,
-        $exception
       );
     }
   }

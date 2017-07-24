@@ -42,20 +42,12 @@ class Document extends Sdk
   const SDK_FTS_DOCUMENT_RETRIEVE_FAILURE = 9;
 
   /**
-   * Used in case that is not possible to retrieve the requested documents.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE = 10;
-
-  /**
    * Used in case that is not possible to update the requested document.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_DOCUMENT_UPDATE_FAILURE = 11;
+  const SDK_FTS_DOCUMENT_UPDATE_FAILURE = 10;
 
   /**
    * Used in case that is not possible to configure the full-text search document SDK.
@@ -63,7 +55,7 @@ class Document extends Sdk
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_CONFIGURE_FAILURE = 12;
+  const SDK_FTS_CONFIGURE_FAILURE = 11;
 
 
   /**
@@ -96,9 +88,6 @@ class Document extends Sdk
 
     self::$_failureMessageList[self::SDK_FTS_DOCUMENT_RETRIEVE_FAILURE] =
       'SDK_FTS_DOCUMENT_RETRIEVE_FAILURE';
-
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE] =
-      'SDK_FTS_DOCUMENT_RETRIEVE_MANY_FAILURE';
 
     self::$_failureMessageList[self::SDK_FTS_DOCUMENT_UPDATE_FAILURE] =
       'SDK_FTS_DOCUMENT_UPDATE_FAILURE';
