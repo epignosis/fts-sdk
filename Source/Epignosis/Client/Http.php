@@ -64,9 +64,20 @@ class Http implements ClientInterface
   }
 
   /**
-   * @param $http
-   * @param array $optionList
-   * @throws HttpClientException
+   * Set the HTTP option list.
+   *
+   * @param   resource $http
+   *            - The HTTP resource handler. (Required)
+   *
+   * @param   array $optionList
+   *            - The option list to be set. (Required)
+   *
+   * @return  Http
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  HttpClientException
+   *            - In case that is not possible to set an HTTP option.
    */
   private function _SetOptionList($http, array $optionList)
   {
@@ -79,6 +90,8 @@ class Http implements ClientInterface
         );
       }
     }
+
+    return $this;
   }
 
   /**
