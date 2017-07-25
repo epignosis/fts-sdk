@@ -22,8 +22,8 @@ $data = [
     [
 
       /**
-       * @description   The document's list of access rules.
        * @default       -
+       * @description   The document's list of access rules.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -31,8 +31,8 @@ $data = [
       'AccessRuleList' => [
 
         /**
-         * @description   The availability information.
          * @default       []
+         * @description   The availability information.
          * @required      false
          * @since         1.0.0-dev
          * @var           array
@@ -40,8 +40,8 @@ $data = [
         'Availability' => [
 
           /**
-           * @description   The initial availability information.
            * @default       null
+           * @description   The initial availability information.
            * @required      false
            * @since         1.0.0-dev
            * @var           null|int
@@ -49,8 +49,8 @@ $data = [
           'From' => null,
 
           /**
-           * @description   The final availability information.
            * @default       null
+           * @description   The final availability information.
            * @required      false
            * @since         1.0.0-dev
            * @var           null|int
@@ -60,9 +60,9 @@ $data = [
         ],
 
         /**
+         * @default       []
          * @description   The list of the course(s) identifier(s), that may be required to
          *                complete.
-         * @default       []
          * @required      false
          * @since         1.0.0-dev
          * @var           array
@@ -70,9 +70,9 @@ $data = [
         'CourseListIdCompleted' => [],
 
         /**
+         * @default       null
          * @description   The unit identifier, that may be required to complete.
          *                (Sequential Rule)
-         * @default       null
          * @required      false
          * @since         1.0.0-dev
          * @var           null|int
@@ -82,8 +82,8 @@ $data = [
       ],
 
       /**
-       * @description   The document's content information.
        * @default       -
+       * @description   The document's content information.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -91,57 +91,46 @@ $data = [
       'Content' => [
 
         /**
+         * @default       []
          * @description   The list of the content's files.
-         * @default       []
          * @required      false
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => [
-          'http://math.hws.edu/eck/cs124/downloads/javanotes6-linked.pdf',
-          'http://cevre.beun.edu.tr/zeydan/pdf/introduction-to-computer-programming.pdf',
-          'http://www.icsd.aegean.gr/lecturers/kavallieratou/Cplusplus_files/notes.pdf'
-        ],
+        'FileList' => [],
 
         /**
+         * @default       []
          * @description   The list of the content's tags.
-         * @default       []
          * @required      false
          * @since         1.0.0-dev
          * @var           array
          */
-        'TagList' => [
-          'program',
-          'instruction',
-          'computer'
-        ],
+        'TagList' => [],
 
         /**
-         * @description   The plain text content.
          * @default       null
+         * @description   The plain text content.
          * @required      false
          * @since         1.0.0-dev
          * @var           string
          */
-        'Text' =>
-          'A program is a set of instructions that tell the computer to do various ' .
-          'things; sometimes the instruction it has to perform depends on what ' .
-          'happened when it performed a previous instruction.',
+        'Text' => null,
 
         /**
-         * @description   The title.
          * @default       -
+         * @description   The title.
          * @required      true
          * @since         1.0.0-dev
          * @var           string
          */
-        'Title' => '(1.0) Introduction to Programming'
+        'Title' => '-'
 
       ],
 
       /**
-       * @description   The document's identifiers.
        * @default       -
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -149,31 +138,31 @@ $data = [
       'Id' => [
 
         /**
-         * @description   The course identifier.
          * @default       -
+         * @description   The course identifier.
          * @required      true
          * @since         1.0.0-dev
          * @var           int
          */
-        'Course' => 17,
+        'Course' => 1,
 
         /**
-         * @description   The lesson identifier.
          * @default       null
+         * @description   The lesson identifier.
          * @required      false
          * @since         1.0.0-dev
          * @var           null|int
          */
-        'Lesson' => 65,
+        'Lesson' => null,
 
         /**
-         * @description   The unit identifier.
          * @default       -
+         * @description   The unit identifier.
          * @required      true
          * @since         1.0.0-dev
          * @var           int
          */
-        'Unit' => 341
+        'Unit' => 1
       ]
 
     ]
