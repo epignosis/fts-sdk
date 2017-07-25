@@ -18,7 +18,7 @@ use Epignosis\Failure\Sdk;
 class Document extends Sdk
 {
   /**
-   * Used in case that is not possible to create the requested document.
+   * Used in case that is not possible to create the requested document(s).
    *
    * @since   1.0.0-dev
    * @var     int
@@ -26,7 +26,7 @@ class Document extends Sdk
   const SDK_FTS_DOCUMENT_CREATE_FAILURE = 7;
 
   /**
-   * Used in case that is not possible to delete the requested document.
+   * Used in case that is not possible to delete the requested document(s).
    *
    * @since   1.0.0-dev
    * @var     int
@@ -34,28 +34,20 @@ class Document extends Sdk
   const SDK_FTS_DOCUMENT_DELETE_FAILURE = 8;
 
   /**
-   * Used in case that is not possible to retrieve the requested document.
+   * Used in case that is not possible to search for documents.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_DOCUMENT_RETRIEVE_FAILURE = 9;
+  const SDK_FTS_DOCUMENT_SEARCH_FAILURE = 9;
 
   /**
-   * Used in case that is not possible to update the requested document.
+   * Used in case that is not possible to update the requested document(s).
    *
    * @since   1.0.0-dev
    * @var     int
    */
   const SDK_FTS_DOCUMENT_UPDATE_FAILURE = 10;
-
-  /**
-   * Used in case that is not possible to configure the full-text search document SDK.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_FTS_CONFIGURE_FAILURE = 11;
 
 
   /**
@@ -86,14 +78,11 @@ class Document extends Sdk
     self::$_failureMessageList[self::SDK_FTS_DOCUMENT_DELETE_FAILURE] =
       'SDK_FTS_DOCUMENT_DELETE_FAILURE';
 
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_RETRIEVE_FAILURE] =
-      'SDK_FTS_DOCUMENT_RETRIEVE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_SEARCH_FAILURE] =
+      'SDK_FTS_DOCUMENT_SEARCH_FAILURE';
 
     self::$_failureMessageList[self::SDK_FTS_DOCUMENT_UPDATE_FAILURE] =
       'SDK_FTS_DOCUMENT_UPDATE_FAILURE';
-
-    self::$_failureMessageList[self::SDK_FTS_CONFIGURE_FAILURE] =
-      'SDK_FTS_CONFIGURE_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

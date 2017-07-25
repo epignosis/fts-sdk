@@ -50,30 +50,52 @@ class Document extends AbstractSdk
         'ActionList' => [
           'Create' => [
             'OperationType' => 'Write',
+            'Path' => [
+              'Multiple' => null,
+              'Single' => null
+            ],
             'Response' => [
               'SuccessCode' => [201, 202]
             ]
           ],
           'Delete' => [
             'OperationType' => 'Write',
+            'Path' => [
+              'Multiple' => null,
+              'Single' => [
+                '%s' => 'Id'
+              ]
+            ],
             'Response' => [
               'SuccessCode' => [200, 202]
             ]
           ],
-          'Retrieve' => [
+          'Search' => [
             'OperationType' => 'Read',
+            'Path' => [
+              'Multiple' => null
+            ],
             'Response' => [
               'SuccessCode' => [200]
             ]
           ],
           'Update' => [
             'OperationType' => 'Write',
+            'Path' => [
+              'Multiple' => null,
+              'Single' => [
+                '%s' => 'Id'
+              ]
+            ],
             'Response' => [
               'SuccessCode' => [200, 202]
             ]
           ]
         ],
-        'BaseEndPoint' => 'http://xarhsdev.gr/fts/document/',
+        'BaseEndPoint' => [
+          'Multiple' => 'http://xarhsdev.gr/fts/documents/',
+          'Single' => 'http://xarhsdev.gr/fts/document/'
+        ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
@@ -136,43 +158,43 @@ class Document extends AbstractSdk
   }
 
   /**
-   * Retrieves the requested document.
+   * Searches for documents, according the requested criteria.
    *
    * @param   array $data
-   *            - The data of the document to be retrieved. (Required)
+   *            - The search data. (Required)
    *
    * @return  array
    *
    * @since   1.0.0-dev
    *
    * @throws  FullTextSearchDocumentException
-   *            - In case that is not possible to retrieve the requested document.
+   *            - In case that is not possible to search for documents.
    */
-  public function Retrieve(array $data)
+  public function Search(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Retrieve (
-        $this->_GetConfigurationServiceAction('Retrieve', $data), $data
+      return $this->_GetClientInterface()->Search (
+        $this->_GetConfigurationServiceAction('Search', $data), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_RETRIEVE_FAILURE, $exception
+        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_SEARCH_FAILURE, $exception
       );
     }
   }
 
   /**
-   * Updates the requested document.
+   * Updates the requested document(s).
    *
    * @param   array $data
-   *            - The data of the document to be updated. (Required)
+   *            - The data of the document(s) to be updated. (Required)
    *
    * @return  array
    *
    * @since   1.0.0-dev
    *
    * @throws  FullTextSearchDocumentException
-   *            - In case that is not possible to update the requested document.
+   *            - In case that is not possible to update the requested document(s).
    */
   public function Update(array $data)
   {

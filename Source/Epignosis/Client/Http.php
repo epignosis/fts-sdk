@@ -253,7 +253,7 @@ class Http implements ClientInterface
   }
 
   /**
-   * Performs a retrieval operation.
+   * Performs a search operation.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -268,7 +268,7 @@ class Http implements ClientInterface
    * @throws  HttpClientException
    *            - In case that is not possible to successfully complete the operation.
    */
-  public function Retrieve(array $configuration, array $data = [])
+  public function Search(array $configuration, array $data = [])
   {
     return [];
   }

@@ -54,7 +54,7 @@ interface ClientInterface
   public function Delete(array $configuration, array $data = []);
 
   /**
-   * Performs a retrieval operation.
+   * Performs a search operation.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -69,7 +69,7 @@ interface ClientInterface
    * @throws  ClientException
    *            - In case that is not possible to successfully complete the operation.
    */
-  public function Retrieve(array $configuration, array $data = []);
+  public function Search(array $configuration, array $data = []);
 
   /**
    * Performs an update operation.

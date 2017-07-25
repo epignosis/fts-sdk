@@ -30,6 +30,8 @@ try {
     $responseList[] = $fullTextSearchDocumentSdk->Create($document);
   }
 
+  // or .. $fullTextSearchDocumentSdk->Create($data);
+
 } catch (\Exception $exception) {
 
   Printer::PrintError($exception);
