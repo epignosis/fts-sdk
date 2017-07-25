@@ -57,18 +57,6 @@ $data = [
       'CourseListIdCompleted' => [],
 
       /**
-       * @description   The list of the domain(s), that belongs to.
-       * @default       -
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           array
-       */
-      'Domain' => [
-        'x.dev',
-        'xbatsis'
-      ],
-
-      /**
        * @description   The unit identifier, that may be required to complete.
        *                (Sequential Rule)
        * @default       null
