@@ -156,6 +156,7 @@ class Signature implements AuthInterface
    */
   public function __construct(array $authConfiguration)
   {
+    /** @noinspection SpellCheckingInspection */
     $functionList = [
       'mb_strlen', 'mb_substr',
       'openssl_encrypt', 'openssl_random_pseudo_bytes'
