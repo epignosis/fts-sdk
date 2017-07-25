@@ -303,7 +303,7 @@ abstract class AbstractSdk
         $this->_GetServerInterface()->GetRequestInterface()
       );
 
-      return $this->_GetServerInterface()->GetRequestInterface()->GetPostList();
+      return $this->_GetServerInterface()->GetRequestInterface()->GetPostData();
     } catch (\Exception $exception) {
       throw new SdkException (
         SdkException::SDK_GET_NOTIFICATION_EVENT_FAILURE, $exception

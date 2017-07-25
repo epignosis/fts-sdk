@@ -16,11 +16,11 @@ namespace Epignosis\Server\Abstraction;
 interface RequestInterface
 {
   /**
-   * Returns the post parameter list.
+   * Returns the post data.
    *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  public function GetPostList();
+  public function GetPostData();
 }

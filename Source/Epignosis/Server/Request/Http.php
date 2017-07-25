@@ -18,13 +18,13 @@ use Epignosis\Server\Abstraction\RequestInterface;
 class Http implements RequestInterface
 {
   /**
-   * Returns the post parameter list.
+   * Returns the post data.
    *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  public function GetPostList()
+  public function GetPostData()
   {
     return $_POST;
   }
