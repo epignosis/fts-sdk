@@ -27,8 +27,13 @@ try {
   $fullTextSearchDocumentSdk = new Document($configuration);
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $responseList[] = $fullTextSearchDocumentSdk->Create($data['Multiple'], true);
-  $responseList[] = $fullTextSearchDocumentSdk->Create($data['Single'], false);
+  $responseList['Multiple'] = $fullTextSearchDocumentSdk->Create (
+    $data['Multiple'], true
+  );
+
+  foreach ($data['Single'] as $document) {
+    $responseList['Single'][] = $fullTextSearchDocumentSdk->Create($document, false);
+  }
 
 } catch (\Exception $exception) {
 
@@ -38,18 +43,29 @@ try {
 
   Printer::PrintResponse (function() use ($responseList, $data) {
     foreach ($responseList as $key => $response) {
-      echo
-        sprintf (
-          '<b>Create Document #%s</b><pre>%s</pre>',
-          $key + 1,
-          print_r($data[$key], true)
-        ),
+      if ('Multiple' == $key) {
+        echo
+          sprintf (
+            '<b>Create Multiple Documents</b><pre>%s</pre>',
+            print_r($data['Multiple'], true)
+          ),
 
-        sprintf (
-          '<b>Document Creation Response #%s</b><pre>%s</pre>',
-          $key + 1,
-          print_r($response, true)
-        );
+          sprintf (
+            '<b>Multiple Documents Creation Response</b><pre>%s</pre>',
+            print_r($response, true)
+          );
+      } else {
+        echo
+          sprintf (
+            '<b>Create Single Document</b><pre>%s</pre>',
+            print_r($data['Single'], true)
+          ),
+
+          sprintf (
+            '<b>Single Document Creation Response</b><pre>%s</pre>',
+            print_r($response, true)
+          );
+      }
     }
   });
 
