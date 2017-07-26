@@ -55,7 +55,6 @@ try {
             print_r($response, true)
           );
       } else {
-        //'http://xarhsdev.gr/fts/documents/', //
         foreach ($response as $keyIndex => $thisResponse) {
           echo
             sprintf (
