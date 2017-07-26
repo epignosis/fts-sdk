@@ -68,8 +68,8 @@ class Document extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://xarhsdev.gr/fts/documents/',
-          'Single' => 'http://xarhsdev.gr/fts/document/'
+          'Multiple' => 'http://fts.pro.efrontlearning.com/documents/',
+          'Single' => 'http://fts.pro.efrontlearning.com/document/'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
