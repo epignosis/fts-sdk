@@ -22,14 +22,12 @@ require
 try {
 
   $responseList = [];
+
   /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchDocumentSdk = new Document($configuration);
 
   /** @noinspection PhpUndefinedVariableInspection */
-  foreach ($fullTextSearchDocumentSdk->Create($data['Multiple'], true) as $documentInfo) {
-    $responseList[] = $documentInfo;
-  }
-
+  $responseList[] = $fullTextSearchDocumentSdk->Create($data['Multiple'], true);
   $responseList[] = $fullTextSearchDocumentSdk->Create($data['Single'], false);
 
 } catch (\Exception $exception) {
