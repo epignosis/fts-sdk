@@ -49,22 +49,18 @@ class Document extends AbstractSdk
         ],
         'ActionList' => [
           'Create' => [
-            'OperationType' => 'Write',
-            'Response' => ['SuccessCode' => [201, 202]]
+            'OperationType' => 'Write'
           ],
           'Delete' => [
             'OperationType' => 'Write',
-            'Path' => ['Id'],
-            'Response' => ['SuccessCode' => [200, 202]]
+            'Path' => ['Id']
           ],
           'Search' => [
-            'OperationType' => 'Read',
-            'Response' => ['SuccessCode' => [200]]
+            'OperationType' => 'Read'
           ],
           'Update' => [
             'OperationType' => 'Write',
-            'Path' => ['Id'],
-            'Response' => ['SuccessCode' => [200, 202]]
+            'Path' => ['Id']
           ]
         ],
         'BaseEndPoint' => [

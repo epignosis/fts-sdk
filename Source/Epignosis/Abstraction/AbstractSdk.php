@@ -251,11 +251,6 @@ abstract class AbstractSdk
       'Timeout' => $this->_configuration['Private']['Service']['Timeout']
     ];
 
-    $configuration['Response'] = [
-      'SuccessCode' =>
-        $serviceConfiguration['ActionList'][$action]['Response']['SuccessCode']
-    ];
-
     return $configuration;
   }
 
