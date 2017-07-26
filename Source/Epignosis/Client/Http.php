@@ -24,9 +24,6 @@ class Http implements ClientInterface
    * @param   resource $http
    *            - The HTTP resource handler. (Required)
    *
-   * @param   array $configuration
-   *            - The configuration to be set. (Required)
-   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -34,7 +31,7 @@ class Http implements ClientInterface
    * @throws  HttpClientException
    *            - In case that is not possible to execute the requested HTTP operation.
    */
-  private function _Execute($http, array $configuration)
+  private function _Execute($http)
   {
     $httpContent = curl_exec($http);
 
@@ -43,16 +40,6 @@ class Http implements ClientInterface
         HttpClientException::CLIENT_HTTP_OPERATION_FAILURE,
         null,
         ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]]
-      );
-    }
-
-    $httpStatus = curl_getinfo($http, CURLINFO_HTTP_CODE);
-
-    if (!in_array($httpStatus, $configuration['Response']['SuccessCode'])) {
-      throw new HttpClientException (
-        HttpClientException::CLIENT_HTTP_OPERATION_FAILURE,
-        null,
-        ['Response' => ['Code' => $httpStatus]]
       );
     }
 
@@ -224,7 +211,7 @@ class Http implements ClientInterface
       ]
     );
 
-    $response = $this->_Execute($http, $configuration);
+    $response = $this->_Execute($http);
 
     curl_close($http);
 

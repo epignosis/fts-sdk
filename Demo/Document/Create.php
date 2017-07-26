@@ -26,11 +26,11 @@ try {
   $fullTextSearchDocumentSdk = new Document($configuration);
 
   /** @noinspection PhpUndefinedVariableInspection */
-  foreach ($fullTextSearchDocumentSdk->Create($data['Multiple']) as $documentInfo) {
+  foreach ($fullTextSearchDocumentSdk->Create($data['Multiple'], true) as $documentInfo) {
     $responseList[] = $documentInfo;
   }
 
-  $responseList[] = $fullTextSearchDocumentSdk->Create($data['Single']);
+  $responseList[] = $fullTextSearchDocumentSdk->Create($data['Single'], false);
 
 } catch (\Exception $exception) {
 
