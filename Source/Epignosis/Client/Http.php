@@ -204,7 +204,7 @@ class Http implements ClientInterface
       [
         CURLOPT_URL => $configuration['EndPoint'],
         CURLOPT_POST => 1,
-        CURLOPT_POSTFIELDS => http_build_query($data),
+        CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_TIMEOUT => $configuration['Request']['Timeout'],
         CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList'])
