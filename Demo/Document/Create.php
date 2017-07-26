@@ -42,8 +42,8 @@ try {
 } finally {
 
   Printer::PrintResponse (function() use ($responseList, $data) {
-    foreach ($responseList as $key => $response) {
-      if ('Multiple' == $key) {
+    foreach ($responseList as $keyType => $response) {
+      if ('Multiple' == $keyType) {
         echo
           sprintf (
             '<b>Create Multiple Documents (Requested Data)</b><pre>%s</pre>',
@@ -55,16 +55,21 @@ try {
             print_r($response, true)
           );
       } else {
-        echo
-          sprintf (
-            '<b>Create Single Document (Requested Data)</b><pre>%s</pre>',
-            print_r($data['Single'], true)
-          ),
+        //'http://xarhsdev.gr/fts/documents/', //
+        foreach ($response as $keyIndex => $thisResponse) {
+          echo
+            sprintf (
+              '<b>Create Single Document #%s (Requested Data)</b><pre>%s</pre>',
+              $keyIndex + 1,
+              print_r($data['Single'][$keyIndex], true)
+            ),
 
-          sprintf (
-            '<b>Single Document Creation (Response)</b><pre>%s</pre>',
-            print_r($response, true)
-          );
+            sprintf (
+              '<b>Single Document Creation #%s (Response)</b><pre>%s</pre>',
+              $keyIndex + 1,
+              print_r($thisResponse, true)
+            );
+        }
       }
     }
   });
