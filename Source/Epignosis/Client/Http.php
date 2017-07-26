@@ -105,7 +105,7 @@ class Http implements ClientInterface
    */
   private function _GetResponseContentDecoded($content)
   {
-    $responseContentDecoded = json_decode($content, true);
+    $responseContentDecoded = json_decode($content, true, 512, \JSON_BIGINT_AS_STRING);
 
     if (false === $responseContentDecoded || !is_array($responseContentDecoded)) {
       throw new HttpClientException (
