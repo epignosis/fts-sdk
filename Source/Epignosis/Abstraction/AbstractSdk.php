@@ -133,22 +133,34 @@ abstract class AbstractSdk
    * @param   string $action
    *            - The action to return its end-point. (Required)
    *
+   * @param   array $data
+   *            - The data of the requested action. (Required)
+   *
+   * @param   bool $multiplicity
+   *            - Whether the action concerns multiple operations, or not.
+   *              (Optional, false)
+   *
    * @return  string
    *
    * @since   1.0.0-dev
    */
-  private function _GetServiceActionEndPoint($action)
+  private function _GetServiceActionEndPoint($action, array $data, $multiplicity = false)
   {
     $serviceConfiguration = $this->_configuration['Private']['Service'];
 
-    return rtrim (
-      sprintf (
-        '%s/%s/',
-        rtrim($serviceConfiguration['BaseEndPoint'], '/'),
-        trim($serviceConfiguration['ActionList'][$action]['Path'], '/')
-      ),
-      '/'
-    );
+    if ($multiplicity) {
+      return rtrim($serviceConfiguration['BaseEndPoint']['Multiple'], '/');
+    }
+
+    $endPoint = rtrim($serviceConfiguration['BaseEndPoint']['Single'], '/');
+
+    foreach ((array) $serviceConfiguration['ActionList'][$action]['Path'] as $parameter) {
+      if (isset($data[$parameter])) {
+        $endPoint .= sprintf('/%s', $data[$parameter]);
+      }
+    }
+
+    return $endPoint;
   }
 
   /**
@@ -204,16 +216,22 @@ abstract class AbstractSdk
    * @param   array $data
    *            - The data of the requested action. (Required)
    *
+   * @param   bool $multiple
+   *            - Whether it is a multiple action, or not. (Optional, false)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
    */
-  protected function _GetConfigurationServiceAction($action, array $data)
+  protected function _GetConfigurationServiceAction (
+          $action,
+    array $data,
+          $multiple = false)
   {
     $serviceConfiguration = $this->_configuration['Private']['Service'];
 
     $configuration = [
-      'EndPoint' => $this->_GetServiceActionEndPoint($action),
+      'EndPoint' => $this->_GetServiceActionEndPoint($action, $data, $multiple),
       'HeaderList' => array_merge (
         $serviceConfiguration['HeaderList'], ['FTS-TIMESTAMP' => time()]
       )

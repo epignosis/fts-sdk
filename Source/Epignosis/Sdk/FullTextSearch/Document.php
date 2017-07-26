@@ -50,46 +50,21 @@ class Document extends AbstractSdk
         'ActionList' => [
           'Create' => [
             'OperationType' => 'Write',
-            'Path' => [
-              'Multiple' => null,
-              'Single' => null
-            ],
-            'Response' => [
-              'SuccessCode' => [201, 202]
-            ]
+            'Response' => ['SuccessCode' => [201, 202]]
           ],
           'Delete' => [
             'OperationType' => 'Write',
-            'Path' => [
-              'Multiple' => null,
-              'Single' => [
-                '%s' => 'Id'
-              ]
-            ],
-            'Response' => [
-              'SuccessCode' => [200, 202]
-            ]
+            'Path' => ['Id'],
+            'Response' => ['SuccessCode' => [200, 202]]
           ],
           'Search' => [
             'OperationType' => 'Read',
-            'Path' => [
-              'Multiple' => null
-            ],
-            'Response' => [
-              'SuccessCode' => [200]
-            ]
+            'Response' => ['SuccessCode' => [200]]
           ],
           'Update' => [
             'OperationType' => 'Write',
-            'Path' => [
-              'Multiple' => null,
-              'Single' => [
-                '%s' => 'Id'
-              ]
-            ],
-            'Response' => [
-              'SuccessCode' => [200, 202]
-            ]
+            'Path' => ['Id'],
+            'Response' => ['SuccessCode' => [200, 202]]
           ]
         ],
         'BaseEndPoint' => [
@@ -111,6 +86,9 @@ class Document extends AbstractSdk
    * @param   array $data
    *            - The data of the document to be created. (Required)
    *
+   * @param   bool $multiple
+   *            - Whether to create multiple documents, or not. (Optional, false)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -118,11 +96,11 @@ class Document extends AbstractSdk
    * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to create the requested document.
    */
-  public function Create(array $data)
+  public function Create(array $data, $multiple = false)
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('Create', $data), $data
+        $this->_GetConfigurationServiceAction('Create', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -137,6 +115,9 @@ class Document extends AbstractSdk
    * @param   array $data
    *            - The data of the document to be deleted. (Required)
    *
+   * @param   bool $multiple
+   *            - Whether to delete multiple documents, or not. (Optional, false)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -144,11 +125,11 @@ class Document extends AbstractSdk
    * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to delete the requested document.
    */
-  public function Delete(array $data)
+  public function Delete(array $data, $multiple = false)
   {
     try {
       return $this->_GetClientInterface()->Delete (
-        $this->_GetConfigurationServiceAction('Delete', $data), $data
+        $this->_GetConfigurationServiceAction('Delete', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -174,7 +155,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Search (
-        $this->_GetConfigurationServiceAction('Search', $data), $data
+        $this->_GetConfigurationServiceAction('Search', $data, true), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
@@ -189,6 +170,9 @@ class Document extends AbstractSdk
    * @param   array $data
    *            - The data of the document(s) to be updated. (Required)
    *
+   * @param   bool $multiple
+   *            - Whether to update multiple documents, or not. (Optional, false)
+   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -196,11 +180,11 @@ class Document extends AbstractSdk
    * @throws  FullTextSearchDocumentException
    *            - In case that is not possible to update the requested document(s).
    */
-  public function Update(array $data)
+  public function Update(array $data, $multiple = false)
   {
     try {
       return $this->_GetClientInterface()->Update (
-        $this->_GetConfigurationServiceAction('Update', $data), $data
+        $this->_GetConfigurationServiceAction('Update', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
       throw new FullTextSearchDocumentException (
