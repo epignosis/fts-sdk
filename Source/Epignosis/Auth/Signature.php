@@ -105,16 +105,20 @@ class Signature implements AuthInterface
   /**
    * Returns the initialization vector.
    *
+   * @param   string $cryptoAlgorithm
+   *            - The crypto algorithm to be used. (Required)
+   *
    * @return  string
    *
    * @since   1.0.0-dev
    */
-  private function _GetInitializationVector()
+  private function _GetInitializationVector($cryptoAlgorithm)
   {
     $iv = $secure = false;
+    $length = openssl_cipher_iv_length($cryptoAlgorithm);
 
     while (!$secure || !$iv) {
-      $iv = openssl_random_pseudo_bytes(16, $secure);
+      $iv = openssl_random_pseudo_bytes($length, $secure);
     }
 
     return $iv;
@@ -159,7 +163,7 @@ class Signature implements AuthInterface
     /** @noinspection SpellCheckingInspection */
     $functionList = [
       'mb_strlen', 'mb_substr',
-      'openssl_encrypt', 'openssl_random_pseudo_bytes'
+      'openssl_cipher_iv_length', 'openssl_encrypt', 'openssl_random_pseudo_bytes'
     ];
 
     foreach ($functionList as $function) {
@@ -217,8 +221,9 @@ class Signature implements AuthInterface
     array $operationInformation,
     array $data)
   {
-    $iv = $this->_GetInitializationVector();
+    $iv = $this->_GetInitializationVector($this->_authConfiguration['CryptoAlgorithm']);
 
+    // @todo
     $cipherText = openssl_encrypt (
       serialize($this->_GetSortedData($data)),
       $this->_authConfiguration['CryptoAlgorithm'],
