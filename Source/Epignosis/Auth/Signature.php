@@ -236,7 +236,12 @@ class Signature implements AuthInterface
 
     return [
       $this->_authConfiguration['SignatureName'],
-      $this->_EncodeBase64($hashMac . $iv . $cipherText)
+      $this->_EncodeBase64 (
+        $authInformation['Key']['Public'][$operationInformation['OperationType']] .
+        $hashMac .
+        $iv .
+        $cipherText
+      )
     ];
   }
 }
