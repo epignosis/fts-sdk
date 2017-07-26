@@ -46,23 +46,23 @@ try {
       if ('Multiple' == $key) {
         echo
           sprintf (
-            '<b>Create Multiple Documents</b><pre>%s</pre>',
+            '<b>Create Multiple Documents (Requested Data)</b><pre>%s</pre>',
             print_r($data['Multiple'], true)
           ),
 
           sprintf (
-            '<b>Multiple Documents Creation Response</b><pre>%s</pre>',
+            '<b>Multiple Documents Creation (Response)</b><pre>%s</pre>',
             print_r($response, true)
           );
       } else {
         echo
           sprintf (
-            '<b>Create Single Document</b><pre>%s</pre>',
+            '<b>Create Single Document (Requested Data)</b><pre>%s</pre>',
             print_r($data['Single'], true)
           ),
 
           sprintf (
-            '<b>Single Document Creation Response</b><pre>%s</pre>',
+            '<b>Single Document Creation (Response)</b><pre>%s</pre>',
             print_r($response, true)
           );
       }
