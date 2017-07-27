@@ -41,13 +41,13 @@ class Signature implements AuthInterface
    */
   private function _Encode6Bits($integer)
   {
-    $diff = 0x41;
-    $diff += ((25 - $integer) >> 8) & 6;
-    $diff -= ((51 - $integer) >> 8) & 75;
-    $diff -= ((61 - $integer) >> 8) & 15;
-    $diff += ((62 - $integer) >> 8) & 3;
+    $result = 0x41;
+    $result += ((25 - $integer) >> 8) & 6;
+    $result -= ((51 - $integer) >> 8) & 75;
+    $result -= ((61 - $integer) >> 8) & 15;
+    $result += ((62 - $integer) >> 8) & 3;
 
-    return pack('C', $integer + $diff);
+    return pack('C', $integer + $result);
   }
 
   /**
@@ -195,20 +195,20 @@ class Signature implements AuthInterface
     array $operationInformation,
     array $data)
   {
-    $token = $strong = false;
+    $randomToken = $strong = false;
 
-    while (!$strong && !$token) {
-      $token = openssl_random_pseudo_bytes(16, $strong);
+    while (!$strong && !$randomToken) {
+      $randomToken = openssl_random_pseudo_bytes(16, $strong);
     }
 
     $hashMacKey =
-      $token .
+      $randomToken .
       $authInformation['Key']['Private'][$operationInformation['OperationType']];
 
     $signature = sprintf (
       '%s;%s;%s',
       $authInformation['Key']['Public'][$operationInformation['OperationType']],
-      $this->_EncodeBase64($token),
+      $this->_EncodeBase64($randomToken),
       $this->_EncodeBase64 (
         hash_hmac (
           $this->_authConfiguration['HashAlgorithm'],
