@@ -163,7 +163,6 @@ class Http implements ClientInterface
     $functionList = [
       'curl_close',
       'curl_errno', 'curl_error', 'curl_exec',
-      'curl_getinfo',
       'curl_init',
       'curl_setopt'
     ];

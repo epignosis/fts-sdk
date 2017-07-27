@@ -233,7 +233,7 @@ abstract class AbstractSdk
     $configuration = [
       'EndPoint' => $this->_GetServiceActionEndPoint($action, $data, $multiple),
       'HeaderList' => array_merge (
-        $serviceConfiguration['HeaderList'], ['FTS-TIMESTAMP' => time()]
+        $serviceConfiguration['HeaderList'], ['EPIGNOSIS-TIMESTAMP' => time()]
       )
     ];
 

@@ -103,28 +103,6 @@ class Signature implements AuthInterface
   }
 
   /**
-   * Returns the initialization vector.
-   *
-   * @param   string $cryptoAlgorithm
-   *            - The crypto algorithm to be used. (Required)
-   *
-   * @return  string
-   *
-   * @since   1.0.0-dev
-   */
-  private function _GetInitializationVector($cryptoAlgorithm)
-  {
-    $iv = $secure = false;
-    $length = openssl_cipher_iv_length($cryptoAlgorithm);
-
-    while (!$secure || !$iv) {
-      $iv = openssl_random_pseudo_bytes($length, $secure);
-    }
-
-    return $iv;
-  }
-
-  /**
    * Sorts the requested data, and returns the result.
    *
    * @param   array $data
@@ -160,11 +138,7 @@ class Signature implements AuthInterface
    */
   public function __construct(array $authConfiguration)
   {
-    /** @noinspection SpellCheckingInspection */
-    $functionList = [
-      'mb_strlen', 'mb_substr',
-      'openssl_cipher_iv_length', 'openssl_encrypt', 'openssl_random_pseudo_bytes'
-    ];
+    $functionList = ['mb_strlen', 'mb_substr'];
 
     foreach ($functionList as $function) {
       if (!function_exists($function)) {
@@ -221,32 +195,30 @@ class Signature implements AuthInterface
     array $operationInformation,
     array $data)
   {
-    $iv = $this->_GetInitializationVector($this->_authConfiguration['CryptoAlgorithm']);
+    $token = $strong = false;
 
-    // @todo
-    $cipherText = openssl_encrypt (
-      serialize($this->_GetSortedData($data)),
-      $this->_authConfiguration['CryptoAlgorithm'],
-      $authInformation['Key']['Crypto'][$operationInformation['OperationType']],
-      \OPENSSL_RAW_DATA,
-      $iv
-    );
+    while (!$strong && !$token) {
+      $token = openssl_random_pseudo_bytes(16, $strong);
+    }
 
-    $hashMac = hash_hmac (
-      $this->_authConfiguration['HashAlgorithm'],
-      $cipherText,
-      $authInformation['Key']['Private'][$operationInformation['OperationType']],
-      true
-    );
+    $hashMacKey =
+      $token .
+      $authInformation['Key']['Private'][$operationInformation['OperationType']];
 
-    return [
-      $this->_authConfiguration['SignatureName'],
+    $signature = sprintf (
+      '%s;%s;%s',
+      $authInformation['Key']['Public'][$operationInformation['OperationType']],
+      $this->_EncodeBase64($token),
       $this->_EncodeBase64 (
-        $authInformation['Key']['Public'][$operationInformation['OperationType']] .
-        $hashMac .
-        $iv .
-        $cipherText
+        hash_hmac (
+          $this->_authConfiguration['HashAlgorithm'],
+          serialize($this->_GetSortedData($data)),
+          $hashMacKey,
+          true
+        )
       )
-    ];
+    );
+
+    return [$this->_authConfiguration['SignatureName'], $signature];
   }
 }
