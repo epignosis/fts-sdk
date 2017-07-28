@@ -27,7 +27,7 @@ class Administration extends Sdk
 
 
   /**
-   * Document constructor.
+   * Administration constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
@@ -48,17 +48,8 @@ class Administration extends Sdk
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_CREATE_FAILURE] =
-      'SDK_FTS_DOCUMENT_CREATE_FAILURE';
-
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_DELETE_FAILURE] =
-      'SDK_FTS_DOCUMENT_DELETE_FAILURE';
-
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_SEARCH_FAILURE] =
-      'SDK_FTS_DOCUMENT_SEARCH_FAILURE';
-
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_UPDATE_FAILURE] =
-      'SDK_FTS_DOCUMENT_UPDATE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE] =
+      'SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 
