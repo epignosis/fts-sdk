@@ -5,9 +5,9 @@ namespace Epignosis\Sdk\FullTextSearch\Failure;
 use Epignosis\Failure\Sdk;
 
 /**
- * Class Document
+ * Class Administration
  *
- * The document FullTextSearch SDK exception.
+ * The administration FullTextSearch SDK exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch\Failure
@@ -15,39 +15,15 @@ use Epignosis\Failure\Sdk;
  * @package     Epignosis\Sdk\FullTextSearch\Failure
  * @since       1.0.0-dev
  */
-class Document extends Sdk
+class Administration extends Sdk
 {
   /**
-   * Used in case that is not possible to create the requested document(s).
+   * Used in case that is not possible to create the requested account(s).
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_DOCUMENT_CREATE_FAILURE = 7;
-
-  /**
-   * Used in case that is not possible to delete the requested document(s).
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_FTS_DOCUMENT_DELETE_FAILURE = 8;
-
-  /**
-   * Used in case that is not possible to search for documents.
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_FTS_DOCUMENT_SEARCH_FAILURE = 9;
-
-  /**
-   * Used in case that is not possible to update the requested document(s).
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_FTS_DOCUMENT_UPDATE_FAILURE = 10;
+  const SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE = 7;
 
 
   /**

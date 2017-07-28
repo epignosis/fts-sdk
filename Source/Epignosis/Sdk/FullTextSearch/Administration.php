@@ -66,10 +66,10 @@ class Administration extends AbstractSdk
   }
 
   /**
-   * Creates the requested account.
+   * Creates the requested account(s).
    *
    * @param   array $data
-   *            - The data of the account to be created. (Required)
+   *            - The data of the account(s) to be created. (Required)
    *
    * @param   bool $multiple
    *            - Whether to create multiple accounts, or not. (Optional, false)
@@ -79,7 +79,7 @@ class Administration extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  SdkFtsAdministrationException
-   *            - In case that is not possible to create the requested document.
+   *            - In case that is not possible to create the requested account(s).
    */
   public function AccountCreate(array $data, $multiple = false)
   {
