@@ -76,10 +76,10 @@ class Document extends AbstractSdk
   }
 
   /**
-   * Creates the requested document.
+   * Creates the requested document(s).
    *
    * @param   array $data
-   *            - The data of the document to be created. (Required)
+   *            - The data of the document(s) to be created. (Required)
    *
    * @param   bool $multiple
    *            - Whether to create multiple documents, or not. (Optional, false)
@@ -89,7 +89,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  SdkFtsDocumentException
-   *            - In case that is not possible to create the requested document.
+   *            - In case that is not possible to create the requested document(s).
    */
   public function Create(array $data, $multiple = false)
   {
@@ -105,10 +105,10 @@ class Document extends AbstractSdk
   }
 
   /**
-   * Deletes the requested document.
+   * Deletes the requested document(s).
    *
    * @param   array $data
-   *            - The data of the document to be deleted. (Required)
+   *            - The data of the document(s) to be deleted. (Required)
    *
    * @param   bool $multiple
    *            - Whether to delete multiple documents, or not. (Optional, false)
@@ -118,7 +118,7 @@ class Document extends AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  SdkFtsDocumentException
-   *            - In case that is not possible to delete the requested document.
+   *            - In case that is not possible to delete the requested document(s).
    */
   public function Delete(array $data, $multiple = false)
   {
