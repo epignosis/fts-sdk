@@ -47,7 +47,7 @@ class Accounting extends AbstractSdk
           'Status' => true
         ],
         'ActionList' => [
-          'AccountCreate' => [
+          'Create' => [
             'OperationType' => 'Write'
           ]
         ],
@@ -80,11 +80,11 @@ class Accounting extends AbstractSdk
    * @throws  SdkFtsAccountingException
    *            - In case that is not possible to create the requested account(s).
    */
-  public function AccountCreate(array $data, $multiple = false)
+  public function Create(array $data, $multiple = false)
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('AccountCreate', $data, $multiple), $data
+        $this->_GetConfigurationServiceAction('Create', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
       throw new SdkFtsAccountingException (
