@@ -3,7 +3,7 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentException;
+use Epignosis\Sdk\FullTextSearch\Failure\Document as SdkFtsDocumentException;
 
 /**
  * Class Document
@@ -19,7 +19,7 @@ use Epignosis\Sdk\FullTextSearch\Failure\Document as FullTextSearchDocumentExcep
 class Document extends AbstractSdk
 {
   /**
-   * The version of the Document SDK.
+   * The version of the document SDK.
    *
    * @since   1.0.0-dev
    * @var     string
@@ -88,7 +88,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchDocumentException
+   * @throws  SdkFtsDocumentException
    *            - In case that is not possible to create the requested document.
    */
   public function Create(array $data, $multiple = false)
@@ -98,8 +98,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationServiceAction('Create', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
-      throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_CREATE_FAILURE, $exception
+      throw new SdkFtsDocumentException (
+        SdkFtsDocumentException::SDK_FTS_DOCUMENT_CREATE_FAILURE, $exception
       );
     }
   }
@@ -117,7 +117,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchDocumentException
+   * @throws  SdkFtsDocumentException
    *            - In case that is not possible to delete the requested document.
    */
   public function Delete(array $data, $multiple = false)
@@ -127,8 +127,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationServiceAction('Delete', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
-      throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_DELETE_FAILURE, $exception
+      throw new SdkFtsDocumentException (
+        SdkFtsDocumentException::SDK_FTS_DOCUMENT_DELETE_FAILURE, $exception
       );
     }
   }
@@ -143,7 +143,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchDocumentException
+   * @throws  SdkFtsDocumentException
    *            - In case that is not possible to search for documents.
    */
   public function Search(array $data)
@@ -153,8 +153,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationServiceAction('Search', $data, true), $data
       );
     } catch (\Exception $exception) {
-      throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_SEARCH_FAILURE, $exception
+      throw new SdkFtsDocumentException (
+        SdkFtsDocumentException::SDK_FTS_DOCUMENT_SEARCH_FAILURE, $exception
       );
     }
   }
@@ -172,7 +172,7 @@ class Document extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  FullTextSearchDocumentException
+   * @throws  SdkFtsDocumentException
    *            - In case that is not possible to update the requested document(s).
    */
   public function Update(array $data, $multiple = false)
@@ -182,8 +182,8 @@ class Document extends AbstractSdk
         $this->_GetConfigurationServiceAction('Update', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
-      throw new FullTextSearchDocumentException (
-        FullTextSearchDocumentException::SDK_FTS_DOCUMENT_UPDATE_FAILURE, $exception
+      throw new SdkFtsDocumentException (
+        SdkFtsDocumentException::SDK_FTS_DOCUMENT_UPDATE_FAILURE, $exception
       );
     }
   }
