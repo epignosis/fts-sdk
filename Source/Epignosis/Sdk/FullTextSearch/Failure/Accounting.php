@@ -5,9 +5,9 @@ namespace Epignosis\Sdk\FullTextSearch\Failure;
 use Epignosis\Failure\Sdk;
 
 /**
- * Class Administration
+ * Class Accounting
  *
- * The administration FullTextSearch SDK exception.
+ * The accounting FullTextSearch SDK exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch\Failure
@@ -15,7 +15,7 @@ use Epignosis\Failure\Sdk;
  * @package     Epignosis\Sdk\FullTextSearch\Failure
  * @since       1.0.0-dev
  */
-class Administration extends Sdk
+class Accounting extends Sdk
 {
   /**
    * Used in case that is not possible to create the requested account(s).
@@ -23,11 +23,11 @@ class Administration extends Sdk
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE = 7;
+  const SDK_FTS_ACCOUNTING_ACCOUNT_CREATE_FAILURE = 7;
 
 
   /**
-   * Administration constructor.
+   * Accounting constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
@@ -48,8 +48,8 @@ class Administration extends Sdk
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE] =
-      'SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_ACCOUNTING_ACCOUNT_CREATE_FAILURE] =
+      'SDK_FTS_ACCOUNTING_ACCOUNT_CREATE_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

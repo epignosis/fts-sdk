@@ -3,13 +3,12 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\Administration
-  as SdkFtsAdministrationException;
+use Epignosis\Sdk\FullTextSearch\Failure\Accounting as SdkFtsAccountingException;
 
 /**
- * Class Administration
+ * Class Accounting
  *
- * The full-text search administration SDK.
+ * The full-text search accounting SDK.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch
@@ -17,10 +16,10 @@ use Epignosis\Sdk\FullTextSearch\Failure\Administration
  * @package     Epignosis\Sdk\FullTextSearch
  * @since       1.0.0-dev
  */
-class Administration extends AbstractSdk
+class Accounting extends AbstractSdk
 {
   /**
-   * The version of the administration SDK.
+   * The version of the accounting SDK.
    *
    * @since   1.0.0-dev
    * @var     string
@@ -29,7 +28,7 @@ class Administration extends AbstractSdk
 
 
   /**
-   * Returns the configuration of the full-text search administration SDK and its service.
+   * Returns the configuration of the full-text search accounting SDK and its service.
    *
    * @return  array
    *
@@ -53,8 +52,8 @@ class Administration extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://fts.pro.efrontlearning.com/administration/accounts',
-          'Single' => 'http://fts.pro.efrontlearning.com/administration/account'
+          'Multiple' => 'http://fts.pro.efrontlearning.com/accounts',
+          'Single' => 'http://fts.pro.efrontlearning.com/account'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
@@ -78,7 +77,7 @@ class Administration extends AbstractSdk
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkFtsAdministrationException
+   * @throws  SdkFtsAccountingException
    *            - In case that is not possible to create the requested account(s).
    */
   public function AccountCreate(array $data, $multiple = false)
@@ -88,9 +87,8 @@ class Administration extends AbstractSdk
         $this->_GetConfigurationServiceAction('AccountCreate', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
-      throw new SdkFtsAdministrationException (
-        SdkFtsAdministrationException::SDK_FTS_ADMINISTRATION_ACCOUNT_CREATE_FAILURE,
-        $exception
+      throw new SdkFtsAccountingException (
+        SdkFtsAccountingException::SDK_FTS_ACCOUNTING_ACCOUNT_CREATE_FAILURE, $exception
       );
     }
   }
