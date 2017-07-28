@@ -1,9 +1,9 @@
 <?php
 
-namespace Demo\Accounting;
+namespace Demo\Account;
 
 use Demo\Helper\Printer;
-use Epignosis\Sdk\FullTextSearch\Accounting;
+use Epignosis\Sdk\FullTextSearch\Account;
 
 /** @noinspection PhpIncludeInspection */
 /** @noinspection PhpUndefinedVariableInspection */
@@ -15,8 +15,7 @@ require
 try {
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $notificationEventInformation =
-    (new Accounting($configuration))->GetNotificationEvent();
+  $notificationEventInformation = (new Account($configuration))->GetNotificationEvent();
 
 } catch (\Exception $exception) {
 

@@ -3,12 +3,12 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\Accounting as SdkFtsAccountingException;
+use Epignosis\Sdk\FullTextSearch\Failure\Account as SdkFtsAccountingException;
 
 /**
- * Class Accounting
+ * Class Account
  *
- * The full-text search accounting SDK.
+ * The full-text search account SDK.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch
@@ -16,10 +16,10 @@ use Epignosis\Sdk\FullTextSearch\Failure\Accounting as SdkFtsAccountingException
  * @package     Epignosis\Sdk\FullTextSearch
  * @since       1.0.0-dev
  */
-class Accounting extends AbstractSdk
+class Account extends AbstractSdk
 {
   /**
-   * The version of the accounting SDK.
+   * The version of the account SDK.
    *
    * @since   1.0.0-dev
    * @var     string
@@ -28,7 +28,7 @@ class Accounting extends AbstractSdk
 
 
   /**
-   * Returns the configuration of the full-text search accounting SDK and its service.
+   * Returns the configuration of the full-text search account SDK and its service.
    *
    * @return  array
    *
@@ -52,8 +52,10 @@ class Accounting extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://fts.pro.efrontlearning.com/accounts',
-          'Single' => 'http://fts.pro.efrontlearning.com/account'
+          'Multiple' => 'http://xarhsdev.gr/fts/accounts',
+          'Single' => 'http://xarhsdev.gr/fts/account'
+          //'Multiple' => 'http://fts.pro.efrontlearning.com/accounts',
+          //'Single' => 'http://fts.pro.efrontlearning.com/account'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',

@@ -5,9 +5,9 @@ namespace Epignosis\Sdk\FullTextSearch\Failure;
 use Epignosis\Failure\Sdk;
 
 /**
- * Class Accounting
+ * Class Account
  *
- * The accounting FullTextSearch SDK exception.
+ * The account FullTextSearch SDK exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch\Failure
@@ -15,7 +15,7 @@ use Epignosis\Failure\Sdk;
  * @package     Epignosis\Sdk\FullTextSearch\Failure
  * @since       1.0.0-dev
  */
-class Accounting extends Sdk
+class Account extends Sdk
 {
   /**
    * Used in case that is not possible to create the requested account(s).
@@ -27,7 +27,7 @@ class Accounting extends Sdk
 
 
   /**
-   * Accounting constructor.
+   * Account constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
