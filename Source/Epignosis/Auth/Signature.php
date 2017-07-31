@@ -201,10 +201,6 @@ class Signature implements AuthInterface
       $randomToken = openssl_random_pseudo_bytes(16, $strong);
     }
 
-    $hashMacKey =
-      $randomToken .
-      $authInformation['Key']['Private'][$operationInformation['OperationType']];
-
     $signature = sprintf (
       '%s;%s;%s',
       $authInformation['Key']['Public'][$operationInformation['OperationType']],
@@ -213,7 +209,8 @@ class Signature implements AuthInterface
         hash_hmac (
           $this->_authConfiguration['HashAlgorithm'],
           serialize($this->_GetSortedData($data)),
-          $hashMacKey,
+          $randomToken .
+          $authInformation['Key']['Private'][$operationInformation['OperationType']],
           true
         )
       )
