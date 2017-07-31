@@ -229,11 +229,16 @@ abstract class AbstractSdk
           $multiple = false)
   {
     $serviceConfiguration = $this->_configuration['Private']['Service'];
-
     $configuration = [
-      'EndPoint' => $this->_GetServiceActionEndPoint($action, $data, $multiple),
       'HeaderList' => array_merge (
-        $serviceConfiguration['HeaderList'], ['EPIGNOSIS-TIMESTAMP' => time()]
+        $serviceConfiguration['HeaderList'],
+        [
+          'EPIGNOSIS-ENDPOINT' => $this->_GetServiceActionEndPoint (
+            $action, $data, $multiple
+          ),
+
+          'EPIGNOSIS-TIMESTAMP' => time()
+        ]
       )
     ];
 
