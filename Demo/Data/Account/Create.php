@@ -27,7 +27,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           bool
        */
-      'Domain' => '-',
+      'Domain' => 'xarhsdev.talentlms.com',
 
       /**
        * @default       1
@@ -63,7 +63,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           bool
        */
-      'Domain' => '-',
+      'Domain' => 'panagop.talentlms.com',
 
       /**
        * @default       1
