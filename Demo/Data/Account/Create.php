@@ -103,7 +103,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           bool
        */
-      'Domain' => '-',
+      'Domain' => 'pvenakis.talentlms.com',
 
       /**
        * @default       1
@@ -139,7 +139,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           bool
        */
-      'Domain' => '-',
+      'Domain' => 'papagel.talentlms.com',
 
       /**
        * @default       1

@@ -32,7 +32,7 @@ try {
   );
 
   foreach ($data['Single'] as $account) {
-    //$responseList['Single'][] = $fullTextSearchAccountingSdk->Create($account, false);
+    $responseList['Single'][] = $fullTextSearchAccountingSdk->Create($account, false);
   }
 
 } catch (\Exception $exception) {
