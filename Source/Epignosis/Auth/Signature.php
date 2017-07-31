@@ -195,11 +195,9 @@ class Signature implements AuthInterface
     array $operationInformation,
     array $data)
   {
-    $randomToken = $strong = false;
-
-    while (!$strong && !$randomToken) {
+    do {
       $randomToken = openssl_random_pseudo_bytes(16, $strong);
-    }
+    } while (!$randomToken || !$strong);
 
     $signature = sprintf (
       '%s;%s;%s',
