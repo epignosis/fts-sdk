@@ -7,13 +7,14 @@ $data = [
 
     /**
      * Account #1
+     * ----------------------------------------------------------------------------------
      */
     [
 
       /**
        * @default       false
-       * @description   Whether the account, is an administration account (access to
-       *                administration API), or not.
+       * @description   Whether the account, has administration access to the full-text
+       *                service, or not.
        * @required      false
        * @since         1.0.0-dev
        * @var           bool
@@ -43,13 +44,14 @@ $data = [
 
     /**
      * Account #2
+     * ----------------------------------------------------------------------------------
      */
     [
 
       /**
        * @default       false
-       * @description   Whether the account, is an administration account (access to
-       *                administration API), or not.
+       * @description   Whether the account, has administration access to the full-text
+       *                service, or not.
        * @required      false
        * @since         1.0.0-dev
        * @var           bool
@@ -83,13 +85,14 @@ $data = [
 
     /**
      * Account #1
+     * ----------------------------------------------------------------------------------
      */
     [
 
       /**
        * @default       false
-       * @description   Whether the account, is an administration account (access to
-       *                administration API), or not.
+       * @description   Whether the account, has administration access to the full-text
+       *                service, or not.
        * @required      false
        * @since         1.0.0-dev
        * @var           bool
@@ -119,13 +122,14 @@ $data = [
 
     /**
      * Account #2
+     * ----------------------------------------------------------------------------------
      */
     [
 
       /**
        * @default       false
-       * @description   Whether the account, is an administration account (access to
-       *                administration API), or not.
+       * @description   Whether the account, has administration access to the full-text
+       *                service, or not.
        * @required      false
        * @since         1.0.0-dev
        * @var           bool
