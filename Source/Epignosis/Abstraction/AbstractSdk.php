@@ -230,16 +230,16 @@ abstract class AbstractSdk
   {
     $serviceConfiguration = $this->_configuration['Private']['Service'];
     $configuration = [
-      'HeaderList' => array_merge (
-        $serviceConfiguration['HeaderList'],
-        [
-          'EPIGNOSIS-ENDPOINT' => $this->_GetServiceActionEndPoint (
-            $action, $data, $multiple
-          ),
+      'HeaderList' => [
+        'Accept' => $serviceConfiguration['HeaderList']['Accept'],
+        'Accept-Language' => $serviceConfiguration['HeaderList']['Accept-Language'],
 
-          'EPIGNOSIS-TIMESTAMP' => time()
-        ]
-      )
+        'EPIGNOSIS-ENDPOINT' => $this->_GetServiceActionEndPoint (
+          $action, $data, $multiple
+        ),
+
+        'EPIGNOSIS-TIMESTAMP' => time(),'foo' => 'bar'
+      ]
     ];
 
     if ($this->_ServiceActionRequiresAuth($action)) {
@@ -251,10 +251,6 @@ abstract class AbstractSdk
 
       $configuration['HeaderList'][$headerName] = $headerValue;
     }
-
-    $configuration['Request'] = [
-      'Timeout' => $this->_configuration['Private']['Service']['Timeout']
-    ];
 
     return $configuration;
   }
