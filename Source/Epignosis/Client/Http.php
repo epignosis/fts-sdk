@@ -19,6 +19,16 @@ use Epignosis\Client\Failure\Http as HttpClientException;
 class Http implements ClientInterface
 {
   /**
+   * The HTTP client configuration.
+   *
+   * @default []
+   * @since   1.0.0-dev
+   * @var     array
+   */
+  private $_configuration = [];
+
+
+  /**
    * Executes the requested HTTP operation.
    *
    * @param   resource $http
@@ -152,12 +162,15 @@ class Http implements ClientInterface
   /**
    * Http constructor.
    *
+   * @param   array $configuration
+   *            - The configuration to be used. (Optional, [])
+   *
    * @since   1.0.0-dev
    *
    * @throws  HttpClientException
    *            - In case that a required function is not available.
    */
-  public function __construct()
+  public function __construct(array $configuration = [])
   {
     /** @noinspection SpellCheckingInspection */
     $functionList = [
@@ -176,6 +189,8 @@ class Http implements ClientInterface
         );
       }
     }
+
+    $this->_configuration = $configuration;
   }
 
   /**
@@ -205,7 +220,7 @@ class Http implements ClientInterface
         CURLOPT_POST => 1,
         CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_TIMEOUT => $configuration['Request']['Timeout'],
+        CURLOPT_TIMEOUT => $this->_configuration['Timeout'],
         CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList'])
       ]
     );

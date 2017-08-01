@@ -38,7 +38,9 @@ class Document extends AbstractSdk
   {
     return [
       'Sdk' => [
-        'Client' => []
+        'Client' => [
+          'Timeout' => 15
+        ]
       ],
       'Service' => [
         'Auth' => [
@@ -71,8 +73,7 @@ class Document extends AbstractSdk
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v10+json',
           'Accept-Language' => 'en-US'
-        ],
-        'Timeout' => 15
+        ]
       ]
     ];
   }
