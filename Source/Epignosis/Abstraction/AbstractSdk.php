@@ -246,7 +246,7 @@ abstract class AbstractSdk
       list($headerName, $headerValue) = $this->_GetAuthInterface()->GetSignedRequest (
         (array) $this->_configuration['Public']['Auth'],
         $serviceConfiguration['ActionList'][$action],
-        ['Data' => $data, 'Action' => $configuration]
+        ['Data' => $data, 'HeaderList' => $configuration['HeaderList']]
       );
 
       $configuration['HeaderList'][$headerName] = $headerValue;
