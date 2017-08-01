@@ -238,7 +238,7 @@ abstract class AbstractSdk
           $action, $data, $multiple
         ),
 
-        'EPIGNOSIS-TIMESTAMP' => time(),'foo' => 'bar'
+        'EPIGNOSIS-TIMESTAMP' => time()
       ]
     ];
 
