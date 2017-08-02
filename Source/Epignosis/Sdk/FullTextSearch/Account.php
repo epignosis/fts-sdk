@@ -60,7 +60,7 @@ class Account extends AbstractSdk
           //'Single' => 'http://fts.pro.efrontlearning.com/account'
         ],
         'HeaderList' => [
-          'Accept' => 'application/vnd.epignosis.v10+json',
+          'Accept' => 'application/vnd.epignosis.v1+json',
           'Accept-Language' => 'en-US'
         ]
       ]
