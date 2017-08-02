@@ -134,18 +134,18 @@ class Signature implements AuthInterface
    * @since   1.0.0-dev
    *
    * @throws  AuthSignatureException
-   *            - In case that the cURL PHP extension is not available.
+   *            - In case that a required PHP function is not available.
    */
   public function __construct(array $authConfiguration)
   {
-    $functionList = ['mb_strlen', 'mb_substr'];
+    $functionList = ['mb_strlen', 'mb_substr', 'openssl_random_pseudo_bytes'];
 
     foreach ($functionList as $function) {
       if (!function_exists($function)) {
         throw new AuthSignatureException (
           AuthSignatureException::AUTH_SIGNATURE_FUNCTION_NOT_AVAILABLE,
           null,
-          ['Extension' => $function]
+          ['Function' => $function]
         );
       }
     }

@@ -54,8 +54,8 @@ class Account extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://xarhsdev.gr/fts/accounts',
-          'Single' => 'http://xarhsdev.gr/fts/account'
+          'Multiple' => 'http://127.0.0.1:8080/fts/accounts',
+          'Single' => 'http://127.0.0.1:8080/fts/account'
           //'Multiple' => 'http://fts.pro.efrontlearning.com/accounts',
           //'Single' => 'http://fts.pro.efrontlearning.com/account'
         ],

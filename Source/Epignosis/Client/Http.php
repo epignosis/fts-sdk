@@ -168,7 +168,7 @@ class Http implements ClientInterface
    * @since   1.0.0-dev
    *
    * @throws  HttpClientException
-   *            - In case that a required function is not available.
+   *            - In case that a required PHP function is not available.
    */
   public function __construct(array $configuration = [])
   {
@@ -185,7 +185,7 @@ class Http implements ClientInterface
         throw new HttpClientException (
           HttpClientException::CLIENT_HTTP_FUNCTION_NOT_AVAILABLE,
           null,
-          ['Extension' => $function]
+          ['Function' => $function]
         );
       }
     }

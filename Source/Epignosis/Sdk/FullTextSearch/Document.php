@@ -65,8 +65,8 @@ class Document extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://xarhsdev.gr/fts/documents',
-          'Single' => 'http://xarhsdev.gr/fts/document'
+          'Multiple' => 'http://127.0.0.1:8080/fts/documents',
+          'Single' => 'http://127.0.0.1:8080/fts/document'
           //'Multiple' => 'http://fts.pro.efrontlearning.com/documents',
           //'Single' => 'http://fts.pro.efrontlearning.com/document'
         ],
