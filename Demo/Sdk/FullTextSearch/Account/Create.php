@@ -51,7 +51,7 @@ try {
           ),
 
           sprintf (
-            '<b>Multiple Accounts Creation (Response)</b><pre>%s</pre>',
+            '<b>Create Multiple Accounts (Response)</b><pre>%s</pre>',
             print_r($response, true)
           );
       } else {
@@ -64,7 +64,7 @@ try {
             ),
 
             sprintf (
-              '<b>Single Account Creation #%s (Response)</b><pre>%s</pre>',
+              '<b>Create Single Account #%s (Response)</b><pre>%s</pre>',
               $keyIndex + 1,
               print_r($thisResponse, true)
             );
