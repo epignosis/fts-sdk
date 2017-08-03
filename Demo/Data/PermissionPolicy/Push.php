@@ -19,7 +19,7 @@ $data = [
      *
      * @required      true
      * @since         1.0.0-dev
-     * @var           bool
+     * @var           string
      */
     'Data' => '{"39":[5]}',
 
@@ -51,7 +51,7 @@ $data = [
      *
      * @required      true
      * @since         1.0.0-dev
-     * @var           bool
+     * @var           string
      */
     'Data' => '',
 
@@ -83,7 +83,7 @@ $data = [
      *
      * @required      true
      * @since         1.0.0-dev
-     * @var           bool
+     * @var           string
      */
     'Data' => '{"12":[],"13":[14,15]}',
 
