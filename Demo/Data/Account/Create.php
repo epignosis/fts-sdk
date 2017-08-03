@@ -12,16 +12,6 @@ $data = [
     [
 
       /**
-       * @default       false
-       * @description   Whether the account, has administration access to the full-text
-       *                service, or not.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           bool
-       */
-      'Administrator' => false,
-
-      /**
        * @default       -
        * @description   The domain that the account controls.
        * @required      true
@@ -47,16 +37,6 @@ $data = [
      * ----------------------------------------------------------------------------------
      */
     [
-
-      /**
-       * @default       false
-       * @description   Whether the account, has administration access to the full-text
-       *                service, or not.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           bool
-       */
-      'Administrator' => false,
 
       /**
        * @default       -
@@ -90,16 +70,6 @@ $data = [
     [
 
       /**
-       * @default       false
-       * @description   Whether the account, has administration access to the full-text
-       *                service, or not.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           bool
-       */
-      'Administrator' => false,
-
-      /**
        * @default       -
        * @description   The domain that the account controls.
        * @required      true
@@ -125,16 +95,6 @@ $data = [
      * ----------------------------------------------------------------------------------
      */
     [
-
-      /**
-       * @default       false
-       * @description   Whether the account, has administration access to the full-text
-       *                service, or not.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           bool
-       */
-      'Administrator' => false,
 
       /**
        * @default       -
