@@ -5,9 +5,9 @@ namespace Epignosis\Sdk\FullTextSearch\Failure;
 use Epignosis\Failure\Sdk;
 
 /**
- * Class Account
+ * Class PermissionPolicy
  *
- * The account FullTextSearch SDK exception.
+ * The permission policy FullTextSearch SDK exception.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch\Failure
@@ -15,19 +15,19 @@ use Epignosis\Failure\Sdk;
  * @package     Epignosis\Sdk\FullTextSearch\Failure
  * @since       1.0.0-dev
  */
-class Account extends Sdk
+class PermissionPolicy extends Sdk
 {
   /**
-   * Used in case that is not possible to create the requested account(s).
+   * Used in case that is not possible to push the requested permission policy.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_ACCOUNT_CREATE_FAILURE = 7;
+  const SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE = 7;
 
 
   /**
-   * Account constructor.
+   * PermissionPolicy constructor.
    *
    * @param   int $code
    *            - The failure code. (Required)
@@ -48,8 +48,8 @@ class Account extends Sdk
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::SDK_FTS_ACCOUNT_CREATE_FAILURE] =
-      'SDK_FTS_ACCOUNT_CREATE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE] =
+      'SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

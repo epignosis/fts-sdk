@@ -24,15 +24,15 @@ try {
   $responseList = [];
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $fullTextSearchAccountingSdk = new Account($configuration);
+  $fullTextSearchAccountSdk = new Account($configuration);
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $responseList['Multiple'] = $fullTextSearchAccountingSdk->Create (
+  $responseList['Multiple'] = $fullTextSearchAccountSdk->Create (
     $data['Multiple'], true
   );
 
   foreach ($data['Single'] as $account) {
-    $responseList['Single'][] = $fullTextSearchAccountingSdk->Create($account, false);
+    $responseList['Single'][] = $fullTextSearchAccountSdk->Create($account, false);
   }
 
 } catch (\Exception $exception) {

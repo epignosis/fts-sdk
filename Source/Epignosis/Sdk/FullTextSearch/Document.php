@@ -40,7 +40,8 @@ class Document extends AbstractSdk
       'Sdk' => [
         'Client' => [
           'Timeout' => 15
-        ]
+        ],
+        'Version' => self::SDK_VERSION
       ],
       'Service' => [
         'Auth' => [

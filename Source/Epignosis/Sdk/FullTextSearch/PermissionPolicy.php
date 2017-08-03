@@ -3,12 +3,13 @@
 namespace Epignosis\Sdk\FullTextSearch;
 
 use Epignosis\Abstraction\AbstractSdk;
-use Epignosis\Sdk\FullTextSearch\Failure\Account as SdkFtsAccountException;
+use Epignosis\Sdk\FullTextSearch\Failure\PermissionPolicy
+  as SdkFtsPermissionPolicyException;
 
 /**
- * Class Account
+ * Class PermissionPolicy
  *
- * The full-text search account SDK.
+ * The full-text search permission policy SDK.
  *
  * @author      Haris Batsis <xarhsdev@efrontlearning.com>
  * @category    Epignosis\Sdk\FullTextSearch
@@ -16,10 +17,10 @@ use Epignosis\Sdk\FullTextSearch\Failure\Account as SdkFtsAccountException;
  * @package     Epignosis\Sdk\FullTextSearch
  * @since       1.0.0-dev
  */
-class Account extends AbstractSdk
+class PermissionPolicy extends AbstractSdk
 {
   /**
-   * The version of the account SDK.
+   * The version of the permission policy SDK.
    *
    * @since   1.0.0-dev
    * @var     string
@@ -28,7 +29,8 @@ class Account extends AbstractSdk
 
 
   /**
-   * Returns the configuration of the full-text search account SDK and its service.
+   * Returns the configuration of the full-text search permission policy SDK and its
+   * service.
    *
    * @return  array
    *
@@ -50,15 +52,13 @@ class Account extends AbstractSdk
           'Status' => true
         ],
         'ActionList' => [
-          'Create' => [
+          'Push' => [
             'OperationType' => 'Write'
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://127.0.0.1:8080/fts/accounts',
-          'Single' => 'http://127.0.0.1:8080/fts/account'
-          //'Multiple' => 'http://fts.pro.efrontlearning.com/accounts',
-          //'Single' => 'http://fts.pro.efrontlearning.com/account'
+          'Single' => 'http://127.0.0.1:8080/fts/permission-policy'
+          //'Single' => 'http://fts.pro.efrontlearning.com/permission-policy'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',
@@ -69,30 +69,28 @@ class Account extends AbstractSdk
   }
 
   /**
-   * Creates the requested account(s).
+   * Pushes the requested permission policy.
    *
    * @param   array $data
-   *            - The data of the account(s) to be created. (Required)
-   *
-   * @param   bool $multiple
-   *            - Whether to create multiple accounts, or not. (Optional, false)
+   *            - The data of the permission policy to be pushed. (Required)
    *
    * @return  array
    *
    * @since   1.0.0-dev
    *
-   * @throws  SdkFtsAccountException
-   *            - In case that is not possible to create the requested account(s).
+   * @throws  SdkFtsPermissionPolicyException
+   *            - In case that is not possible to push the requested permission policy.
    */
-  public function Create(array $data, $multiple = false)
+  public function Push(array $data)
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('Create', $data, $multiple), $data
+        $this->_GetConfigurationServiceAction('Create', $data, false), $data
       );
     } catch (\Exception $exception) {
-      throw new SdkFtsAccountException (
-        SdkFtsAccountException::SDK_FTS_ACCOUNT_CREATE_FAILURE, $exception
+      throw new SdkFtsPermissionPolicyException (
+        SdkFtsPermissionPolicyException::SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE,
+        $exception
       );
     }
   }
