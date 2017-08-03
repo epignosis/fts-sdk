@@ -85,7 +85,7 @@ class PermissionPolicy extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('Create', $data, false), $data
+        $this->_GetConfigurationServiceAction('Push', $data, false), $data
       );
     } catch (\Exception $exception) {
       throw new SdkFtsPermissionPolicyException (
