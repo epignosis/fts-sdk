@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection SpellCheckingInspection */
 $data = [
 
   /**
