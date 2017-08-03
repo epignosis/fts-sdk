@@ -1,6 +1,6 @@
 <?php
 
-namespace Demo\Account;
+namespace Demo\Sdk\FullTextSearch\Account;
 
 use Demo\Helper\Printer;
 use Epignosis\Sdk\FullTextSearch\Account;
@@ -8,13 +8,13 @@ use Epignosis\Sdk\FullTextSearch\Account;
 /** @noinspection PhpIncludeInspection */
 /** @noinspection PhpUndefinedVariableInspection */
 require
-  rtrim(dirname(__DIR__), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
+  rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Helper' . \DIRECTORY_SEPARATOR .
   'Bootstrap.php';
 
 /** @noinspection PhpIncludeInspection */
 require
-  rtrim(dirname(__DIR__), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
+  rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Data' . \DIRECTORY_SEPARATOR .
   'Account' . \DIRECTORY_SEPARATOR .
   'Create.php';

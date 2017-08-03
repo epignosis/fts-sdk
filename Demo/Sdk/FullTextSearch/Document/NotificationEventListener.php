@@ -1,6 +1,6 @@
 <?php
 
-namespace Demo\Document;
+namespace Demo\Sdk\FullTextSearch\Document;
 
 use Demo\Helper\Printer;
 use Epignosis\Sdk\FullTextSearch\Document;
@@ -8,7 +8,7 @@ use Epignosis\Sdk\FullTextSearch\Document;
 /** @noinspection PhpIncludeInspection */
 /** @noinspection PhpUndefinedVariableInspection */
 require
-  rtrim(dirname(__DIR__), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
+  rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Helper' . \DIRECTORY_SEPARATOR .
   'Bootstrap.php';
 
