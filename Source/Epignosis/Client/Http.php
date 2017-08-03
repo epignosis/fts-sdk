@@ -43,17 +43,23 @@ class Http implements ClientInterface
    */
   private function _Execute($http)
   {
-    $httpContent = curl_exec($http);
+    $httpResponse = curl_exec($http);
 
-    if (false === $httpContent) {
+    if (false === $httpResponse) {
       throw new HttpClientException (
         HttpClientException::CLIENT_HTTP_OPERATION_FAILURE,
         null,
-        ['Error' => ['Code' => curl_errno($http), 'Message' => curl_error($http)]]
+        [
+          'Error' => [
+            'Code' => curl_errno($http),
+            'Message' => curl_error($http),
+            'Type' => 'Network'
+          ]
+        ]
       );
     }
 
-    return $this->_GetResponseContentDecoded($httpContent);
+    return $this->_GetResponseContentDecoded($httpResponse);
   }
 
   /**
