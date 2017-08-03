@@ -38,7 +38,7 @@ try {
 } finally {
 
   Printer::PrintResponse (function() use ($responseList, $data) {
-    foreach ($responseList as $keyIndex => $response) {
+    foreach ($responseList as $keyIndex => $thisResponse) {
       echo
         sprintf (
           '<b>Push Permission Policy #%s (Requested Data)</b><pre>%s</pre>',
