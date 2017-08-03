@@ -1,9 +1,9 @@
 <?php
 
-namespace Demo\Sdk\FullTextSearch\Document;
+namespace Demo\Sdk\FullTextSearch\PermissionPolicy;
 
 use Demo\Helper\Printer;
-use Epignosis\Sdk\FullTextSearch\Document;
+use Epignosis\Sdk\FullTextSearch\PermissionPolicy;
 
 /** @noinspection PhpIncludeInspection */
 /** @noinspection PhpUndefinedVariableInspection */
@@ -15,7 +15,8 @@ require
 try {
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $notificationEventInformation = (new Document($configuration))->GetNotificationEvent();
+  $notificationEventInformation =
+    (new PermissionPolicy($configuration))->GetNotificationEvent();
 
 } catch (\Exception $exception) {
 
