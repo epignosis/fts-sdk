@@ -62,7 +62,7 @@ $data = [
      * @since         1.0.0-dev
      * @var           string
      */
-    'Policy' => '{}'
+    'Policy' => '[]'
 
   ],
 
