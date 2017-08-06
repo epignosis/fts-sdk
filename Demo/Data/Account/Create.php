@@ -20,14 +20,14 @@ $data = [
 
     /**
      * @default       -
-     * @description   The product that is installed in this domain. Use 2 for an eFrontPro
-     *                installation, or 3 for the TalentLMS. Use 1, in case that the domain
-     *                is registered to the Epignosis LLC (corporate).
+     * @description   The product identifier that is installed in this domain. Use 2 for
+     *                an eFrontPro installation, or 3 for the TalentLMS. Use 1, in case
+     *                that the domain is registered to the Epignosis LLC (corporate).
      * @required      true
      * @since         1.0.0-dev
      * @var           int
      */
-    'Product' => 2,
+    'ProductId' => 2,
 
     /**
      * @default       1
@@ -58,14 +58,14 @@ $data = [
 
     /**
      * @default       -
-     * @description   The product that is installed in this domain. Use 2 for an eFrontPro
-     *                installation, or 3 for the TalentLMS. Use 1, in case that the domain
-     *                is registered to the Epignosis LLC (corporate).
+     * @description   The product identifier that is installed in this domain. Use 2 for
+     *                an eFrontPro installation, or 3 for the TalentLMS. Use 1, in case
+     *                that the domain is registered to the Epignosis LLC (corporate).
      * @required      true
      * @since         1.0.0-dev
      * @var           int
      */
-    'Product' => 3,
+    'ProductId' => 3,
 
     /**
      * @default       1
