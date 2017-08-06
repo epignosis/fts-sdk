@@ -36,7 +36,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'TagList' => [],
+        'TagList' => ['foo', 'bar'],
 
         /**
          * @default       null
@@ -45,7 +45,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           null|string
          */
-        'Text' => null
+        'Text' => 'This is a sample plain text content ..'
 
       ],
 
@@ -74,7 +74,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           null|int
          */
-        'Lesson' => null,
+        'Lesson' => 2,
 
         /**
          * @default       -
@@ -83,7 +83,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Unit' => 1
+        'Unit' => 3
 
       ],
 
@@ -94,7 +94,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           string
        */
-      'Title' => '-'
+      'Title' => 'Plain Text Document'
 
     ],
 
@@ -129,7 +129,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'TagList' => [],
+        'TagList' => ['baz', 'qux', 'blah'],
 
         /**
          * @default       null
@@ -138,7 +138,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           null|string
          */
-        'Text' => null
+        'Text' => 'This is a sample HTML content ..'
 
       ],
 
@@ -158,7 +158,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Course' => 1,
+        'Course' => 4,
 
         /**
          * @default       null
@@ -176,7 +176,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Unit' => 1
+        'Unit' => 6
 
       ],
 
@@ -187,7 +187,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           string
        */
-      'Title' => '-'
+      'Title' => 'HTML Document'
 
     ]
 
