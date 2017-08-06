@@ -27,7 +27,7 @@ try {
   /** @noinspection PhpUndefinedVariableInspection */
   Printer::PrintResponse (function() use ($notificationEventInformation) {
     echo sprintf (
-      '<b>Notification Event Information</b><pre>%s</pre>',
+      '<b>Permission Policy Notification Event Information</b><pre>%s</pre>',
       print_r($notificationEventInformation, true)
     );
   });

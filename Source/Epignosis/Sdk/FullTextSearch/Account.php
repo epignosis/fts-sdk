@@ -55,9 +55,7 @@ class Account extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://127.0.0.1:8080/fts/accounts',
           'Single' => 'http://127.0.0.1:8080/fts/account'
-          //'Multiple' => 'http://fts.pro.efrontlearning.com/accounts',
           //'Single' => 'http://fts.pro.efrontlearning.com/account'
         ],
         'HeaderList' => [
@@ -74,9 +72,6 @@ class Account extends AbstractSdk
    * @param   array $data
    *            - The data of the account(s) to be created. (Required)
    *
-   * @param   bool $multiple
-   *            - Whether to create multiple accounts, or not. (Optional, false)
-   *
    * @return  array
    *
    * @since   1.0.0-dev
@@ -84,11 +79,11 @@ class Account extends AbstractSdk
    * @throws  SdkFtsAccountException
    *            - In case that is not possible to create the requested account(s).
    */
-  public function Create(array $data, $multiple = false)
+  public function Create(array $data)
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('Create', $data, $multiple), $data
+        $this->_GetConfigurationServiceAction('Create', $data, false), $data
       );
     } catch (\Exception $exception) {
       throw new SdkFtsAccountException (
