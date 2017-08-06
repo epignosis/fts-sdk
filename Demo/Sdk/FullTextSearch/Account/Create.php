@@ -27,12 +27,8 @@ try {
   $fullTextSearchAccountSdk = new Account($configuration);
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $responseList['Multiple'] = $fullTextSearchAccountSdk->Create (
-    $data['Multiple'], true
-  );
-
-  foreach ($data['Single'] as $account) {
-    $responseList['Single'][] = $fullTextSearchAccountSdk->Create($account, false);
+  foreach ($data as $account) {
+    $responseList[] = $fullTextSearchAccountSdk->Create($account);
   }
 
 } catch (\Exception $exception) {
@@ -42,34 +38,19 @@ try {
 } finally {
 
   Printer::PrintResponse (function() use ($responseList, $data) {
-    foreach ($responseList as $keyType => $response) {
-      if ('Multiple' == $keyType) {
-        echo
-          sprintf (
-            '<b>Create Multiple Accounts (Requested Data)</b><pre>%s</pre>',
-            print_r($data['Multiple'], true)
-          ),
+    foreach ($responseList as $keyIndex => $thisResponse) {
+      echo
+        sprintf (
+          '<b>Create Account #%s (Requested Data)</b><pre>%s</pre>',
+          $keyIndex + 1,
+          print_r($data[$keyIndex], true)
+        ),
 
-          sprintf (
-            '<b>Create Multiple Accounts (Response)</b><pre>%s</pre>',
-            print_r($response, true)
-          );
-      } else {
-        foreach ($response as $keyIndex => $thisResponse) {
-          echo
-            sprintf (
-              '<b>Create Single Account #%s (Requested Data)</b><pre>%s</pre>',
-              $keyIndex + 1,
-              print_r($data['Single'][$keyIndex], true)
-            ),
-
-            sprintf (
-              '<b>Create Single Account #%s (Response)</b><pre>%s</pre>',
-              $keyIndex + 1,
-              print_r($thisResponse, true)
-            );
-        }
-      }
+        sprintf (
+          '<b>Create Account #%s (Response)</b><pre>%s</pre>',
+          $keyIndex + 1,
+          print_r($thisResponse, true)
+        );
     }
   });
 
