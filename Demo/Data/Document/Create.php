@@ -13,67 +13,7 @@ $data = [
 
       /**
        * @default       -
-       * @description   The document's list of access rules.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           array
-       */
-      'AccessRuleList' => [
-
-        /**
-         * @default       []
-         * @description   The availability information.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'Availability' => [
-
-          /**
-           * @default       null
-           * @description   The initial availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'From' => null,
-
-          /**
-           * @default       null
-           * @description   The final availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'To' => null
-
-        ],
-
-        /**
-         * @default       []
-         * @description   The list of the course(s) identifier(s), that may be required to
-         *                complete.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'CourseListIdCompleted' => [],
-
-        /**
-         * @default       null
-         * @description   The unit identifier, that may be required to complete.
-         *                (Sequential Rule)
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           null|int
-         */
-        'UnitIdCompleted' => null
-
-      ],
-
-      /**
-       * @default       -
-       * @description   The document's content information.
+       * @description   The document's content.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -91,7 +31,7 @@ $data = [
 
         /**
          * @default       []
-         * @description   The list of the content's tags.
+         * @description   The content's tags.
          * @required      false
          * @since         1.0.0-dev
          * @var           array
@@ -103,18 +43,9 @@ $data = [
          * @description   The plain text content.
          * @required      false
          * @since         1.0.0-dev
-         * @var           string
+         * @var           null|string
          */
-        'Text' => null,
-
-        /**
-         * @default       -
-         * @description   The title.
-         * @required      true
-         * @since         1.0.0-dev
-         * @var           string
-         */
-        'Title' => '-'
+        'Text' => null
 
       ],
 
@@ -153,7 +84,17 @@ $data = [
          * @var           int
          */
         'Unit' => 1
-      ]
+
+      ],
+
+      /**
+       * @default       -
+       * @description   The document's title.
+       * @required      true
+       * @since         1.0.0-dev
+       * @var           string
+       */
+      'Title' => '-'
 
     ],
 
@@ -165,67 +106,7 @@ $data = [
 
       /**
        * @default       -
-       * @description   The document's list of access rules.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           array
-       */
-      'AccessRuleList' => [
-
-        /**
-         * @default       []
-         * @description   The availability information.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'Availability' => [
-
-          /**
-           * @default       null
-           * @description   The initial availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'From' => null,
-
-          /**
-           * @default       null
-           * @description   The final availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'To' => null
-
-        ],
-
-        /**
-         * @default       []
-         * @description   The list of the course(s) identifier(s), that may be required to
-         *                complete.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'CourseListIdCompleted' => [],
-
-        /**
-         * @default       null
-         * @description   The unit identifier, that may be required to complete.
-         *                (Sequential Rule)
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           null|int
-         */
-        'UnitIdCompleted' => null
-
-      ],
-
-      /**
-       * @default       -
-       * @description   The document's content information.
+       * @description   The document's content.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -243,7 +124,7 @@ $data = [
 
         /**
          * @default       []
-         * @description   The list of the content's tags.
+         * @description   The content's tags.
          * @required      false
          * @since         1.0.0-dev
          * @var           array
@@ -255,18 +136,9 @@ $data = [
          * @description   The plain text content.
          * @required      false
          * @since         1.0.0-dev
-         * @var           string
+         * @var           null|string
          */
-        'Text' => null,
-
-        /**
-         * @default       -
-         * @description   The title.
-         * @required      true
-         * @since         1.0.0-dev
-         * @var           string
-         */
-        'Title' => '-'
+        'Text' => null
 
       ],
 
@@ -305,7 +177,17 @@ $data = [
          * @var           int
          */
         'Unit' => 1
-      ]
+
+      ],
+
+      /**
+       * @default       -
+       * @description   The document's title.
+       * @required      true
+       * @since         1.0.0-dev
+       * @var           string
+       */
+      'Title' => '-'
 
     ]
 
@@ -321,67 +203,7 @@ $data = [
 
       /**
        * @default       -
-       * @description   The document's list of access rules.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           array
-       */
-      'AccessRuleList' => [
-
-        /**
-         * @default       []
-         * @description   The availability information.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'Availability' => [
-
-          /**
-           * @default       null
-           * @description   The initial availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'From' => null,
-
-          /**
-           * @default       null
-           * @description   The final availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'To' => null
-
-        ],
-
-        /**
-         * @default       []
-         * @description   The list of the course(s) identifier(s), that may be required to
-         *                complete.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'CourseListIdCompleted' => [],
-
-        /**
-         * @default       null
-         * @description   The unit identifier, that may be required to complete.
-         *                (Sequential Rule)
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           null|int
-         */
-        'UnitIdCompleted' => null
-
-      ],
-
-      /**
-       * @default       -
-       * @description   The document's content information.
+       * @description   The document's content.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -399,7 +221,7 @@ $data = [
 
         /**
          * @default       []
-         * @description   The list of the content's tags.
+         * @description   The content's tags.
          * @required      false
          * @since         1.0.0-dev
          * @var           array
@@ -411,18 +233,9 @@ $data = [
          * @description   The plain text content.
          * @required      false
          * @since         1.0.0-dev
-         * @var           string
+         * @var           null|string
          */
-        'Text' => null,
-
-        /**
-         * @default       -
-         * @description   The title.
-         * @required      true
-         * @since         1.0.0-dev
-         * @var           string
-         */
-        'Title' => '-'
+        'Text' => null
 
       ],
 
@@ -461,7 +274,17 @@ $data = [
          * @var           int
          */
         'Unit' => 1
-      ]
+
+      ],
+
+      /**
+       * @default       -
+       * @description   The document's title.
+       * @required      true
+       * @since         1.0.0-dev
+       * @var           string
+       */
+      'Title' => '-'
 
     ],
 
@@ -473,67 +296,7 @@ $data = [
 
       /**
        * @default       -
-       * @description   The document's list of access rules.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           array
-       */
-      'AccessRuleList' => [
-
-        /**
-         * @default       []
-         * @description   The availability information.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'Availability' => [
-
-          /**
-           * @default       null
-           * @description   The initial availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'From' => null,
-
-          /**
-           * @default       null
-           * @description   The final availability information.
-           * @required      false
-           * @since         1.0.0-dev
-           * @var           null|int
-           */
-          'To' => null
-
-        ],
-
-        /**
-         * @default       []
-         * @description   The list of the course(s) identifier(s), that may be required to
-         *                complete.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           array
-         */
-        'CourseListIdCompleted' => [],
-
-        /**
-         * @default       null
-         * @description   The unit identifier, that may be required to complete.
-         *                (Sequential Rule)
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           null|int
-         */
-        'UnitIdCompleted' => null
-
-      ],
-
-      /**
-       * @default       -
-       * @description   The document's content information.
+       * @description   The document's content.
        * @required      true
        * @since         1.0.0-dev
        * @var           array
@@ -551,7 +314,7 @@ $data = [
 
         /**
          * @default       []
-         * @description   The list of the content's tags.
+         * @description   The content's tags.
          * @required      false
          * @since         1.0.0-dev
          * @var           array
@@ -563,18 +326,9 @@ $data = [
          * @description   The plain text content.
          * @required      false
          * @since         1.0.0-dev
-         * @var           string
+         * @var           null|string
          */
-        'Text' => null,
-
-        /**
-         * @default       -
-         * @description   The title.
-         * @required      true
-         * @since         1.0.0-dev
-         * @var           string
-         */
-        'Title' => '-'
+        'Text' => null
 
       ],
 
@@ -613,7 +367,17 @@ $data = [
          * @var           int
          */
         'Unit' => 1
-      ]
+
+      ],
+
+      /**
+       * @default       -
+       * @description   The document's title.
+       * @required      true
+       * @since         1.0.0-dev
+       * @var           string
+       */
+      'Title' => '-'
 
     ]
 
