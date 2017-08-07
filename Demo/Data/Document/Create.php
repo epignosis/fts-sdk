@@ -12,9 +12,9 @@ $data = [
     [
 
       /**
-       * @default       -
+       * @default       []
        * @description   The document's content.
-       * @required      true
+       * @required      false
        * @since         1.0.0-dev
        * @var           array
        */
