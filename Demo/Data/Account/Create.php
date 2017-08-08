@@ -31,8 +31,8 @@ $data = [
 
     /**
      * @default       1
-     * @description   The status of the account. Use 1 to be active/enabled, or 0 to be
-     *                inactive/disabled.
+     * @description   The status of the account. Use 1 to be "Active / Enabled" or 0 to be
+     *                "Inactive / Disabled".
      * @required      false
      * @since         1.0.0-dev
      * @var           int
@@ -69,8 +69,8 @@ $data = [
 
     /**
      * @default       1
-     * @description   The status of the account. Use 1 to be active/enabled, or 0 to be
-     *                inactive/disabled.
+     * @description   The status of the account. Use 1 to be "Active / Enabled" or 0 to be
+     *                "Inactive / Disabled".
      * @required      false
      * @since         1.0.0-dev
      * @var           int
