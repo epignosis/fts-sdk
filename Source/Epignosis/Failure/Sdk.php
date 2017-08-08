@@ -60,7 +60,7 @@ class Sdk extends \Exception
   const SDK_GET_SERVER_INTERFACE_FAILURE = 5;
 
   /**
-   * Used in case that the PHP version is not supported (< 5.6.0).
+   * Used in case that the PHP version is not supported (< 5.4.0).
    *
    * @since   1.0.0-dev
    * @var     int

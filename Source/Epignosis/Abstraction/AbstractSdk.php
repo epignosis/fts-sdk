@@ -264,11 +264,11 @@ abstract class AbstractSdk
    * @since   1.0.0-dev
    *
    * @throws  SdkException
-   *            - In case that the PHP version is not supported (< 5.6.0).
+   *            - In case that the PHP version is not supported (< 5.4.0).
    */
   public function __construct(array $configuration = [])
   {
-    if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+    if (version_compare(PHP_VERSION, '5.4.0', '<')) {
       throw new SdkException(SdkException::SDK_REQUIREMENT_PHP_VERSION);
     }
 
