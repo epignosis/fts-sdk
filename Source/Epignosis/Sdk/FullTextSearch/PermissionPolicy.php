@@ -57,7 +57,7 @@ class PermissionPolicy extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Single' => 'http://127.0.0.1/fts/permission-policy'
+          'Single' => 'http://127.0.0.1/permission-policy'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',
