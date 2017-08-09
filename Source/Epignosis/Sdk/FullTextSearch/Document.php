@@ -66,10 +66,8 @@ class Document extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://127.0.0.1:8080/fts/documents',
-          'Single' => 'http://127.0.0.1:8080/fts/document'
-          //'Multiple' => 'http://fts.pro.efrontlearning.com/documents',
-          //'Single' => 'http://fts.pro.efrontlearning.com/document'
+          'Multiple' => 'http://127.0.0.1/fts/documents',
+          'Single' => 'http://127.0.0.1/fts/document'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',

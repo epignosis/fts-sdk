@@ -57,8 +57,7 @@ class PermissionPolicy extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Single' => 'http://127.0.0.1:8080/fts/permission-policy'
-          //'Single' => 'http://fts.pro.efrontlearning.com/permission-policy'
+          'Single' => 'http://127.0.0.1/fts/permission-policy'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',

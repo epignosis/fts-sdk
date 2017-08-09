@@ -55,8 +55,7 @@ class Account extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Single' => 'http://127.0.0.1:8080/fts/account'
-          //'Single' => 'http://fts.pro.efrontlearning.com/account'
+          'Single' => 'http://127.0.0.1/fts/account'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',
