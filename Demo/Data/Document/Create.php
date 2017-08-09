@@ -129,7 +129,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'TagList' => ['baz', 'qux', 'blah'],
+        'TagList' => ['baz', 'qux'],
 
         /**
          * @default       null
@@ -226,7 +226,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'TagList' => [],
+        'TagList' => ['blah'],
 
         /**
          * @default       null
@@ -235,7 +235,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           null|string
          */
-        'Text' => null
+        'Text' => 'Κείμενο στα Ελληνικά. Yay!'
 
       ],
 
@@ -255,7 +255,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Course' => 1,
+        'Course' => 65536,
 
         /**
          * @default       null
@@ -264,7 +264,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           null|int
          */
-        'Lesson' => null,
+        'Lesson' => 4096,
 
         /**
          * @default       -
@@ -273,7 +273,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Unit' => 1
+        'Unit' => 1024
 
       ],
 
@@ -284,7 +284,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           string
        */
-      'Title' => '-'
+      'Title' => 'Google Adwords'
 
     ],
 
@@ -319,7 +319,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'TagList' => [],
+        'TagList' => ['talentlms', 'epignosis'],
 
         /**
          * @default       null
@@ -328,7 +328,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           null|string
          */
-        'Text' => null
+        'Text' => 'Text? No Text ..'
 
       ],
 
@@ -348,7 +348,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Course' => 1,
+        'Course' => 52,
 
         /**
          * @default       null
@@ -366,7 +366,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           int
          */
-        'Unit' => 1
+        'Unit' => 666
 
       ],
 
@@ -377,7 +377,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           string
        */
-      'Title' => '-'
+      'Title' => 'Information Security'
 
     ]
 
