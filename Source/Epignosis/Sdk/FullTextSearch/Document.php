@@ -66,8 +66,8 @@ class Document extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Multiple' => 'http://127.0.0.1/fts/documents',
-          'Single' => 'http://127.0.0.1/fts/document'
+          'Multiple' => 'http://127.0.0.1/documents',
+          'Single' => 'http://127.0.0.1/document'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',

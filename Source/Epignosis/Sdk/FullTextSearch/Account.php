@@ -55,7 +55,7 @@ class Account extends AbstractSdk
           ]
         ],
         'BaseEndPoint' => [
-          'Single' => 'http://127.0.0.1/fts/account'
+          'Single' => 'http://127.0.0.1/account'
         ],
         'HeaderList' => [
           'Accept' => 'application/vnd.epignosis.v1+json',
