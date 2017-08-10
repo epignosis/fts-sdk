@@ -46,7 +46,7 @@ class Account extends AbstractSdk
       'Service' => [
         'Auth' => [
           'HashAlgorithm' => 'sha256',
-          'SignatureName' => 'EPIGNOSIS-AUTH-SIGNATURE',
+          'SignatureName' => 'FTS-AUTH-SIGNATURE',
           'Status' => true
         ],
         'ActionList' => [

@@ -222,7 +222,7 @@ class Http implements ClientInterface
     $this->_SetOptionList (
       $http,
       [
-        CURLOPT_URL => $configuration['HeaderList']['EPIGNOSIS-ENDPOINT'],
+        CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT'],
         CURLOPT_POST => 1,
         CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
         CURLOPT_RETURNTRANSFER => 1,

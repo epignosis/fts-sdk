@@ -234,11 +234,11 @@ abstract class AbstractSdk
         'Accept' => $serviceConfiguration['HeaderList']['Accept'],
         'Accept-Language' => $serviceConfiguration['HeaderList']['Accept-Language'],
 
-        'EPIGNOSIS-ENDPOINT' => $this->_GetServiceActionEndPoint (
+        'FTS-ENDPOINT' => $this->_GetServiceActionEndPoint (
           $action, $data, $multiple
         ),
 
-        'EPIGNOSIS-TIMESTAMP' => time()
+        'FTS-TIMESTAMP' => time()
       ]
     ];
 
