@@ -27,7 +27,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => ['https://efrontlearning.com/', 'https://www.talentlms.com/'],
+        'FileList' => ['https://efrontlearning.com/'],
 
         /**
          * @default       []
@@ -120,7 +120,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => [],
+        'FileList' => ['https://www.talentlms.com/'],
 
         /**
          * @default       []
@@ -196,7 +196,7 @@ $data = [
   'Single' => [
 
     /**
-     * Document #1
+     * Document #3
      * ----------------------------------------------------------------------------------
      */
     [
@@ -289,7 +289,7 @@ $data = [
     ],
 
     /**
-     * Document #2
+     * Document #4
      * ----------------------------------------------------------------------------------
      */
     [
