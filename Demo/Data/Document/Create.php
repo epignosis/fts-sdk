@@ -27,7 +27,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => [],
+        'FileList' => ['https://efrontlearning.com/', 'https://www.talentlms.com/'],
 
         /**
          * @default       []
