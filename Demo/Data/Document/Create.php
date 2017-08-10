@@ -27,7 +27,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => ['https://efrontlearning.com/'],
+        'FileList' => [],
 
         /**
          * @default       []
@@ -217,7 +217,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => [],
+        'FileList' => ['https://efrontlearning.com/'],
 
         /**
          * @default       []
