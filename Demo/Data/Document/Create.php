@@ -120,7 +120,7 @@ $data = [
          * @since         1.0.0-dev
          * @var           array
          */
-        'FileList' => ['https://www.talentlms.com/'],
+        'FileList' => ['https://www.talentlms.com/', 'https://www.talentcards.net/'],
 
         /**
          * @default       []
