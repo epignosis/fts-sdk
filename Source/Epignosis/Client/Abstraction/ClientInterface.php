@@ -18,7 +18,7 @@ use Epignosis\Client\Failure\Client as ClientException;
 interface ClientInterface
 {
   /**
-   * Performs a creation operation.
+   * Performs a create/update operation.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -30,7 +30,7 @@ interface ClientInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  ClientException
+   * @throws  HttpClientException
    *            - In case that is not possible to successfully complete the operation.
    */
   public function Create(array $configuration, array $data = []);
@@ -48,13 +48,13 @@ interface ClientInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  ClientException
+   * @throws  HttpClientException
    *            - In case that is not possible to successfully complete the operation.
    */
   public function Delete(array $configuration, array $data = []);
 
   /**
-   * Performs a search operation.
+   * Performs a get operation.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -66,26 +66,8 @@ interface ClientInterface
    *
    * @since   1.0.0-dev
    *
-   * @throws  ClientException
+   * @throws  HttpClientException
    *            - In case that is not possible to successfully complete the operation.
    */
-  public function Search(array $configuration, array $data = []);
-
-  /**
-   * Performs an update operation.
-   *
-   * @param   array $configuration
-   *            - The configuration to be used. (Required)
-   *
-   * @param   array $data
-   *            - The data to be used. (Optional, [])
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  ClientException
-   *            - In case that is not possible to successfully complete the operation.
-   */
-  public function Update(array $configuration, array $data = []);
+  public function Get(array $configuration, array $data = []);
 }

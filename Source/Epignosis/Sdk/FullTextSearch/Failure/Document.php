@@ -18,20 +18,20 @@ use Epignosis\Failure\Sdk;
 class Document extends Sdk
 {
   /**
-   * Used in case that is not possible to create the requested document(s).
+   * Used in case that is not possible to de-index the requested document(s).
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_DOCUMENT_CREATE_FAILURE = 7;
+  const SDK_FTS_DOCUMENT_DEINDEX_FAILURE = 7;
 
   /**
-   * Used in case that is not possible to delete the requested document(s).
+   * Used in case that is not possible to index the requested document(s).
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_DOCUMENT_DELETE_FAILURE = 8;
+  const SDK_FTS_DOCUMENT_INDEX_FAILURE = 8;
 
   /**
    * Used in case that is not possible to search for documents.
@@ -40,14 +40,6 @@ class Document extends Sdk
    * @var     int
    */
   const SDK_FTS_DOCUMENT_SEARCH_FAILURE = 9;
-
-  /**
-   * Used in case that is not possible to update the requested document(s).
-   *
-   * @since   1.0.0-dev
-   * @var     int
-   */
-  const SDK_FTS_DOCUMENT_UPDATE_FAILURE = 10;
 
 
   /**
@@ -72,17 +64,14 @@ class Document extends Sdk
   {
     $this->_timestamp = time();
 
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_CREATE_FAILURE] =
-      'SDK_FTS_DOCUMENT_CREATE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_DEINDEX_FAILURE] =
+      'SDK_FTS_DOCUMENT_DEINDEX_FAILURE';
 
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_DELETE_FAILURE] =
-      'SDK_FTS_DOCUMENT_DELETE_FAILURE';
+    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_INDEX_FAILURE] =
+      'SDK_FTS_DOCUMENT_INDEX_FAILURE';
 
     self::$_failureMessageList[self::SDK_FTS_DOCUMENT_SEARCH_FAILURE] =
       'SDK_FTS_DOCUMENT_SEARCH_FAILURE';
-
-    self::$_failureMessageList[self::SDK_FTS_DOCUMENT_UPDATE_FAILURE] =
-      'SDK_FTS_DOCUMENT_UPDATE_FAILURE';
 
     $this->_additionalFailureInformation = $additionalFailureInformation;
 

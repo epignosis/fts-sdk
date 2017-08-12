@@ -50,20 +50,16 @@ class Document extends AbstractSdk
           'Status' => true
         ],
         'ActionList' => [
-          'Create' => [
-            'OperationType' => 'Write'
-          ],
-          'Delete' => [
+          'DeIndex' => [
             'OperationType' => 'Write',
             'Path' => ['Id']
+          ],
+          'Index' => [
+            'OperationType' => 'Write'
           ],
           'Search' => [
             'OperationType' => 'Read'
           ],
-          'Update' => [
-            'OperationType' => 'Write',
-            'Path' => ['Id']
-          ]
         ],
         'BaseEndPoint' => [
           'Multiple' => 'http://127.0.0.1/documents',
@@ -78,59 +74,59 @@ class Document extends AbstractSdk
   }
 
   /**
-   * Creates the requested document(s).
+   * De-indexes the requested document(s).
    *
    * @param   array $data
-   *            - The data of the document(s) to be created. (Required)
+   *            - The data of the document(s) to be de-indexed. (Required)
    *
    * @param   bool $multiple
-   *            - Whether to create multiple documents, or not. (Optional, false)
+   *            - Whether to de-index multiple documents, or not. (Optional, false)
    *
    * @return  array
    *
    * @since   1.0.0-dev
    *
    * @throws  SdkFtsDocumentException
-   *            - In case that is not possible to create the requested document(s).
+   *            - In case that is not possible to de-index the requested document(s).
    */
-  public function Create(array $data, $multiple = false)
+  public function DeIndex(array $data, $multiple = false)
   {
     try {
-      return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('Create', $data, $multiple), $data
+      return $this->_GetClientInterface()->Delete (
+        $this->_GetConfigurationServiceAction('DeIndex', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
       throw new SdkFtsDocumentException (
-        SdkFtsDocumentException::SDK_FTS_DOCUMENT_CREATE_FAILURE, $exception
+        SdkFtsDocumentException::SDK_FTS_DOCUMENT_DEINDEX_FAILURE, $exception
       );
     }
   }
 
   /**
-   * Deletes the requested document(s).
+   * Indexes the requested document(s).
    *
    * @param   array $data
-   *            - The data of the document(s) to be deleted. (Required)
+   *            - The data of the document(s) to be indexed. (Required)
    *
    * @param   bool $multiple
-   *            - Whether to delete multiple documents, or not. (Optional, false)
+   *            - Whether to index multiple documents, or not. (Optional, false)
    *
    * @return  array
    *
    * @since   1.0.0-dev
    *
    * @throws  SdkFtsDocumentException
-   *            - In case that is not possible to delete the requested document(s).
+   *            - In case that is not possible to index the requested document(s).
    */
-  public function Delete(array $data, $multiple = false)
+  public function Index(array $data, $multiple = false)
   {
     try {
-      return $this->_GetClientInterface()->Delete (
-        $this->_GetConfigurationServiceAction('Delete', $data, $multiple), $data
+      return $this->_GetClientInterface()->Create (
+        $this->_GetConfigurationServiceAction('Index', $data, $multiple), $data
       );
     } catch (\Exception $exception) {
       throw new SdkFtsDocumentException (
-        SdkFtsDocumentException::SDK_FTS_DOCUMENT_DELETE_FAILURE, $exception
+        SdkFtsDocumentException::SDK_FTS_DOCUMENT_INDEX_FAILURE, $exception
       );
     }
   }
@@ -151,41 +147,12 @@ class Document extends AbstractSdk
   public function Search(array $data)
   {
     try {
-      return $this->_GetClientInterface()->Search (
+      return $this->_GetClientInterface()->Get (
         $this->_GetConfigurationServiceAction('Search', $data, true), $data
       );
     } catch (\Exception $exception) {
       throw new SdkFtsDocumentException (
         SdkFtsDocumentException::SDK_FTS_DOCUMENT_SEARCH_FAILURE, $exception
-      );
-    }
-  }
-
-  /**
-   * Updates the requested document(s).
-   *
-   * @param   array $data
-   *            - The data of the document(s) to be updated. (Required)
-   *
-   * @param   bool $multiple
-   *            - Whether to update multiple documents, or not. (Optional, false)
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  SdkFtsDocumentException
-   *            - In case that is not possible to update the requested document(s).
-   */
-  public function Update(array $data, $multiple = false)
-  {
-    try {
-      return $this->_GetClientInterface()->Update (
-        $this->_GetConfigurationServiceAction('Update', $data, $multiple), $data
-      );
-    } catch (\Exception $exception) {
-      throw new SdkFtsDocumentException (
-        SdkFtsDocumentException::SDK_FTS_DOCUMENT_UPDATE_FAILURE, $exception
       );
     }
   }

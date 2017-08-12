@@ -199,7 +199,7 @@ class Http implements ClientInterface
   }
 
   /**
-   * Performs a creation operation.
+   * Performs a create/update operation.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -259,7 +259,7 @@ class Http implements ClientInterface
   }
 
   /**
-   * Performs a search operation.
+   * Performs a get operation.
    *
    * @param   array $configuration
    *            - The configuration to be used. (Required)
@@ -274,28 +274,7 @@ class Http implements ClientInterface
    * @throws  HttpClientException
    *            - In case that is not possible to successfully complete the operation.
    */
-  public function Search(array $configuration, array $data = [])
-  {
-    return [];
-  }
-
-  /**
-   * Performs an update operation.
-   *
-   * @param   array $configuration
-   *            - The configuration to be used. (Required)
-   *
-   * @param   array $data
-   *            - The data to be used. (Optional, [])
-   *
-   * @return  array
-   *
-   * @since   1.0.0-dev
-   *
-   * @throws  HttpClientException
-   *            - In case that is not possible to successfully complete the operation.
-   */
-  public function Update(array $configuration, array $data = [])
+  public function Get(array $configuration, array $data = [])
   {
     return [];
   }
