@@ -185,7 +185,6 @@ class AutoLoader
   private function _IncludeOnce($filePath)
   {
     if (file_exists($filePath)) {
-      /** @noinspection PhpIncludeInspection */
       return include_once $filePath;
     }
 

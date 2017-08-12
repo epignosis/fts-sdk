@@ -5,14 +5,11 @@ namespace Demo\Sdk\FullTextSearch\PermissionPolicy;
 use Demo\Helper\Printer;
 use Epignosis\Sdk\FullTextSearch\PermissionPolicy;
 
-/** @noinspection PhpIncludeInspection */
-/** @noinspection PhpUndefinedVariableInspection */
 require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Helper' . \DIRECTORY_SEPARATOR .
   'Bootstrap.php';
 
-/** @noinspection PhpIncludeInspection */
 require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Data' . \DIRECTORY_SEPARATOR .
@@ -22,11 +19,8 @@ require
 try {
 
   $responseList = [];
-
-  /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchPermissionPolicySdk = new PermissionPolicy($configuration);
 
-  /** @noinspection PhpUndefinedVariableInspection */
   foreach ($data as $permissionPolicy) {
     $responseList[] = $fullTextSearchPermissionPolicySdk->Push($permissionPolicy);
   }

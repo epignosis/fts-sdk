@@ -35,7 +35,7 @@ $data = [
   ],
 
   /**
-   * Permission Policy #2
+   * Permission Policy #2 / Updates Permission Policy #1
    * ------------------------------------------------------------------------------------
    */
   [

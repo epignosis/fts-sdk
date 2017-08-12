@@ -94,7 +94,6 @@ trait EpignosisSdkTrait
    */
   public function GetOriginalException()
   {
-    /** @var $originalException \Exception */
     $originalException = $this;
 
     while ($originalException->getPrevious()) {

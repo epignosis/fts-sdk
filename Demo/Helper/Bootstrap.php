@@ -35,7 +35,6 @@ register_shutdown_function(function() {
 
 require 'Printer.php';
 
-/** @noinspection PhpIncludeInspection */
 require
   rtrim(dirname(__DIR__), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Configuration.php';
@@ -45,7 +44,6 @@ $documentRootEpignosis =
   'Source' . \DIRECTORY_SEPARATOR .
   'Epignosis' . \DIRECTORY_SEPARATOR;
 
-/** @noinspection PhpIncludeInspection */
 require
   $documentRootEpignosis .
   'Helper' . \DIRECTORY_SEPARATOR .

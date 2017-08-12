@@ -5,14 +5,11 @@ namespace Demo\Sdk\FullTextSearch\Document;
 use Demo\Helper\Printer;
 use Epignosis\Sdk\FullTextSearch\Document;
 
-/** @noinspection PhpIncludeInspection */
-/** @noinspection PhpUndefinedVariableInspection */
 require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Helper' . \DIRECTORY_SEPARATOR .
   'Bootstrap.php';
 
-/** @noinspection PhpIncludeInspection */
 require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Data' . \DIRECTORY_SEPARATOR .
@@ -22,11 +19,8 @@ require
 try {
 
   $responseList = [];
-
-  /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchDocumentSdk = new Document($configuration);
 
-  /** @noinspection PhpUndefinedVariableInspection */
   $responseList['Multiple'] = $fullTextSearchDocumentSdk->Create (
     $data['Multiple'], true
   );

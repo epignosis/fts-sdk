@@ -5,14 +5,11 @@ namespace Demo\Sdk\FullTextSearch\Account;
 use Demo\Helper\Printer;
 use Epignosis\Sdk\FullTextSearch\Account;
 
-/** @noinspection PhpIncludeInspection */
-/** @noinspection PhpUndefinedVariableInspection */
 require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Helper' . \DIRECTORY_SEPARATOR .
   'Bootstrap.php';
 
-/** @noinspection PhpIncludeInspection */
 require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Data' . \DIRECTORY_SEPARATOR .
@@ -22,11 +19,8 @@ require
 try {
 
   $responseList = [];
-
-  /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchAccountSdk = new Account($configuration);
 
-  /** @noinspection PhpUndefinedVariableInspection */
   foreach ($data as $account) {
     $responseList[] = $fullTextSearchAccountSdk->Create($account);
   }

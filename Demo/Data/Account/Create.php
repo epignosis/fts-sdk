@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection SpellCheckingInspection */
 $data = [
 
   /**
@@ -17,17 +16,6 @@ $data = [
      * @var           bool
      */
     'Domain' => 'xdev.com',
-
-    /**
-     * @default       -
-     * @description   The product identifier that is installed in this domain. Use 2 for
-     *                an eFrontPro installation, or 3 for the TalentLMS. Use 1, in case
-     *                that the domain is registered to the Epignosis LLC (corporate).
-     * @required      true
-     * @since         1.0.0-dev
-     * @var           int
-     */
-    'ProductId' => 2,
 
     /**
      * @default       1
@@ -55,17 +43,6 @@ $data = [
      * @var           bool
      */
     'Domain' => 'panagop.talentlms.com',
-
-    /**
-     * @default       -
-     * @description   The product identifier that is installed in this domain. Use 2 for
-     *                an eFrontPro installation, or 3 for the TalentLMS. Use 1, in case
-     *                that the domain is registered to the Epignosis LLC (corporate).
-     * @required      true
-     * @since         1.0.0-dev
-     * @var           int
-     */
-    'ProductId' => 3,
 
     /**
      * @default       1

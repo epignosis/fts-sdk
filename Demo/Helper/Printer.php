@@ -25,11 +25,8 @@ class Printer
    */
   public static function PrintError(\Exception $exception)
   {
-    /** @var $originalException \Exception */
-    /** @noinspection PhpUndefinedMethodInspection */
     $originalException = $exception->GetOriginalException();
 
-    /** @noinspection PhpUndefinedMethodInspection */
     echo
       sprintf (
         '<b>Exception</b><br>&ensp;%s (%s)<br><br>',
