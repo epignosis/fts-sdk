@@ -89,7 +89,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true
+       * @required      true (on Create); false (on Update)
        * @since         1.0.0-dev
        * @var           string
        */
@@ -106,7 +106,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's content.
-       * @required      true
+       * @required      false
        * @since         1.0.0-dev
        * @var           array
        */
@@ -182,7 +182,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true
+       * @required      true (on Create); false (on Update)
        * @since         1.0.0-dev
        * @var           string
        */
@@ -203,7 +203,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's content.
-       * @required      true
+       * @required      false
        * @since         1.0.0-dev
        * @var           array
        */
@@ -279,7 +279,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true
+       * @required      true (on Create); false (on Update)
        * @since         1.0.0-dev
        * @var           string
        */
@@ -296,7 +296,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's content.
-       * @required      true
+       * @required      false
        * @since         1.0.0-dev
        * @var           array
        */
@@ -372,7 +372,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true
+       * @required      true (on Create); false (on Update)
        * @since         1.0.0-dev
        * @var           string
        */
