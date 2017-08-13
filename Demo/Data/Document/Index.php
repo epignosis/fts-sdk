@@ -89,7 +89,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true (on Create); false (on Update)
+       * @required      true
        * @since         1.0.0-dev
        * @var           string
        */
@@ -182,7 +182,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true (on Create); false (on Update)
+       * @required      true
        * @since         1.0.0-dev
        * @var           string
        */
@@ -279,7 +279,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true (on Create); false (on Update)
+       * @required      true
        * @since         1.0.0-dev
        * @var           string
        */
@@ -372,7 +372,7 @@ $data = [
       /**
        * @default       -
        * @description   The document's title.
-       * @required      true (on Create); false (on Update)
+       * @required      true
        * @since         1.0.0-dev
        * @var           string
        */
