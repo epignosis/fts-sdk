@@ -221,12 +221,13 @@ class Http implements ClientInterface
     $this->_SetOptionList (
       $http,
       [
-        CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT'],
-        CURLOPT_POST => 1,
-        CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_TIMEOUT => $this->_configuration['Timeout'],
-        CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList'])
+        \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout']['Connect'],
+        \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
+        \CURLOPT_POST => 1,
+        \CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
+        \CURLOPT_RETURNTRANSFER => 1,
+        \CURLOPT_TIMEOUT => $this->_configuration['Timeout']['Execute'],
+        \CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT']
       ]
     );
 

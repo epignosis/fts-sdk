@@ -41,7 +41,10 @@ class PermissionPolicy extends AbstractSdk
     return [
       'Sdk' => [
         'Client' => [
-          'Timeout' => 15
+          'Timeout' => [
+            'Connect' => 15,
+            'Execute' => 15
+          ]
         ],
         'Version' => self::SDK_VERSION
       ],
