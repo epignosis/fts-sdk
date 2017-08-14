@@ -34,17 +34,17 @@ try {
   Printer::PrintResponse (function() use ($responseList, $data) {
     foreach ($responseList as $keyIndex => $thisResponse) {
       echo
-      sprintf (
-        '<b>Search Documents #%s (Requested Data)</b><pre>%s</pre>',
-        $keyIndex + 1,
-        print_r($data[$keyIndex], true)
-      ),
+        sprintf (
+          '<b>Search Documents #%s (Requested Data)</b><pre>%s</pre>',
+          $keyIndex + 1,
+          print_r($data[$keyIndex], true)
+        ),
 
-      sprintf (
-        '<b>Search Documents #%s (Response)</b><pre>%s</pre>',
-        $keyIndex + 1,
-        print_r($thisResponse, true)
-      );
+        sprintf (
+          '<b>Search Documents #%s (Response)</b><pre>%s</pre>',
+          $keyIndex + 1,
+          print_r($thisResponse, true)
+        );
     }
   });
 
