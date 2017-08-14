@@ -20,27 +20,37 @@ $data = [
      * @since         1.0.0-dev
      * @var           array
      */
-    'Field' => [
-      'File' => true,
-      'Text' => true,
-      'Title' => true
-    ],
+    'Field' => ['File' => true, 'Text' => true, 'Title' => true],
 
     /**
      * @default       []
-     * @description   Determines, in which fields should search for the requested query
-     *                data. The default behavior, is to search in any content related
-     *                field. Available fields are "File", "Text" and "Title". If only
-     *                particular fields must be excluded, one, can define their type and
-     *                set them to false.
+     * @description   Pagination information such as the limit and the offset of the
+     *                returned result set.
      *
      * @required      false
      * @since         1.0.0-dev
      * @var           array
      */
     'Pagination' => [
+
+      /**
+       * @default       10
+       * @description   The limit of the returned result set.
+       * @required      false
+       * @since         1.0.0-dev
+       * @var           int
+       */
       'Limit' => 5,
+
+      /**
+       * @default       0
+       * @description   The offset of the returned result set.
+       * @required      false
+       * @since         1.0.0-dev
+       * @var           int
+       */
       'Offset' => 0
+
     ],
 
     'Query' => [
