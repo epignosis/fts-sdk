@@ -69,7 +69,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           null|string
        */
-      'Text' => 'eFrontPro'
+      'Text' => 'eFrontPro by Epignosis LLC!'
 
     ],
 

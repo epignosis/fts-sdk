@@ -29,6 +29,39 @@ class Http implements ClientInterface
 
 
   /**
+   * Returns the requested array data, into a URL (raw encoded).
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @param   string $prefix
+   *            - The parameter prefix. Primarily used by the internal recursion.
+   *              (Optional, null)
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _ArrayToUrl(array $data = [], $prefix = null)
+  {
+    $query = [];
+
+    foreach ($data as $key => $value) {
+      if (is_array($value)) {
+        $query[] = $this->_ArrayToUrl($value, $key);
+      } else {
+        if ($prefix) {
+          $query[] = sprintf('%s.%s=%s', $prefix, $key, rawurlencode($value));
+        } else {
+          $query[] = sprintf('%s=%s', $key, rawurlencode($value));
+        }
+      }
+    }
+
+    return implode('&', $query);
+  }
+
+  /**
    * Executes the requested HTTP operation.
    *
    * @param   resource $http
