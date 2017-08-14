@@ -12,6 +12,7 @@ $data = [
      * @default       -
      * @description   The permission policy identifier. Could be the internal user
      *                identifier on the LMS.
+     *
      * @required      true
      * @since         1.0.0-dev
      * @var           int
@@ -44,6 +45,7 @@ $data = [
      * @default       -
      * @description   The permission policy identifier. Could be the internal user
      *                identifier on the LMS.
+     *
      * @required      true
      * @since         1.0.0-dev
      * @var           int
@@ -76,6 +78,7 @@ $data = [
      * @default       -
      * @description   The permission policy identifier. Could be the internal user
      *                identifier on the LMS.
+     *
      * @required      true
      * @since         1.0.0-dev
      * @var           int
