@@ -14,19 +14,19 @@ require
   rtrim(dirname(dirname(dirname(__DIR__))), \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
   'Data' . \DIRECTORY_SEPARATOR .
   'Document' . \DIRECTORY_SEPARATOR .
-  'Delete.php';
+  'DeIndex.php';
 
 try {
 
   $responseList = [];
   $fullTextSearchDocumentSdk = new Document($configuration);
 
-  $responseList['Multiple'] = $fullTextSearchDocumentSdk->Delete (
+  $responseList['Multiple'] = $fullTextSearchDocumentSdk->DeIndex (
     $data['Multiple'], true
   );
 
   foreach ($data['Single'] as $document) {
-    $responseList['Single'][] = $fullTextSearchDocumentSdk->Delete($document, false);
+    $responseList['Single'][] = $fullTextSearchDocumentSdk->DeIndex($document, false);
   }
 
 } catch (\Exception $exception) {
@@ -40,25 +40,25 @@ try {
       if ('Multiple' == $keyType) {
         echo
           sprintf (
-            '<b>Delete Multiple Documents (Requested Data)</b><pre>%s</pre>',
+            '<b>De-Index Multiple Documents (Requested Data)</b><pre>%s</pre>',
             print_r($data['Multiple'], true)
           ),
 
           sprintf (
-            '<b>Delete Multiple Documents (Response)</b><pre>%s</pre>',
+            '<b>De-Index Multiple Documents (Response)</b><pre>%s</pre>',
             print_r($response, true)
           );
       } else {
         foreach ($response as $keyIndex => $thisResponse) {
           echo
             sprintf (
-              '<b>Delete Single Document #%s (Requested Data)</b><pre>%s</pre>',
+              '<b>De-Index Single Document #%s (Requested Data)</b><pre>%s</pre>',
               $keyIndex + 1,
               print_r($data['Single'][$keyIndex], true)
             ),
 
             sprintf (
-              '<b>Delete Single Document #%s (Response)</b><pre>%s</pre>',
+              '<b>De-Index Single Document #%s (Response)</b><pre>%s</pre>',
               $keyIndex + 1,
               print_r($thisResponse, true)
             );
