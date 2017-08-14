@@ -70,6 +70,38 @@ abstract class AbstractSdk
   abstract protected function _GetConfigurationSdkService();
 
   /**
+   * Returns the "Accept" header.
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetAcceptHeader()
+  {
+    return sprintf (
+      $this->_configuration['Private']['Service']['HeaderList']['Accept'],
+      (int) $this->_configuration['Public']['Service']['Version'],
+      strtolower($this->_configuration['Public']['Service']['Format'])
+    );
+  }
+
+  /**
+   * Returns the "Accept-Language" header.
+   *
+   * @return  string
+   *
+   * @since   1.0.0-dev
+   */
+  private function _GetAcceptLanguageHeader()
+  {
+    $language = explode('-', $this->_configuration['Public']['Service']['Language']);
+
+    return sprintf (
+      '%s-%s', strtolower($language[0]), strtoupper($language[1])
+    );
+  }
+
+  /**
    * Returns the auth interface.
    *
    * @return  AuthInterface
@@ -197,24 +229,6 @@ abstract class AbstractSdk
         SdkException::SDK_GET_CLIENT_INTERFACE_FAILURE, $exception
       );
     }
-  }
-
-  private function _GetAcceptHeader()
-  {
-    return sprintf (
-      $this->_configuration['Private']['Service']['HeaderList']['Accept'],
-      (int) $this->_configuration['Public']['Service']['Version'],
-      strtolower($this->_configuration['Public']['Service']['Format'])
-    );
-  }
-
-  private function _GetAcceptLanguageHeader()
-  {
-    $language = explode('-', $this->_configuration['Public']['Service']['Language']);
-
-    return sprintf (
-      '%s-%s', strtolower($language[0]), strtoupper($language[1])
-    );
   }
 
   /**
