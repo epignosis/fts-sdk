@@ -12,30 +12,41 @@ $data = [
 
       /**
        * @default       -
-       * @description   The course identifier.
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
-       * @var           int
+       * @var           array
        */
-      'CourseId' => 1,
+      'Id' => [
 
-      /**
-       * @default       null
-       * @description   The lesson identifier.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           null|int
-       */
-      'LessonId' => 2,
+        /**
+         * @default       -
+         * @description   The course identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Course' => 1,
 
-      /**
-       * @default       -
-       * @description   The unit identifier.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           int
-       */
-      'UnitId' => 3
+        /**
+         * @default       null
+         * @description   The lesson identifier.
+         * @required      false
+         * @since         1.0.0-dev
+         * @var           null|int
+         */
+        'Lesson' => 2,
+
+        /**
+         * @default       -
+         * @description   The unit identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Unit' => 3
+
+      ]
 
     ],
 
@@ -47,30 +58,41 @@ $data = [
 
       /**
        * @default       -
-       * @description   The course identifier.
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
-       * @var           int
+       * @var           array
        */
-      'CourseId' => 4,
+      'Id' => [
 
-      /**
-       * @default       null
-       * @description   The lesson identifier.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           null|int
-       */
-      'LessonId' => null,
+        /**
+         * @default       -
+         * @description   The course identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Course' => 4,
 
-      /**
-       * @default       -
-       * @description   The unit identifier.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           int
-       */
-      'UnitId' => 6
+        /**
+         * @default       null
+         * @description   The lesson identifier.
+         * @required      false
+         * @since         1.0.0-dev
+         * @var           null|int
+         */
+        'Lesson' => null,
+
+        /**
+         * @default       -
+         * @description   The unit identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Unit' => 6
+
+      ]
 
     ],
 
@@ -82,30 +104,41 @@ $data = [
 
       /**
        * @default       -
-       * @description   The course identifier.
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
-       * @var           int
+       * @var           array
        */
-      'CourseId' => 1,
+      'Id' => [
 
-      /**
-       * @default       null
-       * @description   The lesson identifier.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           null|int
-       */
-      'LessonId' => 1,
+        /**
+         * @default       -
+         * @description   The course identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Course' => 1,
 
-      /**
-       * @default       -
-       * @description   The unit identifier.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           int
-       */
-      'UnitId' => 1
+        /**
+         * @default       null
+         * @description   The lesson identifier.
+         * @required      false
+         * @since         1.0.0-dev
+         * @var           null|int
+         */
+        'Lesson' => 1,
+
+        /**
+         * @default       -
+         * @description   The unit identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Unit' => 1
+
+      ]
 
     ]
 
@@ -121,30 +154,41 @@ $data = [
 
       /**
        * @default       -
-       * @description   The course identifier.
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
-       * @var           int
+       * @var           array
        */
-      'CourseId' => 65536,
+      'Id' => [
 
-      /**
-       * @default       null
-       * @description   The lesson identifier.
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           null|int
-       */
-      'LessonId' => 4096,
+        /**
+         * @default       -
+         * @description   The course identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Course' => 65536,
 
-      /**
-       * @default       -
-       * @description   The unit identifier.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           int
-       */
-      'UnitId' => 1024
+        /**
+         * @default       null
+         * @description   The lesson identifier.
+         * @required      false
+         * @since         1.0.0-dev
+         * @var           null|int
+         */
+        'Lesson' => 4096,
+
+        /**
+         * @default       -
+         * @description   The unit identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Unit' => 1024
+
+      ]
 
     ],
 
@@ -156,21 +200,32 @@ $data = [
 
       /**
        * @default       -
-       * @description   The course identifier.
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
-       * @var           int
+       * @var           array
        */
-      'CourseId' => 52,
+      'Id' => [
 
-      /**
-       * @default       -
-       * @description   The unit identifier.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           int
-       */
-      'UnitId' => 666
+        /**
+         * @default       -
+         * @description   The course identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Course' => 52,
+
+        /**
+         * @default       -
+         * @description   The unit identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Unit' => 666
+
+      ]
 
     ],
 
@@ -182,21 +237,32 @@ $data = [
 
       /**
        * @default       -
-       * @description   The course identifier.
+       * @description   The document's identifiers.
        * @required      true
        * @since         1.0.0-dev
-       * @var           int
+       * @var           array
        */
-      'CourseId' => 1,
+      'Id' => [
 
-      /**
-       * @default       -
-       * @description   The unit identifier.
-       * @required      true
-       * @since         1.0.0-dev
-       * @var           int
-       */
-      'UnitId' => 1
+        /**
+         * @default       -
+         * @description   The course identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Course' => 1,
+
+        /**
+         * @default       -
+         * @description   The unit identifier.
+         * @required      true
+         * @since         1.0.0-dev
+         * @var           int
+         */
+        'Unit' => 1
+
+      ]
 
     ]
 
