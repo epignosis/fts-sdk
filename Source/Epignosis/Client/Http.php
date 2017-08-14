@@ -51,7 +51,7 @@ class Http implements ClientInterface
         $query[] = $this->_ArrayToUrl($value, $key);
       } else {
         if ($prefix) {
-          $query[] = sprintf('%s.%s=%s', $prefix, $key, rawurlencode($value));
+          $query[] = sprintf('%s[%s]=%s', $prefix, $key, rawurlencode($value));
         } else {
           $query[] = sprintf('%s=%s', $key, rawurlencode($value));
         }
@@ -327,6 +327,27 @@ class Http implements ClientInterface
    */
   public function Get(array $configuration, array $data = [])
   {
-    return [];
+    $http = $this->_GetHttp();
+
+    $this->_SetOptionList (
+      $http,
+      [
+        \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout.Connect'],
+        \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
+        \CURLOPT_RETURNTRANSFER => true,
+        \CURLOPT_TIMEOUT => $this->_configuration['Timeout.Execute'],
+        \CURLOPT_URL => sprintf (
+          '%s?%s',
+          $configuration['HeaderList']['FTS-ENDPOINT'],
+          $this->_ArrayToUrl($data)
+        )
+      ]
+    );
+
+    $response = $this->_Execute($http);
+
+    curl_close($http);
+
+    return $response;
   }
 }
