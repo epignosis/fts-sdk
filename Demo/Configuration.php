@@ -12,6 +12,11 @@ $configuration = [
         'Write' => null
       ]
     ]
+  ],
+  'Service' => [
+    'Format' => 'JSON',
+    'Language' => 'en-US',
+    'Version' => '1'
   ]
 ];
 

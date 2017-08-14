@@ -41,10 +41,8 @@ class PermissionPolicy extends AbstractSdk
     return [
       'Sdk' => [
         'Client' => [
-          'Timeout' => [
-            'Connect' => 15,
-            'Execute' => 15
-          ]
+          'Timeout.Connect' => 15,
+          'Timeout.Execute' => 15
         ],
         'Version' => self::SDK_VERSION
       ],
@@ -63,8 +61,8 @@ class PermissionPolicy extends AbstractSdk
           'Single' => 'http://127.0.0.1/permission-policy'
         ],
         'HeaderList' => [
-          'Accept' => 'application/vnd.epignosis.v1+json',
-          'Accept-Language' => 'en-US'
+          'Accept' => 'application/vnd.epignosis.v%s+%s',
+          'Accept-Language' => '%s'
         ]
       ]
     ];
