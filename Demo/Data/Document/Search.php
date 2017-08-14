@@ -53,8 +53,24 @@ $data = [
 
     ],
 
+    /**
+     * @default       []
+     * @description   The query data.
+     * @required      false
+     * @since         1.0.0-dev
+     * @var           array
+     */
     'Query' => [
+
+      /**
+       * @default       null
+       * @description   The text to search for documents that match.
+       * @required      false
+       * @since         1.0.0-dev
+       * @var           null|string
+       */
       'Text' => 'eFrontPro'
+
     ],
 
     /**
