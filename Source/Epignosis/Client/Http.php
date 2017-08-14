@@ -152,14 +152,12 @@ class Http implements ClientInterface
    */
   private function _SetOptionList($http, array $optionList)
   {
-    foreach ($optionList as $key => $value) {
-      if (false == curl_setopt($http, $key, $value)) {
-        throw new HttpClientException (
-          HttpClientException::CLIENT_HTTP_SET_OPTION_FAILURE,
-          null,
-          ['Option' => ['Key' => $key, 'Value' => $value]]
-        );
-      }
+    if (false == curl_setopt_array($http, $optionList)) {
+      throw new HttpClientException (
+        HttpClientException::CLIENT_HTTP_SET_OPTION_FAILURE,
+        null,
+        ['OptionList' => $optionList]
+      );
     }
 
     return $this;
@@ -256,7 +254,26 @@ class Http implements ClientInterface
    */
   public function Delete(array $configuration, array $data = [])
   {
-    return [];
+    $http = $this->_GetHttp();
+
+    $this->_SetOptionList (
+      $http,
+      [
+        \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout']['Connect'],
+        \CURLOPT_CUSTOMREQUEST => 'DELETE',
+        \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
+        \CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
+        \CURLOPT_RETURNTRANSFER => 1,
+        \CURLOPT_TIMEOUT => $this->_configuration['Timeout']['Execute'],
+        \CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT']
+      ]
+    );
+
+    $response = $this->_Execute($http);
+
+    curl_close($http);
+
+    return $response;
   }
 
   /**
