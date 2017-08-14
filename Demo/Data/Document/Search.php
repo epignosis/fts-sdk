@@ -9,26 +9,6 @@ $data = [
   [
 
     /**
-     * @default       7
-     * @description   Determines, in which fields should search for the requested query
-     *                data. The default behavior, is to search in any field which is
-     *                related to the content. Available options are:
-     *
-     *                1: Title
-     *                2: File Content
-     *                3: Text Content
-     *                4: Title        + File Content
-     *                5: Title        + Text Content
-     *                6: File Content + Text Content
-     *                7: Title        + File Content + Text Content
-     *
-     * @required      false
-     * @since         1.0.0-dev
-     * @var           int
-     */
-    'Field' => 7,
-
-    /**
      * @default       []
      * @description   Pagination information such as the limit and the offset of the
      *                returned result set.
@@ -61,6 +41,28 @@ $data = [
 
     /**
      * @default       []
+     * @description   The permission policy of the search.
+     * @required      false
+     * @since         1.0.0-dev
+     * @var           array
+     */
+    'PermissionPolicy' => [
+
+      /**
+       * @default       null
+       * @description   The permission policy identifier. Could be the internal user
+       *                identifier on the LMS.
+       *
+       * @required      false
+       * @since         1.0.0-dev
+       * @var           null|int
+       */
+      'Id' => null
+
+    ],
+
+    /**
+     * @default       []
      * @description   The query data.
      * @required      false
      * @since         1.0.0-dev
@@ -80,25 +82,18 @@ $data = [
     ],
 
     /**
-     * @default       []
-     * @description   The permission policy of the search.
+     * @default       All
+     * @description   Determines, in which fields should search for the requested query
+     *                data. The default behavior, is to search in any field which is
+     *                related to the content. Available options are "All", "FileContent",
+     *                "TagList", "TextContent" and "Title".
+     *
      * @required      false
      * @since         1.0.0-dev
      * @var           array
      */
-    'PermissionPolicy' => [
-
-      /**
-       * @default       null
-       * @description   The permission policy identifier. Could be the internal user
-       *                identifier on the LMS.
-       *
-       * @required      false
-       * @since         1.0.0-dev
-       * @var           null|int
-       */
-      'Id' => null
-
+    'Source' => [
+      'All'
     ]
 
   ]
