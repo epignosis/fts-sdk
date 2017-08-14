@@ -152,15 +152,7 @@ abstract class AbstractSdk
       return rtrim($serviceConfiguration['BaseEndPoint']['Multiple'], '/');
     }
 
-    $endPoint = rtrim($serviceConfiguration['BaseEndPoint']['Single'], '/');
-
-    foreach ((array) $serviceConfiguration['ActionList'][$action]['Path'] as $parameter) {
-      if (isset($data[$parameter])) {
-        $endPoint .= sprintf('/%s', $data[$parameter]);
-      }
-    }
-
-    return $endPoint;
+    return rtrim($serviceConfiguration['BaseEndPoint']['Single'], '/');
   }
 
   /**

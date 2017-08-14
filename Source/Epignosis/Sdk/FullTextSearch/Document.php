@@ -55,7 +55,6 @@ class Document extends AbstractSdk
         'ActionList' => [
           'DeIndex' => [
             'OperationType' => 'Write',
-            'Path' => ['Id']
           ],
           'Index' => [
             'OperationType' => 'Write'
