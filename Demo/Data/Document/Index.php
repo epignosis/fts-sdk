@@ -350,15 +350,6 @@ $data = [
         'Course' => 52,
 
         /**
-         * @default       null
-         * @description   The lesson identifier.
-         * @required      false
-         * @since         1.0.0-dev
-         * @var           null|int
-         */
-        'Lesson' => null,
-
-        /**
          * @default       -
          * @description   The unit identifier.
          * @required      true
