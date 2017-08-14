@@ -9,18 +9,24 @@ $data = [
   [
 
     /**
-     * @default       []
+     * @default       7
      * @description   Determines, in which fields should search for the requested query
-     *                data. The default behavior, is to search in any content related
-     *                field. Available fields are "File", "Text" and "Title". If only
-     *                particular fields must be excluded, one, can define their type and
-     *                set them to false.
+     *                data. The default behavior, is to search in any field which is
+     *                related to the content. Available options are:
+     *
+     *                1: Title
+     *                2: File Content
+     *                3: Text Content
+     *                4: Title        + File Content
+     *                5: Title        + Text Content
+     *                6: File Content + Text Content
+     *                7: Title        + File Content + Text Content
      *
      * @required      false
      * @since         1.0.0-dev
-     * @var           array
+     * @var           int
      */
-    'Field' => ['File' => true, 'Text' => true, 'Title' => true],
+    'Field' => 7,
 
     /**
      * @default       []
