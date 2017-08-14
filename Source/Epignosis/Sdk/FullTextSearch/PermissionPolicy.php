@@ -61,8 +61,7 @@ class PermissionPolicy extends AbstractSdk
           'Single' => 'http://127.0.0.1/permission-policy'
         ],
         'HeaderList' => [
-          'Accept' => 'application/vnd.epignosis.v%s+%s',
-          'Accept-Language' => '%s'
+          'Accept' => 'application/vnd.epignosis.v%s+%s'
         ]
       ]
     ];

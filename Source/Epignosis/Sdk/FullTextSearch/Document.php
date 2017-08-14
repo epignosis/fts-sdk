@@ -66,8 +66,7 @@ class Document extends AbstractSdk
           'Single' => 'http://127.0.0.1/document'
         ],
         'HeaderList' => [
-          'Accept' => 'application/vnd.epignosis.v%s+%s',
-          'Accept-Language' => '%s'
+          'Accept' => 'application/vnd.epignosis.v%s+%s'
         ]
       ]
     ];

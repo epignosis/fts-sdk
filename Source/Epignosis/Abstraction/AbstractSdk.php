@@ -199,6 +199,24 @@ abstract class AbstractSdk
     }
   }
 
+  private function _GetAcceptHeader()
+  {
+    return sprintf (
+      $this->_configuration['Private']['Service']['HeaderList']['Accept'],
+      (int) $this->_configuration['Public']['Service']['Version'],
+      strtolower($this->_configuration['Public']['Service']['Format'])
+    );
+  }
+
+  private function _GetAcceptLanguageHeader()
+  {
+    $language = explode('-', $this->_configuration['Public']['Service']['Language']);
+
+    return sprintf (
+      '%s-%s', strtolower($language[0]), strtoupper($language[1])
+    );
+  }
+
   /**
    * Returns the configuration of the requested service action.
    *
@@ -220,11 +238,10 @@ abstract class AbstractSdk
     array $data,
           $multiple = false)
   {
-    $serviceConfiguration = $this->_configuration['Private']['Service'];
     $configuration = [
       'HeaderList' => [
-        'Accept' => $serviceConfiguration['HeaderList']['Accept'],
-        'Accept-Language' => $serviceConfiguration['HeaderList']['Accept-Language'],
+        'Accept' => $this->_GetAcceptHeader(),
+        'Accept-Language' => $this->_GetAcceptLanguageHeader(),
 
         'FTS-ENDPOINT' => $this->_GetServiceActionEndPoint (
           $action, $data, $multiple
@@ -237,7 +254,7 @@ abstract class AbstractSdk
     if ($this->_ServiceActionRequiresAuth($action)) {
       list($headerName, $headerValue) = $this->_GetAuthInterface()->GetSignedRequest (
         (array) $this->_configuration['Public']['Auth'],
-        $serviceConfiguration['ActionList'][$action],
+        $this->_configuration['Private']['Service']['ActionList'][$action],
         ['Data' => $data, 'HeaderList' => $configuration['HeaderList']]
       );
 
