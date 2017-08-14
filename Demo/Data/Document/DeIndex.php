@@ -17,7 +17,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Course' => 1,
+      'CourseId' => 1,
 
       /**
        * @default       null
@@ -26,7 +26,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           null|int
        */
-      'Lesson' => 2,
+      'LessonId' => 2,
 
       /**
        * @default       -
@@ -35,7 +35,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Unit' => 3
+      'UnitId' => 3
 
     ],
 
@@ -52,7 +52,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Course' => 4,
+      'CourseId' => 4,
 
       /**
        * @default       null
@@ -61,7 +61,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           null|int
        */
-      'Lesson' => null,
+      'LessonId' => null,
 
       /**
        * @default       -
@@ -70,7 +70,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Unit' => 6
+      'UnitId' => 6
 
     ],
 
@@ -87,7 +87,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Course' => 1,
+      'CourseId' => 1,
 
       /**
        * @default       null
@@ -96,7 +96,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           null|int
        */
-      'Lesson' => 1,
+      'LessonId' => 1,
 
       /**
        * @default       -
@@ -105,7 +105,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Unit' => 1
+      'UnitId' => 1
 
     ]
 
@@ -126,7 +126,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Course' => 65536,
+      'CourseId' => 65536,
 
       /**
        * @default       null
@@ -135,7 +135,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           null|int
        */
-      'Lesson' => 4096,
+      'LessonId' => 4096,
 
       /**
        * @default       -
@@ -144,7 +144,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Unit' => 1024
+      'UnitId' => 1024
 
     ],
 
@@ -161,7 +161,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Course' => 52,
+      'CourseId' => 52,
 
       /**
        * @default       -
@@ -170,7 +170,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Unit' => 666
+      'UnitId' => 666
 
     ],
 
@@ -187,7 +187,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Course' => 1,
+      'CourseId' => 1,
 
       /**
        * @default       -
@@ -196,7 +196,7 @@ $data = [
        * @since         1.0.0-dev
        * @var           int
        */
-      'Unit' => 1
+      'UnitId' => 1
 
     ]
 
