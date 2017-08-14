@@ -221,9 +221,9 @@ class Http implements ClientInterface
       [
         \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout']['Connect'],
         \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
-        \CURLOPT_POST => 1,
+        \CURLOPT_POST => true,
         \CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
-        \CURLOPT_RETURNTRANSFER => 1,
+        \CURLOPT_RETURNTRANSFER => true,
         \CURLOPT_TIMEOUT => $this->_configuration['Timeout']['Execute'],
         \CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT']
       ]
@@ -262,8 +262,8 @@ class Http implements ClientInterface
         \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout']['Connect'],
         \CURLOPT_CUSTOMREQUEST => 'DELETE',
         \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
-        \CURLOPT_POSTFIELDS => ['Data' => json_encode($data)],
-        \CURLOPT_RETURNTRANSFER => 1,
+        \CURLOPT_POSTFIELDS => json_encode($data),
+        \CURLOPT_RETURNTRANSFER => true,
         \CURLOPT_TIMEOUT => $this->_configuration['Timeout']['Execute'],
         \CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT']
       ]
