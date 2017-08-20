@@ -13,6 +13,9 @@ $configuration = [
       ]
     ]
   ],
+  'Mode' => [
+    'Production' => false
+  ],
   'Service' => [
     'Format' => 'JSON',
     'Language' => 'en-US',
@@ -20,10 +23,11 @@ $configuration = [
   ]
 ];
 
-
 /**
  * Overrides
  */
-require
-  rtrim(dirname(dirname(__DIR__)), '\/') . \DIRECTORY_SEPARATOR .
-  'FTS_SDK_CONFIG.php';
+if (!$configuration['Mode']['Production']) {
+  require
+    rtrim(dirname(dirname(__DIR__)), '\/') . \DIRECTORY_SEPARATOR .
+    'FTS_SDK_CONFIG.php';
+}
