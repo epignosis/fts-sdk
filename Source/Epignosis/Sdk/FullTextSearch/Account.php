@@ -24,7 +24,7 @@ class Account extends AbstractSdk
    * @since   1.0.0-dev
    * @var     string
    */
-  const SDK_VERSION = '1.0.0-dev';
+  const SDK_VERSION = '1.0.1-dev';
 
 
   /**
