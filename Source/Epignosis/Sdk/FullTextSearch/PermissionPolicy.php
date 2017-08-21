@@ -58,6 +58,7 @@ class PermissionPolicy extends AbstractSdk
             'OperationType' => 'Write',
           ],
           'Push' => [
+            'EndPoint' => ['Id'],
             'OperationType' => 'Write'
           ]
         ],
@@ -115,7 +116,8 @@ class PermissionPolicy extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Create (
-        $this->_GetConfigurationServiceAction('Push', $data, false), $data
+        $this->_GetConfigurationServiceAction('Push', $data, false),
+        ['Policy' => $data['Policy']]
       );
     } catch (\Exception $exception) {
       throw new SdkFtsPermissionPolicyException (
