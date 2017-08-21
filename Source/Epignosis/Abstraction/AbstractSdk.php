@@ -197,8 +197,7 @@ abstract class AbstractSdk
 
         foreach ($value as $_value) {
           if (!empty($data[$key][$_value])) {
-            $actionEndPoint .=
-              strtoupper(substr($_value, 0, 1)) . $data[$key][$_value] . '-';
+            $actionEndPoint .= $data[$key][$_value] . '-';
           }
         }
 
