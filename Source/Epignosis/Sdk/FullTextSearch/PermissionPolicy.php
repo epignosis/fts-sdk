@@ -54,6 +54,7 @@ class PermissionPolicy extends AbstractSdk
         ],
         'ActionList' => [
           'Delete' => [
+            'EndPoint' => ['Id'],
             'OperationType' => 'Write',
           ],
           'Push' => [
