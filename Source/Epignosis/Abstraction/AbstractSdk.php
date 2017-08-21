@@ -197,7 +197,9 @@ abstract class AbstractSdk
           $actionEndPoint .= '/';
 
           foreach ($value as $_value) {
-            $actionEndPoint .= $data[$key][$_value] . '-';
+            if (!empty($data[$key][$_value])) {
+              $actionEndPoint .= $data[$key][$_value] . '-';
+            }
           }
 
           $actionEndPoint = rtrim($actionEndPoint, '-');
