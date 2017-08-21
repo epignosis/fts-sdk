@@ -280,7 +280,11 @@ abstract class AbstractSdk
           $action, $data, $multiple
         ),
 
-        'FTS-TIMESTAMP' => time()
+        'FTS-TIMESTAMP' => time(),
+
+        'User-Agent' => sprintf (
+          'FTS/PHP_SDK/v%s', $this->_configuration['Private']['Sdk']['Version']
+        ),
       ]
     ];
 
