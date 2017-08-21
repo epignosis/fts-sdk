@@ -193,10 +193,16 @@ abstract class AbstractSdk
 
     foreach ($actionEndPointParameterList as $key => $value) {
       if (is_array($value)) {
-        foreach ($value as $_value) {
-          if (!empty($data[$key][$_value])) {
-            $actionEndPoint .= '/' . $data[$key][$_value];
+        if ('Id' == $key) {
+          $actionEndPoint .= '/';
+
+          foreach ($value as $_value) {
+            $actionEndPoint .= $data[$key][$_value] . '-';
           }
+
+          $actionEndPoint = rtrim($actionEndPoint, '-');
+
+          echo $actionEndPoint;exit;
         }
       } else {
         $actionEndPoint .= '/' . $data[$value];
