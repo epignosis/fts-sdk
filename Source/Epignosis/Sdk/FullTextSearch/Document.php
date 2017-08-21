@@ -92,9 +92,14 @@ class Document extends AbstractSdk
   public function DeIndex(array $data, $multiple = false)
   {
     try {
-      return $this->_GetClientInterface()->Delete (
-        $this->_GetConfigurationServiceAction('DeIndex', $data, $multiple)
-      );
+      return
+        $multiple
+          ? $this->_GetClientInterface()->Delete (
+              $this->_GetConfigurationServiceAction('DeIndex', $data, $multiple), $data
+            )
+          : $this->_GetClientInterface()->Delete (
+              $this->_GetConfigurationServiceAction('DeIndex', $data, $multiple)
+            );
     } catch (\Exception $exception) {
       throw new SdkFtsDocumentException (
         SdkFtsDocumentException::SDK_FTS_DOCUMENT_DEINDEX_FAILURE, $exception
