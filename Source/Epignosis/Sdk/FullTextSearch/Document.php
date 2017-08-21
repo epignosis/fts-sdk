@@ -93,7 +93,7 @@ class Document extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Delete (
-        $this->_GetConfigurationServiceAction('DeIndex', $data, $multiple), $data
+        $this->_GetConfigurationServiceAction('DeIndex', $data, $multiple)
       );
     } catch (\Exception $exception) {
       throw new SdkFtsDocumentException (
