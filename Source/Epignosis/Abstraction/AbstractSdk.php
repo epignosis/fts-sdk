@@ -181,18 +181,26 @@ abstract class AbstractSdk
     $serviceConfiguration = $this->_configuration['Private']['Service'];
 
     if ($multiplicity) {
-      $baseEndPoint = rtrim($serviceConfiguration['BaseEndPoint']['Multiple'], '/');
-    } else {
-      $baseEndPoint = rtrim($serviceConfiguration['BaseEndPoint']['Single'], '/');
+      return rtrim($serviceConfiguration['BaseEndPoint']['Multiple'], '/');
     }
+
+    $baseEndPoint = rtrim($serviceConfiguration['BaseEndPoint']['Single'], '/');
 
     $actionEndPointParameterList =
       $this->_configuration['Private']['Service']['ActionList'][$action]['EndPoint'];
 
     $actionEndPoint = null;
 
-    foreach ($actionEndPointParameterList as $parameterName) {
-      $actionEndPoint .= '/' . $data[$parameterName];
+    foreach ($actionEndPointParameterList as $key => $value) {
+      if (is_array($value)) {
+        foreach ($value as $_value) {
+          if (!empty($data[$key][$_value])) {
+            $actionEndPoint .= '/' . $data[$key][$_value];
+          }
+        }
+      } else {
+        $actionEndPoint .= '/' . $data[$value];
+      }
     }
 
     return null == $actionEndPoint ? $baseEndPoint : $baseEndPoint . $actionEndPoint;

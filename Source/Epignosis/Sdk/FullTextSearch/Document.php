@@ -52,6 +52,7 @@ class Document extends AbstractSdk
         ],
         'ActionList' => [
           'DeIndex' => [
+            'EndPoint' => ['Id' => ['Course', 'Lesson', 'Unit']],
             'OperationType' => 'Write',
           ],
           'Index' => [
