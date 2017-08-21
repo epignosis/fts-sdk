@@ -199,6 +199,8 @@ class Signature implements AuthInterface
       $randomToken = openssl_random_pseudo_bytes(16, $strong);
     } while (!$randomToken || !$strong);
 
+    file_put_contents('C:/apache/Signature.log', serialize($this->_GetSortedData($data)) . "\n");
+
     $signature = sprintf (
       '%s;%s;%s',
       $authInformation['Key']['Public'][$operationInformation['OperationType']],

@@ -192,16 +192,19 @@ abstract class AbstractSdk
     $actionEndPoint = null;
 
     foreach ($actionEndPointParameterList as $key => $value) {
-      if ('Id' == $key) {
+      if ('Id' === $key) {
         $actionEndPoint .= '/';
 
         foreach ($value as $_value) {
           if (!empty($data[$key][$_value])) {
-            $actionEndPoint .= $data[$key][$_value] . '-';
+            $actionEndPoint .=
+              strtoupper(substr($_value, 0, 1)) . $data[$key][$_value] . '-';
           }
         }
 
         $actionEndPoint = rtrim($actionEndPoint, '-');
+
+        echo $actionEndPoint;exit;
       } else {
         $actionEndPoint .= '/' . $data[$value];
       }
@@ -280,15 +283,15 @@ abstract class AbstractSdk
         'Accept' => $this->_GetAcceptHeader(),
         'Accept-Language' => $this->_GetAcceptLanguageHeader(),
 
+        'FTS-AGENT' => sprintf (
+          'FTS_PHP_SDK/v%s', $this->_configuration['Private']['Sdk']['Version']
+        ),
+
         'FTS-ENDPOINT' => $this->_GetServiceActionEndPoint (
           $action, $data, $multiple
         ),
 
-        'FTS-TIMESTAMP' => time(),
-
-        'User-Agent' => sprintf (
-          'FTS_PHP_SDK/v%s', $this->_configuration['Private']['Sdk']['Version']
-        ),
+        'FTS-TIMESTAMP' => time()
       ]
     ];
 
