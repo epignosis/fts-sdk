@@ -1,4 +1,13 @@
 ------------------------------------------------------------------------------------------
+  v1.1.0-dev                                                                [2017-08-21]
+------------------------------------------------------------------------------------------
+  [Add]    (xdev) Add possibility to delete a permission policy.
+  [Change] (xdev) Change permission policy push endpoint.
+  [Change] (xdev) Change document de-index endpoint.
+  [Change] (xdev) Update SDK version from 1.0.1-dev to 1.1.0-dev.
+
+
+------------------------------------------------------------------------------------------
   v1.0.1-dev                                                                [2017-08-20]
 ------------------------------------------------------------------------------------------
   [Add]    (xdev) Add mode (production, etc).
