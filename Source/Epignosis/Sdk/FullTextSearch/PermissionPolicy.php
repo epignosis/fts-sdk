@@ -25,7 +25,7 @@ class PermissionPolicy extends AbstractSdk
    * @since   1.0.0-dev
    * @var     string
    */
-  const SDK_VERSION = '1.1.0-dev';
+  const SDK_VERSION = '1.1.1-dev';
 
 
   /**
