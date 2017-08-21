@@ -88,7 +88,7 @@ class PermissionPolicy extends AbstractSdk
   {
     try {
       return $this->_GetClientInterface()->Delete (
-        $this->_GetConfigurationServiceAction('Delete', $data, false), $data
+        $this->_GetConfigurationServiceAction('Delete', $data, false)
       );
     } catch (\Exception $exception) {
       throw new SdkFtsPermissionPolicyException (

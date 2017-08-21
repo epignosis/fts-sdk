@@ -289,18 +289,20 @@ class Http implements ClientInterface
   {
     $http = $this->_GetHttp();
 
-    $this->_SetOptionList (
-      $http,
-      [
-        \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout.Connect'],
-        \CURLOPT_CUSTOMREQUEST => 'DELETE',
-        \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
-        \CURLOPT_POSTFIELDS => json_encode($data),
-        \CURLOPT_RETURNTRANSFER => true,
-        \CURLOPT_TIMEOUT => $this->_configuration['Timeout.Execute'],
-        \CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT']
-      ]
-    );
+    $optionList = [
+      \CURLOPT_CONNECTTIMEOUT => $this->_configuration['Timeout.Connect'],
+      \CURLOPT_CUSTOMREQUEST => 'DELETE',
+      \CURLOPT_HTTPHEADER => $this->_GetHttpHeaderList($configuration['HeaderList']),
+      \CURLOPT_RETURNTRANSFER => true,
+      \CURLOPT_TIMEOUT => $this->_configuration['Timeout.Execute'],
+      \CURLOPT_URL => $configuration['HeaderList']['FTS-ENDPOINT']
+    ];
+
+    if (!empty($data)) {
+      $optionList[\CURLOPT_POSTFIELDS] = json_encode($data);
+    }
+
+    $this->_SetOptionList($http, $optionList);
 
     $response = $this->_Execute($http);
 
