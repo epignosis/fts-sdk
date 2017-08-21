@@ -53,6 +53,9 @@ class PermissionPolicy extends AbstractSdk
           'Status' => true
         ],
         'ActionList' => [
+          'Delete' => [
+            'OperationType' => 'Write',
+          ],
           'Push' => [
             'OperationType' => 'Write'
           ]
@@ -65,6 +68,33 @@ class PermissionPolicy extends AbstractSdk
         ]
       ]
     ];
+  }
+
+  /**
+   * Deletes the requested permission policy.
+   *
+   * @param   array $data
+   *            - The data of the permission policy to be deleted. (Required)
+   *
+   * @return  array
+   *
+   * @since   1.0.0-dev
+   *
+   * @throws  SdkFtsPermissionPolicyException
+   *            - In case that is not possible to delete the requested permission policy.
+   */
+  public function Delete(array $data)
+  {
+    try {
+      return $this->_GetClientInterface()->Delete (
+        $this->_GetConfigurationServiceAction('Delete', $data, false), $data
+      );
+    } catch (\Exception $exception) {
+      throw new SdkFtsPermissionPolicyException (
+        SdkFtsPermissionPolicyException::SDK_FTS_PERMISSION_POLICY_DELETE_FAILURE,
+        $exception
+      );
+    }
   }
 
   /**

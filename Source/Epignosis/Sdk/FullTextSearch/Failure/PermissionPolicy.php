@@ -18,12 +18,20 @@ use Epignosis\Failure\Sdk;
 class PermissionPolicy extends Sdk
 {
   /**
+   * Used in case that is not possible to delete the requested permission policy.
+   *
+   * @since   1.0.0-dev
+   * @var     int
+   */
+  const SDK_FTS_PERMISSION_POLICY_DELETE_FAILURE = 7;
+
+  /**
    * Used in case that is not possible to push the requested permission policy.
    *
    * @since   1.0.0-dev
    * @var     int
    */
-  const SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE = 7;
+  const SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE = 8;
 
 
   /**
@@ -47,6 +55,9 @@ class PermissionPolicy extends Sdk
          array $additionalFailureInformation = [])
   {
     $this->_timestamp = time();
+
+    self::$_failureMessageList[self::SDK_FTS_PERMISSION_POLICY_DELETE_FAILURE] =
+      'SDK_FTS_PERMISSION_POLICY_DELETE_FAILURE';
 
     self::$_failureMessageList[self::SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE] =
       'SDK_FTS_PERMISSION_POLICY_PUSH_FAILURE';
