@@ -192,18 +192,16 @@ abstract class AbstractSdk
     $actionEndPoint = null;
 
     foreach ($actionEndPointParameterList as $key => $value) {
-      if (is_array($value)) {
-        if ('Id' == $key) {
-          $actionEndPoint .= '/';
+      if ('Id' == $key) {
+        $actionEndPoint .= '/';
 
-          foreach ($value as $_value) {
-            if (!empty($data[$key][$_value])) {
-              $actionEndPoint .= $data[$key][$_value] . '-';
-            }
+        foreach ($value as $_value) {
+          if (!empty($data[$key][$_value])) {
+            $actionEndPoint .= $data[$key][$_value] . '-';
           }
-
-          $actionEndPoint = rtrim($actionEndPoint, '-');
         }
+
+        $actionEndPoint = rtrim($actionEndPoint, '-');
       } else {
         $actionEndPoint .= '/' . $data[$value];
       }
@@ -294,10 +292,21 @@ abstract class AbstractSdk
       ]
     ];
 
+    $actionConfiguration =
+      $this->_configuration['Private']['Service']['ActionList'][$action];
+
+    foreach ($actionConfiguration['EndPoint'] as $key => $value) {
+      if ('Id' === $key) {
+        unset($data[$key]);
+      } else {
+        unset($data[$value]);
+      }
+    }
+
     if ($this->_ServiceActionRequiresAuth($action)) {
       list($headerName, $headerValue) = $this->_GetAuthInterface()->GetSignedRequest (
         (array) $this->_configuration['Public']['Auth'],
-        $this->_configuration['Private']['Service']['ActionList'][$action],
+        $actionConfiguration,
         ['Data' => $data, 'HeaderList' => $configuration['HeaderList']]
       );
 
