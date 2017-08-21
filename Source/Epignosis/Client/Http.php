@@ -302,9 +302,7 @@ class Http implements ClientInterface
       $optionList[\CURLOPT_POSTFIELDS] = json_encode($data);
     }
 
-    $this->_SetOptionList($http, $optionList);
-
-    $response = $this->_Execute($http);
+    $response = $this->_SetOptionList($http, $optionList)->_Execute($http);
 
     curl_close($http);
 
