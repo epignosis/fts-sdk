@@ -201,8 +201,6 @@ abstract class AbstractSdk
           }
 
           $actionEndPoint = rtrim($actionEndPoint, '-');
-
-          echo $actionEndPoint;exit;
         }
       } else {
         $actionEndPoint .= '/' . $data[$value];
