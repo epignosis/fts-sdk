@@ -202,8 +202,6 @@ abstract class AbstractSdk
         }
 
         $actionEndPoint = rtrim($actionEndPoint, '-');
-
-        echo $actionEndPoint;exit;
       } else {
         $actionEndPoint .= '/' . $data[$value];
       }
@@ -297,11 +295,13 @@ abstract class AbstractSdk
     $actionConfiguration =
       $this->_configuration['Private']['Service']['ActionList'][$action];
 
-    foreach ($actionConfiguration['EndPoint'] as $key => $value) {
-      if ('Id' === $key) {
-        unset($data[$key]);
-      } else {
-        unset($data[$value]);
+    if (!$multiple) {
+      foreach ($actionConfiguration['EndPoint'] as $key => $value) {
+        if ('Id' === $key) {
+          unset($data[$key]);
+        } else {
+          unset($data[$value]);
+        }
       }
     }
 
