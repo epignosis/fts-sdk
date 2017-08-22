@@ -22,7 +22,7 @@ $configuration = [
     ],
     'Language' => 'en-US',
     'Storage' => [
-      'FilePath' => null
+      'FilePath' => rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR . 'HyperMedia'
     ],
     'Version' => 1
   ]

@@ -30,22 +30,32 @@ class FullTextSearch
     $filePath = $this->_GetHyperMediaFilePath($configuration);
 
     if (!file_exists($filePath)) {
-      $this->_DownloadHyperMedia($configuration, $filePath);
+      $response = $this->_DownloadHyperMedia($configuration);
+
+      if (false === file_put_contents($filePath, $response)) {
+        throw new \Exception (
+          sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
+        );
+      }
     }
 
     $content = file_get_contents($filePath);
 
     if (false === $content) {
+      unlink($filePath);
+
       throw new \Exception (
-        sprintf('Failed to read the hypermedia file of the service. (%s)', $filePath)
+        sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
       );
     }
 
-    $content = json_decode($content, true);
+    $content = json_decode($content, true)['Data'];
 
     if (null === $content) {
+      unlink($filePath);
+
       throw new \Exception (
-        sprintf('Failed to parse the hypermedia file of the service. (%s)', $filePath)
+        sprintf('Failed to parse the service hypermedia file. (%s)', $filePath)
       );
     }
 
@@ -54,7 +64,7 @@ class FullTextSearch
     return $this;
   }
 
-  private function _DownloadHyperMedia(array $configuration, $filePath)
+  private function _DownloadHyperMedia(array $configuration)
   {
     $response = $this->_RequestOptions (
       $configuration['Service']['BaseEndpoint'], $configuration
@@ -63,16 +73,12 @@ class FullTextSearch
     if (200 != $response['Status'] || isset($response['Body']['Error'])) {
       throw new \Exception (
         sprintf (
-          'Failed to download the hypermedia file of the service. (%s)', $response['Url']
+          'Failed to download the service hypermedia file. (%s)', $response['Url']
         )
       );
     }
 
-    if (false === file_put_contents($filePath, $response)) {
-      throw new \Exception (
-        sprintf('Failed to save the hypermedia file of the service. (%s)', $filePath)
-      );
-    }
+    return $response['Body'];
   }
 
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
@@ -112,7 +118,7 @@ class FullTextSearch
       $storageDirectory = rtrim($configuration['Service']['Storage']['FilePath'], '\/');
     }
 
-    $storageDirectory = rtrim($storageDirectory, '\/');
+    $storageDirectory = rtrim($storageDirectory, '\/') . \DIRECTORY_SEPARATOR;
     $storageDirectory = str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory);
 
     return sprintf (
