@@ -30,21 +30,7 @@ class FullTextSearch
     $filePath = $this->_GetHyperMediaFilePath($configuration);
 
     if (!file_exists($filePath)) {
-      $response = $this->_RequestOptions($configuration);
-
-      if (200 != $response['Status'] || isset($response['Body']['Error'])) {
-        throw new \Exception (
-          sprintf (
-            'Failed to download the service hypermedia file. (%s)', $response['Url']
-          )
-        );
-      }
-
-      if (false === file_put_contents($filePath, $response)) {
-        throw new \Exception (
-          sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
-        );
-      }
+      $this->_DownloadHyperMedia($configuration, $filePath);
     }
 
     $content = file_get_contents($filePath);
@@ -66,6 +52,25 @@ class FullTextSearch
     $this->_hyperMedia = $content;
 
     return $this;
+  }
+
+  private function _DownloadHyperMedia(array $configuration, $filePath)
+  {
+    $response = $this->_RequestOptions($configuration);
+
+    if (200 != $response['Status'] || isset($response['Body']['Error'])) {
+      throw new \Exception (
+        sprintf (
+          'Failed to download the service hypermedia file. (%s)', $response['Url']
+        )
+      );
+    }
+
+    if (false === file_put_contents($filePath, $response)) {
+      throw new \Exception (
+        sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
+      );
+    }
   }
 
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
