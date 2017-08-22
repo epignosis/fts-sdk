@@ -27,7 +27,7 @@ class FullTextSearch
 
   private function _BuildHyperMedia(array $configuration)
   {
-    $storageDirectory = $this->_GetStorageDirectory($configuration);
+    $hyperMediaFilePath = $this->_GetHyperMediaFilePath($configuration);
 
     $hyperMedia = file_get_contents($hyperMediaFilePath);
 
@@ -79,16 +79,23 @@ class FullTextSearch
     return $hyperMediaSection;
   }
 
-  private function _GetStorageDirectory(array $configuration)
+  private function _GetHyperMediaFilePath(array $configuration)
   {
-    $storageDirectory =
-      empty($configuration['Service']['Storage']['FilePath'])
-        ? __DIR__
-        : $configuration['Service']['Storage']['FilePath'];
+    $storageDirectory = __DIR__;
 
-    return
-      rtrim(str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory), '\/') .
-      \DIRECTORY_SEPARATOR;
+    if (!empty($configuration['Service']['Storage']['FilePath'])) {
+      $storageDirectory = rtrim($configuration['Service']['Storage']['FilePath'], '\/');
+    }
+
+    $storageDirectory = rtrim($storageDirectory, '\/');
+    $storageDirectory = str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory);
+
+    return sprintf (
+      '%sv%d.%s',
+      $storageDirectory,
+      (int) $configuration['Service']['Version'],
+      strtolower($configuration['Service']['Format'])
+    );
   }
 
   private function _Request(array $optionList)
