@@ -89,7 +89,7 @@ class FullTextSearch
     return [$configuration, $entity, $action, $data];
   }
 
-  private function _GetHyperMedia(array $configuration, array $path = [])
+  private function _GetHyperMedia(array $path = [])
   {
     if (empty($path)) {
       return $this->_hyperMedia;
@@ -161,8 +161,6 @@ class FullTextSearch
         $responseCode = intval($match[1]);
       }
     }
-
-    print_r(['Body' => $response, 'Status' => $responseCode, 'Url' => $url]);exit;
 
     return ['Body' => $response, 'Status' => $responseCode, 'Url' => $url];
   }
@@ -276,10 +274,9 @@ class FullTextSearch
 
   public function GetAccountCreateStatusList()
   {
-    return $this->_GetHyperMedia (
-      $this->_configuration,
-      ['Account', 'Create', 'Request', 'ParameterList', 'Status', 'List']
-    );
+    return $this->_GetHyperMedia ([
+      'Account', 'Create', 'Request', 'ParameterList', 'Status', 'List'
+    ]);
   }
 
   public function GetConfiguration()
@@ -289,10 +286,9 @@ class FullTextSearch
 
   public function GetDocumentSearchSourceOptionList()
   {
-    return $this->_GetHyperMedia (
-      $this->_configuration,
-      ['Document', 'Search', 'Request', 'ParameterList', 'Source', 'List']
-    );
+    return $this->_GetHyperMedia ([
+      'Document', 'Search', 'Request', 'ParameterList', 'Source', 'List'
+    ]);
   }
 
   public function GetSdkInformation()
@@ -319,22 +315,22 @@ class FullTextSearch
 
   public function GetServiceHyperMedia()
   {
-    return $this->_GetHyperMedia($this->_configuration);
+    return $this->_GetHyperMedia();
   }
 
   public function GetServiceHyperMediaAccount()
   {
-    return $this->_GetHyperMedia($this->_configuration, ['Account']);
+    return $this->_GetHyperMedia(['Account']);
   }
 
   public function GetServiceHyperMediaDocument()
   {
-    return $this->_GetHyperMedia($this->_configuration, ['Document']);
+    return $this->_GetHyperMedia(['Document']);
   }
 
   public function GetServiceHyperMediaPermissionPolicy()
   {
-    return $this->_GetHyperMedia($this->_configuration, ['PermissionPolicy']);
+    return $this->_GetHyperMedia(['PermissionPolicy']);
   }
 
   public function PermissionPolicyDelete(array $data)
