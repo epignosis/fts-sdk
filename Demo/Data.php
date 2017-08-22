@@ -83,7 +83,21 @@ $data = [
     ],
     'Search' => [
       'Single' => [
-
+        [
+          'Pagination' => [
+            'Limit' => 5,
+            'Offset' => 0
+          ],
+          'PermissionPolicy' => [
+            'Id' => null
+          ],
+          'Query' => [
+            'Text' => 'eFrontPro by Epignosis LLC!'
+          ],
+          'Source' => [
+            'All'
+          ]
+        ]
       ]
     ]
   ],
