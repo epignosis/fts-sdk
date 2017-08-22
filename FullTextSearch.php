@@ -66,43 +66,22 @@ class FullTextSearch
   {
     $filePath = $this->_GetHyperMediaFilePath();
 
-    if (!file_exists($filePath)) {
+    $this->_CreateHyperMediaFile($filePath, false);
+
+    $this->_hyperMedia = $this->_ReadHyperMediaFile($filePath);
+
+    return $this;
+  }
+
+  private function _CreateHyperMediaFile($filePath, $force = false)
+  {
+    if ($force || !file_exists($filePath)) {
       if (!$this->_SaveFile($filePath, $this->_DownloadHyperMediaFile())) {
         throw new \Exception (
           sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
         );
       }
     }
-
-    $content = file_get_contents($filePath);
-
-    if (false === $content) {
-      $this->_DeleteFile($filePath);
-
-      throw new \Exception (
-        sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
-      );
-    }
-
-    $dataIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Data'];
-
-    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
-      $content = json_decode($content, true)[$dataIndexKey];
-    } else {
-      // Do nothing ..
-    }
-
-    if (empty($content)) {
-      $this->_DeleteFile($filePath);
-
-      throw new \Exception (
-        sprintf('Failed to parse the service hypermedia file. (%s)', $filePath)
-      );
-    }
-
-    $this->_hyperMedia = $content;
-
-    return $this;
   }
 
   private function _DeleteFile($filePath)
@@ -227,6 +206,37 @@ class FullTextSearch
     }
 
     return null;
+  }
+
+  private function _ReadHyperMediaFile($filePath)
+  {
+    $content = file_get_contents($filePath);
+
+    if (false === $content) {
+      $this->_DeleteFile($filePath);
+
+      throw new \Exception (
+        sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
+      );
+    }
+
+    $dataIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Data'];
+
+    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
+      $content = json_decode($content, true)[$dataIndexKey];
+    } else {
+      // Do nothing ..
+    }
+
+    if (empty($content)) {
+      $this->_DeleteFile($filePath);
+
+      throw new \Exception (
+        sprintf('Failed to parse the service hypermedia file. (%s)', $filePath)
+      );
+    }
+
+    return $content;
   }
 
   private function _Request($url, array $optionList = [])
