@@ -41,9 +41,23 @@ class FullTextSearch
     return [$configuration, $entity, $action, $data];
   }
 
-  private function _GetHyperMedia(array $path = [])
+  private function _GetHyperMedia(array $configuration, array $path = [])
   {
+    $storageDirectory = $this->_GetStorageDirectory($configuration);
+
     return [];
+  }
+
+  private function _GetStorageDirectory(array $configuration)
+  {
+    $storageDirectory =
+      empty($configuration['Service']['Storage']['FilePath'])
+        ? __DIR__
+        : $configuration['Service']['Storage']['FilePath'];
+
+    return
+      rtrim(str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory), '\/') .
+      \DIRECTORY_SEPARATOR;
   }
 
   private function _Request(array $optionList)
@@ -160,9 +174,10 @@ class FullTextSearch
 
   public function GetAccountCreateStatusList()
   {
-    return $this->_GetHyperMedia ([
-      'Account', 'Create', 'Request', 'ParameterList', 'Status', 'List'
-    ]);
+    return $this->_GetHyperMedia (
+      $this->_configuration,
+      ['Account', 'Create', 'Request', 'ParameterList', 'Status', 'List']
+    );
   }
 
   public function GetConfiguration()
@@ -172,9 +187,10 @@ class FullTextSearch
 
   public function GetDocumentSearchSourceOptionList()
   {
-    return $this->_GetHyperMedia ([
-      'Document', 'Search', 'Request', 'ParameterList', 'Source', 'List'
-    ]);
+    return $this->_GetHyperMedia (
+      $this->_configuration,
+      ['Document', 'Search', 'Request', 'ParameterList', 'Source', 'List']
+    );
   }
 
   public function GetError()
@@ -206,22 +222,22 @@ class FullTextSearch
 
   public function GetServiceHyperMedia()
   {
-    return $this->_GetHyperMedia();
+    return $this->_GetHyperMedia($this->_configuration);
   }
 
   public function GetServiceHyperMediaAccount()
   {
-    return $this->_GetHyperMedia(['Account']);
+    return $this->_GetHyperMedia($this->_configuration, ['Account']);
   }
 
   public function GetServiceHyperMediaDocument()
   {
-    return $this->_GetHyperMedia(['Document']);
+    return $this->_GetHyperMedia($this->_configuration, ['Document']);
   }
 
   public function GetServiceHyperMediaPermissionPolicy()
   {
-    return $this->_GetHyperMedia(['PermissionPolicy']);
+    return $this->_GetHyperMedia($this->_configuration, ['PermissionPolicy']);
   }
 
   public function PermissionPolicyDelete(array $data)

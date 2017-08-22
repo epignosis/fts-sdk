@@ -20,6 +20,6 @@ $configuration = [
     'Storage' => [
       'FilePath' => null
     ],
-    'Version' => '1'
+    'Version' => 1
   ]
 ];
