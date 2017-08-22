@@ -4,8 +4,6 @@ class FullTextSearch
 {
   private $_configuration = [];
 
-  private $_error = [];
-
   private $_hyperMedia = [];
 
   private $_sdkInformation = [
@@ -27,6 +25,27 @@ class FullTextSearch
 
   }
 
+  private function _BuildHyperMedia(array $configuration)
+  {
+    $storageDirectory = $this->_GetStorageDirectory($configuration);
+
+    $hyperMedia = file_get_contents($hyperMediaFilePath);
+
+    if (false === $hyperMedia) {
+      throw new \Exception('Failed to fetch the service hypermedia file.');
+    }
+
+    $hyperMedia = json_decode($hyperMedia, true);
+
+    if (null === $hyperMedia) {
+      throw new \Exception('Failed to parse the service hypermedia file.');
+    }
+
+    $this->_hyperMedia = $hyperMedia;
+
+    return $this;
+  }
+
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
   {
     return serialize([$configuration, $entity, $action, $data]);
@@ -43,9 +62,21 @@ class FullTextSearch
 
   private function _GetHyperMedia(array $configuration, array $path = [])
   {
-    $storageDirectory = $this->_GetStorageDirectory($configuration);
+    if (empty($this->_hyperMedia)) {
+      $this->_BuildHyperMedia($configuration);
+    }
 
-    return [];
+    if (empty($path)) {
+      return $this->_hyperMedia;
+    }
+
+    $hyperMediaSection = $this->_hyperMedia;
+
+    foreach ($path as $sectionKey) {
+      $hyperMediaSection = $hyperMediaSection[$sectionKey];
+    }
+
+    return $hyperMediaSection;
   }
 
   private function _GetStorageDirectory(array $configuration)
@@ -191,11 +222,6 @@ class FullTextSearch
       $this->_configuration,
       ['Document', 'Search', 'Request', 'ParameterList', 'Source', 'List']
     );
-  }
-
-  public function GetError()
-  {
-    return $this->_error;
   }
 
   public function GetSdkInformation()

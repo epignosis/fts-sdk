@@ -114,15 +114,6 @@ try {
   PrintHeader('System Exception', true, false);
   PrintObjectReadable($exception);
 
-  if ($fullTextSearchSdk instanceof FullTextSearch) {
-    $fullTextSearchError = $fullTextSearchSdk->GetError();
-
-    if (!empty($fullTextSearchError)) {
-      PrintHeader('FullTextSearch SDK Error');
-      PrintObjectReadable($fullTextSearchError);
-    }
-  }
-
   exit(1);
 }
 
