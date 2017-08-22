@@ -6,6 +6,8 @@ class FullTextSearch
 
   private $_error = [];
 
+  private $_hyperMedia = [];
+
   private $_sdkInformation = [
     'Agent' => [
       'Epignosis/PHP_SDK; v{{VERSION_FULL}}'
@@ -20,6 +22,54 @@ class FullTextSearch
   ];
 
 
+  private function _Auth(array $configuration, array &$headerList, $body)
+  {
+
+  }
+
+  private function _GetHeaderList (
+    array $configuration,
+          $entity,
+          $action,
+    array $data = [])
+  {
+    return [];
+  }
+
+  private function _GetBody(array $configuration, $entity, $action, array $data = [])
+  {
+    return null;
+  }
+
+  private function _RequestDelete (
+    array $configuration,
+    array $headerList = [],
+          $body = null)
+  {
+    return [];
+  }
+
+  private function _RequestGet (
+    array $configuration,
+    array $headerList = [],
+          $body = null)
+  {
+    return [];
+  }
+
+  private function _RequestPost (
+    array $configuration,
+    array $headerList = [],
+          $body = null)
+  {
+    return [];
+  }
+
+  private function _RequireAuth($entity, $action)
+  {
+    return true;
+  }
+
   public function __construct(array $configuration = [])
   {
     $this->Configure($configuration);
@@ -27,7 +77,19 @@ class FullTextSearch
 
   public function AccountCreate(array $data)
   {
+    $headerList = $this->_GetHeaderList (
+      $this->_configuration, 'Account', 'Create', $data
+    );
 
+    $body = $this->_GetBody (
+      $this->_configuration, 'Account', 'Create', $data
+    );
+
+    if ($this->_RequireAuth('Account', 'Create')) {
+      $this->_Auth($this->_configuration, $headerList, $body);
+    }
+
+    return $this->_RequestPost($this->_configuration, $headerList, $body);
   }
 
   public function Configure(array $configuration)

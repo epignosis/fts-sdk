@@ -17,6 +17,9 @@ $configuration = [
     'BaseEndpoint' => 'http://127.0.0.1/',
     'Format' => 'JSON',
     'Language' => 'en-US',
+    'Storage' => [
+      'FilePath' => null
+    ],
     'Version' => '1'
   ]
 ];
