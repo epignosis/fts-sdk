@@ -6,11 +6,15 @@
 $data = [
   'Account' => [
     'Create' => [
-      'Multiple' => [
-
-      ],
       'Single' => [
-
+        [
+          'Domain' => 'https://xdev.com',
+          'Status' => 1
+        ],
+        [
+          'Domain' => 'jp.talentlms.com',
+          'Status' => 1
+        ]
       ]
     ]
   ],
@@ -32,9 +36,6 @@ $data = [
       ]
     ],
     'Search' => [
-      'Multiple' => [
-
-      ],
       'Single' => [
 
       ]

@@ -47,6 +47,11 @@ class FullTextSearch
 
   }
 
+  public function GetAccountStatusList()
+  {
+
+  }
+
   public function GetConfiguration()
   {
     return $this->_configuration;
@@ -77,6 +82,26 @@ class FullTextSearch
       $this->_sdkInformation['Version']['Extra'],
       $this->_sdkInformation['Version']['Release']
     );
+  }
+
+  public function GetServiceHyperMedia()
+  {
+
+  }
+
+  public function GetServiceHyperMediaAccount()
+  {
+
+  }
+
+  public function GetServiceHyperMediaDocument()
+  {
+
+  }
+
+  public function GetServiceHyperMediaPermissionPolicy()
+  {
+
   }
 
   public function PermissionPolicyDelete(array $data)
