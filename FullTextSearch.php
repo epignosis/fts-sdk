@@ -8,6 +8,11 @@ class FullTextSearch
 
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/PHP_SDK; v%s',
+    'HyperMedia' => [
+      'IndexKey' => [
+        'Data' => 'Data'
+      ]
+    ],
     'Version' => [
       'Extra' => 'dev',
       'Major' => 2,
@@ -20,7 +25,7 @@ class FullTextSearch
 
   public function __construct(array $configuration = [])
   {
-    $this->_BuildHyperMedia()->Configure($configuration);
+    $this->Configure($configuration)->_BuildHyperMedia();
   }
 
   private function _Auth(array &$headerList)
@@ -50,7 +55,12 @@ class FullTextSearch
       );
     }
 
-    $content = json_decode($content, true)['Data'];
+    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
+      $dataIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Data'];
+      $content = json_decode($content, true)[$dataIndexKey];
+    } else {
+      // Do nothing ..
+    }
 
     if (null === $content) {
       $this->_DeleteFile($filePath);
@@ -84,6 +94,15 @@ class FullTextSearch
           'Failed to download the service hypermedia file. (%s)', $response['Url']
         )
       );
+    }
+
+    return $response['Body'];
+  }
+
+  private function _GetDecodedResponse(array $response = [])
+  {
+    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
+      return json_decode($response['Body'], true);
     }
 
     return $response['Body'];
@@ -186,6 +205,14 @@ class FullTextSearch
 
     $response = file_get_contents($url, false, stream_context_create($optionList));
 
+    if (false === $response || empty($http_response_header)) {
+      return [
+        'Body' => null,
+        'Status' => null,
+        'Url' => $url
+      ];
+    }
+
     return [
       'Body' => $response,
       'Status' => $this->_GetResponseStatusCode($http_response_header),
@@ -195,12 +222,25 @@ class FullTextSearch
 
   private function _RequestDelete($url, array $headerList = [])
   {
-    return $this->_Request($url, $headerList);
+    $optionList = [
+      'http' => [
+        'header' => $this->_GetHeaderListToString($headerList),
+        'method' => 'DELETE'
+      ]
+    ];
+
+    return $this->_Request($url, $optionList);
   }
 
   private function _RequestGet($url, array $headerList = [])
   {
-    return $this->_Request($url, $headerList);
+    $optionList = [
+      'http' => [
+        'header' => $this->_GetHeaderListToString($headerList)
+      ]
+    ];
+
+    return $this->_Request($url, $optionList);
   }
 
   private function _RequestOptions($url, array $headerList = [])
@@ -217,7 +257,14 @@ class FullTextSearch
 
   private function _RequestPost($url, array $headerList = [])
   {
-    return $this->_Request($url, $headerList);
+    $optionList = [
+      'http' => [
+        'header' => $this->_GetHeaderListToString($headerList),
+        'method' => 'POST'
+      ]
+    ];
+
+    return $this->_Request($url, $optionList);
   }
 
   private function _RequireAuth($entity, $action)
@@ -237,7 +284,7 @@ class FullTextSearch
       }
     }
 
-    return file_put_contents($filePath, $fileContent);
+    return file_put_contents($filePath, $fileContent, \LOCK_EX);
   }
 
   public function AccountCreate(array $data)
@@ -248,7 +295,12 @@ class FullTextSearch
       $this->_Auth($headerList);
     }
 
-    return $this->_RequestPost($headerList);
+    return $this->_GetDecodedResponse (
+      $this->_RequestPost (
+        $this->_GetHyperMedia(['Account', 'Create', 'Request', 'EndPoint', 'Single']),
+        $headerList
+      )
+    );
   }
 
   public function Configure(array $configuration)
