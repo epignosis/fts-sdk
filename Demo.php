@@ -105,10 +105,15 @@ try {
 
   PrintLine('Response Data');
   PrintObjectReadable($responseData);
+
 } catch (\Exception $exception) {
+
   PrintHeader('SDK Exception');
   PrintObjectReadable($exception);
+
 } finally {
+
   PrintLine('<hr>');
   PrintLine(sprintf('Executed in <b>%s</b> sec.', round(microtime(true) - $now, 3)));
+
 }

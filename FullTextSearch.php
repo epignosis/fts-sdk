@@ -39,17 +39,18 @@ class FullTextSearch
     } while (!$randomToken || !$strong);
 
     $authConfiguration = $this->_GetHyperMedia([$entity, $action, 'General', 'Auth']);
+    $keyList = $this->_configuration['Auth']['Key'];
 
     $signature = sprintf (
       '%s;%s;%s',
-      $authInformation['Key']['Public'][$operationInformation['OperationType']],
+      $keyList['Public'][$operationInformation['OperationType']],
       base64_encode($randomToken),
       base64_encode (
         hash_hmac (
           $this->_authConfiguration['HashAlgorithm'],
-          serialize($this->_GetSortedData($data)),
+          serialize($this->_GetSortedArray($data)),
           $randomToken .
-          $authInformation['Key']['Private'][$operationInformation['OperationType']],
+          $keyList['Private'][$operationInformation['OperationType']],
           true
         )
       )
@@ -204,6 +205,19 @@ class FullTextSearch
     return null;
   }
 
+  private function _GetSortedArray(array $data = [])
+  {
+    ksort($data);
+
+    foreach ($data as $key => $value) {
+      if (is_array($value)) {
+        $data[$key] = $this->_GetSortedArray($value);
+      }
+    }
+
+    return $data;
+  }
+
   private function _ReadHyperMediaFile($filePath)
   {
     $content = file_get_contents($filePath);
@@ -325,6 +339,8 @@ class FullTextSearch
     if ($this->_GetHyperMedia(['Account', 'Create', 'General', 'AuthRequired'])) {
       $this->_Auth('Account', 'Create', $headerList);
     }
+
+    echo '<pre>'; print_r($headerList);exit;
 
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
