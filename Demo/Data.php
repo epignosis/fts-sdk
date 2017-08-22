@@ -76,12 +76,28 @@ $data = [
         ]
       ],
       'Single' => [
+        // Invalid:
+        [
+
+        ],
+        // Invalid:
+        [
+          'Id' => 'foo'
+        ],
         [
           'Id' => [
             'Course' => 65536,
             'Lesson' => 4096,
             'Unit' => 1024
           ]
+        ],
+        // Invalid:
+        [
+          'Id' => 111
+        ],
+        // Invalid:
+        [
+          'Id' => '4-6'
         ],
         [
           'Id' => [
