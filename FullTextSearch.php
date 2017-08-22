@@ -29,7 +29,7 @@ class FullTextSearch
 
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
   {
-    return null;
+    return serialize([$configuration, $entity, $action, $data]);
   }
 
   private function _GetHeaderList (
@@ -38,7 +38,7 @@ class FullTextSearch
           $action,
     array $data = [])
   {
-    return [];
+    return [$configuration, $entity, $action, $data];
   }
 
   private function _GetHyperMedia(array $path = [])
