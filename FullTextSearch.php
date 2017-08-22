@@ -162,6 +162,8 @@ class FullTextSearch
       }
     }
 
+    print_r(['Body' => $response, 'Status' => $responseCode, 'Url' => $url]);exit;
+
     return ['Body' => $response, 'Status' => $responseCode, 'Url' => $url];
   }
 
