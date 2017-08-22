@@ -47,14 +47,9 @@ class FullTextSearch
 
   }
 
-  public function PermissionPolicyDelete(array $data)
+  public function GetConfiguration()
   {
-
-  }
-
-  public function PermissionPolicyPush(array $data)
-  {
-
+    return $this->_configuration;
   }
 
   public function GetError()
@@ -82,5 +77,15 @@ class FullTextSearch
       $this->_sdkInformation['Version']['Extra'],
       $this->_sdkInformation['Version']['Release']
     );
+  }
+
+  public function PermissionPolicyDelete(array $data)
+  {
+
+  }
+
+  public function PermissionPolicyPush(array $data)
+  {
+
   }
 }

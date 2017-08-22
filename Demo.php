@@ -1,11 +1,8 @@
 <?php
 
-$currentDirectory =  rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR;
-
-/** @noinspection PhpIncludeInspection */
-require $currentDirectory . 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
-/** @noinspection PhpIncludeInspection */
-require $currentDirectory . 'FullTextSearch.php';
+require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
+require 'FullTextSearch.php';
+require 'Configuration.php';
 
 function PrintHeader($line, $newLineBefore = false, $newLineAfter = false)
 {
@@ -29,7 +26,9 @@ function PrintObjectReadable($data)
 }
 
 try {
-  $fullTextSearch = new FullTextSearch;
+
+  /** @noinspection PhpUndefinedVariableInspection */
+  $fullTextSearch = new FullTextSearch($configuration);
 
   // Print FullTextSearch Full SDK Version:
   PrintHeader (
