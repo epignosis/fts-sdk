@@ -30,9 +30,6 @@ class FullTextSearch
 
   private function _Auth($entity, $action, array &$headerList)
   {
-    echo '<p'.'re>';print_r($this->_GetHyperMedia([$entity, $action, 'General']));
-    exit;
-
     if (!function_exists('openssl_random_pseudo_bytes')) {
       throw new \Exception('Function "openssl_random_pseudo_bytes" does not exist.');
     }
@@ -56,7 +53,13 @@ class FullTextSearch
       )
     );
 
-    return [$this->_authConfiguration['SignatureName'], $signature];
+    $signatureName = $this->_GetHyperMedia ([
+      $entity, $action, 'General', 'Auth', 'Signature', 'Name'
+    ]);
+
+    $headerList[$signatureName] = $signature;
+
+    return $this;
   }
 
   private function _BuildHyperMedia()
