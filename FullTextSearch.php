@@ -122,7 +122,11 @@ class FullTextSearch
 
   private function _Request(array $optionList)
   {
-    return $optionList;
+    return [
+      'Body' => null,
+      'Status' => null,
+      'Url' => null
+    ];
   }
 
   private function _RequestDelete (
