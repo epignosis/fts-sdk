@@ -38,6 +38,8 @@ class FullTextSearch
       $randomToken = openssl_random_pseudo_bytes(16, $strong);
     } while (!$randomToken || !$strong);
 
+    $authConfiguration = $this->_GetHyperMedia([$entity, $action, 'General', 'Auth']);
+
     $signature = sprintf (
       '%s;%s;%s',
       $authInformation['Key']['Public'][$operationInformation['OperationType']],
@@ -53,11 +55,7 @@ class FullTextSearch
       )
     );
 
-    $signatureName = $this->_GetHyperMedia ([
-      $entity, $action, 'General', 'Auth', 'Signature', 'Name'
-    ]);
-
-    $headerList[$signatureName] = $signature;
+    $headerList[$authConfiguration['Signature']['Name']] = $signature;
 
     return $this;
   }
