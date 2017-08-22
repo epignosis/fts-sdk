@@ -28,7 +28,7 @@ class FullTextSearch
     $this->Configure($configuration)->_BuildHyperMedia();
   }
 
-  private function _Auth($entity, $action, array &$headerList)
+  private function _Auth($entity, $action, array &$headerList, array $data = [])
   {
     if (!function_exists('openssl_random_pseudo_bytes')) {
       throw new \Exception('Function "openssl_random_pseudo_bytes" does not exist.');
@@ -116,7 +116,7 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetHeaderList($entity = null, $action = null, array $data = [])
+  private function _GetHeaderList()
   {
     $headerList = [
       'Accept' => sprintf (
@@ -334,13 +334,11 @@ class FullTextSearch
 
   public function AccountCreate(array $data)
   {
-    $headerList = $this->_GetHeaderList('Account', 'Create', $data);
+    $headerList = $this->_GetHeaderList();
 
     if ($this->_GetHyperMedia(['Account', 'Create', 'General', 'AuthRequired'])) {
-      $this->_Auth('Account', 'Create', $headerList);
+      $this->_Auth('Account', 'Create', $headerList, $data);
     }
-
-    echo '<pre>'; print_r($headerList);exit;
 
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
@@ -359,10 +357,10 @@ class FullTextSearch
 
   public function DocumentDeIndex(array $data)
   {
-    $headerList = $this->_GetHeaderList('Document', 'DeIndex', $data);
+    $headerList = $this->_GetHeaderList();
 
     if ($this->_GetHyperMedia(['Document', 'DeIndex', 'General', 'AuthRequired'])) {
-      $this->_Auth('Document', 'DeIndex', $headerList);
+      $this->_Auth('Document', 'DeIndex', $headerList, $data);
     }
 
     return $this->_RequestDelete($headerList);
@@ -370,10 +368,10 @@ class FullTextSearch
 
   public function DocumentIndex(array $data)
   {
-    $headerList = $this->_GetHeaderList('Document', 'Index', $data);
+    $headerList = $this->_GetHeaderList();
 
     if ($this->_GetHyperMedia(['Document', 'Index', 'General', 'AuthRequired'])) {
-      $this->_Auth('Document', 'Index', $headerList);
+      $this->_Auth('Document', 'Index', $headerList, $data);
     }
 
     return $this->_RequestPost($headerList);
@@ -381,10 +379,10 @@ class FullTextSearch
 
   public function DocumentSearch(array $data)
   {
-    $headerList = $this->_GetHeaderList('Document', 'Search', $data);
+    $headerList = $this->_GetHeaderList();
 
     if ($this->_GetHyperMedia(['Document', 'Search', 'General', 'AuthRequired'])) {
-      $this->_Auth('Document', 'Search', $headerList);
+      $this->_Auth('Document', 'Search', $headerList, $data);
     }
 
     return $this->_RequestGet($headerList);
@@ -429,11 +427,11 @@ class FullTextSearch
 
   public function PermissionPolicyDelete(array $data)
   {
-    $headerList = $this->_GetHeaderList('PermissionPolicy', 'Delete', $data);
+    $headerList = $this->_GetHeaderList();
 
     if ($this->_GetHyperMedia(['PermissionPolicy', 'Delete', 'General', 'AuthRequired']))
     {
-      $this->_Auth('PermissionPolicy', 'Delete', $headerList);
+      $this->_Auth('PermissionPolicy', 'Delete', $headerList, $data);
     }
 
     return $this->_RequestDelete($headerList);
@@ -441,10 +439,10 @@ class FullTextSearch
 
   public function PermissionPolicyPush(array $data)
   {
-    $headerList = $this->_GetHeaderList('PermissionPolicy', 'Push', $data);
+    $headerList = $this->_GetHeaderList();
 
     if ($this->_GetHyperMedia(['PermissionPolicy', 'Push', 'General', 'AuthRequired'])) {
-      $this->_Auth('PermissionPolicy', 'Push', $headerList);
+      $this->_Auth('PermissionPolicy', 'Push', $headerList, $data);
     }
 
     return $this->_RequestPost($headerList);
