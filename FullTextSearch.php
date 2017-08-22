@@ -94,24 +94,17 @@ class FullTextSearch
 
   private function _GetAcceptanceHeaderString(array $configuration)
   {
-    return
-      sprintf (
-        'Accept: %s',
-        sprintf (
-          $configuration['Service']['Header']['Accept'],
-          (int) $configuration['Service']['Version'],
-          strtolower($configuration['Service']['Format'])
-        )
-      ) .
-      "\r\n" .
-      sprintf (
-        'Accept-Language: %s',
-        sprintf (
-          $configuration['Service']['Header']['AcceptLanguage'],
-          strtolower($configuration['Service']['Language'])
-        )
-      ) .
-      "\r\n";
+    return [
+      'Accept' => sprintf (
+        $configuration['Service']['Header']['Accept'],
+        (int) $configuration['Service']['Version'],
+        strtolower($configuration['Service']['Format'])
+      ),
+      'Accept-Language' =>  sprintf (
+        $configuration['Service']['Header']['AcceptLanguage'],
+        strtolower($configuration['Service']['Language'])
+      )
+    ];
   }
 
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
@@ -126,6 +119,21 @@ class FullTextSearch
     array $data = [])
   {
     return [$configuration, $entity, $action, $data];
+  }
+
+  private function _GetHeaderListToString(array $headerList = [])
+  {
+    $headerString = null;
+
+    foreach ($headerList as $headerName => $headerValue) {
+      $headerLine = sprintf('%s: %s', trim($headerName), trim($headerValue));
+
+      if (1 != preg_match('~\R~u', $headerLine)) {
+        $headerString .= sprintf("%s\r\n", $headerLine);
+      }
+    }
+
+    return $headerString;
   }
 
   private function _GetHyperMedia(array $path = [])
@@ -200,7 +208,7 @@ class FullTextSearch
   {
     $optionList = [
       'http' => [
-        'header' => implode("\r\n", $headerList),
+        'header' => $this->_GetHeaderListToString($headerList),
         'method' => 'OPTIONS'
       ]
     ];
