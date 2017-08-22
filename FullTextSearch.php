@@ -111,16 +111,18 @@ class FullTextSearch
         $configuration['Service']['Header']['AcceptLanguage'],
         strtolower($configuration['Service']['Language'])
       ),
-      'User-Agent' => trim($configuration['Service']['Header']['UserAgent'])
+      'User-Agent' => sprintf (
+        self::$_sdkInformation['Agent'], $this->GetSdkVersion()
+      )
     ];
 
-    $headerList['User-Agent'] = trim($configuration['Service']['Header']['UserAgent']);
-
-    if (empty($headerList['User-Agent'])) {
-      $headerList['User-Agent'] = sprintf (
-        self::$_sdkInformation['Agent'], $this->GetSdkVersion()
-      );
+    if (!empty($configuration['Service']['Header']['UserAgent'])) {
+      if (1 != preg_match('~\R~u', $configuration['Service']['Header']['UserAgent'])) {
+        $headerList['User-Agent'] = $configuration['Service']['Header']['UserAgent'];
+      }
     }
+
+    print_r($headerList);exit;
 
     return $headerList;
   }
