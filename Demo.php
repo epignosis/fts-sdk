@@ -70,13 +70,13 @@ function PrintObjectReadable($data)
 try {
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $fullTextSearch = new FullTextSearch($configuration);
+  $fullTextSearchSdk = new FullTextSearch($configuration);
 
   PrintHeader('FullTextSearch SDK Version: ');
-  PrintLine($fullTextSearch->GetSdkVersionFull(), true, true);
+  PrintLine($fullTextSearchSdk->GetSdkVersionFull(), true, true);
 
   PrintHeader('FullTextSearch SDK Configuration: ', true);
-  PrintObjectReadable($fullTextSearch->GetConfiguration());
+  PrintObjectReadable($fullTextSearchSdk->GetConfiguration());
 
   $getList = Get();
   $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
@@ -97,12 +97,25 @@ try {
 
   PrintLine('Requested Data');
   PrintObjectReadable($methodData);
+
+  if ($getList['Multiplicity']) {
+    $responseData = $fullTextSearchSdk->$method($methodData);
+  } else {
+    $responseData = [];
+
+    foreach ($methodData as $methodDatum) {
+      $responseData[] = $fullTextSearchSdk->$method($methodDatum);
+    }
+  }
+
+  PrintLine('Response Data');
+  PrintObjectReadable($responseData);
 } catch (\Exception $exception) {
   PrintHeader('System Exception', true, false);
   PrintObjectReadable($exception);
 
-  if ($fullTextSearch instanceof FullTextSearch) {
-    $fullTextSearchError = $fullTextSearch->GetError();
+  if ($fullTextSearchSdk instanceof FullTextSearch) {
+    $fullTextSearchError = $fullTextSearchSdk->GetError();
 
     if (!empty($fullTextSearchError)) {
       PrintHeader('FullTextSearch SDK Error');
