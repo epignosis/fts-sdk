@@ -84,14 +84,15 @@ class FullTextSearch
       );
     }
 
+    $dataIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Data'];
+
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
-      $dataIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Data'];
       $content = json_decode($content, true)[$dataIndexKey];
     } else {
       // Do nothing ..
     }
 
-    if (null === $content) {
+    if (empty($content)) {
       $this->_DeleteFile($filePath);
 
       throw new \Exception (
