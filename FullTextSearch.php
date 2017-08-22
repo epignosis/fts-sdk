@@ -89,10 +89,6 @@ class FullTextSearch
 
   private function _GetHyperMedia(array $configuration, array $path = [])
   {
-    if (empty($this->_hyperMedia)) {
-      $this->_BuildHyperMedia($configuration);
-    }
-
     if (empty($path)) {
       return $this->_hyperMedia;
     }
@@ -167,7 +163,7 @@ class FullTextSearch
 
   public function __construct(array $configuration = [])
   {
-    $this->Configure($configuration);
+    $this->_BuildHyperMedia($configuration)->Configure($configuration);
   }
 
   public function AccountCreate(array $data)
