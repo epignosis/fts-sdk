@@ -1,5 +1,7 @@
 <?php
 
+$now = microtime(true);
+
 require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
 require 'FullTextSearch.php';
 require 'Configuration.php';
@@ -26,7 +28,7 @@ function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
     echo sprintf (
       '%s%s%s',
       $newLineBefore ? "\n" : null,
-      $header,
+      strip_tags($header),
       $newLineAfter ? "\n" : null
     );
   } else {
@@ -45,7 +47,7 @@ function PrintLine($line, $newLineBefore = false, $newLineAfter = false)
     echo sprintf (
       '%s%s%s',
       $newLineBefore ? "\n" : null,
-      $line,
+      strip_tags($line),
       $newLineAfter ? "\n" : null
     );
   } else {
@@ -71,13 +73,6 @@ try {
 
   /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchSdk = new FullTextSearch($configuration);
-
-  PrintHeader('FullTextSearch SDK Version: ');
-  PrintLine($fullTextSearchSdk->GetSdkVersionFull(), true, true);
-
-  PrintHeader('FullTextSearch SDK Configuration: ', true);
-  PrintObjectReadable($fullTextSearchSdk->GetConfiguration());
-
   $getList = Get();
   $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
 
@@ -111,10 +106,9 @@ try {
   PrintLine('Response Data');
   PrintObjectReadable($responseData);
 } catch (\Exception $exception) {
-  PrintHeader('System Exception', true, false);
+  PrintHeader('SDK Exception');
   PrintObjectReadable($exception);
-
-  exit(1);
+} finally {
+  PrintLine('<hr>');
+  PrintLine(sprintf('Executed in <b>%s</b> sec.', round(microtime(true) - $now, 3)));
 }
-
-exit(0);

@@ -20,6 +20,11 @@ class FullTextSearch
   ];
 
 
+  public function __construct(array $configuration = [])
+  {
+    $this->_BuildHyperMedia($configuration)->Configure($configuration);
+  }
+
   private function _Auth(array $configuration, array &$headerList, $body = null)
   {
 
@@ -72,7 +77,8 @@ class FullTextSearch
   private function _DownloadHyperMediaFile(array $configuration)
   {
     $response = $this->_RequestOptions (
-      $configuration['Service']['BaseEndpoint'], $configuration
+      $configuration['Service']['BaseEndpoint'],
+      $this->_GetAcceptanceHeaderString($configuration)
     );
 
     if (200 != $response['Status'] || isset($response['Body']['Error'])) {
@@ -84,6 +90,28 @@ class FullTextSearch
     }
 
     return $response['Body'];
+  }
+
+  private function _GetAcceptanceHeaderString(array $configuration)
+  {
+    return
+      sprintf (
+        'Accept: %s',
+        sprintf (
+          $configuration['Service']['Header']['Accept'],
+          (int) $configuration['Service']['Version'],
+          strtolower($configuration['Service']['Format'])
+        )
+      ) .
+      "\r\n" .
+      sprintf (
+        'Accept-Language: %s',
+        sprintf (
+          $configuration['Service']['Header']['AcceptLanguage'],
+          strtolower($configuration['Service']['Language'])
+        )
+      ) .
+      "\r\n";
   }
 
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
@@ -134,72 +162,55 @@ class FullTextSearch
     );
   }
 
-  private function _GetAcceptanceHeaderString(array $configuration)
+  private function _GetResponseStatusCode(array $headerList = [])
   {
-    return
-      sprintf (
-        'Accept: %s',
-        sprintf (
-          $configuration['Service']['Header']['Accept'],
-          (int) $configuration['Service']['Version'],
-          strtolower($configuration['Service']['Format'])
-        )
-      ) .
-      "\n" .
-      sprintf (
-        'Accept-Language: %s',
-        sprintf (
-          $configuration['Service']['Header']['AcceptLanguage'],
-          strtolower($configuration['Service']['Language'])
-        )
-      ) .
-      "\n";
-  }
-
-  private function _Request($url, array $configuration, array $optionList = [])
-  {
-    $optionList['http']['ignore_errors'] = true;
-
-    $optionList['http']['header'] =
-      rtrim($optionList['http']['header']) .
-      $this->_GetAcceptanceHeaderString($configuration);
-
-    $responseCode = null;
-    $response = file_get_contents($url, false, stream_context_create($optionList));
-
-    foreach ($http_response_header as $header) {
+    foreach ($headerList as $header) {
       if (preg_match('#HTTP/[0-9\.]+\s+([0-9]+)#', $header, $match)) {
-        $responseCode = intval($match[1]);
+        return intval($match[1]);
       }
     }
 
-    return ['Body' => $response, 'Status' => $responseCode, 'Url' => $url];
+    return null;
   }
 
-  private function _RequestDelete (
-    array $configuration,
-    array $headerList = [],
-          $body = null)
+  private function _Request($url, array $optionList = [])
   {
-    return $this->_Request([$configuration, $headerList, $body]);
+    $optionList['http']['ignore_errors'] = true;
+
+    $response = file_get_contents($url, false, stream_context_create($optionList));
+
+    return [
+      'Body' => $response,
+      'Status' => $this->_GetResponseStatusCode($http_response_header),
+      'Url' => $url
+    ];
   }
 
-  private function _RequestGet(array $configuration, array $headerList = [])
+  private function _RequestDelete($url, array $headerList = [], $body = null)
   {
-    return $this->_Request([$configuration, $headerList]);
+    return $this->_Request($url, $headerList);
   }
 
-  private function _RequestOptions($url, array $configuration)
+  private function _RequestGet($url, array $headerList = [])
   {
-    return $this->_Request($url, $configuration, ['http' => ['method' => 'OPTIONS']]);
+    return $this->_Request($url, $headerList);
   }
 
-  private function _RequestPost (
-    array $configuration,
-    array $headerList = [],
-          $body = null)
+  private function _RequestOptions($url, array $headerList = [])
   {
-    return $this->_Request([$configuration, $headerList, $body]);
+    $optionList = [
+      'http' => [
+        'header' => implode("\r\n", $headerList),
+        'method' => 'OPTIONS'
+      ]
+    ];
+
+    return $this->_Request($url, $optionList);
+  }
+
+  private function _RequestPost($url, array $headerList = [], $body = null)
+  {
+    return $this->_Request($url, $headerList);
   }
 
   private function _RequireAuth($entity, $action)
@@ -220,11 +231,6 @@ class FullTextSearch
     }
 
     return file_put_contents($filePath, $fileContent);
-  }
-
-  public function __construct(array $configuration = [])
-  {
-    $this->_BuildHyperMedia($configuration)->Configure($configuration);
   }
 
   public function AccountCreate(array $data)
