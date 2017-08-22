@@ -46,25 +46,27 @@ class FullTextSearch
     return [];
   }
 
+  private function _Request(array $optionList)
+  {
+    return $optionList;
+  }
+
   private function _RequestDelete (
     array $configuration,
     array $headerList = [],
           $body = null)
   {
-    return [];
+    return $this->_Request([$configuration, $headerList, $body]);
   }
 
-  private function _RequestGet (
-    array $configuration,
-    array $headerList = [],
-          $body = null)
+  private function _RequestGet(array $configuration, array $headerList = [])
   {
-    return [];
+    return $this->_Request([$configuration, $headerList]);
   }
 
   private function _RequestOptions(array $configuration, array $headerList = [])
   {
-    return [];
+    return $this->_Request([$configuration, $headerList]);
   }
 
   private function _RequestPost (
@@ -72,7 +74,7 @@ class FullTextSearch
     array $headerList = [],
           $body = null)
   {
-    return [];
+    return $this->_Request([$configuration, $headerList, $body]);
   }
 
   private function _RequireAuth($entity, $action)
