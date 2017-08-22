@@ -59,6 +59,11 @@ class FullTextSearch
     return $this->_configuration;
   }
 
+  public function GetDocumentSearchSourceOptionList()
+  {
+
+  }
+
   public function GetError()
   {
     return $this->_error;
