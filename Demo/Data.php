@@ -12,15 +12,15 @@ $data = [
           'Status' => 1
         ],
         [
-          'Domain' => 'jp.talentlms.com',
+          'Domain' => 'panagop.talentlms.com',
           'Status' => 1
         ],
         [
-          'Domain' => 'http://ap.talentlms.com',
+          'Domain' => 'http://papagel.talentlms.com',
           'Status' => 0
         ],
         [
-          'Domain' => 'pv.com',
+          'Domain' => 'pvenakis.com',
           'Status' => 0
         ]
       ]
@@ -75,7 +75,32 @@ $data = [
     ],
     'Index' => [
       'Multiple' => [
-
+        [
+          'Content' => [
+            'FileList' => [],
+            'TagList' => ['foo', 'bar'],
+            'Text' => 'This is a sample plain text content ..'
+          ],
+          'Id' => [
+            'Course' => 1,
+            'Lesson' => 2,
+            'Unit' => 3
+          ],
+          'Title' => 'Plain Text Document'
+        ],
+        [
+          'Content' => [
+            'FileList' => ['https://www.talentlms.com/', 'https://www.talentcards.net/'],
+            'TagList' => ['baz', 'qux'],
+            'Text' => 'This is a sample HTML content ..'
+          ],
+          'Id' => [
+            'Course' => 4,
+            'Lesson' => null,
+            'Unit' => 6
+          ],
+          'Title' => 'HTML Document'
+        ]
       ],
       'Single' => [
 
