@@ -27,21 +27,43 @@ class FullTextSearch
 
   private function _BuildHyperMedia(array $configuration)
   {
-    $hyperMediaFilePath = $this->_GetHyperMediaFilePath($configuration);
+    $filePath = $this->_GetHyperMediaFilePath($configuration);
 
-    $hyperMedia = file_get_contents($hyperMediaFilePath);
+    if (!file_exists($filePath)) {
+      $response = $this->_RequestOptions($configuration);
 
-    if (false === $hyperMedia) {
-      throw new \Exception('Failed to fetch the service hypermedia file.');
+      if (200 != $response['Status'] || isset($response['Body']['Error'])) {
+        throw new \Exception (
+          sprintf (
+            'Failed to download the service hypermedia file. (%s)', $response['Url']
+          )
+        );
+      }
+
+      if (false === file_put_contents($filePath, $response)) {
+        throw new \Exception (
+          sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
+        );
+      }
     }
 
-    $hyperMedia = json_decode($hyperMedia, true);
+    $content = file_get_contents($filePath);
 
-    if (null === $hyperMedia) {
-      throw new \Exception('Failed to parse the service hypermedia file.');
+    if (false === $content) {
+      throw new \Exception (
+        sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
+      );
     }
 
-    $this->_hyperMedia = $hyperMedia;
+    $content = json_decode($content, true);
+
+    if (null === $content) {
+      throw new \Exception (
+        sprintf('Failed to parse the service hypermedia file. (%s)', $filePath)
+      );
+    }
+
+    $this->_hyperMedia = $content;
 
     return $this;
   }
