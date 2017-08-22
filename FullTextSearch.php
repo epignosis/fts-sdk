@@ -22,9 +22,14 @@ class FullTextSearch
   ];
 
 
-  private function _Auth(array $configuration, array &$headerList, $body)
+  private function _Auth(array $configuration, array &$headerList, $body = null)
   {
 
+  }
+
+  private function _GetBody(array $configuration, $entity, $action, array $data = [])
+  {
+    return null;
   }
 
   private function _GetHeaderList (
@@ -36,9 +41,9 @@ class FullTextSearch
     return [];
   }
 
-  private function _GetBody(array $configuration, $entity, $action, array $data = [])
+  private function _GetHyperMedia(array $path = [])
   {
-    return null;
+    return [];
   }
 
   private function _RequestDelete (
@@ -101,22 +106,56 @@ class FullTextSearch
 
   public function DocumentDeIndex(array $data)
   {
+    $headerList = $this->_GetHeaderList (
+      $this->_configuration, 'Document', 'DeIndex', $data
+    );
 
+    $body = $this->_GetBody (
+      $this->_configuration, 'Document', 'DeIndex', $data
+    );
+
+    if ($this->_RequireAuth('Document', 'DeIndex')) {
+      $this->_Auth($this->_configuration, $headerList, $body);
+    }
+
+    return $this->_RequestDelete($this->_configuration, $headerList, $body);
   }
 
   public function DocumentIndex(array $data)
   {
+    $headerList = $this->_GetHeaderList (
+      $this->_configuration, 'Document', 'Index', $data
+    );
 
+    $body = $this->_GetBody (
+      $this->_configuration, 'Document', 'Index', $data
+    );
+
+    if ($this->_RequireAuth('Document', 'Index')) {
+      $this->_Auth($this->_configuration, $headerList, $body);
+    }
+
+    return $this->_RequestPost($this->_configuration, $headerList, $body);
   }
 
   public function DocumentSearch(array $data)
   {
+    $headerList = $this->_GetHeaderList (
+      $this->_configuration, 'Document', 'Search', $data
+    );
 
+    if ($this->_RequireAuth('Document', 'Search')) {
+      $this->_Auth($this->_configuration, $headerList);
+    }
+
+    return $this->_RequestGet($this->_configuration, $headerList);
   }
 
-  public function GetAccountStatusList()
+  public function GetAccountCreateStatusList()
   {
-
+    return $this->_GetHyperMedia ([
+      'Account', 'Create', 'Request', 'ParameterList', 'Status', 'List'
+    ]);
   }
 
   public function GetConfiguration()
@@ -126,7 +165,9 @@ class FullTextSearch
 
   public function GetDocumentSearchSourceOptionList()
   {
-
+    return $this->_GetHyperMedia ([
+      'Document', 'Search', 'Request', 'ParameterList', 'Source', 'List'
+    ]);
   }
 
   public function GetError()
@@ -158,31 +199,55 @@ class FullTextSearch
 
   public function GetServiceHyperMedia()
   {
-
+    return $this->_GetHyperMedia();
   }
 
   public function GetServiceHyperMediaAccount()
   {
-
+    return $this->_GetHyperMedia(['Account']);
   }
 
   public function GetServiceHyperMediaDocument()
   {
-
+    return $this->_GetHyperMedia(['Document']);
   }
 
   public function GetServiceHyperMediaPermissionPolicy()
   {
-
+    return $this->_GetHyperMedia(['PermissionPolicy']);
   }
 
   public function PermissionPolicyDelete(array $data)
   {
+    $headerList = $this->_GetHeaderList (
+      $this->_configuration, 'PermissionPolicy', 'Delete', $data
+    );
 
+    $body = $this->_GetBody (
+      $this->_configuration, 'PermissionPolicy', 'Delete', $data
+    );
+
+    if ($this->_RequireAuth('PermissionPolicy', 'Delete')) {
+      $this->_Auth($this->_configuration, $headerList, $body);
+    }
+
+    return $this->_RequestDelete($this->_configuration, $headerList, $body);
   }
 
   public function PermissionPolicyPush(array $data)
   {
+    $headerList = $this->_GetHeaderList (
+      $this->_configuration, 'PermissionPolicy', 'Push', $data
+    );
 
+    $body = $this->_GetBody (
+      $this->_configuration, 'PermissionPolicy', 'Push', $data
+    );
+
+    if ($this->_RequireAuth('PermissionPolicy', 'Push')) {
+      $this->_Auth($this->_configuration, $headerList, $body);
+    }
+
+    return $this->_RequestPost($this->_configuration, $headerList, $body);
   }
 }
