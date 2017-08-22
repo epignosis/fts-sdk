@@ -30,9 +30,7 @@ class FullTextSearch
     $filePath = $this->_GetHyperMediaFilePath($configuration);
 
     if (!file_exists($filePath)) {
-      $response = $this->_DownloadHyperMedia($configuration);
-
-      if (false === file_put_contents($filePath, $response)) {
+      if (!$this->_SaveFile($filePath, $this->_DownloadHyperMediaFile($configuration))) {
         throw new \Exception (
           sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
         );
@@ -42,7 +40,7 @@ class FullTextSearch
     $content = file_get_contents($filePath);
 
     if (false === $content) {
-      unlink($filePath);
+      $this->_DeleteFile($filePath);
 
       throw new \Exception (
         sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
@@ -52,7 +50,7 @@ class FullTextSearch
     $content = json_decode($content, true)['Data'];
 
     if (null === $content) {
-      unlink($filePath);
+      $this->_DeleteFile($filePath);
 
       throw new \Exception (
         sprintf('Failed to parse the service hypermedia file. (%s)', $filePath)
@@ -64,7 +62,14 @@ class FullTextSearch
     return $this;
   }
 
-  private function _DownloadHyperMedia(array $configuration)
+  private function _DeleteFile($filePath)
+  {
+    unlink($filePath);
+
+    return $this;
+  }
+
+  private function _DownloadHyperMediaFile(array $configuration)
   {
     $response = $this->_RequestOptions (
       $configuration['Service']['BaseEndpoint'], $configuration
@@ -200,6 +205,21 @@ class FullTextSearch
   private function _RequireAuth($entity, $action)
   {
     return true;
+  }
+
+  private function _SaveFile($filePath, $fileContent)
+  {
+    $filePathDirectory = dirname($filePath);
+
+    if (!file_exists($filePathDirectory)) {
+      $mode = substr(sprintf('%o', fileperms(dirname($filePathDirectory))), -4);
+
+      if (!mkdir($filePathDirectory, $mode, true)) {
+        return false;
+      }
+    }
+
+    return file_put_contents($filePath, $fileContent);
   }
 
   public function __construct(array $configuration = [])
