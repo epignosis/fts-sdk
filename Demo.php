@@ -85,13 +85,17 @@ try {
     throw new \Exception('Nothing to execute according the requested entity / action.');
   }
 
-  PrintHeader('Execute %s %s', $getList['Entity'], $getList['Action']);
+  PrintHeader (
+    sprintf('Execute %s %s (%s)', $getList['Entity'], $getList['Action'], $multiplicity),
+    false,
+    true
+  );
 
   /** @noinspection PhpUndefinedVariableInspection */
   $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
   $method = sprintf('%s%s', $getList['Entity'], $getList['Action']);
 
-  PrintLine('Requested Data:');
+  PrintLine('Requested Data');
   PrintObjectReadable($methodData);
 } catch (\Exception $exception) {
   PrintHeader('System Exception', true, false);
