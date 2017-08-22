@@ -80,11 +80,8 @@ try {
 
   $getList = Get();
   $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
-  /** @noinspection PhpUndefinedVariableInspection */
-  $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
-  $method = sprintf('%s%s', $getList['Entity'], $getList['Action']);
 
-  if (!method_exists($fullTextSearchSdk, $method)) {
+  if (!isset($data[$getList['Entity']][$getList['Action']][$multiplicity])) {
     throw new \Exception('Nothing to execute according the requested entity / action.');
   }
 
@@ -94,20 +91,20 @@ try {
     true
   );
 
+  /** @noinspection PhpUndefinedVariableInspection */
+  $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
+  $method = sprintf('%s%s', $getList['Entity'], $getList['Action']);
+
   PrintLine('Requested Data');
   PrintObjectReadable($methodData);
 
-  if (empty($responseData)) {
-    $responseData = $fullTextSearchSdk->$method();
+  if ($getList['Multiplicity']) {
+    $responseData = $fullTextSearchSdk->$method($methodData);
   } else {
-    if ($getList['Multiplicity']) {
-      $responseData = $fullTextSearchSdk->$method($methodData);
-    } else {
-      $responseData = [];
+    $responseData = [];
 
-      foreach ($methodData as $methodDatum) {
-        $responseData[] = $fullTextSearchSdk->$method($methodDatum);
-      }
+    foreach ($methodData as $methodDatum) {
+      $responseData[] = $fullTextSearchSdk->$method($methodDatum);
     }
   }
 
