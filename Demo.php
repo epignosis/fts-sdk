@@ -41,6 +41,8 @@ try {
   PrintHeader (
     sprintf('FullTextSearch SDK Version: %s', $fullTextSearch->GetSdkVersionFull())
   );
+
+  // Entity - Action - Multiplicity
 } catch (\Exception $exception) {
   PrintHeader('System Exception');
   PrintObjectReadable($exception);
