@@ -78,7 +78,7 @@ class FullTextSearch
   {
     $response = $this->_RequestOptions (
       $configuration['Service']['BaseEndpoint'],
-      $this->_GetAcceptanceHeaderString($configuration)
+      $this->_GetHeaderList($configuration)
     );
 
     if (200 != $response['Status'] || isset($response['Body']['Error'])) {
@@ -114,11 +114,11 @@ class FullTextSearch
 
   private function _GetHeaderList (
     array $configuration,
-          $entity,
-          $action,
+          $entity = null,
+          $action = null,
     array $data = [])
   {
-    return [$configuration, $entity, $action, $data];
+    return $this->_GetAcceptanceHeaderString($configuration) + [];
   }
 
   private function _GetHeaderListToString(array $headerList = [])
