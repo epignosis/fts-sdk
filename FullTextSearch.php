@@ -20,20 +20,20 @@ class FullTextSearch
 
   public function __construct(array $configuration = [])
   {
-    $this->_BuildHyperMedia($configuration)->Configure($configuration);
+    $this->_BuildHyperMedia()->Configure($configuration);
   }
 
-  private function _Auth(array $configuration, array &$headerList)
+  private function _Auth(array &$headerList)
   {
 
   }
 
-  private function _BuildHyperMedia(array $configuration)
+  private function _BuildHyperMedia()
   {
-    $filePath = $this->_GetHyperMediaFilePath($configuration);
+    $filePath = $this->_GetHyperMediaFilePath();
 
     if (!file_exists($filePath)) {
-      if (!$this->_SaveFile($filePath, $this->_DownloadHyperMediaFile($configuration))) {
+      if (!$this->_SaveFile($filePath, $this->_DownloadHyperMediaFile())) {
         throw new \Exception (
           sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
         );
@@ -72,11 +72,10 @@ class FullTextSearch
     return $this;
   }
 
-  private function _DownloadHyperMediaFile(array $configuration)
+  private function _DownloadHyperMediaFile()
   {
     $response = $this->_RequestOptions (
-      $configuration['Service']['BaseEndpoint'],
-      $this->_GetHeaderList($configuration)
+      $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
     );
 
     if (200 != $response['Status'] || isset($response['Body']['Error'])) {
@@ -90,21 +89,17 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetHeaderList (
-    array $configuration,
-          $entity = null,
-          $action = null,
-    array $data = [])
+  private function _GetHeaderList($entity = null, $action = null, array $data = [])
   {
     $headerList = [
       'Accept' => sprintf (
-        $configuration['Service']['Header']['Accept'],
-        (int) $configuration['Service']['Version'],
-        strtolower($configuration['Service']['Format'])
+        $this->_configuration['Service']['Header']['Accept'],
+        (int) $this->_configuration['Service']['Version'],
+        strtolower($this->_configuration['Service']['Format'])
       ),
       'Accept-Language' =>  sprintf (
-        $configuration['Service']['Header']['AcceptLanguage'],
-        strtolower($configuration['Service']['Language'])
+        $this->_configuration['Service']['Header']['AcceptLanguage'],
+        strtolower($this->_configuration['Service']['Language'])
       ),
       'User-Agent' => sprintf (
         self::$_sdkInformation['Agent'], $this->GetSdkVersion()
@@ -112,9 +107,11 @@ class FullTextSearch
       'X-Service-Timestamp' => time()
     ];
 
-    if (!empty($configuration['Service']['Header']['UserAgent'])) {
-      if (1 != preg_match('~\R~u', $configuration['Service']['Header']['UserAgent'])) {
-        $headerList['User-Agent'] = $configuration['Service']['Header']['UserAgent'];
+    $customUserAgent = $this->_configuration['Service']['Header']['UserAgent'];
+
+    if (!empty($customUserAgent)) {
+      if (1 != preg_match('~\R~u', $customUserAgent)) {
+        $headerList['User-Agent'] = $customUserAgent;
       }
     }
 
@@ -151,12 +148,14 @@ class FullTextSearch
     return $hyperMediaSection;
   }
 
-  private function _GetHyperMediaFilePath(array $configuration)
+  private function _GetHyperMediaFilePath()
   {
     $storageDirectory = __DIR__;
 
-    if (!empty($configuration['Service']['Storage']['FilePath'])) {
-      $storageDirectory = rtrim($configuration['Service']['Storage']['FilePath'], '\/');
+    if (!empty($this->_configuration['Service']['Storage']['FilePath'])) {
+      $storageDirectory = rtrim (
+        $this->_configuration['Service']['Storage']['FilePath'], '\/'
+      );
     }
 
     $storageDirectory = rtrim($storageDirectory, '\/') . \DIRECTORY_SEPARATOR;
@@ -165,8 +164,8 @@ class FullTextSearch
     return sprintf (
       '%sv%d.%s',
       $storageDirectory,
-      (int) $configuration['Service']['Version'],
-      strtolower($configuration['Service']['Format'])
+      (int) $this->_configuration['Service']['Version'],
+      strtolower($this->_configuration['Service']['Format'])
     );
   }
 
@@ -243,15 +242,13 @@ class FullTextSearch
 
   public function AccountCreate(array $data)
   {
-    $headerList = $this->_GetHeaderList (
-      $this->_configuration, 'Account', 'Create', $data
-    );
+    $headerList = $this->_GetHeaderList('Account', 'Create', $data);
 
     if ($this->_RequireAuth('Account', 'Create')) {
-      $this->_Auth($this->_configuration, $headerList);
+      $this->_Auth($headerList);
     }
 
-    return $this->_RequestPost($this->_configuration, $headerList);
+    return $this->_RequestPost($headerList);
   }
 
   public function Configure(array $configuration)
@@ -263,41 +260,35 @@ class FullTextSearch
 
   public function DocumentDeIndex(array $data)
   {
-    $headerList = $this->_GetHeaderList (
-      $this->_configuration, 'Document', 'DeIndex', $data
-    );
+    $headerList = $this->_GetHeaderList('Document', 'DeIndex', $data);
 
     if ($this->_RequireAuth('Document', 'DeIndex')) {
-      $this->_Auth($this->_configuration, $headerList);
+      $this->_Auth($headerList);
     }
 
-    return $this->_RequestDelete($this->_configuration, $headerList);
+    return $this->_RequestDelete($headerList);
   }
 
   public function DocumentIndex(array $data)
   {
-    $headerList = $this->_GetHeaderList (
-      $this->_configuration, 'Document', 'Index', $data
-    );
+    $headerList = $this->_GetHeaderList('Document', 'Index', $data);
 
     if ($this->_RequireAuth('Document', 'Index')) {
-      $this->_Auth($this->_configuration, $headerList);
+      $this->_Auth($headerList);
     }
 
-    return $this->_RequestPost($this->_configuration, $headerList);
+    return $this->_RequestPost($headerList);
   }
 
   public function DocumentSearch(array $data)
   {
-    $headerList = $this->_GetHeaderList (
-      $this->_configuration, 'Document', 'Search', $data
-    );
+    $headerList = $this->_GetHeaderList('Document', 'Search', $data);
 
     if ($this->_RequireAuth('Document', 'Search')) {
-      $this->_Auth($this->_configuration, $headerList);
+      $this->_Auth($headerList);
     }
 
-    return $this->_RequestGet($this->_configuration, $headerList);
+    return $this->_RequestGet($headerList);
   }
 
   public function GetAccountCreateStatusList()
@@ -359,27 +350,23 @@ class FullTextSearch
 
   public function PermissionPolicyDelete(array $data)
   {
-    $headerList = $this->_GetHeaderList (
-      $this->_configuration, 'PermissionPolicy', 'Delete', $data
-    );
+    $headerList = $this->_GetHeaderList('PermissionPolicy', 'Delete', $data);
 
     if ($this->_RequireAuth('PermissionPolicy', 'Delete')) {
-      $this->_Auth($this->_configuration, $headerList);
+      $this->_Auth($headerList);
     }
 
-    return $this->_RequestDelete($this->_configuration, $headerList);
+    return $this->_RequestDelete($headerList);
   }
 
   public function PermissionPolicyPush(array $data)
   {
-    $headerList = $this->_GetHeaderList (
-      $this->_configuration, 'PermissionPolicy', 'Push', $data
-    );
+    $headerList = $this->_GetHeaderList('PermissionPolicy', 'Push', $data);
 
     if ($this->_RequireAuth('PermissionPolicy', 'Push')) {
-      $this->_Auth($this->_configuration, $headerList);
+      $this->_Auth($headerList);
     }
 
-    return $this->_RequestPost($this->_configuration, $headerList);
+    return $this->_RequestPost($headerList);
   }
 }
