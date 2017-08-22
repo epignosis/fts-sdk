@@ -7,8 +7,16 @@ $data = [
   'Account' => [
     'Create' => [
       'Single' => [
+        // Invalid:
+        [
+
+        ],
         [
           'Domain' => 'https://xdev.com',
+          'Status' => 1
+        ],
+        // Invalid:
+        [
           'Status' => 1
         ],
         [
@@ -36,12 +44,28 @@ $data = [
             'Unit' => 3
           ]
         ],
+        // Invalid:
+        [
+
+        ],
+        // Invalid:
+        [
+          'Id' => 'foo'
+        ],
         [
           'Id' => [
             'Course' => 4,
             'Lesson' => null,
             'Unit' => 6
           ]
+        ],
+        // Invalid:
+        [
+          'Id' => 111
+        ],
+        // Invalid:
+        [
+          'Id' => '4-6'
         ],
         [
           'Id' => [
@@ -223,7 +247,7 @@ $data = [
       'Multiple' => [
         ['Id' => 1],
         ['Id' => 5],
-        // Invalid;
+        // Invalid:
         [],
         ['Id' => 100]
       ],
