@@ -15,7 +15,7 @@ function PrintHeader($line, $newLineBefore = false, $newLineAfter = false)
     );
   } else {
     echo sprintf (
-      '%s<b>%s</b>%s',
+      '%s<b>%s</b><hr>%s',
       $newLineBefore ? '<br>' : null,
       $line,
       $newLineAfter ? '<br>' : null
@@ -39,17 +39,27 @@ try {
 
   // Print FullTextSearch Full SDK Version:
   PrintHeader (
-    sprintf('FullTextSearch SDK Version: %s', $fullTextSearch->GetSdkVersionFull())
+    sprintf('FullTextSearch SDK Version: %s', $fullTextSearch->GetSdkVersionFull()),
+    false,
+    true
   );
 
-  // Entity - Action - Multiplicity
+  $multiplicity = $_GET['Multiplicity'] ? 'Multiple' : 'Single';
+
+  if (!isset($data[$_GET['Entity']][$_GET['Action']][$multiplicity])) {
+    throw new \Exception('Nothing to execute according the requested entity / action.');
+  }
 } catch (\Exception $exception) {
   PrintHeader('System Exception');
   PrintObjectReadable($exception);
 
   if ($fullTextSearch instanceof FullTextSearch) {
-    PrintHeader('FullTextSearch SDK Error');
-    PrintObjectReadable($fullTextSearch->GetError());
+    $fullTextSearchError = $fullTextSearch->GetError();
+
+    if (!empty($fullTextSearchError)) {
+      PrintHeader('FullTextSearch SDK Error');
+      PrintObjectReadable($fullTextSearchError);
+    }
   }
 
   exit(1);
