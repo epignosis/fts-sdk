@@ -37,7 +37,7 @@ class FullTextSearch
 
     if (false === $content) {
       throw new \Exception (
-        sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
+        sprintf('Failed to read the hypermedia file of the service. (%s)', $filePath)
       );
     }
 
@@ -45,7 +45,7 @@ class FullTextSearch
 
     if (null === $content) {
       throw new \Exception (
-        sprintf('Failed to parse the service hypermedia file. (%s)', $filePath)
+        sprintf('Failed to parse the hypermedia file of the service. (%s)', $filePath)
       );
     }
 
@@ -56,19 +56,19 @@ class FullTextSearch
 
   private function _DownloadHyperMedia(array $configuration, $filePath)
   {
-    $response = $this->_RequestOptions($configuration);
+    $response = $this->_RequestOptions($configuration['Service']['BaseEndpoint']);
 
     if (200 != $response['Status'] || isset($response['Body']['Error'])) {
       throw new \Exception (
         sprintf (
-          'Failed to download the service hypermedia file. (%s)', $response['Url']
+          'Failed to download the hypermedia file of the service. (%s)', $response['Url']
         )
       );
     }
 
     if (false === file_put_contents($filePath, $response)) {
       throw new \Exception (
-        sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
+        sprintf('Failed to save the hypermedia file of the service. (%s)', $filePath)
       );
     }
   }
@@ -143,9 +143,12 @@ class FullTextSearch
     return $this->_Request([$configuration, $headerList]);
   }
 
-  private function _RequestOptions(array $configuration, array $headerList = [])
+  private function _RequestOptions($url)
   {
-    return $this->_Request([$configuration, $headerList]);
+    return $this->_Request (
+      $url,
+      stream_context_create(['http' => ['method' => 'OPTIONS']])
+    );
   }
 
   private function _RequestPost (
