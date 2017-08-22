@@ -8,12 +8,20 @@ $data = [
     'Create' => [
       'Single' => [
         [
-          'Domain' => 'https://xdev.com',
+          'Domain' => 'https://hb.efront.pro',
           'Status' => 1
         ],
         [
           'Domain' => 'jp.talentlms.com',
           'Status' => 1
+        ],
+        [
+          'Domain' => 'http://ap.talentlms.com',
+          'Status' => 0
+        ],
+        [
+          'Domain' => 'pv.efront.pro.com',
+          'Status' => 0
         ]
       ]
     ]

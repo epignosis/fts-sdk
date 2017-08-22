@@ -3,7 +3,9 @@
 class FullTextSearch
 {
   private $_configuration = [];
+
   private $_error = [];
+
   private $_sdkInformation = [
     'Version' => [
       'Extra' => 'dev',
