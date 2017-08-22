@@ -17,10 +17,6 @@ $configuration = [
     'BaseEndpoint' => 'http://127.0.0.1/',
     'Format' => 'JSON',
     'Language' => 'en-US',
-    'Version' => '1',
-    'Timeout' => [
-      'Multiple' => 60,
-      'Single' => 10
-    ]
+    'Version' => '1'
   ]
 ];

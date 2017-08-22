@@ -7,6 +7,9 @@ class FullTextSearch
   private $_error = [];
 
   private $_sdkInformation = [
+    'Agent' => [
+      'Epignosis/PHP_SDK; v{{VERSION_FULL}}'
+    ],
     'Version' => [
       'Extra' => 'dev',
       'Major' => 2,
