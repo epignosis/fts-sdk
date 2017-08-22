@@ -29,7 +29,27 @@ $data = [
   'Document' => [
     'DeIndex' => [
       'Multiple' => [
-
+        [
+          'Id' => [
+            'Course' => 1,
+            'Lesson' => 2,
+            'Unit' => 3
+          ]
+        ],
+        [
+          'Id' => [
+            'Course' => 4,
+            'Lesson' => null,
+            'Unit' => 6
+          ]
+        ],
+        [
+          'Id' => [
+            'Course' => 1,
+            'Lesson' => 1,
+            'Unit' => 1
+          ]
+        ]
       ],
       'Single' => [
 
