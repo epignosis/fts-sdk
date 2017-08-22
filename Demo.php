@@ -4,7 +4,26 @@ require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
 require 'FullTextSearch.php';
 require 'Configuration.php';
 
-function PrintHeader($line, $newLineBefore = false, $newLineAfter = false)
+function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
+{
+  if (stripos(php_sapi_name(), 'cli', 0)) {
+    echo sprintf (
+      '%s%s%s',
+      $newLineBefore ? "\n" : null,
+      $header,
+      $newLineAfter ? "\n" : null
+    );
+  } else {
+    echo sprintf (
+      '%s<b>%s</b>%s',
+      $newLineBefore ? '<br>' : null,
+      $header,
+      $newLineAfter ? '<br>' : null
+    );
+  }
+}
+
+function PrintLine($line, $newLineBefore = false, $newLineAfter = false)
 {
   if (stripos(php_sapi_name(), 'cli', 0)) {
     echo sprintf (
@@ -15,7 +34,7 @@ function PrintHeader($line, $newLineBefore = false, $newLineAfter = false)
     );
   } else {
     echo sprintf (
-      '%s<b>%s</b><hr>%s',
+      '%s%s%s',
       $newLineBefore ? '<br>' : null,
       $line,
       $newLineAfter ? '<br>' : null
@@ -38,11 +57,8 @@ try {
   $fullTextSearch = new FullTextSearch($configuration);
 
   // Print FullTextSearch Full SDK Version:
-  PrintHeader (
-    sprintf('FullTextSearch SDK Version: %s', $fullTextSearch->GetSdkVersionFull()),
-    false,
-    true
-  );
+  PrintHeader('FullTextSearch SDK Version: ');
+  PrintLine($fullTextSearch->GetSdkVersionFull(), true, true);
 
   $multiplicity = $_GET['Multiplicity'] ? 'Multiple' : 'Single';
 
@@ -50,7 +66,7 @@ try {
     throw new \Exception('Nothing to execute according the requested entity / action.');
   }
 } catch (\Exception $exception) {
-  PrintHeader('System Exception');
+  PrintHeader('System Exception', true, false);
   PrintObjectReadable($exception);
 
   if ($fullTextSearch instanceof FullTextSearch) {
