@@ -41,8 +41,8 @@ class FullTextSearch
     $signature = sprintf (
       '%s;%s;%s',
       $authInformation['Key']['Public'][$operationInformation['OperationType']],
-      $this->_EncodeBase64($randomToken),
-      $this->_EncodeBase64 (
+      base64_encode($randomToken),
+      base64_encode (
         hash_hmac (
           $this->_authConfiguration['HashAlgorithm'],
           serialize($this->_GetSortedData($data)),
