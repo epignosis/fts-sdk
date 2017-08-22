@@ -267,11 +267,6 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  private function _RequireAuth($entity, $action)
-  {
-    return true;
-  }
-
   private function _SaveFile($filePath, $fileContent)
   {
     $filePathDirectory = dirname($filePath);
@@ -291,7 +286,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList('Account', 'Create', $data);
 
-    if ($this->_RequireAuth('Account', 'Create')) {
+    if ($this->_GetHyperMedia(['Account', 'Create', 'General', 'AuthRequired'])) {
       $this->_Auth($headerList);
     }
 
@@ -314,7 +309,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList('Document', 'DeIndex', $data);
 
-    if ($this->_RequireAuth('Document', 'DeIndex')) {
+    if ($this->_GetHyperMedia(['Document', 'DeIndex', 'General', 'AuthRequired'])) {
       $this->_Auth($headerList);
     }
 
@@ -325,7 +320,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList('Document', 'Index', $data);
 
-    if ($this->_RequireAuth('Document', 'Index')) {
+    if ($this->_GetHyperMedia(['Document', 'Index', 'General', 'AuthRequired'])) {
       $this->_Auth($headerList);
     }
 
@@ -336,7 +331,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList('Document', 'Search', $data);
 
-    if ($this->_RequireAuth('Document', 'Search')) {
+    if ($this->_GetHyperMedia(['Document', 'Search', 'General', 'AuthRequired'])) {
       $this->_Auth($headerList);
     }
 
@@ -404,7 +399,8 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList('PermissionPolicy', 'Delete', $data);
 
-    if ($this->_RequireAuth('PermissionPolicy', 'Delete')) {
+    if ($this->_GetHyperMedia(['PermissionPolicy', 'Delete', 'General', 'AuthRequired']))
+    {
       $this->_Auth($headerList);
     }
 
@@ -415,7 +411,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList('PermissionPolicy', 'Push', $data);
 
-    if ($this->_RequireAuth('PermissionPolicy', 'Push')) {
+    if ($this->_GetHyperMedia(['PermissionPolicy', 'Push', 'General', 'AuthRequired'])) {
       $this->_Auth($headerList);
     }
 
