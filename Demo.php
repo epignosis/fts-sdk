@@ -9,12 +9,23 @@ require $currentDirectory . 'FullTextSearch.php';
 
 function PrintHeader($line, $newLineBefore = false, $newLineAfter = false)
 {
-  echo $line;
+  $newLine = false !== stripos(php_sapi_name(), 'cli', 0) ? "\n" : '<br>';
+
+  echo sprintf (
+    '%s%s%s',
+    $newLineBefore ? $newLine : null,
+    $line,
+    $newLineAfter ? $newLine : null
+  );
 }
 
 function PrintObjectReadable($data)
 {
-  echo sprintf('<pre>%s</pre>', print_r($data, true));
+  if (false !== stripos(php_sapi_name(), 'cli', 0)) {
+    print_r($data);
+  } else {
+    echo sprintf('<pre>%s</pre>', print_r($data, true));
+  }
 }
 
 try {
