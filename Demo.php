@@ -4,9 +4,25 @@ require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
 require 'FullTextSearch.php';
 require 'Configuration.php';
 
+function Get()
+{
+  if (false !== stripos(php_sapi_name(), 'cli', 0)) {
+    $argumentList = [];
+
+    foreach (array_slice($_SERVER['argv'], 1, $_SERVER['argc']) as $argument) {
+      $argument = explode('=', $argument);
+      $argumentList[ltrim(trim($argument[0]), '-')] = trim($argument[1]);
+    }
+
+    return $argumentList;
+  }
+
+  return $_GET;
+}
+
 function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
 {
-  if (stripos(php_sapi_name(), 'cli', 0)) {
+  if (false !== stripos(php_sapi_name(), 'cli', 0)) {
     echo sprintf (
       '%s%s%s',
       $newLineBefore ? "\n" : null,
@@ -25,7 +41,7 @@ function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
 
 function PrintLine($line, $newLineBefore = false, $newLineAfter = false)
 {
-  if (stripos(php_sapi_name(), 'cli', 0)) {
+  if (false !== stripos(php_sapi_name(), 'cli', 0)) {
     echo sprintf (
       '%s%s%s',
       $newLineBefore ? "\n" : null,
@@ -56,15 +72,27 @@ try {
   /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearch = new FullTextSearch($configuration);
 
-  // Print FullTextSearch Full SDK Version:
   PrintHeader('FullTextSearch SDK Version: ');
   PrintLine($fullTextSearch->GetSdkVersionFull(), true, true);
 
-  $multiplicity = $_GET['Multiplicity'] ? 'Multiple' : 'Single';
+  PrintHeader('FullTextSearch SDK Configuration: ', true);
+  PrintObjectReadable($fullTextSearch->GetConfiguration());
 
-  if (!isset($data[$_GET['Entity']][$_GET['Action']][$multiplicity])) {
+  $getList = Get();
+  $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
+
+  if (!isset($data[$getList['Entity']][$getList['Action']][$multiplicity])) {
     throw new \Exception('Nothing to execute according the requested entity / action.');
   }
+
+  PrintHeader('Execute %s %s', $getList['Entity'], $getList['Action']);
+
+  /** @noinspection PhpUndefinedVariableInspection */
+  $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
+  $method = sprintf('%s%s', $getList['Entity'], $getList['Action']);
+
+  PrintLine('Requested Data:');
+  PrintObjectReadable($methodData);
 } catch (\Exception $exception) {
   PrintHeader('System Exception', true, false);
   PrintObjectReadable($exception);

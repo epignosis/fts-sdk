@@ -62,6 +62,11 @@ class FullTextSearch
     return [];
   }
 
+  private function _RequestOptions(array $configuration, array $headerList = [])
+  {
+    return [];
+  }
+
   private function _RequestPost (
     array $configuration,
     array $headerList = [],
