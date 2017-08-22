@@ -56,7 +56,9 @@ class FullTextSearch
 
   private function _DownloadHyperMedia(array $configuration, $filePath)
   {
-    $response = $this->_RequestOptions($configuration['Service']['BaseEndpoint']);
+    $response = $this->_RequestOptions (
+      $configuration['Service']['BaseEndpoint'], $configuration
+    );
 
     if (200 != $response['Status'] || isset($response['Body']['Error'])) {
       throw new \Exception (
@@ -121,13 +123,46 @@ class FullTextSearch
     );
   }
 
-  private function _Request(array $optionList)
+  private function _GetAcceptanceHeaderString(array $configuration)
   {
-    return [
-      'Body' => null,
-      'Status' => null,
-      'Url' => null
-    ];
+    return
+      sprintf (
+        'Accept: %s',
+        sprintf (
+          $configuration['Service']['Header']['Accept'],
+          (int) $configuration['Service']['Version'],
+          strtolower($configuration['Service']['Format'])
+        )
+      ) .
+      "\n" .
+      sprintf (
+        'Accept-Language: %s',
+        sprintf (
+          $configuration['Service']['Header']['AcceptLanguage'],
+          strtolower($configuration['Service']['Language'])
+        )
+      ) .
+      "\n";
+  }
+
+  private function _Request($url, array $configuration, array $optionList = [])
+  {
+    $optionList['http']['ignore_errors'] = true;
+
+    $optionList['http']['header'] =
+      rtrim($optionList['http']['header']) .
+      $this->_GetAcceptanceHeaderString($configuration);
+
+    $responseCode = null;
+    $response = file_get_contents($url, false, stream_context_create($optionList));
+
+    foreach ($http_response_header as $header) {
+      if (preg_match('#HTTP/[0-9\.]+\s+([0-9]+)#', $header, $match)) {
+        $responseCode = intval($match[1]);
+      }
+    }
+
+    return ['Body' => $response, 'Status' => $responseCode, 'Url' => $url];
   }
 
   private function _RequestDelete (
@@ -143,12 +178,9 @@ class FullTextSearch
     return $this->_Request([$configuration, $headerList]);
   }
 
-  private function _RequestOptions($url)
+  private function _RequestOptions($url, array $configuration)
   {
-    return $this->_Request (
-      $url,
-      stream_context_create(['http' => ['method' => 'OPTIONS']])
-    );
+    return $this->_Request($url, $configuration, ['http' => ['method' => 'OPTIONS']]);
   }
 
   private function _RequestPost (

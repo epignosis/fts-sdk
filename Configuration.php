@@ -16,6 +16,10 @@ $configuration = [
   'Service' => [
     'BaseEndpoint' => 'http://127.0.0.1/',
     'Format' => 'JSON',
+    'Header' => [
+      'Accept' => 'application/vnd.epignosis.v%d+%s',
+      'AcceptLanguage' => '%s'
+    ],
     'Language' => 'en-US',
     'Storage' => [
       'FilePath' => null
