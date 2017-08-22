@@ -23,7 +23,7 @@ class FullTextSearch
     $this->_BuildHyperMedia($configuration)->Configure($configuration);
   }
 
-  private function _Auth(array $configuration, array &$headerList, $body = null)
+  private function _Auth(array $configuration, array &$headerList)
   {
 
   }
@@ -90,11 +90,6 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetBody(array $configuration, $entity, $action, array $data = [])
-  {
-    return serialize([$configuration, $entity, $action, $data]);
-  }
-
   private function _GetHeaderList (
     array $configuration,
           $entity = null,
@@ -113,7 +108,8 @@ class FullTextSearch
       ),
       'User-Agent' => sprintf (
         self::$_sdkInformation['Agent'], $this->GetSdkVersion()
-      )
+      ),
+      'X-Service-Timestamp' => time()
     ];
 
     if (!empty($configuration['Service']['Header']['UserAgent'])) {
@@ -121,8 +117,6 @@ class FullTextSearch
         $headerList['User-Agent'] = $configuration['Service']['Header']['UserAgent'];
       }
     }
-
-    print_r($headerList);exit;
 
     return $headerList;
   }
@@ -200,7 +194,7 @@ class FullTextSearch
     ];
   }
 
-  private function _RequestDelete($url, array $headerList = [], $body = null)
+  private function _RequestDelete($url, array $headerList = [])
   {
     return $this->_Request($url, $headerList);
   }
@@ -222,7 +216,7 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  private function _RequestPost($url, array $headerList = [], $body = null)
+  private function _RequestPost($url, array $headerList = [])
   {
     return $this->_Request($url, $headerList);
   }
@@ -253,15 +247,11 @@ class FullTextSearch
       $this->_configuration, 'Account', 'Create', $data
     );
 
-    $body = $this->_GetBody (
-      $this->_configuration, 'Account', 'Create', $data
-    );
-
     if ($this->_RequireAuth('Account', 'Create')) {
-      $this->_Auth($this->_configuration, $headerList, $body);
+      $this->_Auth($this->_configuration, $headerList);
     }
 
-    return $this->_RequestPost($this->_configuration, $headerList, $body);
+    return $this->_RequestPost($this->_configuration, $headerList);
   }
 
   public function Configure(array $configuration)
@@ -277,15 +267,11 @@ class FullTextSearch
       $this->_configuration, 'Document', 'DeIndex', $data
     );
 
-    $body = $this->_GetBody (
-      $this->_configuration, 'Document', 'DeIndex', $data
-    );
-
     if ($this->_RequireAuth('Document', 'DeIndex')) {
-      $this->_Auth($this->_configuration, $headerList, $body);
+      $this->_Auth($this->_configuration, $headerList);
     }
 
-    return $this->_RequestDelete($this->_configuration, $headerList, $body);
+    return $this->_RequestDelete($this->_configuration, $headerList);
   }
 
   public function DocumentIndex(array $data)
@@ -294,15 +280,11 @@ class FullTextSearch
       $this->_configuration, 'Document', 'Index', $data
     );
 
-    $body = $this->_GetBody (
-      $this->_configuration, 'Document', 'Index', $data
-    );
-
     if ($this->_RequireAuth('Document', 'Index')) {
-      $this->_Auth($this->_configuration, $headerList, $body);
+      $this->_Auth($this->_configuration, $headerList);
     }
 
-    return $this->_RequestPost($this->_configuration, $headerList, $body);
+    return $this->_RequestPost($this->_configuration, $headerList);
   }
 
   public function DocumentSearch(array $data)
@@ -381,15 +363,11 @@ class FullTextSearch
       $this->_configuration, 'PermissionPolicy', 'Delete', $data
     );
 
-    $body = $this->_GetBody (
-      $this->_configuration, 'PermissionPolicy', 'Delete', $data
-    );
-
     if ($this->_RequireAuth('PermissionPolicy', 'Delete')) {
-      $this->_Auth($this->_configuration, $headerList, $body);
+      $this->_Auth($this->_configuration, $headerList);
     }
 
-    return $this->_RequestDelete($this->_configuration, $headerList, $body);
+    return $this->_RequestDelete($this->_configuration, $headerList);
   }
 
   public function PermissionPolicyPush(array $data)
@@ -398,14 +376,10 @@ class FullTextSearch
       $this->_configuration, 'PermissionPolicy', 'Push', $data
     );
 
-    $body = $this->_GetBody (
-      $this->_configuration, 'PermissionPolicy', 'Push', $data
-    );
-
     if ($this->_RequireAuth('PermissionPolicy', 'Push')) {
-      $this->_Auth($this->_configuration, $headerList, $body);
+      $this->_Auth($this->_configuration, $headerList);
     }
 
-    return $this->_RequestPost($this->_configuration, $headerList, $body);
+    return $this->_RequestPost($this->_configuration, $headerList);
   }
 }
