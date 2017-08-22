@@ -12,5 +12,15 @@ $configuration = [
         'Write' => 'GmVeZ6hfe1P+KEo63xA+kwMKgu0XW6kWGwyxCVAGpM2pG3Rmw/nirfRsYys3EtJc'
       ]
     ]
+  ],
+  'Service' => [
+    'BaseEndpoint' => 'http://127.0.0.1/',
+    'Format' => 'JSON',
+    'Language' => 'en-US',
+    'Version' => '1',
+    'Timeout' => [
+      'Multiple' => 60,
+      'Single' => 10
+    ]
   ]
 ];
