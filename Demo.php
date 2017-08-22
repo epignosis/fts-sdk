@@ -6,14 +6,21 @@ require 'Configuration.php';
 
 function PrintHeader($line, $newLineBefore = false, $newLineAfter = false)
 {
-  $newLine = false !== stripos(php_sapi_name(), 'cli', 0) ? "\n" : '<br>';
-
-  echo sprintf (
-    '%s%s%s',
-    $newLineBefore ? $newLine : null,
-    $line,
-    $newLineAfter ? $newLine : null
-  );
+  if (stripos(php_sapi_name(), 'cli', 0)) {
+    echo sprintf (
+      '%s%s%s',
+      $newLineBefore ? "\n" : null,
+      $line,
+      $newLineAfter ? "\n" : null
+    );
+  } else {
+    echo sprintf (
+      '%s<b>%s</b>%s',
+      $newLineBefore ? '<br>' : null,
+      $line,
+      $newLineAfter ? '<br>' : null
+    );
+  }
 }
 
 function PrintObjectReadable($data)
