@@ -8,7 +8,7 @@ $data = [
     'Create' => [
       'Single' => [
         [
-          'Domain' => 'https://hb.efront.pro',
+          'Domain' => 'https://xdev.com',
           'Status' => 1
         ],
         [
@@ -20,7 +20,7 @@ $data = [
           'Status' => 0
         ],
         [
-          'Domain' => 'pv.efront.pro.com',
+          'Domain' => 'pv.com',
           'Status' => 0
         ]
       ]
@@ -63,6 +63,18 @@ $data = [
 
       ],
       'Single' => [
+        [
+          'Id' => 1,
+          'Policy' => '{"39":[5]}'
+        ],
+        [
+          'Id' => 1,
+          'Policy' => '{"39":[5]}'
+        ],
+        [
+          'Id' => 1,
+          'Policy' => '{"39":[5]}'
+        ],
 
       ]
     ]
