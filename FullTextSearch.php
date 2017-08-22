@@ -6,10 +6,8 @@ class FullTextSearch
 
   private $_hyperMedia = [];
 
-  private $_sdkInformation = [
-    'Agent' => [
-      'Epignosis/PHP_SDK; v{{VERSION_FULL}}'
-    ],
+  private static $_sdkInformation = [
+    'Agent' => 'Epignosis/PHP_SDK; v%s',
     'Version' => [
       'Extra' => 'dev',
       'Major' => 2,
@@ -92,21 +90,6 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetAcceptanceHeaderString(array $configuration)
-  {
-    return [
-      'Accept' => sprintf (
-        $configuration['Service']['Header']['Accept'],
-        (int) $configuration['Service']['Version'],
-        strtolower($configuration['Service']['Format'])
-      ),
-      'Accept-Language' =>  sprintf (
-        $configuration['Service']['Header']['AcceptLanguage'],
-        strtolower($configuration['Service']['Language'])
-      )
-    ];
-  }
-
   private function _GetBody(array $configuration, $entity, $action, array $data = [])
   {
     return serialize([$configuration, $entity, $action, $data]);
@@ -118,7 +101,28 @@ class FullTextSearch
           $action = null,
     array $data = [])
   {
-    return $this->_GetAcceptanceHeaderString($configuration) + [];
+    $headerList = [
+      'Accept' => sprintf (
+        $configuration['Service']['Header']['Accept'],
+        (int) $configuration['Service']['Version'],
+        strtolower($configuration['Service']['Format'])
+      ),
+      'Accept-Language' =>  sprintf (
+        $configuration['Service']['Header']['AcceptLanguage'],
+        strtolower($configuration['Service']['Language'])
+      ),
+      'User-Agent' => trim($configuration['Service']['Header']['UserAgent'])
+    ];
+
+    $headerList['User-Agent'] = trim($configuration['Service']['Header']['UserAgent']);
+
+    if (empty($headerList['User-Agent'])) {
+      $headerList['User-Agent'] = sprintf (
+        self::$_sdkInformation['Agent'], $this->GetSdkVersion()
+      );
+    }
+
+    return $headerList;
   }
 
   private function _GetHeaderListToString(array $headerList = [])
@@ -331,25 +335,21 @@ class FullTextSearch
     ]);
   }
 
-  public function GetSdkInformation()
-  {
-    return $this->_sdkInformation;
-  }
-
   public function GetSdkVersion()
   {
-    return $this->_sdkInformation['Version'];
+    return sprintf (
+      '%d.%d.%d-%s',
+      self::$_sdkInformation['Version']['Major'],
+      self::$_sdkInformation['Version']['Minor'],
+      self::$_sdkInformation['Version']['Patch'],
+      self::$_sdkInformation['Version']['Extra']
+    );
   }
 
   public function GetSdkVersionFull()
   {
     return sprintf (
-      '%d.%d.%d-%s (%s)',
-      $this->_sdkInformation['Version']['Major'],
-      $this->_sdkInformation['Version']['Minor'],
-      $this->_sdkInformation['Version']['Patch'],
-      $this->_sdkInformation['Version']['Extra'],
-      $this->_sdkInformation['Version']['Release']
+      '%s (%s)', $this->GetSdkVersion(), self::$_sdkInformation['Version']['Release']
     );
   }
 

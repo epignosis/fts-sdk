@@ -18,7 +18,8 @@ $configuration = [
     'Format' => 'JSON',
     'Header' => [
       'Accept' => 'application/vnd.epignosis.v%d+%s',
-      'AcceptLanguage' => '%s'
+      'AcceptLanguage' => '%s',
+      'UserAgent' => null
     ],
     'Language' => 'en-US',
     'Storage' => [
