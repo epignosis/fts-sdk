@@ -149,6 +149,32 @@ $data = [
           ],
           'Title' => 'Plain Text Document'
         ],
+        // Invalid:
+        [
+          'Content' => [
+            'FileList' => [],
+            'TagList' => ['foo', 'bar'],
+            'Text' => 'This is a sample plain text content ..'
+          ],
+          'Id' => [
+            'Lesson' => 2,
+            'Unit' => 3
+          ],
+          'Title' => 'Plain Text Document'
+        ],
+        // Invalid:
+        [
+          'Content' => [
+            'FileList' => [],
+            'TagList' => ['foo', 'bar'],
+            'Text' => 'This is a sample plain text content ..'
+          ],
+          'Id' => [
+            'Course' => 1,
+            'Lesson' => 2
+          ],
+          'Title' => 'Plain Text Document'
+        ],
         [
           'Content' => [
             'FileList' => [],
@@ -208,6 +234,32 @@ $data = [
             'FileList' => ['https://efrontlearning.com/'],
             'TagList' => ['blah'],
             'Text' => 'Κείμενο στα Ελληνικά. Yay!'
+          ],
+          'Title' => 'Google Adwords'
+        ],
+        // Invalid:
+        [
+          'Content' => [
+            'FileList' => ['https://efrontlearning.com/'],
+            'TagList' => ['blah'],
+            'Text' => 'Κείμενο στα Ελληνικά. Yay!'
+          ],
+          'Id' => [
+            'Lesson' => 4096,
+            'Unit' => 1024
+          ],
+          'Title' => 'Google Adwords'
+        ],
+        // Invalid:
+        [
+          'Content' => [
+            'FileList' => ['https://efrontlearning.com/'],
+            'TagList' => ['blah'],
+            'Text' => 'Κείμενο στα Ελληνικά. Yay!'
+          ],
+          'Id' => [
+            'Course' => 65536,
+            'Lesson' => 4096
           ],
           'Title' => 'Google Adwords'
         ],
