@@ -1,16 +1,30 @@
 <?php
 
+namespace Epignosis\Sdk;
+
+/**
+ *
+ */
 class FullTextSearch
 {
+  /**
+   *
+   */
   private $_configuration = [];
 
+  /**
+   *
+   */
   private $_hyperMedia = [];
 
+  /**
+   *
+   */
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/PHP_SDK; v%s',
     'HyperMedia' => [
       'IndexKey' => [
-        'Data' => 'Data'
+        'Success' => 'Data'
       ]
     ],
     'Version' => [
@@ -18,16 +32,22 @@ class FullTextSearch
       'Major' => 2,
       'Minor' => 0,
       'Patch' => 0,
-      'Release' => '2017-08-31'
+      'Release' => '2017-MM-DD'
     ]
   ];
 
 
+  /**
+   *
+   */
   public function __construct(array $configuration = [])
   {
     $this->Configure($configuration)->_BuildHyperMedia();
   }
 
+  /**
+   *
+   */
   private function _Auth($entity, $action, array &$headerList, array $data = [])
   {
     if (!function_exists('openssl_random_pseudo_bytes')) {
@@ -61,6 +81,9 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   *
+   */
   private function _BuildHyperMedia()
   {
     $filePath = $this->_GetHyperMediaFilePath();
@@ -72,6 +95,9 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   *
+   */
   private function _CreateHyperMediaFile($filePath, $force = false)
   {
     if ($force || !file_exists($filePath)) {
@@ -83,6 +109,9 @@ class FullTextSearch
     }
   }
 
+  /**
+   *
+   */
   private function _DeleteFile($filePath)
   {
     unlink($filePath);
@@ -90,6 +119,9 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   *
+   */
   private function _DownloadHyperMediaFile()
   {
     $response = $this->_RequestOptions (
@@ -107,6 +139,9 @@ class FullTextSearch
     return $response['Body'];
   }
 
+  /**
+   *
+   */
   private function _GetDecodedResponse(array $response = [])
   {
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
@@ -116,6 +151,9 @@ class FullTextSearch
     return $response['Body'];
   }
 
+  /**
+   *
+   */
   private function _GetHeaderList()
   {
     $headerList = [
@@ -145,6 +183,9 @@ class FullTextSearch
     return $headerList;
   }
 
+  /**
+   *
+   */
   private function _GetHeaderListToString(array $headerList = [])
   {
     $headerString = null;
@@ -160,6 +201,9 @@ class FullTextSearch
     return $headerString;
   }
 
+  /**
+   *
+   */
   private function _GetHyperMedia(array $path = [])
   {
     if (empty($path)) {
@@ -175,9 +219,12 @@ class FullTextSearch
     return $hyperMediaSection;
   }
 
+  /**
+   *
+   */
   private function _GetHyperMediaFilePath()
   {
-    $storageDirectory = __DIR__;
+    $storageDirectory = dirname(dirname(__DIR__));
 
     if (!empty($this->_configuration['Service']['Storage']['FilePath'])) {
       $storageDirectory = $this->_configuration['Service']['Storage']['FilePath'];
@@ -194,6 +241,9 @@ class FullTextSearch
     );
   }
 
+  /**
+   *
+   */
   private function _GetResponseStatusCode(array $headerList = [])
   {
     foreach ($headerList as $header) {
@@ -205,6 +255,9 @@ class FullTextSearch
     return null;
   }
 
+  /**
+   *
+   */
   private function _GetSortedArray(array $data = [])
   {
     ksort($data);
@@ -218,6 +271,9 @@ class FullTextSearch
     return $data;
   }
 
+  /**
+   *
+   */
   private function _ReadHyperMediaFile($filePath)
   {
     $content = file_get_contents($filePath);
@@ -230,10 +286,10 @@ class FullTextSearch
       );
     }
 
-    $dataIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Data'];
+    $successIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Success'];
 
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
-      $content = json_decode($content, true)[$dataIndexKey];
+      $content = json_decode($content, true)[$successIndexKey];
     } else {
       // Do nothing ..
     }
@@ -249,6 +305,9 @@ class FullTextSearch
     return $content;
   }
 
+  /**
+   *
+   */
   private function _Request($url, array $optionList = [])
   {
     $optionList['http']['ignore_errors'] = true;
@@ -270,6 +329,9 @@ class FullTextSearch
     ];
   }
 
+  /**
+   *
+   */
   private function _RequestDelete($url, array $headerList = [])
   {
     $optionList = [
@@ -282,6 +344,9 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /**
+   *
+   */
   private function _RequestGet($url, array $headerList = [])
   {
     $optionList = [
@@ -293,6 +358,9 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /**
+   *
+   */
   private function _RequestOptions($url, array $headerList = [])
   {
     $optionList = [
@@ -305,6 +373,9 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /**
+   *
+   */
   private function _RequestPost($url, array $headerList = [])
   {
     $optionList = [
@@ -317,6 +388,9 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /**
+   *
+   */
   private function _SaveFile($filePath, $fileContent)
   {
     $filePathDirectory = dirname($filePath);
@@ -332,6 +406,9 @@ class FullTextSearch
     return file_put_contents($filePath, $fileContent, \LOCK_EX);
   }
 
+  /**
+   *
+   */
   public function AccountCreate(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -348,6 +425,9 @@ class FullTextSearch
     );
   }
 
+  /**
+   *
+   */
   public function Configure(array $configuration)
   {
     $this->_configuration = $configuration;
@@ -355,6 +435,9 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   *
+   */
   public function DocumentDeIndex(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -366,6 +449,9 @@ class FullTextSearch
     return $this->_RequestDelete($headerList);
   }
 
+  /**
+   *
+   */
   public function DocumentIndex(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -377,6 +463,9 @@ class FullTextSearch
     return $this->_RequestPost($headerList);
   }
 
+  /**
+   *
+   */
   public function DocumentSearch(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -388,6 +477,9 @@ class FullTextSearch
     return $this->_RequestGet($headerList);
   }
 
+  /**
+   *
+   */
   public function GetAccountCreateStatusList()
   {
     return $this->_GetHyperMedia ([
@@ -395,11 +487,17 @@ class FullTextSearch
     ]);
   }
 
+  /**
+   *
+   */
   public function GetConfiguration()
   {
     return $this->_configuration;
   }
 
+  /**
+   *
+   */
   public function GetDocumentSearchSourceOptionList()
   {
     return $this->_GetHyperMedia ([
@@ -407,6 +505,9 @@ class FullTextSearch
     ]);
   }
 
+  /**
+   *
+   */
   public function GetSdkVersion()
   {
     return sprintf (
@@ -418,6 +519,9 @@ class FullTextSearch
     );
   }
 
+  /**
+   *
+   */
   public function GetSdkVersionFull()
   {
     return sprintf (
@@ -425,6 +529,9 @@ class FullTextSearch
     );
   }
 
+  /**
+   *
+   */
   public function PermissionPolicyDelete(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -437,6 +544,9 @@ class FullTextSearch
     return $this->_RequestDelete($headerList);
   }
 
+  /**
+   *
+   */
   public function PermissionPolicyPush(array $data)
   {
     $headerList = $this->_GetHeaderList();

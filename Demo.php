@@ -1,10 +1,16 @@
 <?php
 
+use Epignosis\Sdk\FullTextSearch;
+
 $now = microtime(true);
 
 require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
-require 'FullTextSearch.php';
 require 'Configuration.php';
+
+require
+  'Epignosis' . \DIRECTORY_SEPARATOR .
+  'Sdk' . \ DIRECTORY_SEPARATOR .
+  'FullTextSearch.php';
 
 function Get()
 {
@@ -111,9 +117,7 @@ try {
   PrintHeader('SDK Exception');
   PrintObjectReadable($exception);
 
-} finally {
-
-  PrintLine('<hr>');
-  PrintLine(sprintf('Executed in <b>%s</b> sec.', round(microtime(true) - $now, 3)));
-
 }
+
+PrintLine('<hr>');
+PrintLine(sprintf('Executed in <b>%s</b> sec.', round(microtime(true) - $now, 3)));
