@@ -417,7 +417,9 @@ class FullTextSearch
 
     return $this->_GetDecodedResponse (
       $this->_RequestDelete (
-        $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint']['Single'],
+        1 < count($data)
+          ? $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint']['Multiple']
+          : $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint']['Single'],
         $headerList,
         $data
       )
