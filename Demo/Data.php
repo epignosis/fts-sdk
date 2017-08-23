@@ -1,7 +1,7 @@
 <?php
 
 /**
- * As of FTS-SDK v2.
+ * As of FullTextSearch PHP SDK v2.
  */
 $data = [
   'Account' => [

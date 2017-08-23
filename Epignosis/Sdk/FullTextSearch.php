@@ -21,7 +21,7 @@ class FullTextSearch
    *
    */
   private static $_sdkInformation = [
-    'Agent' => 'Epignosis/PHP_SDK; v%s',
+    'Agent' => 'Epignosis/FullTextSearch; PHP_SDK v%s',
     'HyperMedia' => [
       'IndexKey' => [
         'Success' => 'Data'
