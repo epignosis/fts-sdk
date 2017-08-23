@@ -291,7 +291,7 @@ $data = [
       ]
     ],
     'Search' => [
-      'Single' => [
+      'Multiple' => [
         [
           'Pagination' => [
             'Limit' => 5,

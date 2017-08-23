@@ -171,6 +171,17 @@ class FullTextSearch
     return $response['Body'];
   }
 
+  private function _GetEndPoint($entity, $action, array $data)
+  {
+    $endPoint = $this->_hypermedia[$entity][$action]['Request']['EndPoint'];
+
+    if (!isset($endPoint['Single']) || 1 < count($data)) {
+      return $endPoint['Multiple'];
+    }
+
+    return $endPoint['Single'];
+  }
+
   private function _GetHeaderList()
   {
     $headerList = [
@@ -447,9 +458,7 @@ class FullTextSearch
 
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
-        $this->_hypermedia['Account']['Create']['Request']['EndPoint']['Single'],
-        $headerList,
-        $data
+        $this->_GetEndPoint('Account', 'Create', $data), $headerList, $data
       )
     );
   }
@@ -492,11 +501,9 @@ class FullTextSearch
       $this->_Sign('Document', 'DeIndex', $headerList, $data);
     }
 
-    $endPoint = $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint'];
-
     return $this->_GetDecodedResponse (
       $this->_RequestDelete (
-        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
+        $this->_GetEndPoint('Document', 'DeIndex', $data), $headerList, $data
       )
     );
   }
@@ -522,11 +529,9 @@ class FullTextSearch
       $this->_Sign('Document', 'Index', $headerList, $data);
     }
 
-    $endPoint = $this->_hypermedia['Document']['Index']['Request']['EndPoint'];
-
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
-        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
+        $this->_GetEndPoint('Document', 'Index', $data), $headerList, $data
       )
     );
   }
@@ -554,9 +559,7 @@ class FullTextSearch
 
     return $this->_GetDecodedResponse (
       $this->_RequestGet (
-        $this->_hypermedia['Document']['Search']['Request']['EndPoint']['Single'],
-        $headerList,
-        $data
+        $this->_GetEndPoint('Document', 'Search', $data), $headerList, $data
       )
     );
   }
@@ -645,11 +648,9 @@ class FullTextSearch
       $this->_Sign('PermissionPolicy', 'Delete', $headerList, $data);
     }
 
-    $endPoint = $this->_hypermedia['PermissionPolicy']['Delete']['Request']['EndPoint'];
-
     return $this->_GetDecodedResponse (
       $this->_RequestDelete (
-        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
+        $this->_GetEndPoint('PermissionPolicy', 'Delete', $data), $headerList, $data
       )
     );
   }
@@ -675,11 +676,9 @@ class FullTextSearch
       $this->_Sign('PermissionPolicy', 'Push', $headerList, $data);
     }
 
-    $endPoint = $this->_hypermedia['PermissionPolicy']['Delete']['Request']['EndPoint'];
-
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
-        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
+        $this->_GetEndPoint('PermissionPolicy', 'Push', $data), $headerList, $data
       )
     );
   }
