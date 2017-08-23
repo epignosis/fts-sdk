@@ -76,30 +76,6 @@ class FullTextSearch
     $this->Configure($configuration)->_BuildHypermedia();
   }
 
-  private function _Auth($entity, $action, array &$headerList, array $data = [])
-  {
-    $randomToken = $this->_GetRandomStringSecure(16);
-    $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
-    $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
-    $keyList = $this->_configuration['Auth']['Key'];
-
-    $headerList[$authConfiguration['Signature']['Name']] = sprintf (
-      '%s;%s;%s',
-      $keyList['Public'][$operationType],
-      base64_encode($randomToken),
-      base64_encode (
-        hash_hmac (
-          $authConfiguration['Signature']['Hash']['Algorithm'],
-          $this->_GetArrayToString($this->_GetSortedArray($data)),
-          $randomToken . $keyList['Private'][$operationType],
-          true
-        )
-      )
-    );
-
-    return $this;
-  }
-
   private function _BuildHypermedia()
   {
     $filePath = $this->_GetHypermediaFilePath();
@@ -383,12 +359,59 @@ class FullTextSearch
     return file_put_contents($filePath, $fileContent, \LOCK_EX);
   }
 
+  /**
+   * Signs a request.
+   *
+   * @param   $entity
+   *            - The entity to be used. (Required)
+   *
+   * @param   $action
+   *            - The action to be used. (Required)
+   *
+   * @param   array $headerList
+   *            - The header list to be used. In this list, an extra header will be added.
+   *              (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that the function "openssl_random_pseudo_bytes" does not exist.
+   */
+  private function _Sign($entity, $action, array &$headerList, array $data = [])
+  {
+    $randomToken = $this->_GetRandomStringSecure(16);
+    $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
+    $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
+    $keyList = $this->_configuration['Auth']['Key'];
+
+    $headerList[$authConfiguration['Signature']['Name']] = sprintf (
+      '%s;%s;%s',
+      $keyList['Public'][$operationType],
+      base64_encode($randomToken),
+      base64_encode (
+        hash_hmac (
+          $authConfiguration['Signature']['Hash']['Algorithm'],
+          $this->_GetArrayToString($this->_GetSortedArray($data)),
+          $randomToken . $keyList['Private'][$operationType],
+          true
+        )
+      )
+    );
+
+    return $this;
+  }
+
   public function AccountCreate(array $data)
   {
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Account']['Create']['General']['AuthRequired']) {
-      $this->_Auth('Account', 'Create', $headerList, $data);
+      $this->_Sign('Account', 'Create', $headerList, $data);
     }
 
     return $this->_GetDecodedResponse (
@@ -412,7 +435,7 @@ class FullTextSearch
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Document']['DeIndex']['General']['AuthRequired']) {
-      $this->_Auth('Document', 'DeIndex', $headerList, $data);
+      $this->_Sign('Document', 'DeIndex', $headerList, $data);
     }
 
     return $this->_GetDecodedResponse (
@@ -431,7 +454,7 @@ class FullTextSearch
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Document']['Index']['General']['AuthRequired']) {
-      $this->_Auth('Document', 'Index', $headerList, $data);
+      $this->_Sign('Document', 'Index', $headerList, $data);
     }
 
     return $this->_RequestPost($headerList);
@@ -442,7 +465,7 @@ class FullTextSearch
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Document']['Search']['General']['AuthRequired']) {
-      $this->_Auth('Document', 'Search', $headerList, $data);
+      $this->_Sign('Document', 'Search', $headerList, $data);
     }
 
     return $this->_RequestGet($headerList);
@@ -488,7 +511,7 @@ class FullTextSearch
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['PermissionPolicy']['Delete']['General']['AuthRequired']) {
-      $this->_Auth('PermissionPolicy', 'Delete', $headerList, $data);
+      $this->_Sign('PermissionPolicy', 'Delete', $headerList, $data);
     }
 
     return $this->_RequestDelete($headerList);
@@ -499,7 +522,7 @@ class FullTextSearch
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['PermissionPolicy']['Push']['General']['AuthRequired']) {
-      $this->_Auth('PermissionPolicy', 'Push', $headerList, $data);
+      $this->_Sign('PermissionPolicy', 'Push', $headerList, $data);
     }
 
     return $this->_RequestPost($headerList);
