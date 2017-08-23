@@ -16,17 +16,31 @@ namespace Epignosis\Sdk;
 class FullTextSearch
 {
   /**
+   * The configuration.
    *
+   * @access  private
+   * @default []
+   * @since   2.0.0-dev
+   * @var     array
    */
   private $_configuration = [];
 
   /**
+   * The HyperMedia information.
    *
+   * @access  private
+   * @default []
+   * @since   2.0.0-dev
+   * @var     array
    */
   private $_hyperMedia = [];
 
   /**
+   * The SDK's internal self information.
    *
+   * @access  private
+   * @since   2.0.0-dev
+   * @var     array
    */
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/FullTextSearch; PHP_SDK v%s',
