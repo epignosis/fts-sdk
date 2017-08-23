@@ -148,7 +148,9 @@ class FullTextSearch
       $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
     );
 
-    if (200 != $response['Status'] || isset($response['Body']['Error'])) {
+    $successIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Success'];
+
+    if (!isset($response['Body'][$successIndexKey])) {
       throw new \Exception (
         sprintf (
           'Failed to download the service hypermedia file. (%s)', $response['Url']
