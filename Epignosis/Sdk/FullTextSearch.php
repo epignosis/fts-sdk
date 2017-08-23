@@ -493,6 +493,13 @@ class FullTextSearch
     return $this->_configuration;
   }
 
+  /**
+   * Returns the list of the available document search source options.
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   public function GetDocumentSearchSourceOptionList()
   {
     return
