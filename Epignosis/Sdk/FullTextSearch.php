@@ -319,10 +319,11 @@ class FullTextSearch
     ];
   }
 
-  private function _RequestDelete($url, array $headerList = [])
+  private function _RequestDelete($url, array $headerList = [], array $data = [])
   {
     $optionList = [
       'http' => [
+        'content' => http_build_query($data),
         'header' => $this->_GetHeaderListToString($headerList),
         'method' => 'DELETE'
       ]
@@ -414,7 +415,13 @@ class FullTextSearch
       $this->_Auth('Document', 'DeIndex', $headerList, $data);
     }
 
-    return $this->_RequestDelete($headerList);
+    return $this->_GetDecodedResponse (
+      $this->_RequestDelete (
+        $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint']['Single'],
+        $headerList,
+        $data
+      )
+    );
   }
 
   public function DocumentIndex(array $data)
