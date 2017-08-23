@@ -61,7 +61,7 @@ class FullTextSearch
     $authConfiguration = $this->_GetHyperMedia([$entity, $action, 'General', 'Auth']);
     $keyList = $this->_configuration['Auth']['Key'];
 
-    $signature = sprintf (
+    $headerList[$authConfiguration['Signature']['Name']] = sprintf (
       '%s;%s;%s',
       $keyList['Public'][$operationInformation['OperationType']],
       base64_encode($randomToken),
@@ -70,14 +70,11 @@ class FullTextSearch
           $this->_authConfiguration['HashAlgorithm'],
           // @todo serialize type casting issues ..
           serialize($this->_GetSortedArray($data)),
-          $randomToken .
-          $keyList['Private'][$operationInformation['OperationType']],
+          $randomToken . $keyList['Private'][$operationInformation['OperationType']],
           true
         )
       )
     );
-
-    $headerList[$authConfiguration['Signature']['Name']] = $signature;
 
     return $this;
   }
