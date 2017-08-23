@@ -162,25 +162,6 @@ class FullTextSearch
     return implode('&', $query);
   }
 
-  private function _GetData($entity, $action, array $data = [])
-  {
-    $endPoint = $this->_hypermedia[$entity][$action]['Request']['Endpoint'];
-
-    if (isset($data[0]) || !isset($endPoint['Single'])) {
-      return $data;
-    }
-
-    $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList'];
-
-    foreach ($parameterList as $parameterName => $parameterAttributeList) {
-      if (isset($parameterAttributeList['Endpoint'])) {
-        unset($data[$parameterName]);
-      }
-    }
-
-    return $data;
-  }
-
   private function _GetDecodedResponse(array $response = [])
   {
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
@@ -190,28 +171,32 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetEndpoint($entity, $action, array $data = [])
+  private function _GetEndpointData($entity, $action, array $data = [])
   {
-    $endPoint = $this->_hypermedia[$entity][$action]['Request']['Endpoint'];
-
-    if (isset($data[0]) || !isset($endPoint['Single'])) {
-      return $endPoint['Multiple'];
-    }
-
-    $parameterUrlList = [];
+    $endpointList = $this->_hypermedia[$entity][$action]['Request']['Endpoint'];
     $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList'];
 
-    foreach ($parameterList as $parameterName => $parameterAttributeList) {
-      if (isset($parameterAttributeList['Endpoint'])) {
-        $parameterUrlList[$parameterAttributeList['Endpoint']] = $data[$parameterName];
+    if (isset($data[0]) || !isset($endpoint['Single'])) {
+      $endpoint = $endpointList['Multiple'];
+    } else {
+      $parameterUrlList = [];
+
+      foreach ($parameterList as $parameterName => $parameterAttributeList) {
+        if (isset($parameterAttributeList['Endpoint'])) {
+          $parameterUrlList[$parameterAttributeList['Endpoint']] = $data[$parameterName];
+
+          unset($data[$parameterName]);
+        }
       }
+
+      ksort($parameterUrlList);
+
+      $endpoint = sprintf (
+        '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterUrlList)
+      );
     }
 
-    ksort($parameterUrlList);
-
-    return sprintf (
-      '%s/%s', rtrim($endPoint['Single'], '/'), implode('/', $parameterUrlList)
-    );
+    return [$endpoint, $data];
   }
 
   private function _GetHeaderList()
@@ -702,14 +687,13 @@ class FullTextSearch
    */
   public function PermissionPolicyPush(array $data)
   {
-    $endPoint = $this->_GetEndpoint('PermissionPolicy', 'Push', $data);
-    $data = $this->_GetData('PermissionPolicy', 'Push', $data);
+    list($endpoint, $data) = $this->_GetEndpointData('PermissionPolicy', 'Push', $data);
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['PermissionPolicy']['Push']['General']['AuthRequired']) {
       $this->_Sign('PermissionPolicy', 'Push', $headerList, $data);
     }
 
-    return $this->_GetDecodedResponse($this->_RequestPost($endPoint, $headerList, $data));
+    return $this->_GetDecodedResponse($this->_RequestPost($endpoint, $headerList, $data));
   }
 }
