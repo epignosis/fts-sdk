@@ -52,7 +52,7 @@ class FullTextSearch
       'Major' => 2,
       'Minor' => 0,
       'Patch' => 0,
-      'Release' => '2017-MM-DD'
+      'Release' => '2017-08-31'
     ]
   ];
 
@@ -444,18 +444,6 @@ class FullTextSearch
     }
 
     return $this->_RequestGet($headerList);
-  }
-
-  public function GetAccountCreateStatusList()
-  {
-    return
-      $this->_hypermedia
-        ['Account']
-        ['Create']
-        ['Request']
-        ['ParameterList']
-        ['Status']
-        ['List'];
   }
 
   public function GetConfiguration()
