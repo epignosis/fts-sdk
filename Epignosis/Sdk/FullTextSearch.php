@@ -66,10 +66,7 @@ class FullTextSearch
    * @since   2.0.0-dev
    *
    * @throws  \Exception
-   *            - In case that is not possible to download the service hypermedia file.
-   *            - In case that is not possible to parse the service hypermedia file.
-   *            - In case that is not possible to read from the service hypermedia file.
-   *            - In case that is not possible to save the service hypermedia file.
+   *            - In case that is not possible to build the service hypermedia file.
    */
   public function __construct(array $configuration = [])
   {
@@ -380,7 +377,7 @@ class FullTextSearch
    * @since   2.0.0-dev
    *
    * @throws  \Exception
-   *            - In case that the function "openssl_random_pseudo_bytes" does not exist.
+   *            - In case that is not possible to sign the request.
    */
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
@@ -406,6 +403,19 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   * Creates an account, on the full-text search service.
+   *
+   * @param   array $data
+   *            - The data to be used. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to complete the operation.
+   */
   public function AccountCreate(array $data)
   {
     $headerList = $this->_GetHeaderList();
