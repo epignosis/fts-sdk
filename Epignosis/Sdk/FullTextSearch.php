@@ -407,7 +407,7 @@ class FullTextSearch
    * Creates an account, on the full-text search service.
    *
    * @param   array $data
-   *            - The acount's data to be created. (Required)
+   *            - The acount data to be created. (Required)
    *
    * @return  array
    *
@@ -514,6 +514,19 @@ class FullTextSearch
     );
   }
 
+  /**
+   * Performs a search query for documents, on the full-text service.
+   *
+   * @param   array $data
+   *            - The search query data to be used. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to perform a search query.
+   */
   public function DocumentSearch(array $data)
   {
     $headerList = $this->_GetHeaderList();
