@@ -175,8 +175,17 @@ class FullTextSearch
   {
     $endPoint = $this->_hypermedia[$entity][$action]['Request']['EndPoint'];
 
-    if (!isset($endPoint['Single']) || 1 < count($data)) {
+    if (isset($data[1]) || !isset($endPoint['Single'])) {
       return $endPoint['Multiple'];
+    }
+
+    $path = trim(parse_url($endPoint['Single'], \PHP_URL_PATH), '/');
+    $parameterList = array_slice(explode('/', $path), 1);
+
+    foreach ($parameterList as $parameter) {
+      $endPoint['Single'] = str_replace (
+        $parameter, $data[trim($parameter, '{}')], $endPoint['Single']
+      );
     }
 
     return $endPoint['Single'];
