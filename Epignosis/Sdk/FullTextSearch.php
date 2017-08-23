@@ -68,6 +68,7 @@ class FullTextSearch
       base64_encode (
         hash_hmac (
           $this->_authConfiguration['HashAlgorithm'],
+          // @todo serialize type casting issues ..
           serialize($this->_GetSortedArray($data)),
           $randomToken .
           $keyList['Private'][$operationInformation['OperationType']],
