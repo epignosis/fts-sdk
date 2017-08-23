@@ -628,6 +628,19 @@ class FullTextSearch
     );
   }
 
+  /**
+   * Deletes a permission policy.
+   *
+   * @param   array $data
+   *            - The permission policy data to be deleted. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to delete the permission policy.
+   */
   public function PermissionPolicyDelete(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -639,6 +652,19 @@ class FullTextSearch
     return $this->_RequestDelete($headerList);
   }
 
+  /**
+   * Pushes a permission policy. (Create / Update)
+   *
+   * @param   array $data
+   *            - The permission policy data to be pushed. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to push the permission policy.
+   */
   public function PermissionPolicyPush(array $data)
   {
     $headerList = $this->_GetHeaderList();
