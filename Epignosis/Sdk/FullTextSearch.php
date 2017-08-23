@@ -198,7 +198,20 @@ class FullTextSearch
       return $endPoint['Multiple'];
     }
 
-    return $endPoint['Single'];
+    $parameterUrlList = [];
+    $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList'];
+
+    foreach ($parameterList as $parameterName => $parameterAttributeList) {
+      if (isset($parameterAttributeList['Endpoint'])) {
+        $parameterUrlList[$parameterAttributeList['Endpoint']] = $data[$parameterName];
+      }
+    }
+
+    ksort($parameterUrlList);
+
+    return sprintf (
+      '%s/%s', rtrim($endPoint['Single'], '/'), implode('/', $parameterUrlList)
+    );
   }
 
   private function _GetHeaderList()
