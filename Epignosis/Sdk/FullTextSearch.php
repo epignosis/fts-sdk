@@ -503,7 +503,15 @@ class FullTextSearch
       $this->_Sign('Document', 'Index', $headerList, $data);
     }
 
-    return $this->_RequestPost($headerList);
+    return $this->_GetDecodedResponse (
+      $this->_RequestPost (
+        1 < count($data)
+          ? $this->_hypermedia['Document']['Index']['Request']['EndPoint']['Multiple']
+          : $this->_hypermedia['Document']['Index']['Request']['EndPoint']['Single'],
+        $headerList,
+        $data
+      )
+    );
   }
 
   public function DocumentSearch(array $data)
