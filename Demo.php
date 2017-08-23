@@ -86,8 +86,6 @@ try {
     throw new \Exception('Nothing to execute according the requested entity / action.');
   }
 
-  print_r($fullTextSearchSdk->GetDocumentSearchSourceOptionList());exit;
-
   PrintHeader (
     sprintf('Execute %s %s (%s)', $getList['Entity'], $getList['Action'], $multiplicity),
     false,

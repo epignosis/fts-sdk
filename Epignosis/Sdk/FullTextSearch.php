@@ -658,6 +658,18 @@ class FullTextSearch
   }
 
   /**
+   * Returns the service hypermedia information.
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
+  public function GetServiceHypermediaInformation()
+  {
+    return $this->_hypermedia;
+  }
+
+  /**
    * Deletes a permission policy.
    *
    * @param   array $data
