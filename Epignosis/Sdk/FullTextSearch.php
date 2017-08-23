@@ -407,14 +407,14 @@ class FullTextSearch
    * Creates an account, on the full-text search service.
    *
    * @param   array $data
-   *            - The data to be used. (Required)
+   *            - The acount's data to be created. (Required)
    *
    * @return  array
    *
    * @since   2.0.0-dev
    *
    * @throws  \Exception
-   *            - In case that is not possible to complete the operation.
+   *            - In case that is not possible to create the account.
    */
   public function AccountCreate(array $data)
   {
@@ -450,6 +450,19 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   * De-indexes a single or multiple documents, from the full-text service.
+   *
+   * @param   array $data
+   *            - The document(s) data to be de-indexed. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to de-index the document(s).
+   */
   public function DocumentDeIndex(array $data)
   {
     $headerList = $this->_GetHeaderList();
