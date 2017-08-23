@@ -471,6 +471,13 @@ class FullTextSearch
     return $this->_RequestGet($headerList);
   }
 
+  /**
+   * Returns the configuration that is being used.
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   public function GetConfiguration()
   {
     return $this->_configuration;
@@ -488,6 +495,13 @@ class FullTextSearch
         ['List'];
   }
 
+  /**
+   * Returns the SDK's version.
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   */
   public function GetSdkVersion()
   {
     return sprintf (
@@ -499,6 +513,13 @@ class FullTextSearch
     );
   }
 
+  /**
+   * Returns the SDK's full version.
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   */
   public function GetSdkVersionFull()
   {
     return sprintf (
