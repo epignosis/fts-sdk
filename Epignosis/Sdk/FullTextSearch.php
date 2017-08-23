@@ -305,7 +305,7 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  private function _RequestGet($url, array $headerList = [])
+  private function _RequestGet($url, array $headerList = [], array $data = [])
   {
     $optionList = [
       'http' => [
@@ -535,7 +535,13 @@ class FullTextSearch
       $this->_Sign('Document', 'Search', $headerList, $data);
     }
 
-    return $this->_RequestGet($headerList);
+    return $this->_GetDecodedResponse (
+      $this->_RequestGet (
+        $this->_hypermedia['Document']['Search']['Request']['EndPoint']['Single'],
+        $headerList,
+        $data
+      )
+    );
   }
 
   /**
