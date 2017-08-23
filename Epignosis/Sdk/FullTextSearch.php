@@ -142,9 +142,15 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetArrayToString()
+  private function _GetArrayToString(array $array)
   {
+    $string = null;
 
+    foreach ($array as $key => $value) {
+      $string .= $key . (is_array($value)) ? $this->_GetArrayToString($value) : $value;
+    }
+
+    return $string;
   }
 
   private function _GetDecodedResponse(array $response = [])
@@ -246,17 +252,17 @@ class FullTextSearch
     return null;
   }
 
-  private function _GetSortedArray(array $data = [])
+  private function _GetSortedArray(array $array = [])
   {
-    ksort($data);
+    ksort($array);
 
-    foreach ($data as $key => $value) {
+    foreach ($array as $key => $value) {
       if (is_array($value)) {
-        $data[$key] = $this->_GetSortedArray($value);
+        $array[$key] = $this->_GetSortedArray($value);
       }
     }
 
-    return $data;
+    return $array;
   }
 
   private function _ReadHypermediaFile($filePath)
