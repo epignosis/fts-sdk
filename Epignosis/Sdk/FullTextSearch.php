@@ -467,17 +467,17 @@ class FullTextSearch
    */
   public function AccountCreate(array $data)
   {
+    list($endpoint, $data) = $this->_GetEndpointAndData (
+      'PermissionPolicy', 'Push', $data
+    );
+
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Account']['Create']['General']['AuthRequired']) {
       $this->_Sign('Account', 'Create', $headerList, $data);
     }
 
-    return $this->_GetDecodedResponse (
-      $this->_RequestPost (
-        $this->_GetEndpoint('Account', 'Create', $data), $headerList, $data
-      )
-    );
+    return $this->_GetDecodedResponse($this->_RequestPost($endpoint, $headerList, $data));
   }
 
   /**
@@ -512,6 +512,10 @@ class FullTextSearch
    */
   public function DocumentDeIndex(array $data)
   {
+    list($endpoint, $data) = $this->_GetEndpointAndData (
+      'PermissionPolicy', 'Push', $data
+    );
+
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Document']['DeIndex']['General']['AuthRequired']) {
@@ -519,9 +523,7 @@ class FullTextSearch
     }
 
     return $this->_GetDecodedResponse (
-      $this->_RequestDelete (
-        $this->_GetEndpoint('Document', 'DeIndex', $data), $headerList, $data
-      )
+      $this->_RequestDelete($endpoint, $headerList, $data)
     );
   }
 
@@ -540,17 +542,17 @@ class FullTextSearch
    */
   public function DocumentIndex(array $data)
   {
+    list($endpoint, $data) = $this->_GetEndpointAndData (
+      'PermissionPolicy', 'Push', $data
+    );
+
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Document']['Index']['General']['AuthRequired']) {
       $this->_Sign('Document', 'Index', $headerList, $data);
     }
 
-    return $this->_GetDecodedResponse (
-      $this->_RequestPost (
-        $this->_GetEndpoint('Document', 'Index', $data), $headerList, $data
-      )
-    );
+    return $this->_GetDecodedResponse($this->_RequestPost($endpoint, $headerList, $data));
   }
 
   /**
@@ -568,17 +570,17 @@ class FullTextSearch
    */
   public function DocumentSearch(array $data)
   {
+    list($endpoint, $data) = $this->_GetEndpointAndData (
+      'PermissionPolicy', 'Push', $data
+    );
+
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['Document']['Search']['General']['AuthRequired']) {
       $this->_Sign('Document', 'Search', $headerList, $data);
     }
 
-    return $this->_GetDecodedResponse (
-      $this->_RequestGet (
-        $this->_GetEndpoint('Document', 'Search', $data), $headerList, $data
-      )
-    );
+    return $this->_GetDecodedResponse($this->_RequestGet($endpoint, $headerList, $data));
   }
 
   /**
@@ -659,6 +661,10 @@ class FullTextSearch
    */
   public function PermissionPolicyDelete(array $data)
   {
+    list($endpoint, $data) = $this->_GetEndpointAndData (
+      'PermissionPolicy', 'Push', $data
+    );
+
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['PermissionPolicy']['Delete']['General']['AuthRequired']) {
@@ -666,9 +672,7 @@ class FullTextSearch
     }
 
     return $this->_GetDecodedResponse (
-      $this->_RequestDelete (
-        $this->_GetEndpoint('PermissionPolicy', 'Delete', $data), $headerList, $data
-      )
+      $this->_RequestDelete($endpoint, $headerList, $data)
     );
   }
 
