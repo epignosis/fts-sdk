@@ -119,6 +119,19 @@ class FullTextSearch
     return $response['Body'];
   }
 
+  private function _GetArraySorted(array $array = [])
+  {
+    ksort($array);
+
+    foreach ($array as $key => $value) {
+      if (is_array($value)) {
+        $array[$key] = $this->_GetArraySorted($value);
+      }
+    }
+
+    return $array;
+  }
+
   private function _GetArrayToString(array $array = [])
   {
     $string = null;
@@ -128,6 +141,25 @@ class FullTextSearch
     }
 
     return $string;
+  }
+
+  private function _GetArrayToUrl(array $data = [], $prefix = null)
+  {
+    $query = [];
+
+    foreach ($data as $key => $value) {
+      if (is_array($value)) {
+        $query[] = $this->_GetArrayToUrl($value, $key);
+      } else {
+        if ($prefix) {
+          $query[] = sprintf('%s[%s]=%s', $prefix, $key, rawurlencode($value));
+        } else {
+          $query[] = sprintf('%s=%s', $key, rawurlencode($value));
+        }
+      }
+    }
+
+    return implode('&', $query);
   }
 
   private function _GetDecodedResponse(array $response = [])
@@ -224,19 +256,6 @@ class FullTextSearch
     }
 
     return null;
-  }
-
-  private function _GetSortedArray(array $array = [])
-  {
-    ksort($array);
-
-    foreach ($array as $key => $value) {
-      if (is_array($value)) {
-        $array[$key] = $this->_GetSortedArray($value);
-      }
-    }
-
-    return $array;
   }
 
   private function _ReadHypermediaFile($filePath)
@@ -393,7 +412,7 @@ class FullTextSearch
       base64_encode (
         hash_hmac (
           $authConfiguration['Signature']['Hash']['Algorithm'],
-          $this->_GetArrayToString($this->_GetSortedArray($data)),
+          $this->_GetArrayToString($this->_GetArraySorted($data)),
           $randomToken . $keyList['Private'][$operationType],
           true
         )
