@@ -75,20 +75,20 @@ class FullTextSearch
 
   private function _BuildHypermedia($force = false)
   {
-    $filePath = $this->_GetHypermediaFilePath();
+    $filePath = $this->_GetServiceHypermediaFilePath();
 
     if ($force || !file_exists($filePath)) {
-      $this->_CreateHypermediaFile($filePath);
+      $this->_CreateServiceHypermediaFile($filePath);
     }
 
-    $this->_hypermedia = $this->_ReadHypermediaFile($filePath);
+    $this->_hypermedia = $this->_ReadServiceHypermediaFile($filePath);
 
     return $this;
   }
 
-  private function _CreateHypermediaFile($filePath)
+  private function _CreateServiceHypermediaFile($filePath)
   {
-    if (!$this->_SaveFile($filePath, $this->_DownloadHypermediaFile())) {
+    if (!$this->_SaveFile($filePath, $this->_DownloadServiceHypermediaFile())) {
       throw new \Exception (
         sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
       );
@@ -104,7 +104,7 @@ class FullTextSearch
     return $this;
   }
 
-  private function _DownloadHypermediaFile()
+  private function _DownloadServiceHypermediaFile()
   {
     $response = $this->_RequestOptions (
       $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
@@ -245,25 +245,6 @@ class FullTextSearch
     return $headerString;
   }
 
-  private function _GetHypermediaFilePath()
-  {
-    $storageDirectory = dirname(dirname(__DIR__));
-
-    if (!empty($this->_configuration['Service']['Storage']['FilePath'])) {
-      $storageDirectory = $this->_configuration['Service']['Storage']['FilePath'];
-    }
-
-    $storageDirectory = rtrim($storageDirectory, '\/') . \DIRECTORY_SEPARATOR;
-    $storageDirectory = str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory);
-
-    return sprintf (
-      '%sv%d.%s',
-      $storageDirectory,
-      (int) $this->_configuration['Service']['Version'],
-      strtolower($this->_configuration['Service']['Format'])
-    );
-  }
-
   private function _GetRandomStringSecure($length = 16)
   {
     if (!function_exists('openssl_random_pseudo_bytes')) {
@@ -288,18 +269,27 @@ class FullTextSearch
     return null;
   }
 
-  private function _ReadHypermediaFile($filePath)
+  private function _GetServiceHypermediaFilePath()
   {
-    $content = file_get_contents($filePath);
+    $storageDirectory = dirname(dirname(__DIR__));
 
-    if (false === $content) {
-      $this->_DeleteFile($filePath);
-
-      throw new \Exception (
-        sprintf('Failed to read from the service hypermedia file. (%s)', $filePath)
-      );
+    if (!empty($this->_configuration['Service']['Storage']['FilePath'])) {
+      $storageDirectory = $this->_configuration['Service']['Storage']['FilePath'];
     }
 
+    $storageDirectory = rtrim($storageDirectory, '\/') . \DIRECTORY_SEPARATOR;
+    $storageDirectory = str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory);
+
+    return sprintf (
+      '%sv%d.%s',
+      $storageDirectory,
+      (int) $this->_configuration['Service']['Version'],
+      strtolower($this->_configuration['Service']['Format'])
+    );
+  }
+
+  private function _ParseServiceHypermediaFile($filePath, $content)
+  {
     $responseIndexKey = self::$_sdkInformation['Hypermedia']['ResponseIndexKey'];
 
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
@@ -317,6 +307,21 @@ class FullTextSearch
     }
 
     return $content;
+  }
+
+  private function _ReadServiceHypermediaFile($filePath)
+  {
+    $content = file_get_contents($filePath);
+
+    if (false === $content) {
+      $this->_DeleteFile($filePath);
+
+      throw new \Exception (
+        sprintf('Failed to read from the service hypermedia file. (%s)', $filePath)
+      );
+    }
+
+    return $this->_ParseServiceHypermediaFile($filePath, $content);
   }
 
   private function _Request($url, array $optionList = [])
