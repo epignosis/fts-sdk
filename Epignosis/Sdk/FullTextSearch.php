@@ -482,6 +482,19 @@ class FullTextSearch
     );
   }
 
+  /**
+   * Indexes a single or multiple documents, on the full-text service.
+   *
+   * @param   array $data
+   *            - The document(s) data to be indexed. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to index the document(s).
+   */
   public function DocumentIndex(array $data)
   {
     $headerList = $this->_GetHeaderList();
