@@ -208,6 +208,7 @@ class FullTextSearch
       return $this->_hyperMedia;
     }
 
+    // @todo Optimize ..
     $hyperMediaSection = $this->_hyperMedia;
 
     foreach ($path as $sectionKey) {
