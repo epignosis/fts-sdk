@@ -354,10 +354,11 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  private function _RequestPost($url, array $headerList = [])
+  private function _RequestPost($url, array $headerList = [], array $data = [])
   {
     $optionList = [
       'http' => [
+        'content' => http_build_query($data),
         'header' => $this->_GetHeaderListToString($headerList),
         'method' => 'POST'
       ]
@@ -392,7 +393,8 @@ class FullTextSearch
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
         $this->_hypermedia['Account']['Create']['Request']['EndPoint']['Single'],
-        $headerList
+        $headerList,
+        $data
       )
     );
   }
