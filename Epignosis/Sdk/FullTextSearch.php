@@ -3,7 +3,15 @@
 namespace Epignosis\Sdk;
 
 /**
+ * Class FullTextSearch
  *
+ * The FullTextSearch PHP SDK.
+ *
+ * @author      Haris Batsis <xarhsdev@efrontlearning.com>
+ * @category    Epignosis\Sdk
+ * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
+ * @package     Epignosis\Sdk
+ * @since       2.0.0-dev
  */
 class FullTextSearch
 {
