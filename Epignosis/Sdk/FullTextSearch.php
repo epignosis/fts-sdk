@@ -171,12 +171,12 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetEndpointData($entity, $action, array $data = [])
+  private function _GetEndpointAndData($entity, $action, array $data = [])
   {
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['Endpoint'];
     $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList'];
 
-    if (isset($data[0]) || !isset($endpoint['Single'])) {
+    if (isset($data[0]) || !isset($endpointList['Single'])) {
       $endpoint = $endpointList['Multiple'];
     } else {
       $parameterUrlList = [];
@@ -687,7 +687,10 @@ class FullTextSearch
    */
   public function PermissionPolicyPush(array $data)
   {
-    list($endpoint, $data) = $this->_GetEndpointData('PermissionPolicy', 'Push', $data);
+    list($endpoint, $data) = $this->_GetEndpointAndData (
+      'PermissionPolicy', 'Push', $data
+    );
+
     $headerList = $this->_GetHeaderList();
 
     if ($this->_hypermedia['PermissionPolicy']['Push']['General']['AuthRequired']) {
