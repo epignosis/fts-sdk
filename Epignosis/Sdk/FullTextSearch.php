@@ -332,7 +332,9 @@ class FullTextSearch
       ]
     ];
 
-    return $this->_Request($url, $optionList);
+    return $this->_Request (
+      sprintf('%s?%s', $url, $this->_GetArrayToUrl($data)), $optionList
+    );
   }
 
   private function _RequestOptions($url, array $headerList = [])
