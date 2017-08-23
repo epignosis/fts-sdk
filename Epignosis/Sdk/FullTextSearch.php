@@ -78,26 +78,20 @@ class FullTextSearch
 
   private function _Auth($entity, $action, array &$headerList, array $data = [])
   {
-    if (!function_exists('openssl_random_pseudo_bytes')) {
-      throw new \Exception('Function "openssl_random_pseudo_bytes" does not exist.');
-    }
-
-    do {
-      $randomToken = openssl_random_pseudo_bytes(16, $strong);
-    } while (!$randomToken || !$strong);
-
+    $randomToken = $this->_GetRandomStringSecure(16);
     $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
+    $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
     $keyList = $this->_configuration['Auth']['Key'];
 
     $headerList[$authConfiguration['Signature']['Name']] = sprintf (
       '%s;%s;%s',
-      $keyList['Public'][$operationInformation['OperationType']],
+      $keyList['Public'][$operationType],
       base64_encode($randomToken),
       base64_encode (
         hash_hmac (
-          $this->_authConfiguration['HashAlgorithm'],
+          $authConfiguration['Signature']['Hash']['Algorithm'],
           $this->_GetArrayToString($this->_GetSortedArray($data)),
-          $randomToken . $keyList['Private'][$operationInformation['OperationType']],
+          $randomToken . $keyList['Private'][$operationType],
           true
         )
       )
@@ -233,6 +227,19 @@ class FullTextSearch
       (int) $this->_configuration['Service']['Version'],
       strtolower($this->_configuration['Service']['Format'])
     );
+  }
+
+  private function _GetRandomStringSecure($length = 16)
+  {
+    if (!function_exists('openssl_random_pseudo_bytes')) {
+      throw new \Exception('Function "openssl_random_pseudo_bytes" does not exist.');
+    }
+
+    do {
+      $randomString = openssl_random_pseudo_bytes($length, $strong);
+    } while (!$randomString || !$strong);
+
+    return $randomString;
   }
 
   private function _GetResponseStatusCode(array $headerList = [])
