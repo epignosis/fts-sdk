@@ -70,29 +70,31 @@ class FullTextSearch
    */
   public function __construct(array $configuration = [])
   {
-    $this->Configure($configuration)->_BuildHypermedia();
+    $this->Configure($configuration)->_BuildHypermedia(false);
   }
 
-  private function _BuildHypermedia()
+  private function _BuildHypermedia($force = false)
   {
     $filePath = $this->_GetHypermediaFilePath();
 
-    $this->_CreateHypermediaFile($filePath, false);
+    if ($force || !file_exists($filePath)) {
+      $this->_CreateHypermediaFile($filePath);
+    }
 
     $this->_hypermedia = $this->_ReadHypermediaFile($filePath);
 
     return $this;
   }
 
-  private function _CreateHypermediaFile($filePath, $force = false)
+  private function _CreateHypermediaFile($filePath)
   {
-    if ($force || !file_exists($filePath)) {
-      if (!$this->_SaveFile($filePath, $this->_DownloadHypermediaFile())) {
-        throw new \Exception (
-          sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
-        );
-      }
+    if (!$this->_SaveFile($filePath, $this->_DownloadHypermediaFile())) {
+      throw new \Exception (
+        sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
+      );
     }
+
+    return $this;
   }
 
   private function _DeleteFile($filePath)
@@ -604,7 +606,7 @@ class FullTextSearch
    */
   public function GetDocumentSearchSourceOptionList()
   {
-    return
+    $sourceOptionList =
       $this->_hypermedia
         ['Document']
         ['Search']
@@ -612,6 +614,10 @@ class FullTextSearch
         ['ParameterList']
         ['Source']
         ['List'];
+
+    asort($sourceOptionList);
+
+    return $sourceOptionList;
   }
 
   /**
