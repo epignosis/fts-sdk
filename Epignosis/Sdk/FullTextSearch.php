@@ -57,6 +57,20 @@ class FullTextSearch
   ];
 
 
+  /**
+   * FullTextSearch constructor.
+   *
+   * @param   array $configuration
+   *            - The configuration to be used. (Optional, [])
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to download the service hypermedia file.
+   *            - In case that is not possible to parse the service hypermedia file.
+   *            - In case that is not possible to read from the service hypermedia file.
+   *            - In case that is not possible to save the service hypermedia file.
+   */
   public function __construct(array $configuration = [])
   {
     $this->Configure($configuration)->_BuildHypermedia();
@@ -269,7 +283,7 @@ class FullTextSearch
       $this->_DeleteFile($filePath);
 
       throw new \Exception (
-        sprintf('Failed to read the service hypermedia file. (%s)', $filePath)
+        sprintf('Failed to read from the service hypermedia file. (%s)', $filePath)
       );
     }
 
