@@ -59,17 +59,11 @@ class FullTextSearch
   ];
 
 
-  /**
-   *
-   */
   public function __construct(array $configuration = [])
   {
     $this->Configure($configuration)->_BuildHypermedia();
   }
 
-  /**
-   *
-   */
   private function _Auth($entity, $action, array &$headerList, array $data = [])
   {
     if (!function_exists('openssl_random_pseudo_bytes')) {
@@ -90,8 +84,7 @@ class FullTextSearch
       base64_encode (
         hash_hmac (
           $this->_authConfiguration['HashAlgorithm'],
-          // @todo serialize type casting issues ..
-          serialize($this->_GetSortedArray($data)),
+          $this->_GetArrayToString($this->_GetSortedArray($data)),
           $randomToken . $keyList['Private'][$operationInformation['OperationType']],
           true
         )
@@ -101,9 +94,6 @@ class FullTextSearch
     return $this;
   }
 
-  /**
-   *
-   */
   private function _BuildHypermedia()
   {
     $filePath = $this->_GetHypermediaFilePath();
@@ -115,9 +105,6 @@ class FullTextSearch
     return $this;
   }
 
-  /**
-   *
-   */
   private function _CreateHypermediaFile($filePath, $force = false)
   {
     if ($force || !file_exists($filePath)) {
@@ -129,9 +116,6 @@ class FullTextSearch
     }
   }
 
-  /**
-   *
-   */
   private function _DeleteFile($filePath)
   {
     unlink($filePath);
@@ -139,9 +123,6 @@ class FullTextSearch
     return $this;
   }
 
-  /**
-   *
-   */
   private function _DownloadHypermediaFile()
   {
     $response = $this->_RequestOptions (
@@ -161,9 +142,11 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  /**
-   *
-   */
+  private function _GetArrayToString()
+  {
+
+  }
+
   private function _GetDecodedResponse(array $response = [])
   {
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
@@ -173,9 +156,6 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  /**
-   *
-   */
   private function _GetHeaderList()
   {
     $headerList = [
@@ -205,9 +185,6 @@ class FullTextSearch
     return $headerList;
   }
 
-  /**
-   *
-   */
   private function _GetHeaderListToString(array $headerList = [])
   {
     $headerString = null;
@@ -223,9 +200,6 @@ class FullTextSearch
     return $headerString;
   }
 
-  /**
-   *
-   */
   private function _GetHypermedia(array $path = [])
   {
     if (empty($path)) {
@@ -242,9 +216,6 @@ class FullTextSearch
     return $hypermediaSection;
   }
 
-  /**
-   *
-   */
   private function _GetHypermediaFilePath()
   {
     $storageDirectory = dirname(dirname(__DIR__));
@@ -264,9 +235,6 @@ class FullTextSearch
     );
   }
 
-  /**
-   *
-   */
   private function _GetResponseStatusCode(array $headerList = [])
   {
     foreach ($headerList as $header) {
@@ -278,9 +246,6 @@ class FullTextSearch
     return null;
   }
 
-  /**
-   *
-   */
   private function _GetSortedArray(array $data = [])
   {
     ksort($data);
@@ -294,9 +259,6 @@ class FullTextSearch
     return $data;
   }
 
-  /**
-   *
-   */
   private function _ReadHypermediaFile($filePath)
   {
     $content = file_get_contents($filePath);
@@ -328,9 +290,6 @@ class FullTextSearch
     return $content;
   }
 
-  /**
-   *
-   */
   private function _Request($url, array $optionList = [])
   {
     $optionList['http']['ignore_errors'] = true;
@@ -352,9 +311,6 @@ class FullTextSearch
     ];
   }
 
-  /**
-   *
-   */
   private function _RequestDelete($url, array $headerList = [])
   {
     $optionList = [
@@ -367,9 +323,6 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  /**
-   *
-   */
   private function _RequestGet($url, array $headerList = [])
   {
     $optionList = [
@@ -381,9 +334,6 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  /**
-   *
-   */
   private function _RequestOptions($url, array $headerList = [])
   {
     $optionList = [
@@ -396,9 +346,6 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  /**
-   *
-   */
   private function _RequestPost($url, array $headerList = [])
   {
     $optionList = [
@@ -411,9 +358,6 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  /**
-   *
-   */
   private function _SaveFile($filePath, $fileContent)
   {
     $filePathDirectory = dirname($filePath);
@@ -429,9 +373,6 @@ class FullTextSearch
     return file_put_contents($filePath, $fileContent, \LOCK_EX);
   }
 
-  /**
-   *
-   */
   public function AccountCreate(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -448,9 +389,6 @@ class FullTextSearch
     );
   }
 
-  /**
-   *
-   */
   public function Configure(array $configuration)
   {
     $this->_configuration = $configuration;
@@ -458,9 +396,6 @@ class FullTextSearch
     return $this;
   }
 
-  /**
-   *
-   */
   public function DocumentDeIndex(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -472,9 +407,6 @@ class FullTextSearch
     return $this->_RequestDelete($headerList);
   }
 
-  /**
-   *
-   */
   public function DocumentIndex(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -486,9 +418,6 @@ class FullTextSearch
     return $this->_RequestPost($headerList);
   }
 
-  /**
-   *
-   */
   public function DocumentSearch(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -500,9 +429,6 @@ class FullTextSearch
     return $this->_RequestGet($headerList);
   }
 
-  /**
-   *
-   */
   public function GetAccountCreateStatusList()
   {
     return $this->_GetHypermedia ([
@@ -510,17 +436,11 @@ class FullTextSearch
     ]);
   }
 
-  /**
-   *
-   */
   public function GetConfiguration()
   {
     return $this->_configuration;
   }
 
-  /**
-   *
-   */
   public function GetDocumentSearchSourceOptionList()
   {
     return $this->_GetHypermedia ([
@@ -528,9 +448,6 @@ class FullTextSearch
     ]);
   }
 
-  /**
-   *
-   */
   public function GetSdkVersion()
   {
     return sprintf (
@@ -542,9 +459,6 @@ class FullTextSearch
     );
   }
 
-  /**
-   *
-   */
   public function GetSdkVersionFull()
   {
     return sprintf (
@@ -552,9 +466,6 @@ class FullTextSearch
     );
   }
 
-  /**
-   *
-   */
   public function PermissionPolicyDelete(array $data)
   {
     $headerList = $this->_GetHeaderList();
@@ -567,9 +478,6 @@ class FullTextSearch
     return $this->_RequestDelete($headerList);
   }
 
-  /**
-   *
-   */
   public function PermissionPolicyPush(array $data)
   {
     $headerList = $this->_GetHeaderList();
