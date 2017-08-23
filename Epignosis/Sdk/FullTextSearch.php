@@ -173,7 +173,7 @@ class FullTextSearch
 
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {
-    $endpointList = $this->_hypermedia[$entity][$action]['Request']['Endpoint'];
+    $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
     $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
