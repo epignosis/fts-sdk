@@ -423,6 +423,16 @@ class FullTextSearch
     );
   }
 
+  /**
+   * Configures the SDK.
+   *
+   * @param   array $configuration
+   *            - The configuration to be set. (Required)
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   */
   public function Configure(array $configuration)
   {
     $this->_configuration = $configuration;
@@ -472,7 +482,7 @@ class FullTextSearch
   }
 
   /**
-   * Returns the configuration that is being used.
+   * Returns the configuration that is being used by the SDK.
    *
    * @return  array
    *
