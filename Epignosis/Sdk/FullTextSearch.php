@@ -26,14 +26,14 @@ class FullTextSearch
   private $_configuration = [];
 
   /**
-   * The HyperMedia information.
+   * The hypermedia information.
    *
    * @access  private
    * @default []
    * @since   2.0.0-dev
    * @var     array
    */
-  private $_hyperMedia = [];
+  private $_hypermedia = [];
 
   /**
    * The SDK's internal self information.
@@ -44,7 +44,7 @@ class FullTextSearch
    */
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/FullTextSearch; PHP_SDK v%s',
-    'HyperMedia' => [
+    'Hypermedia' => [
       'IndexKey' => [
         'Success' => 'Data'
       ]
@@ -64,7 +64,7 @@ class FullTextSearch
    */
   public function __construct(array $configuration = [])
   {
-    $this->Configure($configuration)->_BuildHyperMedia();
+    $this->Configure($configuration)->_BuildHypermedia();
   }
 
   /**
@@ -80,7 +80,7 @@ class FullTextSearch
       $randomToken = openssl_random_pseudo_bytes(16, $strong);
     } while (!$randomToken || !$strong);
 
-    $authConfiguration = $this->_GetHyperMedia([$entity, $action, 'General', 'Auth']);
+    $authConfiguration = $this->_GetHypermedia([$entity, $action, 'General', 'Auth']);
     $keyList = $this->_configuration['Auth']['Key'];
 
     $headerList[$authConfiguration['Signature']['Name']] = sprintf (
@@ -104,13 +104,13 @@ class FullTextSearch
   /**
    *
    */
-  private function _BuildHyperMedia()
+  private function _BuildHypermedia()
   {
-    $filePath = $this->_GetHyperMediaFilePath();
+    $filePath = $this->_GetHypermediaFilePath();
 
-    $this->_CreateHyperMediaFile($filePath, false);
+    $this->_CreateHypermediaFile($filePath, false);
 
-    $this->_hyperMedia = $this->_ReadHyperMediaFile($filePath);
+    $this->_hypermedia = $this->_ReadHypermediaFile($filePath);
 
     return $this;
   }
@@ -118,10 +118,10 @@ class FullTextSearch
   /**
    *
    */
-  private function _CreateHyperMediaFile($filePath, $force = false)
+  private function _CreateHypermediaFile($filePath, $force = false)
   {
     if ($force || !file_exists($filePath)) {
-      if (!$this->_SaveFile($filePath, $this->_DownloadHyperMediaFile())) {
+      if (!$this->_SaveFile($filePath, $this->_DownloadHypermediaFile())) {
         throw new \Exception (
           sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
         );
@@ -142,13 +142,13 @@ class FullTextSearch
   /**
    *
    */
-  private function _DownloadHyperMediaFile()
+  private function _DownloadHypermediaFile()
   {
     $response = $this->_RequestOptions (
       $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
     );
 
-    $successIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Success'];
+    $successIndexKey = self::$_sdkInformation['Hypermedia']['IndexKey']['Success'];
 
     if (!isset($response['Body'][$successIndexKey])) {
       throw new \Exception (
@@ -226,26 +226,26 @@ class FullTextSearch
   /**
    *
    */
-  private function _GetHyperMedia(array $path = [])
+  private function _GetHypermedia(array $path = [])
   {
     if (empty($path)) {
-      return $this->_hyperMedia;
+      return $this->_hypermedia;
     }
 
     // @todo Optimize ..
-    $hyperMediaSection = $this->_hyperMedia;
+    $hypermediaSection = $this->_hypermedia;
 
     foreach ($path as $sectionKey) {
-      $hyperMediaSection = $hyperMediaSection[$sectionKey];
+      $hypermediaSection = $hypermediaSection[$sectionKey];
     }
 
-    return $hyperMediaSection;
+    return $hypermediaSection;
   }
 
   /**
    *
    */
-  private function _GetHyperMediaFilePath()
+  private function _GetHypermediaFilePath()
   {
     $storageDirectory = dirname(dirname(__DIR__));
 
@@ -297,7 +297,7 @@ class FullTextSearch
   /**
    *
    */
-  private function _ReadHyperMediaFile($filePath)
+  private function _ReadHypermediaFile($filePath)
   {
     $content = file_get_contents($filePath);
 
@@ -309,7 +309,7 @@ class FullTextSearch
       );
     }
 
-    $successIndexKey = self::$_sdkInformation['HyperMedia']['IndexKey']['Success'];
+    $successIndexKey = self::$_sdkInformation['Hypermedia']['IndexKey']['Success'];
 
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
       $content = json_decode($content, true)[$successIndexKey];
@@ -436,13 +436,13 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_GetHyperMedia(['Account', 'Create', 'General', 'AuthRequired'])) {
+    if ($this->_GetHypermedia(['Account', 'Create', 'General', 'AuthRequired'])) {
       $this->_Auth('Account', 'Create', $headerList, $data);
     }
 
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
-        $this->_GetHyperMedia(['Account', 'Create', 'Request', 'EndPoint', 'Single']),
+        $this->_GetHypermedia(['Account', 'Create', 'Request', 'EndPoint', 'Single']),
         $headerList
       )
     );
@@ -465,7 +465,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_GetHyperMedia(['Document', 'DeIndex', 'General', 'AuthRequired'])) {
+    if ($this->_GetHypermedia(['Document', 'DeIndex', 'General', 'AuthRequired'])) {
       $this->_Auth('Document', 'DeIndex', $headerList, $data);
     }
 
@@ -479,7 +479,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_GetHyperMedia(['Document', 'Index', 'General', 'AuthRequired'])) {
+    if ($this->_GetHypermedia(['Document', 'Index', 'General', 'AuthRequired'])) {
       $this->_Auth('Document', 'Index', $headerList, $data);
     }
 
@@ -493,7 +493,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_GetHyperMedia(['Document', 'Search', 'General', 'AuthRequired'])) {
+    if ($this->_GetHypermedia(['Document', 'Search', 'General', 'AuthRequired'])) {
       $this->_Auth('Document', 'Search', $headerList, $data);
     }
 
@@ -505,7 +505,7 @@ class FullTextSearch
    */
   public function GetAccountCreateStatusList()
   {
-    return $this->_GetHyperMedia ([
+    return $this->_GetHypermedia ([
       'Account', 'Create', 'Request', 'ParameterList', 'Status', 'List'
     ]);
   }
@@ -523,7 +523,7 @@ class FullTextSearch
    */
   public function GetDocumentSearchSourceOptionList()
   {
-    return $this->_GetHyperMedia ([
+    return $this->_GetHypermedia ([
       'Document', 'Search', 'Request', 'ParameterList', 'Source', 'List'
     ]);
   }
@@ -559,7 +559,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_GetHyperMedia(['PermissionPolicy', 'Delete', 'General', 'AuthRequired']))
+    if ($this->_GetHypermedia(['PermissionPolicy', 'Delete', 'General', 'AuthRequired']))
     {
       $this->_Auth('PermissionPolicy', 'Delete', $headerList, $data);
     }
@@ -574,7 +574,7 @@ class FullTextSearch
   {
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_GetHyperMedia(['PermissionPolicy', 'Push', 'General', 'AuthRequired'])) {
+    if ($this->_GetHypermedia(['PermissionPolicy', 'Push', 'General', 'AuthRequired'])) {
       $this->_Auth('PermissionPolicy', 'Push', $headerList, $data);
     }
 

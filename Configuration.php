@@ -160,7 +160,7 @@ $configuration = [
        * @since   2.0.0-dev
        * @var     string
        */
-      'FilePath' => rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR . 'HyperMedia',
+      'FilePath' => rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR . 'Hypermedia',
 
       /**
        * The storage file path permission.
