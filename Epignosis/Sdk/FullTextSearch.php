@@ -649,7 +649,13 @@ class FullTextSearch
       $this->_Sign('PermissionPolicy', 'Delete', $headerList, $data);
     }
 
-    return $this->_RequestDelete($headerList);
+    $endPoint = $this->_hypermedia['PermissionPolicy']['Delete']['Request']['EndPoint'];
+
+    return $this->_GetDecodedResponse (
+      $this->_RequestDelete (
+        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
+      )
+    );
   }
 
   /**
@@ -673,6 +679,12 @@ class FullTextSearch
       $this->_Sign('PermissionPolicy', 'Push', $headerList, $data);
     }
 
-    return $this->_RequestPost($headerList);
+    $endPoint = $this->_hypermedia['PermissionPolicy']['Delete']['Request']['EndPoint'];
+
+    return $this->_GetDecodedResponse (
+      $this->_RequestPost (
+        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
+      )
+    );
   }
 }
