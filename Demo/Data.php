@@ -335,7 +335,7 @@ $data = [
       'Multiple' => [
         [
           'Id' => 82,
-          'Policy' => [39 => 5]
+          'Policy' => '[]'
         ],
         // Invalid:
         [
@@ -343,7 +343,7 @@ $data = [
         ],
         [
           'Id' => 5,
-          'Policy' => [22 => [1], 7 => [8, 1, 99]]
+          'Policy' => '[]'
         ],
         // Invalid:
         [
@@ -351,21 +351,21 @@ $data = [
         ],
         [
           'Id' => 4,
-          'Policy' => []
+          'Policy' => '[]'
         ],
         // Invalid:
         [
-          'Policy' => []
+          'Policy' => '[]'
         ],
         [
           'Id' => 4,
-          'Policy' => [12 => [9, 1], 8 => []]
+          'Policy' => '[]'
         ]
       ],
       'Single' => [
         [
           'Id' => 1,
-          'Policy' => [39 => 5]
+          'Policy' => '[]'
         ],
         // Invalid:
         [
@@ -373,15 +373,15 @@ $data = [
         ],
         // Invalid:
         [
-          'Policy' => []
+          'Policy' => '[]'
         ],
         [
           'Id' => 1,
-          'Policy' => []
+          'Policy' => '[]'
         ],
         [
           'Id' => 13,
-          'Policy' => [12 => [], 13 => [15, 14]]
+          'Policy' => '[]'
         ],
         // Invalid:
         [
@@ -389,7 +389,7 @@ $data = [
         ],
         [
           'Id' => 4,
-          'Policy' => [1 => [], 995 => [1018, 650, 2314]]
+          'Policy' => '[]'
         ]
       ]
     ]
