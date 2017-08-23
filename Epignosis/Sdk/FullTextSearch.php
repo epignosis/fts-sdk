@@ -45,9 +45,7 @@ class FullTextSearch
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/FullTextSearch; PHP_SDK v%s',
     'Hypermedia' => [
-      'IndexKey' => [
-        'Success' => 'Data'
-      ]
+      'ResponseIndexKey' => 'Data'
     ],
     'Version' => [
       'Extra' => 'dev',
@@ -129,9 +127,7 @@ class FullTextSearch
       $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
     );
 
-    $successIndexKey = self::$_sdkInformation['Hypermedia']['IndexKey']['Success'];
-
-    if (!isset($response['Body'][$successIndexKey])) {
+    if (200 != $response['Status']) {
       throw new \Exception (
         sprintf (
           'Failed to download the service hypermedia file. (%s)', $response['Url']
@@ -142,12 +138,12 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetArrayToString(array $array)
+  private function _GetArrayToString(array $array = [])
   {
     $string = null;
 
     foreach ($array as $key => $value) {
-      $string .= $key . (is_array($value)) ? $this->_GetArrayToString($value) : $value;
+      $string .= $key . (is_array($value) ? $this->_GetArrayToString($value) : $value);
     }
 
     return $string;
@@ -277,10 +273,10 @@ class FullTextSearch
       );
     }
 
-    $successIndexKey = self::$_sdkInformation['Hypermedia']['IndexKey']['Success'];
+    $responseIndexKey = self::$_sdkInformation['Hypermedia']['ResponseIndexKey'];
 
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
-      $content = json_decode($content, true)[$successIndexKey];
+      $content = json_decode($content, true)[$responseIndexKey];
     } else {
       // Do nothing ..
     }
@@ -299,6 +295,7 @@ class FullTextSearch
   private function _Request($url, array $optionList = [])
   {
     $optionList['http']['ignore_errors'] = true;
+    $optionList['http']['protocol_version'] = '1.1';
 
     $response = file_get_contents($url, false, stream_context_create($optionList));
 
