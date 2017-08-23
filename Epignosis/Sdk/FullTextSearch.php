@@ -492,13 +492,11 @@ class FullTextSearch
       $this->_Sign('Document', 'DeIndex', $headerList, $data);
     }
 
+    $endPoint = $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint'];
+
     return $this->_GetDecodedResponse (
       $this->_RequestDelete (
-        1 < count($data)
-          ? $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint']['Multiple']
-          : $this->_hypermedia['Document']['DeIndex']['Request']['EndPoint']['Single'],
-        $headerList,
-        $data
+        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
       )
     );
   }
@@ -524,13 +522,11 @@ class FullTextSearch
       $this->_Sign('Document', 'Index', $headerList, $data);
     }
 
+    $endPoint = $this->_hypermedia['Document']['Index']['Request']['EndPoint'];
+
     return $this->_GetDecodedResponse (
       $this->_RequestPost (
-        1 < count($data)
-          ? $this->_hypermedia['Document']['Index']['Request']['EndPoint']['Multiple']
-          : $this->_hypermedia['Document']['Index']['Request']['EndPoint']['Single'],
-        $headerList,
-        $data
+        1 < count($data) ? $endPoint['Multiple'] : $endPoint['Single'], $headerList, $data
       )
     );
   }
