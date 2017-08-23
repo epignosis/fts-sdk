@@ -1,12 +1,13 @@
 ------------------------------------------------------------------------------------------
   v2.0.0-dev                                                                [2017-08-31]
 ------------------------------------------------------------------------------------------
-  [Change] (xdev) Non-BC changes of the public SDK API.
+  [Change] (xdev) Non-BC changes in the public SDK API.
   [Change] (xdev) Update SDK version from 1.1.1-dev to 2.0.0-dev.
+  [Fix]    (xdev) Fix a typo in "Change-Log" file.
 
 
 ------------------------------------------------------------------------------------------
-  v1.1.0-dev                                                                [2017-08-21]
+  v1.1.1-dev                                                                [2017-08-21]
 ------------------------------------------------------------------------------------------
   [Add]    (xdev) Various bug-fixes.
   [Change] (xdev) Update SDK version from 1.1.0-dev to 1.1.1-dev.
