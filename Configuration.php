@@ -173,16 +173,6 @@ $configuration = [
     ],
 
     /**
-     * Whether to include hypermedia information in each service response, or not. The
-     * default behavior, is to return hypermedia information. Set to false, if hypermedia
-     * information will not be used at all, to recude the size of the service responses.
-     *
-     * @since   2.0.0-dev
-     * @var     bool
-     */
-    'UseHypermediaInformation' => false,
-
-    /**
      * The default interface version to be used, for the communication with the service.
      *
      * @since   2.0.0-dev
