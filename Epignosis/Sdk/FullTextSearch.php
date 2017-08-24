@@ -530,6 +530,19 @@ class FullTextSearch
     return $this->_ParseServiceHypermediaFile($filePath, $content);
   }
 
+  /**
+   * Performs a request.
+   *
+   * @param   string $url
+   *            - The URL to be requested. (Required)
+   *
+   * @param   array $optionList
+   *            - The list of options to be requested. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _Request($url, array $optionList = [])
   {
     $optionList['http']['ignore_errors'] = true;
