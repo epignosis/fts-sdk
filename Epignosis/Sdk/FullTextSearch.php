@@ -97,6 +97,16 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   * Deletes the requested file.
+   *
+   * @param   $filePath
+   *            - The path to file to be deleted. (Required)
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   */
   private function _DeleteFile($filePath)
   {
     unlink($filePath);
@@ -398,8 +408,7 @@ class FullTextSearch
   }
 
   /**
-   * Saves the requested content into the request file path, and returns the operation
-   * result.
+   * Saves the requested content into the request file, and returns the operation result.
    *
    * @param   $filePath
    *            - The path to file to save the content. (Required)
