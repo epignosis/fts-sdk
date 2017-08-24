@@ -387,10 +387,30 @@ class FullTextSearch
     return $headerString;
   }
 
+  /**
+   * Returns a securely produced random string, of a length equal to the requested.
+   *
+   * @param   int $length
+   *            - The length of the random string to be produced. Must a positive integer.
+   *              (Optional, 16)
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to produce the random string.
+   */
   private function _GetRandomStringSecure($length = 16)
   {
     if (!function_exists('openssl_random_pseudo_bytes')) {
       throw new \Exception('Function "openssl_random_pseudo_bytes" does not exist.');
+    }
+
+    $length = (int) $length;
+
+    if (1 > $length) {
+      throw new \Exception(sprintf('Invalid length (%d) requested.', $length));
     }
 
     do {
