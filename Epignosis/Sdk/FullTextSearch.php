@@ -397,7 +397,21 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
-  private function _SaveFile($filePath, $fileContent)
+  /**
+   * Saves the requested content into the request file path, and returns the operation
+   * result.
+   *
+   * @param   $filePath
+   *            - The path to file to save the content. (Required)
+   *
+   * @param   $content
+   *            - The content to be saved. (Required)
+   *
+   * @return  bool
+   *
+   * @since   2.0.0-dev
+   */
+  private function _SaveFile($filePath, $content)
   {
     $filePathDirectory = dirname($filePath);
 
@@ -409,7 +423,11 @@ class FullTextSearch
       }
     }
 
-    return file_put_contents($filePath, $fileContent, \LOCK_EX);
+    if (false === file_put_contents($filePath, $content, \LOCK_EX)) {
+      return false;
+    }
+
+    return true;
   }
 
   /**
