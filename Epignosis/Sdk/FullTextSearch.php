@@ -263,6 +263,16 @@ class FullTextSearch
     return implode('&', $query);
   }
 
+  /**
+   * Returns the decoded requested response.
+   *
+   * @param   array $array
+   *            - The response to be decoded. (Required)
+   *
+   * @return  mixed
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetDecodedResponse(array $response = [])
   {
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
