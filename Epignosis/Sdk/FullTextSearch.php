@@ -77,10 +77,10 @@ class FullTextSearch
    * Returns whether the requested action of the requested entity, requires
    * authentication, or not.
    *
-   * @param   $entity
+   * @param   string $entity
    *            - The entity to be checked. (Required)
    *
-   * @param   $action
+   * @param   string $action
    *            - The action of the entity to be checked. (Required)
    *
    * @return  bool
@@ -92,6 +92,20 @@ class FullTextSearch
     return $this->_hypermedia[$entity][$action]['General']['AuthRequired'];
   }
 
+  /**
+   * Builds the hypermedia information.
+   *
+   * @param   bool $force
+   *            - Whether to force the hypermedia information building, or not.
+   *              (Optional, false)
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to build the hypermedia information.
+   */
   private function _BuildHypermedia($force = false)
   {
     $filePath = $this->_GetServiceHypermediaFilePath();
@@ -108,7 +122,7 @@ class FullTextSearch
   /**
    * Creates the service hypermedia file.
    *
-   * @param   $filePath
+   * @param   string $filePath
    *            - The path to the service hypermedia file. (Required)
    *
    * @return  FullTextSearch
@@ -132,7 +146,7 @@ class FullTextSearch
   /**
    * Deletes the requested file.
    *
-   * @param   $filePath
+   * @param   string $filePath
    *            - The path to file to be deleted. (Required)
    *
    * @return  FullTextSearch
@@ -442,10 +456,10 @@ class FullTextSearch
   /**
    * Saves the requested content into the request file, and returns the operation result.
    *
-   * @param   $filePath
+   * @param   string $filePath
    *            - The path to file to save the content. (Required)
    *
-   * @param   $content
+   * @param   string $content
    *            - The content to be saved. (Required)
    *
    * @return  bool
@@ -474,10 +488,10 @@ class FullTextSearch
   /**
    * Signs a request.
    *
-   * @param   $entity
+   * @param   string $entity
    *            - The entity to be used. (Required)
    *
-   * @param   $action
+   * @param   string $action
    *            - The action to be used. (Required)
    *
    * @param   array $headerList
