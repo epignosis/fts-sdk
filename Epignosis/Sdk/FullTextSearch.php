@@ -623,6 +623,19 @@ class FullTextSearch
     );
   }
 
+  /**
+   * Performs an HTTP OPTIONS request.
+   *
+   * @param   string $url
+   *            - The URL to be requested. (Required)
+   *
+   * @param   array $headerList
+   *            - The list of headers to be requested. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _RequestOptions($url, array $headerList = [])
   {
     $optionList = [
