@@ -89,7 +89,7 @@ class FullTextSearch
    */
   private function _AuthRequired($entity, $action)
   {
-    return $this->_hypermedia[$entity][$action]['General']['AuthRequired'];
+    return (bool) $this->_hypermedia[$entity][$action]['General']['AuthRequired'];
   }
 
   /**
@@ -163,7 +163,7 @@ class FullTextSearch
   /**
    * Downloads the service hypermedia file.
    *
-   * @return  FullTextSearch
+   * @return  string
    *
    * @since   2.0.0-dev
    *
@@ -187,7 +187,17 @@ class FullTextSearch
     return $response['Body'];
   }
 
-  private function _GetArraySorted(array $array = [])
+  /**
+   * Sorts the requested array, by key in ascending mode.
+   *
+   * @param   array $array
+   *            - The array to be sorted. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
+  private function _GetArraySorted(array $array)
   {
     ksort($array);
 
@@ -200,7 +210,17 @@ class FullTextSearch
     return $array;
   }
 
-  private function _GetArrayToString(array $array = [])
+  /**
+   * Converts the requested array into a string.
+   *
+   * @param   array $array
+   *            - The array to be converted. (Required)
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   */
+  private function _GetArrayToString(array $array)
   {
     $string = null;
 
