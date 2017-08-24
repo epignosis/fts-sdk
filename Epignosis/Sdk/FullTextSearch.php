@@ -160,6 +160,16 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   * Downloads the service hypermedia file.
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to download the service hypermedia file.
+   */
   private function _DownloadServiceHypermediaFile()
   {
     $response = $this->_RequestOptions (
