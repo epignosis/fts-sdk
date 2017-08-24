@@ -474,7 +474,7 @@ class FullTextSearch
    *            - The path to the service hypermedia file. (Required)
    *
    * @param   string $content
-   *            - The content to be parses. (Optional, null)
+   *            - The content to be parsed. (Optional, null)
    *
    * @return  array
    *
@@ -502,6 +502,19 @@ class FullTextSearch
     return $content;
   }
 
+  /**
+   * Reads the service hypermedia file.
+   *
+   * @param   string $filePath
+   *            - The path to the service hypermedia file. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to read the service hypermedia file.
+   */
   private function _ReadServiceHypermediaFile($filePath)
   {
     $content = file_get_contents($filePath);
