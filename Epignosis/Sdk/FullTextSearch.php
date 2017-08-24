@@ -61,7 +61,7 @@ class FullTextSearch
    * FullTextSearch constructor.
    *
    * @param   array $configuration
-   *            - The configuration to be used. (Optional, [])
+   *            - The configuration to be used. (Required)
    *
    * @since   2.0.0-dev
    *
