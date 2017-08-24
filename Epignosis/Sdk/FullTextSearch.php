@@ -363,10 +363,10 @@ class FullTextSearch
   }
 
   /**
-   * Converts the requested header list into a string.
+   * Converts the requested list of headers into a string.
    *
    * @param   array $headerList
-   *            - The header list to be converted. (Required)
+   *            - The list of headers to be converted. (Required)
    *
    * @return  string
    *
@@ -421,10 +421,10 @@ class FullTextSearch
   }
 
   /**
-   * Returns the status code from the requested header list.
+   * Returns the status code from the requested list of headers.
    *
    * @param   array
-   *            - The header list to be used. (Optional, [])
+   *            - The list of headers to be used. (Optional, [])
    *
    * @return  null|int
    *
@@ -565,6 +565,19 @@ class FullTextSearch
     ];
   }
 
+  /**
+   * Performs an HTTP DELETE request.
+   *
+   * @param   string $url
+   *            - The URL to be requested. (Required)
+   *
+   * @param   array $headerList
+   *            - The list of headers to be requested. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _RequestDelete($url, array $headerList = [], array $data = [])
   {
     $optionList = [
@@ -649,7 +662,8 @@ class FullTextSearch
   }
 
   /**
-   * Signs a request.
+   * Signs a request by appending the signature header into the requested list of headers
+   * ($headerList).
    *
    * @param   string $entity
    *            - The entity to be used. (Required)
@@ -658,8 +672,7 @@ class FullTextSearch
    *            - The action to be used. (Required)
    *
    * @param   array $headerList
-   *            - The header list to be used. In this list, an extra header will be added.
-   *              (Required)
+   *            - The list of headers to be used. (Required)
    *
    * @param   array $data
    *            - The data to be used. (Optional, [])
