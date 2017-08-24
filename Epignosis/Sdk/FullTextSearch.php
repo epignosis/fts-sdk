@@ -231,13 +231,26 @@ class FullTextSearch
     return $string;
   }
 
-  private function _GetArrayToUrl(array $data = [], $prefix = null)
+  /**
+   * Converts the requested array into a URL query.
+   *
+   * @param   array $array
+   *            - The array to be converted. (Required)
+   *
+   * @param   string $prefix
+   *            - Internal prefix to be used by the recursion. (Optional, null)
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   */
+  private function _GetArrayToUrlQuery(array $data, $prefix = null)
   {
     $query = [];
 
     foreach ($data as $key => $value) {
       if (is_array($value)) {
-        $query[] = $this->_GetArrayToUrl($value, $key);
+        $query[] = $this->_GetArrayToUrlQuery($value, $key);
       } else {
         if ($prefix) {
           $query[] = sprintf('%s[%s]=%s', $prefix, $key, rawurlencode($value));
@@ -454,7 +467,7 @@ class FullTextSearch
     ];
 
     return $this->_Request (
-      sprintf('%s?%s', $url, $this->_GetArrayToUrl($data)), $optionList
+      sprintf('%s?%s', $url, $this->_GetArrayToUrlQuery($data)), $optionList
     );
   }
 
