@@ -73,6 +73,20 @@ class FullTextSearch
     $this->Configure($configuration)->_BuildHypermedia(false);
   }
 
+  /**
+   * Returns whether the requested action of the requested entity, requires
+   * authentication, or not.
+   *
+   * @param   $entity
+   *            - The entity to be checked. (Required)
+   *
+   * @param   $action
+   *            - The action of the entity to be checked. (Required)
+   *
+   * @return  bool
+   *
+   * @since   2.0.0-dev
+   */
   private function _AuthRequired($entity, $action)
   {
     return $this->_hypermedia[$entity][$action]['General']['AuthRequired'];
