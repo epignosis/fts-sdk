@@ -4,9 +4,10 @@ use Epignosis\Sdk\FullTextSearch;
 
 $now = microtime(true);
 
-require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
-require 'Configuration.php';
-
+require
+  'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
+require
+  'Configuration.php';
 require
   'Epignosis' . \DIRECTORY_SEPARATOR .
   'Sdk' . \ DIRECTORY_SEPARATOR .
@@ -77,7 +78,6 @@ function PrintObjectReadable($data)
 
 try {
 
-  /** @noinspection PhpUndefinedVariableInspection */
   $fullTextSearchSdk = new FullTextSearch($configuration);
   $getList = Get();
   $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
@@ -92,7 +92,6 @@ try {
     true
   );
 
-  /** @noinspection PhpUndefinedVariableInspection */
   $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
   $method = sprintf('%s%s', $getList['Entity'], $getList['Action']);
 
