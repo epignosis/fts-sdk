@@ -105,6 +105,19 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   * Creates the service hypermedia file.
+   *
+   * @param   $filePath
+   *            - The path to the service hypermedia file. (Required)
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to create the service hypermedia file.
+   */
   private function _CreateServiceHypermediaFile($filePath)
   {
     if (!$this->_SaveFile($filePath, $this->_DownloadServiceHypermediaFile())) {
