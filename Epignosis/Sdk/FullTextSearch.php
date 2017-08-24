@@ -441,6 +441,13 @@ class FullTextSearch
     return null;
   }
 
+  /**
+   * Returns the file path of the service hypermedia file.
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetServiceHypermediaFilePath()
   {
     $storageDirectory = dirname(dirname(__DIR__));
