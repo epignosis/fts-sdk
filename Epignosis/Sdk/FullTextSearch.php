@@ -362,6 +362,16 @@ class FullTextSearch
     return $headerList;
   }
 
+  /**
+   * Converts the requested header list into a string.
+   *
+   * @param   array $headerList
+   *            - The header list to be converted. (Required)
+   *
+   * @return  string
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetHeaderListToString(array $headerList = [])
   {
     $headerString = null;
