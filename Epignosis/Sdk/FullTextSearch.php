@@ -403,8 +403,6 @@ class FullTextSearch
 
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
       $content = json_decode($content, true)[$responseIndexKey];
-    } else {
-      // Do nothing ..
     }
 
     if (empty($content)) {
