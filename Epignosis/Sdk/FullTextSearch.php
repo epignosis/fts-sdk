@@ -574,6 +574,9 @@ class FullTextSearch
    * @param   array $headerList
    *            - The list of headers to be requested. (Optional, [])
    *
+   * @param   array $data
+   *            - The data to be requested. (Optional, [])
+   *
    * @return  array
    *
    * @since   2.0.0-dev
@@ -591,6 +594,22 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /**
+   * Performs an HTTP GET request.
+   *
+   * @param   string $url
+   *            - The URL to be requested. (Required)
+   *
+   * @param   array $headerList
+   *            - The list of headers to be requested. (Optional, [])
+   *
+   * @param   array $data
+   *            - The data to be requested. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _RequestGet($url, array $headerList = [], array $data = [])
   {
     $optionList = [
@@ -616,6 +635,22 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /**
+   * Performs an HTTP POST request.
+   *
+   * @param   string $url
+   *            - The URL to be requested. (Required)
+   *
+   * @param   array $headerList
+   *            - The list of headers to be requested. (Optional, [])
+   *
+   * @param   array $data
+   *            - The data to be requested. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _RequestPost($url, array $headerList = [], array $data = [])
   {
     $optionList = [
