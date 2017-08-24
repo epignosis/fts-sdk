@@ -420,11 +420,21 @@ class FullTextSearch
     return $randomString;
   }
 
+  /**
+   * Returns the status code from the requested header list.
+   *
+   * @param   array
+   *            - The header list to be used. (Optional, [])
+   *
+   * @return  null|int
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetResponseStatusCode(array $headerList = [])
   {
     foreach ($headerList as $header) {
       if (preg_match('#HTTP/[0-9\.]+\s+([0-9]+)#', $header, $match)) {
-        return intval($match[1]);
+        return (int) $match[1];
       }
     }
 
