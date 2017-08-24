@@ -73,6 +73,11 @@ class FullTextSearch
     $this->Configure($configuration)->_BuildHypermedia(false);
   }
 
+  private function _AuthRequired($entity, $action)
+  {
+    return $this->_hypermedia[$entity][$action]['General']['AuthRequired'];
+  }
+
   private function _BuildHypermedia($force = false)
   {
     $filePath = $this->_GetServiceHypermediaFilePath();
@@ -507,7 +512,7 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_hypermedia['Account']['Create']['General']['AuthRequired']) {
+    if ($this->_AuthRequired('Account', 'Create')) {
       $this->_Sign('Account', 'Create', $headerList, $data);
     }
 
@@ -552,7 +557,7 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_hypermedia['Document']['DeIndex']['General']['AuthRequired']) {
+    if ($this->_AuthRequired('Document', 'DeIndex')) {
       $this->_Sign('Document', 'DeIndex', $headerList, $data);
     }
 
@@ -582,7 +587,7 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_hypermedia['Document']['Index']['General']['AuthRequired']) {
+    if ($this->_AuthRequired('Document', 'Index')) {
       $this->_Sign('Document', 'Index', $headerList, $data);
     }
 
@@ -610,7 +615,7 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_hypermedia['Document']['Search']['General']['AuthRequired']) {
+    if ($this->_AuthRequired('Document', 'Search')) {
       $this->_Sign('Document', 'Search', $headerList, $data);
     }
 
@@ -717,7 +722,7 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_hypermedia['PermissionPolicy']['Delete']['General']['AuthRequired']) {
+    if ($this->_AuthRequired('PermissionPolicy', 'Delete')) {
       $this->_Sign('PermissionPolicy', 'Delete', $headerList, $data);
     }
 
@@ -747,7 +752,7 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_hypermedia['PermissionPolicy']['Push']['General']['AuthRequired']) {
+    if ($this->_AuthRequired('PermissionPolicy', 'Push')) {
       $this->_Sign('PermissionPolicy', 'Push', $headerList, $data);
     }
 
