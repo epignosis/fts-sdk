@@ -68,7 +68,7 @@ class FullTextSearch
    * @throws  \Exception
    *            - In case that is not possible to build the service hypermedia file.
    */
-  public function __construct(array $configuration = [])
+  public function __construct(array $configuration)
   {
     $this->Configure($configuration)->_BuildHypermedia(false);
   }
