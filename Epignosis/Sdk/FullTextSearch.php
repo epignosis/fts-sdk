@@ -282,6 +282,22 @@ class FullTextSearch
     return $response['Body'];
   }
 
+  /**
+   * Returns the endpoint and the data of the requested action of the requested entity.
+   *
+   * @param   string $entity
+   *            - The entity to be used. (Required)
+   *
+   * @param   string $action
+   *            - The action of the entity to be used. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
