@@ -467,7 +467,23 @@ class FullTextSearch
     );
   }
 
-  private function _ParseServiceHypermediaFile($filePath, $content)
+  /**
+   * Parses the service hypermedia file.
+   *
+   * @param   string $filePath
+   *            - The path to the service hypermedia file. (Required)
+   *
+   * @param   string $content
+   *            - The content to be parses. (Optional, null)
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to parse the service hypermedia file.
+   */
+  private function _ParseServiceHypermediaFile($filePath, $content = null)
   {
     $responseIndexKey = self::$_sdkInformation['Hypermedia']['ResponseIndexKey'];
 
