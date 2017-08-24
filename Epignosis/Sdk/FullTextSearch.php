@@ -52,7 +52,7 @@ class FullTextSearch
       'Major' => 2,
       'Minor' => 0,
       'Patch' => 0,
-      'Release' => '2017-08-31'
+      'Release' => '2017-08-24'
     ]
   ];
 
