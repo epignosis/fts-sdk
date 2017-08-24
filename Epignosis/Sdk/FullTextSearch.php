@@ -326,6 +326,13 @@ class FullTextSearch
     return [$endpoint, $data];
   }
 
+  /**
+   * Returns the list of headers to be sent as part of the request.
+   *
+   * @return  array
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetHeaderList()
   {
     $headerList = [
