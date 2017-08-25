@@ -424,6 +424,19 @@ class FullTextSearch
     return $randomString;
   }
 
+  /**
+   * Returns the request method, of the requested action of the requested entity.
+   *
+   * @param   string $entity
+   *            - The entity to be used. (Required)
+   *
+   * @param   string $action
+   *            - The action to be used. (Required)
+   *
+   * @return  null|string
+   *
+   * @since   2.0.0-dev
+   */
   private function _GetRequestMethod($entity, $action)
   {
     if (empty($this->_hypermedia[$entity][$action]['Request']['Method'])) {
