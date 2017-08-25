@@ -2,7 +2,8 @@
   v2.1.0-dev                                                                [2017-08-25]
 ------------------------------------------------------------------------------------------
   [Add]     (xdev) FullTextSearch SDK public method "Execute". This is dynamic API
-                  operation execution method, which relies on the service hypermedia file.
+                   operation execution method, which relies on the service hypermedia
+                   file.
   [Change]  (xdev) Update SDK version from 2.0.0-dev to 2.1.0-dev.
   [Fix]     (xdev) Typos and empty lines.
   [Improve] (xdev) Keep only used service hypermedia file information (minification).
