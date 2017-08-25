@@ -54,9 +54,9 @@ class FullTextSearch
     'Version' => [
       'Extra' => 'dev',
       'Major' => 2,
-      'Minor' => 0,
+      'Minor' => 1,
       'Patch' => 0,
-      'Release' => '2017-08-24'
+      'Release' => '2017-08-25'
     ]
   ];
 
@@ -435,7 +435,7 @@ class FullTextSearch
    *
    * @return  null|string
    *
-   * @since   2.0.0-dev
+   * @since   2.1.0-dev
    */
   private function _GetRequestMethod($entity, $action)
   {
@@ -799,7 +799,7 @@ class FullTextSearch
    * @since   2.0.0-dev
    *
    * @throws  \Exception
-   *            - In case that that requested configuration, is not valid.
+   *            - In case that the requested configuration, is not valid.
    */
   public function Configure(array $configuration)
   {
@@ -831,6 +831,19 @@ class FullTextSearch
     return $this;
   }
 
+  /**
+   * Executes the requested API operation.
+   *
+   * @param   array $configuration
+   *            - The configuration to be set. (Required)
+   *
+   * @return  array
+   *
+   * @since   2.1.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that is not possible to complete the requested API operation.
+   */
   public function Execute($entity, $action, array $data = [])
   {
     list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
