@@ -345,9 +345,8 @@ class FullTextSearch
         (string) $this->_configuration['Service']['Version'],
         strtolower($this->_configuration['Service']['Format'])
       ),
-      'Accept-Language' =>  sprintf (
-        $this->_configuration['Service']['Header']['AcceptLanguage'],
-        strtolower($this->_configuration['Service']['Language'])
+      'Accept-Language' => strtolower (
+        $this->_configuration['Service']['Language']
       ),
       'User-Agent' => sprintf (
         self::$_sdkInformation['Agent'], $this->GetSdkVersion()

@@ -121,14 +121,6 @@ $configuration = [
       'Accept' => 'application/vnd.epignosis.v%d+%s',
 
       /**
-       * The "Accept-Language" header.
-       *
-       * @since   2.0.0-dev
-       * @var     string
-       */
-      'AcceptLanguage' => '%s',
-
-      /**
        * The "User-Agent" header.
        *
        * @since   2.0.0-dev
