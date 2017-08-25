@@ -93,7 +93,6 @@ try {
   );
 
   $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
-  $method = sprintf('%s%s', $getList['Entity'], $getList['Action']);
 
   PrintLine('Requested Data');
   PrintObjectReadable($methodData);
@@ -101,14 +100,18 @@ try {
   if ($getList['Multiplicity']) {
     $responseData = [
       'Demo' => [],
-      'Server' => $fullTextSearchSdk->$method($methodData)
+      'Server' => $fullTextSearchSdk->Execute (
+        $getList['Entity'], $getList['Action'], $methodData
+      )
     ];
   } else {
     $responseData = [];
 
     foreach ($methodData as $methodDatum) {
       $thisNow = microtime(true);
-      $serverResponse = $fullTextSearchSdk->$method($methodDatum);
+      $serverResponse = $fullTextSearchSdk->Execute (
+        $getList['Entity'], $getList['Action'], $methodDatum
+      );
 
       $responseData[] = [
         'Demo' => [
