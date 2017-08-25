@@ -113,14 +113,6 @@ $configuration = [
     'Header' => [
 
       /**
-       * The "Accept" header.
-       *
-       * @since   2.0.0-dev
-       * @var     string
-       */
-      'Accept' => 'application/vnd.epignosis.v%d+%s',
-
-      /**
        * The "User-Agent" header.
        *
        * @since   2.0.0-dev

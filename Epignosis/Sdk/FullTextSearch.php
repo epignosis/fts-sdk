@@ -48,6 +48,7 @@ class FullTextSearch
       'ResponseIndexKey' => 'Data'
     ],
     'Service' => [
+      'AcceptHeaderPattern' => 'application/vnd.epignosis.v%s+%s',
       'Format' => ['JSON']
     ],
     'Version' => [
@@ -340,7 +341,7 @@ class FullTextSearch
   {
     $headerList = [
       'Accept' => sprintf (
-        $this->_configuration['Service']['Header']['Accept'],
+        self::$_sdkInformation['Service']['AcceptHeaderPattern'],
         (string) $this->_configuration['Service']['Version'],
         strtolower($this->_configuration['Service']['Format'])
       ),
