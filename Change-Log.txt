@@ -1,4 +1,17 @@
 ------------------------------------------------------------------------------------------
+  v2.0.0-dev                                                                [2017-08-25]
+------------------------------------------------------------------------------------------
+  [Add]    (xdev) FullTextSearch SDK public method "Execute".
+  [Change] (xdev) Update SDK version from 2.0.0-dev to 2.1.0-dev.
+  [Remove] (xdev) FullTextSearch SDK public method "AccountCreate".
+  [Remove] (xdev) FullTextSearch SDK public method "DocumentDeIndex".
+  [Remove] (xdev) FullTextSearch SDK public method "DocumentIndex".
+  [Remove] (xdev) FullTextSearch SDK public method "DocumentSearch".
+  [Remove] (xdev) FullTextSearch SDK public method "PermissionPolicyDelete".
+  [Remove] (xdev) FullTextSearch SDK public method "PermissionPolicyPush".
+
+
+------------------------------------------------------------------------------------------
   v2.0.0-dev                                                                [2017-08-24]
 ------------------------------------------------------------------------------------------
   [Change] (xdev) Non-BC changes in the public SDK API.
