@@ -11,6 +11,8 @@
   [Remove] (xdev) FullTextSearch SDK public method "DocumentSearch".
   [Remove] (xdev) FullTextSearch SDK public method "PermissionPolicyDelete".
   [Remove] (xdev) FullTextSearch SDK public method "PermissionPolicyPush".
+  [Remove] (xdev) User configuration "Service.Header.Accept".
+  [Remove] (xdev) User configuration "Service.Header.Accept-Language".
 
 
 ------------------------------------------------------------------------------------------
