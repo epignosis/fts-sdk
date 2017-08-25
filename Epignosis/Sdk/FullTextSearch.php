@@ -424,6 +424,18 @@ class FullTextSearch
     return $randomString;
   }
 
+  private function _GetRequestMethod($entity, $action)
+  {
+    if (empty($this->_hypermedia[$entity][$action]['Request']['Method'])) {
+      return null;
+    }
+
+    return sprintf (
+      '_Request%s',
+      ucfirst(strtolower($this->_hypermedia[$entity][$action]['Request']['Method']))
+    );
+  }
+
   /**
    * Returns the status code from the requested list of headers.
    *
@@ -569,6 +581,7 @@ class FullTextSearch
     ];
   }
 
+  /** @noinspection PhpUnusedPrivateMethodInspection */
   /**
    * Performs an HTTP DELETE request.
    *
@@ -598,6 +611,7 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /** @noinspection PhpUnusedPrivateMethodInspection */
   /**
    * Performs an HTTP GET request.
    *
@@ -652,6 +666,7 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /** @noinspection PhpUnusedPrivateMethodInspection */
   /**
    * Performs an HTTP POST request.
    *
@@ -803,6 +818,29 @@ class FullTextSearch
     return $this;
   }
 
+  public function Execute($entity, $action, array $data = [])
+  {
+    list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
+
+    $headerList = $this->_GetHeaderList();
+
+    if ($this->_AuthRequired($entity, $action)) {
+      $this->_Sign($entity, $action, $headerList, $data);
+    }
+
+    $requestMethod = $this->_GetRequestMethod($entity, $action);
+
+    if (!method_exists($this, $requestMethod)) {
+      throw new \Exception (
+        sprintf('Entity "%s" with action "%s", does not exist.', $entity, $action)
+      );
+    }
+
+    return $this->_GetDecodedResponse (
+      $this->$requestMethod($endpoint, $headerList, $data)
+    );
+  }
+
   /**
    * Returns the configuration that is being used by the SDK.
    *
@@ -880,36 +918,5 @@ class FullTextSearch
   public function GetServiceHypermediaInformation()
   {
     return $this->_hypermedia;
-  }
-
-  public function Execute($entity, $action, array $data = [])
-  {
-    list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
-
-    $headerList = $this->_GetHeaderList();
-
-    if ($this->_AuthRequired($entity, $action)) {
-      $this->_Sign($entity, $action, $headerList, $data);
-    }
-
-    $requestMethod = $this->_GetRequestMethod($entity, $action);
-
-    if (!method_exists($this, $requestMethod)) {
-      throw new \Exception (
-        sprintf('Entity "%s" with action "%s", does not exist.', $entity, $action)
-      );
-    }
-
-    return $this->_GetDecodedResponse (
-      $this->$requestMethod($endpoint, $headerList, $data)
-    );
-  }
-
-  public function _GetRequestMethod($entity, $action)
-  {
-    return sprintf (
-      '_Request%s',
-      ucfirst(strtolower($this->_hypermedia[$entity][$action]['Request']['Method']))
-    );
   }
 }
