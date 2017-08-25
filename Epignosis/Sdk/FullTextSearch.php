@@ -48,8 +48,7 @@ class FullTextSearch
       'ResponseIndexKey' => 'Data'
     ],
     'Service' => [
-      'Format' => ['JSON'],
-      'Version' => ['1']
+      'Format' => ['JSON']
     ],
     'Version' => [
       'Extra' => 'dev',
@@ -812,18 +811,6 @@ class FullTextSearch
         throw new \Exception('Service format is not supported by this SDK.');
       }
     }
-
-    if (isset($configuration['Service']['Version'])) {
-      $validServiceVersion = in_array (
-        (string) $configuration['Service']['Version'],
-        self::$_sdkInformation['Service']['Version']
-      );
-
-      if (!$validServiceVersion) {
-        throw new \Exception('Service version is not supported by this SDK.');
-      }
-    }
-
 
     $this->_configuration = $configuration;
 
