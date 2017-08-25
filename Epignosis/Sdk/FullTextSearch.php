@@ -55,11 +55,11 @@ class FullTextSearch
       'Format' => ['JSON']
     ],
     'Version' => [
-      'Extra' => 'dev',
+      'Extra' => 'alpha',
       'Major' => 2,
       'Minor' => 1,
       'Patch' => 1,
-      'Release' => '2017-08-25'
+      'Release' => '2017-08-26'
     ]
   ];
 
