@@ -507,6 +507,7 @@ class FullTextSearch
     );
   }
 
+
   private function _MinifyServiceHypermediaContent($content)
   {
     $contentParsed = $this->_ParseServiceHypermediaContent($content);

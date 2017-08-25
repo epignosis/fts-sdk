@@ -1,18 +1,19 @@
 ------------------------------------------------------------------------------------------
   v2.1.0-dev                                                                [2017-08-25]
 ------------------------------------------------------------------------------------------
-  [Add]    (xdev) FullTextSearch SDK public method "Execute". This is dynamic API
+  [Add]     (xdev) FullTextSearch SDK public method "Execute". This is dynamic API
                   operation execution method, which relies on the service hypermedia file.
-  [Change] (xdev) Update SDK version from 2.0.0-dev to 2.1.0-dev.
-  [Fix]    (xdev) Typos and empty lines.
-  [Remove] (xdev) FullTextSearch SDK public method "AccountCreate".
-  [Remove] (xdev) FullTextSearch SDK public method "DocumentDeIndex".
-  [Remove] (xdev) FullTextSearch SDK public method "DocumentIndex".
-  [Remove] (xdev) FullTextSearch SDK public method "DocumentSearch".
-  [Remove] (xdev) FullTextSearch SDK public method "PermissionPolicyDelete".
-  [Remove] (xdev) FullTextSearch SDK public method "PermissionPolicyPush".
-  [Remove] (xdev) User configuration "Service.Header.Accept".
-  [Remove] (xdev) User configuration "Service.Header.Accept-Language".
+  [Change]  (xdev) Update SDK version from 2.0.0-dev to 2.1.0-dev.
+  [Fix]     (xdev) Typos and empty lines.
+  [Improve] (xdev) Keep only used service hypermedia file information (minification).
+  [Remove]  (xdev) FullTextSearch SDK public method "AccountCreate".
+  [Remove]  (xdev) FullTextSearch SDK public method "DocumentDeIndex".
+  [Remove]  (xdev) FullTextSearch SDK public method "DocumentIndex".
+  [Remove]  (xdev) FullTextSearch SDK public method "DocumentSearch".
+  [Remove]  (xdev) FullTextSearch SDK public method "PermissionPolicyDelete".
+  [Remove]  (xdev) FullTextSearch SDK public method "PermissionPolicyPush".
+  [Remove]  (xdev) User configuration "Service.Header.Accept".
+  [Remove]  (xdev) User configuration "Service.Header.Accept-Language".
 
 
 ------------------------------------------------------------------------------------------
