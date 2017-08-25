@@ -47,6 +47,10 @@ class FullTextSearch
     'Hypermedia' => [
       'ResponseIndexKey' => 'Data'
     ],
+    'Service' => [
+      'Format' => ['JSON'],
+      'Version' => ['1']
+    ],
     'Version' => [
       'Extra' => 'dev',
       'Major' => 2,
@@ -338,7 +342,7 @@ class FullTextSearch
     $headerList = [
       'Accept' => sprintf (
         $this->_configuration['Service']['Header']['Accept'],
-        (int) $this->_configuration['Service']['Version'],
+        (string) $this->_configuration['Service']['Version'],
         strtolower($this->_configuration['Service']['Format'])
       ),
       'Accept-Language' =>  sprintf (
@@ -460,9 +464,9 @@ class FullTextSearch
     $storageDirectory = str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory);
 
     return sprintf (
-      '%sv%d.%s',
+      '%sv%s.%s',
       $storageDirectory,
-      (int) $this->_configuration['Service']['Version'],
+      (string) $this->_configuration['Service']['Version'],
       strtolower($this->_configuration['Service']['Format'])
     );
   }
@@ -793,9 +797,35 @@ class FullTextSearch
    * @return  FullTextSearch
    *
    * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that that requested configuration, is not valid.
    */
   public function Configure(array $configuration)
   {
+    if (isset($configuration['Service']['Format'])) {
+      $validServiceFormat = in_array (
+        strtoupper($configuration['Service']['Format']),
+        self::$_sdkInformation['Service']['Format']
+      );
+
+      if (!$validServiceFormat) {
+        throw new \Exception('Service format is not supported by this SDK.');
+      }
+    }
+
+    if (isset($configuration['Service']['Version'])) {
+      $validServiceVersion = in_array (
+        (string) $configuration['Service']['Version'],
+        self::$_sdkInformation['Service']['Version']
+      );
+
+      if (!$validServiceVersion) {
+        throw new \Exception('Service version is not supported by this SDK.');
+      }
+    }
+
+
     $this->_configuration = $configuration;
 
     return $this;
