@@ -507,8 +507,17 @@ class FullTextSearch
     );
   }
 
-
-  private function _MinifyServiceHypermediaContent($content)
+  /**
+   * Minifies the service hypermedia content.
+   *
+   * @param   string $content
+   *            - The content to be minidied. (Optional, null)
+   *
+   * @return  string
+   *
+   * @since   2.1.0-dev
+   */
+  private function _MinifyServiceHypermediaContent($content = null)
   {
     $contentParsed = $this->_ParseServiceHypermediaContent($content);
     $contentMinified = [];
@@ -560,7 +569,7 @@ class FullTextSearch
    *
    * @return  null|array
    *
-   * @since   2.0.0-dev
+   * @since   2.1.0-dev
    */
   private function _ParseServiceHypermediaContent($content = null)
   {
