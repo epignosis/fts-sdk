@@ -82,10 +82,6 @@ try {
   $getList = Get();
   $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
 
-  if (!isset($data[$getList['Entity']][$getList['Action']][$multiplicity])) {
-    throw new \Exception('Nothing to execute according the requested entity / action.');
-  }
-
   PrintHeader (
     sprintf('Execute %s %s (%s)', $getList['Entity'], $getList['Action'], $multiplicity),
     false,
@@ -101,7 +97,7 @@ try {
     $responseData = [
       'Demo' => [],
       'Server' => $fullTextSearchSdk->Execute (
-        $getList['Entity'], $getList['Action'], $methodData
+        $getList['Entity'], $getList['Action'], (array) $methodData
       )
     ];
   } else {
@@ -110,7 +106,7 @@ try {
     foreach ($methodData as $methodDatum) {
       $thisNow = microtime(true);
       $serverResponse = $fullTextSearchSdk->Execute (
-        $getList['Entity'], $getList['Action'], $methodDatum
+        $getList['Entity'], $getList['Action'], (array) $methodDatum
       );
 
       $responseData[] = [

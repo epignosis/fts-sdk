@@ -761,34 +761,6 @@ class FullTextSearch
   }
 
   /**
-   * Creates an account, on the full-text search service.
-   *
-   * @param   array $data
-   *            - The acount data to be created. (Required)
-   *
-   * @return  array
-   *
-   * @since   2.0.0-dev
-   *
-   * @throws  \Exception
-   *            - In case that is not possible to create the account.
-   */
-  public function AccountCreate(array $data)
-  {
-    list($endpoint, $data) = $this->_GetEndpointAndData (
-      'PermissionPolicy', 'Push', $data
-    );
-
-    $headerList = $this->_GetHeaderList();
-
-    if ($this->_AuthRequired('Account', 'Create')) {
-      $this->_Sign('Account', 'Create', $headerList, $data);
-    }
-
-    return $this->_GetDecodedResponse($this->_RequestPost($endpoint, $headerList, $data));
-  }
-
-  /**
    * Configures the SDK.
    *
    * @param   array $configuration
@@ -829,92 +801,6 @@ class FullTextSearch
     $this->_configuration = $configuration;
 
     return $this;
-  }
-
-  /**
-   * De-indexes a single or multiple documents, from the full-text service.
-   *
-   * @param   array $data
-   *            - The document(s) data to be de-indexed. (Required)
-   *
-   * @return  array
-   *
-   * @since   2.0.0-dev
-   *
-   * @throws  \Exception
-   *            - In case that is not possible to de-index the document(s).
-   */
-  public function DocumentDeIndex(array $data)
-  {
-    list($endpoint, $data) = $this->_GetEndpointAndData (
-      'PermissionPolicy', 'Push', $data
-    );
-
-    $headerList = $this->_GetHeaderList();
-
-    if ($this->_AuthRequired('Document', 'DeIndex')) {
-      $this->_Sign('Document', 'DeIndex', $headerList, $data);
-    }
-
-    return $this->_GetDecodedResponse (
-      $this->_RequestDelete($endpoint, $headerList, $data)
-    );
-  }
-
-  /**
-   * Indexes a single or multiple documents, on the full-text service.
-   *
-   * @param   array $data
-   *            - The document(s) data to be indexed. (Required)
-   *
-   * @return  array
-   *
-   * @since   2.0.0-dev
-   *
-   * @throws  \Exception
-   *            - In case that is not possible to index the document(s).
-   */
-  public function DocumentIndex(array $data)
-  {
-    list($endpoint, $data) = $this->_GetEndpointAndData (
-      'PermissionPolicy', 'Push', $data
-    );
-
-    $headerList = $this->_GetHeaderList();
-
-    if ($this->_AuthRequired('Document', 'Index')) {
-      $this->_Sign('Document', 'Index', $headerList, $data);
-    }
-
-    return $this->_GetDecodedResponse($this->_RequestPost($endpoint, $headerList, $data));
-  }
-
-  /**
-   * Performs a search query for documents, on the full-text service.
-   *
-   * @param   array $data
-   *            - The search query data to be used. (Required)
-   *
-   * @return  array
-   *
-   * @since   2.0.0-dev
-   *
-   * @throws  \Exception
-   *            - In case that is not possible to perform a search query.
-   */
-  public function DocumentSearch(array $data)
-  {
-    list($endpoint, $data) = $this->_GetEndpointAndData (
-      'PermissionPolicy', 'Push', $data
-    );
-
-    $headerList = $this->_GetHeaderList();
-
-    if ($this->_AuthRequired('Document', 'Search')) {
-      $this->_Sign('Document', 'Search', $headerList, $data);
-    }
-
-    return $this->_GetDecodedResponse($this->_RequestGet($endpoint, $headerList, $data));
   }
 
   /**
@@ -996,61 +882,34 @@ class FullTextSearch
     return $this->_hypermedia;
   }
 
-  /**
-   * Deletes a permission policy.
-   *
-   * @param   array $data
-   *            - The permission policy data to be deleted. (Required)
-   *
-   * @return  array
-   *
-   * @since   2.0.0-dev
-   *
-   * @throws  \Exception
-   *            - In case that is not possible to delete the permission policy.
-   */
-  public function PermissionPolicyDelete(array $data)
+  public function Execute($entity, $action, array $data = [])
   {
-    list($endpoint, $data) = $this->_GetEndpointAndData (
-      'PermissionPolicy', 'Push', $data
-    );
+    list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
 
     $headerList = $this->_GetHeaderList();
 
-    if ($this->_AuthRequired('PermissionPolicy', 'Delete')) {
-      $this->_Sign('PermissionPolicy', 'Delete', $headerList, $data);
+    if ($this->_AuthRequired($entity, $action)) {
+      $this->_Sign($entity, $action, $headerList, $data);
+    }
+
+    $requestMethod = $this->_GetRequestMethod($entity, $action);
+
+    if (!method_exists($this, $requestMethod)) {
+      throw new \Exception (
+        sprintf('Entity "%s" with action "%s", does not exist.', $entity, $action)
+      );
     }
 
     return $this->_GetDecodedResponse (
-      $this->_RequestDelete($endpoint, $headerList, $data)
+      $this->$requestMethod($endpoint, $headerList, $data)
     );
   }
 
-  /**
-   * Pushes a permission policy. (Create / Update)
-   *
-   * @param   array $data
-   *            - The permission policy data to be pushed. (Required)
-   *
-   * @return  array
-   *
-   * @since   2.0.0-dev
-   *
-   * @throws  \Exception
-   *            - In case that is not possible to push the permission policy.
-   */
-  public function PermissionPolicyPush(array $data)
+  public function _GetRequestMethod($entity, $action)
   {
-    list($endpoint, $data) = $this->_GetEndpointAndData (
-      'PermissionPolicy', 'Push', $data
+    return sprintf (
+      '_Request%s',
+      ucfirst(strtolower($this->_hypermedia[$entity][$action]['Request']['Method']))
     );
-
-    $headerList = $this->_GetHeaderList();
-
-    if ($this->_AuthRequired('PermissionPolicy', 'Push')) {
-      $this->_Sign('PermissionPolicy', 'Push', $headerList, $data);
-    }
-
-    return $this->_GetDecodedResponse($this->_RequestPost($endpoint, $headerList, $data));
   }
 }
