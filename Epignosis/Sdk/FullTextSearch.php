@@ -141,7 +141,12 @@ class FullTextSearch
    */
   private function _CreateServiceHypermediaFile($filePath)
   {
-    if (!$this->_SaveFile($filePath, $this->_DownloadServiceHypermediaFile())) {
+    $saved = $this->_SaveFile (
+      $filePath,
+      $this->_MinifyServiceHypermediaContent($this->_DownloadServiceHypermediaFile())
+    );
+
+    if (!$saved) {
       throw new \Exception (
         sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
       );
@@ -502,6 +507,72 @@ class FullTextSearch
     );
   }
 
+  private function _MinifyServiceHypermediaContent($content)
+  {
+    $contentParsed = $this->_ParseServiceHypermediaContent($content);
+
+    $contentMinified = [];
+
+    foreach ($contentParsed as $entity => $contentEntity) {
+      foreach ($contentEntity as $action => $contentEntityAction) {
+        if (isset($contentEntityAction['General'])) {
+          $contentEntityActionAuth = $contentEntityAction['General']['Auth'];
+
+          $contentMinified[$entity][$action]['General'] = [
+            'Auth' => [
+              'Signature' => [
+                'Hash' => [
+                  'Algorithm' =>
+                    $contentEntityActionAuth['Signature']['Hash']['Algorithm']
+                ],
+                'Name' => $contentEntityActionAuth['Signature']['Name']
+              ]
+            ],
+            'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
+            'OperationType' => $contentEntityAction['General']['OperationType']
+          ];
+        }
+
+        if (isset($contentEntityAction['Request'])) {
+          $contentMinified[$entity][$action]['Request'] = [
+            'EndpointList' => $contentEntityAction['Request']['EndpointList'],
+            'Method' => $contentEntityAction['Request']['Method'],
+            'ParameterList' => $contentEntityAction['Request']['ParameterList']
+          ];
+        }
+      }
+    }
+
+    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
+      return json_encode ([
+        self::$_sdkInformation['Hypermedia']['Response']['IndexKey'] => $contentMinified
+      ]);
+    }
+
+    return $content;
+  }
+
+  /**
+   * Parses the service hypermedia content.
+   *
+   * @param   string $content
+   *            - The content to be parsed. (Optional, null)
+   *
+   * @return  null|array
+   *
+   * @since   2.0.0-dev
+   */
+  private function _ParseServiceHypermediaContent($content = null)
+  {
+    $responseIndexKey = self::$_sdkInformation['Hypermedia']['Response']['IndexKey'];
+
+    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
+      return json_decode($content, true)[$responseIndexKey];
+    }
+
+    return null;
+  }
+
   /**
    * Parses the service hypermedia file.
    *
@@ -520,11 +591,7 @@ class FullTextSearch
    */
   private function _ParseServiceHypermediaFile($filePath, $content = null)
   {
-    $responseIndexKey = self::$_sdkInformation['Hypermedia']['Response']['IndexKey'];
-
-    if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
-      $content = json_decode($content, true)[$responseIndexKey];
-    }
+    $content = $this->_ParseServiceHypermediaContent($content);
 
     if (empty($content)) {
       $this->_DeleteFile($filePath);
