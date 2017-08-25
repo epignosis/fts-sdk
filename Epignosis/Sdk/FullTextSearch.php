@@ -45,7 +45,10 @@ class FullTextSearch
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/FullTextSearch; PHP_SDK v%s',
     'Hypermedia' => [
-      'ResponseIndexKey' => 'Data'
+      'Response' => [
+        'IndexKey' => 'Data',
+        'StatusCode' => 200
+      ]
     ],
     'Service' => [
       'AcceptHeaderPattern' => 'application/vnd.epignosis.v%s+%s',
@@ -180,7 +183,11 @@ class FullTextSearch
       $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
     );
 
-    if (200 != $response['Status']) {
+    $invalidResponseStatusCode =
+      self::$_sdkInformation['Hypermedia']['Response']['StatusCode'] !=
+      $response['Status'];
+
+    if ($invalidResponseStatusCode) {
       throw new \Exception (
         sprintf (
           'Failed to download the service hypermedia file. (%s)', $response['Url']
@@ -513,7 +520,7 @@ class FullTextSearch
    */
   private function _ParseServiceHypermediaFile($filePath, $content = null)
   {
-    $responseIndexKey = self::$_sdkInformation['Hypermedia']['ResponseIndexKey'];
+    $responseIndexKey = self::$_sdkInformation['Hypermedia']['Response']['IndexKey'];
 
     if ('JSON' == strtoupper($this->_configuration['Service']['Format'])) {
       $content = json_decode($content, true)[$responseIndexKey];
