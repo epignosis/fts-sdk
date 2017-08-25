@@ -99,12 +99,23 @@ try {
   PrintObjectReadable($methodData);
 
   if ($getList['Multiplicity']) {
-    $responseData = $fullTextSearchSdk->$method($methodData);
+    $responseData = [
+      'Demo' => [],
+      'Server' => $fullTextSearchSdk->$method($methodData)
+    ];
   } else {
     $responseData = [];
 
     foreach ($methodData as $methodDatum) {
-      $responseData[] = $fullTextSearchSdk->$method($methodDatum);
+      $thisNow = microtime(true);
+      $serverResponse = $fullTextSearchSdk->$method($methodDatum);
+
+      $responseData[] = [
+        'Demo' => [
+          'Executed' => sprintf('<b>%s</b> sec.', round(microtime(true) - $thisNow, 3))
+        ],
+        'Server' => $serverResponse
+      ];
     }
   }
 
