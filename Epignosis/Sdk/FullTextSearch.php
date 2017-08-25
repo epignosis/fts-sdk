@@ -834,10 +834,14 @@ class FullTextSearch
   /**
    * Executes the requested API operation.
    *
-   * @param   array $configuration
-   *            - The configuration to be set. (Required)
+   * @param   string $entity
+   *            - The entity to be used. (Required)
    *
-   * @return  array
+   * @param   string $action
+   *            - The action to be used. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
    *
    * @since   2.1.0-dev
    *
