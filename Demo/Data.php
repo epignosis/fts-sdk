@@ -3,6 +3,7 @@
 /**
  * As of FullTextSearch PHP SDK v2.
  */
+/** @noinspection PhpUnusedLocalVariableInspection */
 $data = [
   'Account' => [
     'Create' => [

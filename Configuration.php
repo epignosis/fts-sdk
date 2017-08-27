@@ -6,6 +6,7 @@
  * @since   1.0.0-dev
  * @var     array
  */
+/** @noinspection PhpUnusedLocalVariableInspection */
 $configuration = [
 
   /**

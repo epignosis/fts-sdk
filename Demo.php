@@ -13,6 +13,13 @@ require
   'Sdk' . \ DIRECTORY_SEPARATOR .
   'FullTextSearch.php';
 
+/**
+ * Returns the requested argument (CLI), or the parameter (HTTP/GET) list.
+ *
+ * @return  array
+ *
+ * @since   2.0.0-dev
+ */
 function Get()
 {
   if (false !== stripos(php_sapi_name(), 'cli', 0)) {
@@ -29,6 +36,20 @@ function Get()
   return $_GET;
 }
 
+/**
+ * Prints on the screen, the requested header.
+ *
+ * @param   string $header
+ *            - The header to be printed. (Required)
+ *
+ * @param   bool $newLineBefore
+ *            - Whether to print a new line before the header, or not. (Optional, false)
+ *
+ * @param   bool $newLineAfter
+ *            - Whether to print a new line after the header, or not. (Optional, false)
+ *
+ * @since   2.0.0-dev
+ */
 function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
 {
   if (false !== stripos(php_sapi_name(), 'cli', 0)) {
@@ -48,31 +69,54 @@ function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
   }
 }
 
-function PrintLine($line, $newLineBefore = false, $newLineAfter = false)
+/**
+ * Prints on the screen, the requested text line.
+ *
+ * @param   string $textLine
+ *            - The header to be printed. (Required)
+ *
+ * @param   bool $newLineBefore
+ *            - Whether to print a new line before the text line, or not.
+ *              (Optional, false)
+ *
+ * @param   bool $newLineAfter
+ *            - Whether to print a new line after the text line, or not. (Optional, false)
+ *
+ * @since   2.0.0-dev
+ */
+function PrintLine($textLine, $newLineBefore = false, $newLineAfter = false)
 {
   if (false !== stripos(php_sapi_name(), 'cli', 0)) {
     echo sprintf (
       '%s%s%s',
       $newLineBefore ? "\n" : null,
-      strip_tags($line),
+      strip_tags($textLine),
       $newLineAfter ? "\n" : null
     );
   } else {
     echo sprintf (
       '%s%s%s',
       $newLineBefore ? '<br>' : null,
-      $line,
+      $textLine,
       $newLineAfter ? '<br>' : null
     );
   }
 }
 
-function PrintObjectReadable($data)
+/**
+ * Prints on the screen, the requested data structure.
+ *
+ * @param   mixed $dataStructure
+ *            - The data structure to be printed. (Required)
+ *
+ * @since   2.0.0-dev
+ */
+function PrintObjectReadable($dataStructure)
 {
   if (false !== stripos(php_sapi_name(), 'cli', 0)) {
-    print_r($data);
+    print_r($dataStructure);
   } else {
-    echo sprintf('<pre>%s</pre>', print_r($data, true));
+    echo sprintf('<pre>%s</pre>', print_r($dataStructure, true));
   }
 }
 

@@ -260,11 +260,11 @@ class FullTextSearch
    *
    * @since   2.0.0-dev
    */
-  private function _GetArrayToUrlQuery(array $data, $prefix = null)
+  private function _GetArrayToUrlQuery(array $array, $prefix = null)
   {
     $query = [];
 
-    foreach ($data as $key => $value) {
+    foreach ($array as $key => $value) {
       if (is_array($value)) {
         $query[] = $this->_GetArrayToUrlQuery($value, $key);
       } else {
@@ -282,7 +282,7 @@ class FullTextSearch
   /**
    * Returns the decoded requested response.
    *
-   * @param   array $array
+   * @param   array $response
    *            - The response to be decoded. (Required)
    *
    * @return  mixed
@@ -432,6 +432,7 @@ class FullTextSearch
       $randomString = openssl_random_pseudo_bytes($length, $strong);
     } while (!$randomString || !$strong);
 
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
     return $randomString;
   }
 
@@ -511,7 +512,7 @@ class FullTextSearch
    * Minifies the service hypermedia content.
    *
    * @param   string $content
-   *            - The content to be minidied. (Optional, null)
+   *            - The content to be minified. (Optional, null)
    *
    * @return  string
    *
@@ -912,6 +913,8 @@ class FullTextSearch
    *
    * @param   array $data
    *            - The data to be used. (Optional, [])
+   *
+   * @return  mixed
    *
    * @since   2.1.0-dev
    *
