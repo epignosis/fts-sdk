@@ -2,6 +2,8 @@
   v2.1.4-alpha                                                              [2017-08-28]
 ------------------------------------------------------------------------------------------
   [Add]    (xdev) Check supported service version by the SDK.
+  [Add]    (xdev) FullTextSearch SDK public method "GetAccountStatusOptionList", a method
+                  which returns the list of the available account status options.
   [Change] (xdev) Update SDK version from 2.1.3-alpha to 2.1.4-alpha.
   [Fix]    (xdev) Various bug-fixes.
 

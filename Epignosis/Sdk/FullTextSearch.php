@@ -976,6 +976,30 @@ class FullTextSearch
   }
 
   /**
+   * Returns the list of the available account status options.
+   *
+   * @return  array
+   *
+   * @since   2.1.4-alpha
+   */
+  public function GetAccountStatusOptionList()
+  {
+    $accountStatusOptionList =
+      $this->_hypermedia
+      ['Account']
+      ['Create']
+      ['Request']
+      ['ParameterList']
+      ['Single']
+      ['Status']
+      ['List'];
+
+    asort($accountStatusOptionList);
+
+    return $accountStatusOptionList;
+  }
+
+  /**
    * Returns the configuration that is being used by the SDK.
    *
    * @return  array
@@ -985,23 +1009,6 @@ class FullTextSearch
   public function GetConfiguration()
   {
     return $this->_configuration;
-  }
-
-  public function GetAccountStatusOptionList()
-  {
-    $accountStatusOptionList =
-      $this->_hypermedia
-        ['Account']
-        ['Create']
-        ['Request']
-        ['ParameterList']
-        ['Single']
-        ['Status']
-        ['List'];
-
-    asort($accountStatusOptionList);
-
-    return $accountStatusOptionList;
   }
 
   /**
