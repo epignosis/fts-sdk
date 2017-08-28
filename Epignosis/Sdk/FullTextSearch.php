@@ -318,25 +318,28 @@ class FullTextSearch
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
-    $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
       $endpoint = $endpointList['Multiple'];
     } else {
-      $parameterUrlList = [];
+      $parameterList =
+        $this->_hypermedia[$entity][$action]['Request']['ParameterList']['Single'];
+
+      $parameterEndpointList = [];
 
       foreach ($parameterList as $parameterName => $parameterAttributeList) {
         if (isset($parameterAttributeList['Endpoint'])) {
-          $parameterUrlList[$parameterAttributeList['Endpoint']] = $data[$parameterName];
+          $parameterEndpointList[$parameterAttributeList['Endpoint']] =
+            $data[$parameterName];
 
           unset($data[$parameterName]);
         }
       }
 
-      ksort($parameterUrlList);
+      ksort($parameterEndpointList);
 
       $endpoint = sprintf (
-        '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterUrlList)
+        '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterEndpointList)
       );
     }
 
