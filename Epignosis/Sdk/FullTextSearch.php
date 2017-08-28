@@ -526,40 +526,42 @@ class FullTextSearch
 
     foreach ($contentParsed as $entity => $contentEntity) {
       foreach ($contentEntity as $action => $contentEntityAction) {
-        if (isset($contentEntityAction['General'])) {
-          $contentEntityActionAuth = $contentEntityAction['General']['Auth'];
+        if ('/' != $entity) {
+          if (isset($contentEntityAction['General'])) {
+            $contentEntityActionAuth = $contentEntityAction['General']['Auth'];
 
-          $contentMinified[$entity][$action]['General'] = [
-            'Auth' => [
-              'Signature' => [
-                'Hash' => [
-                  'Algorithm' =>
-                    $contentEntityActionAuth['Signature']['Hash']['Algorithm']
-                ],
-                'Name' => $contentEntityActionAuth['Signature']['Name']
-              ]
-            ],
-            'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
-            'OperationType' => $contentEntityAction['General']['OperationType']
-          ];
-        }
-
-        if (isset($contentEntityAction['Request'])) {
-          $contentEntityParameterList = [];
-
-          foreach ($contentEntityAction['Request']['ParameterList'] as $key => $info) {
-            if (isset($info['Endpoint'])) {
-              $contentEntityParameterList[$key]['Endpoint'] = $info['Endpoint'];
-            } elseif (isset($info['List'])) {
-              $contentEntityParameterList[$key]['List'] = $info['List'];
-            }
+            $contentMinified[$entity][$action]['General'] = [
+              'Auth' => [
+                'Signature' => [
+                  'Hash' => [
+                    'Algorithm' =>
+                      $contentEntityActionAuth['Signature']['Hash']['Algorithm']
+                  ],
+                  'Name' => $contentEntityActionAuth['Signature']['Name']
+                ]
+              ],
+              'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
+              'OperationType' => $contentEntityAction['General']['OperationType']
+            ];
           }
 
-          $contentMinified[$entity][$action]['Request'] = [
-            'EndpointList' => $contentEntityAction['Request']['EndpointList'],
-            'Method' => $contentEntityAction['Request']['Method'],
-            'ParameterList' => $contentEntityParameterList
-          ];
+          if (isset($contentEntityAction['Request'])) {
+            $contentEntityParameterList = [];
+
+            foreach ($contentEntityAction['Request']['ParameterList'] as $key => $info) {
+              if (isset($info['Endpoint'])) {
+                $contentEntityParameterList[$key]['Endpoint'] = $info['Endpoint'];
+              } elseif (isset($info['List'])) {
+                $contentEntityParameterList[$key]['List'] = $info['List'];
+              }
+            }
+
+            $contentMinified[$entity][$action]['Request'] = [
+              'EndpointList' => $contentEntityAction['Request']['EndpointList'],
+              'Method' => $contentEntityAction['Request']['Method'],
+              'ParameterList' => $contentEntityParameterList
+            ];
+          }
         }
       }
     }
