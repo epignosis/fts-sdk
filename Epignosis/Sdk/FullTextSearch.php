@@ -544,10 +544,20 @@ class FullTextSearch
         }
 
         if (isset($contentEntityAction['Request'])) {
+          $contentEntityParameterList = [];
+
+          foreach ($contentEntityAction['Request']['ParameterList'] as $key => $info) {
+            if (isset($info['Endpoint'])) {
+              $contentEntityParameterList[$key]['Endpoint'] = $info['Endpoint'];
+            } elseif (isset($info['List'])) {
+              $contentEntityParameterList[$key]['List'] = $info['List'];
+            }
+          }
+
           $contentMinified[$entity][$action]['Request'] = [
             'EndpointList' => $contentEntityAction['Request']['EndpointList'],
             'Method' => $contentEntityAction['Request']['Method'],
-            'ParameterList' => $contentEntityAction['Request']['ParameterList']
+            'ParameterList' => $contentEntityParameterList
           ];
         }
       }

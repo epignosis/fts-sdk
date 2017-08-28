@@ -1,8 +1,9 @@
 ------------------------------------------------------------------------------------------
   v2.1.3-alpha                                                              [2017-08-28]
 ------------------------------------------------------------------------------------------
-  [Change] (xdev) Update SDK version from 2.1.2-alpha to 2.1.3-alpha.
-  [Change] (xdev) Change configuration "Service.Version" type from int to string.
+  [Change]  (xdev) Update SDK version from 2.1.2-alpha to 2.1.3-alpha.
+  [Change]  (xdev) Change configuration "Service.Version" type from int to string.
+  [Improve] (xdev) Increased service hypermedia file minification rate (approx. 1.9KB).
 
 
 ------------------------------------------------------------------------------------------
