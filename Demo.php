@@ -123,7 +123,6 @@ function PrintObjectReadable($dataStructure)
 try {
 
   $fullTextSearchSdk = new FullTextSearch($configuration);
-  //print_r($fullTextSearchSdk->GetAccountStatusOptionList());exit;
   $getList = Get();
   $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
 
