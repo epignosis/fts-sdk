@@ -161,9 +161,9 @@ $configuration = [
      * The default interface version to be used, for the communication with the service.
      *
      * @since   2.0.0-dev
-     * @var     int
+     * @var     string
      */
-    'Version' => 1
+    'Version' => '1'
 
   ]
 
