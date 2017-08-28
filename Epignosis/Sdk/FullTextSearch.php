@@ -550,11 +550,11 @@ class FullTextSearch
 
             foreach ($contentEntityAction['Request']['ParameterList'] as $k1 => $v1) {
               foreach ($v1 as $k2 => $v2) {
-                if (isset($info['Endpoint'])) {
+                if (isset($v2['Endpoint'])) {
                   $entityParameterList[$k1][$k2]['Endpoint'] = $v2['Endpoint'];
                 }
 
-                if (isset($info['List'])) {
+                if (isset($v2['List'])) {
                   $entityParameterList[$k1][$k2]['List'] = $v2['List'];
                 }
               }
