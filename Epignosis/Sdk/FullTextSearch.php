@@ -987,6 +987,23 @@ class FullTextSearch
     return $this->_configuration;
   }
 
+  public function GetAccountStatusOptionList()
+  {
+    $accountStatusOptionList =
+      $this->_hypermedia
+        ['Account']
+        ['Create']
+        ['Request']
+        ['ParameterList']
+        ['Single']
+        ['Status']
+        ['List'];
+
+    asort($accountStatusOptionList);
+
+    return $accountStatusOptionList;
+  }
+
   /**
    * Returns the list of the available document search source options.
    *
@@ -996,18 +1013,19 @@ class FullTextSearch
    */
   public function GetDocumentSearchSourceOptionList()
   {
-    $sourceOptionList =
+    $searchSourceOptionList =
       $this->_hypermedia
         ['Document']
         ['Search']
         ['Request']
         ['ParameterList']
+        ['Multiple']
         ['Source']
         ['List'];
 
-    asort($sourceOptionList);
+    asort($searchSourceOptionList);
 
-    return $sourceOptionList;
+    return $searchSourceOptionList;
   }
 
   /**
