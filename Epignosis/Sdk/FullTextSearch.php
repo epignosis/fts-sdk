@@ -986,13 +986,13 @@ class FullTextSearch
   {
     $accountStatusOptionList =
       $this->_hypermedia
-      ['Account']
-      ['Create']
-      ['Request']
-      ['ParameterList']
-      ['Single']
-      ['Status']
-      ['List'];
+        ['Account']
+        ['Create']
+        ['Request']
+        ['ParameterList']
+        ['Single']
+        ['Status']
+        ['List'];
 
     asort($accountStatusOptionList);
 
