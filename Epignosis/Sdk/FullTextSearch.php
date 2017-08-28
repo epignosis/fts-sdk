@@ -52,7 +52,8 @@ class FullTextSearch
     ],
     'Service' => [
       'AcceptHeaderPattern' => 'application/vnd.epignosis.v%s+%s',
-      'Format' => ['JSON']
+      'FormatList' => ['JSON'],
+      'VersionList' => ['2.0']
     ],
     'Version' => [
       'Extra' => 'alpha',
@@ -501,7 +502,7 @@ class FullTextSearch
     $storageDirectory = str_replace(['\\', '/'], \DIRECTORY_SEPARATOR, $storageDirectory);
 
     return sprintf (
-      '%sv%s.%s',
+      '%s%s.%s',
       $storageDirectory,
       (string) $this->_configuration['Service']['Version'],
       strtolower($this->_configuration['Service']['Format'])
@@ -899,11 +900,26 @@ class FullTextSearch
     if (isset($configuration['Service']['Format'])) {
       $validServiceFormat = in_array (
         strtoupper($configuration['Service']['Format']),
-        self::$_sdkInformation['Service']['Format']
+        self::$_sdkInformation['Service']['FormatList']
       );
 
       if (!$validServiceFormat) {
-        throw new \Exception('Service format is not supported by this SDK.');
+        throw new \Exception (
+          'The requested service format is not supported by this SDK.'
+        );
+      }
+    }
+
+    if (isset($configuration['Service']['Version'])) {
+      $validServiceVersion = in_array (
+        (string) ($configuration['Service']['Version']),
+        self::$_sdkInformation['Service']['VersionList']
+      );
+
+      if (!$validServiceVersion) {
+        throw new \Exception (
+          'The requested service version is not supported by this SDK.'
+        );
       }
     }
 

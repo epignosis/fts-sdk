@@ -163,7 +163,7 @@ $configuration = [
      * @since   2.0.0-dev
      * @var     string
      */
-    'Version' => '1'
+    'Version' => '2'
 
   ]
 
