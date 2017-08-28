@@ -546,20 +546,38 @@ class FullTextSearch
           }
 
           if (isset($contentEntityAction['Request'])) {
-            $contentEntityParameterList = [];
+            $entityParameterList = [];
 
-            foreach ($contentEntityAction['Request']['ParameterList'] as $key => $info) {
+            $thisEntityParameterList =
+              $contentEntityAction['Request']['ParameterList']['Multiple'];
+
+            foreach ($thisEntityParameterList as $key => $info) {
               if (isset($info['Endpoint'])) {
-                $contentEntityParameterList[$key]['Endpoint'] = $info['Endpoint'];
-              } elseif (isset($info['List'])) {
-                $contentEntityParameterList[$key]['List'] = $info['List'];
+                $entityParameterList['Multiple'][$key]['Endpoint'] = $info['Endpoint'];
+              }
+
+              if (isset($info['List'])) {
+                $entityParameterList['Multiple'][$key]['List'] = $info['List'];
+              }
+            }
+
+            $thisEntityParameterList =
+              $contentEntityAction['Request']['ParameterList']['Single'];
+
+            foreach ($thisEntityParameterList as $key => $info) {
+              if (isset($info['Endpoint'])) {
+                $entityParameterList['Single'][$key]['Endpoint'] = $info['Endpoint'];
+              }
+
+              if (isset($info['List'])) {
+                $entityParameterList['Single'][$key]['List'] = $info['List'];
               }
             }
 
             $contentMinified[$entity][$action]['Request'] = [
               'EndpointList' => $contentEntityAction['Request']['EndpointList'],
               'Method' => $contentEntityAction['Request']['Method'],
-              'ParameterList' => $contentEntityParameterList
+              'ParameterList' => $entityParameterList
             ];
           }
         }
