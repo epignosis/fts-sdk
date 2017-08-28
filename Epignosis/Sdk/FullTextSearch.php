@@ -53,7 +53,7 @@ class FullTextSearch
     'Service' => [
       'AcceptHeaderPattern' => 'application/vnd.epignosis.v%s+%s',
       'FormatList' => ['JSON'],
-      'VersionList' => ['2.0']
+      'VersionList' => ['2']
     ],
     'Version' => [
       'Extra' => 'alpha',
@@ -355,7 +355,7 @@ class FullTextSearch
     $headerList = [
       'Accept' => sprintf (
         self::$_sdkInformation['Service']['AcceptHeaderPattern'],
-        (string) $this->_configuration['Service']['Version'],
+        $this->_configuration['Service']['Version'],
         strtolower($this->_configuration['Service']['Format'])
       ),
       'Accept-Language' => strtolower (
@@ -504,7 +504,7 @@ class FullTextSearch
     return sprintf (
       '%s%s.%s',
       $storageDirectory,
-      (string) $this->_configuration['Service']['Version'],
+      $this->_configuration['Service']['Version'],
       strtolower($this->_configuration['Service']['Format'])
     );
   }
@@ -911,9 +911,10 @@ class FullTextSearch
     }
 
     if (isset($configuration['Service']['Version'])) {
+      $serviceVersion = (string) rtrim($configuration['Service']['Version'], '.0');
+
       $validServiceVersion = in_array (
-        (string) ($configuration['Service']['Version']),
-        self::$_sdkInformation['Service']['VersionList']
+        $serviceVersion, self::$_sdkInformation['Service']['VersionList']
       );
 
       if (!$validServiceVersion) {
@@ -921,6 +922,8 @@ class FullTextSearch
           'The requested service version is not supported by this SDK.'
         );
       }
+
+      $configuration['Service']['Version'] = $serviceVersion;
     }
 
     $this->_configuration = $configuration;
