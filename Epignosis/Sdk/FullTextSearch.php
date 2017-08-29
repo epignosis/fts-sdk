@@ -950,8 +950,6 @@ class FullTextSearch
       )
     );
 
-    ECHO '<pre>'; print_r($headerList);exit;
-
     return $this;
   }
 
