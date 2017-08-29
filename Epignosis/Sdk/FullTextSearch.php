@@ -128,6 +128,62 @@ class FullTextSearch
   }
 
   /**
+   * Checks if the requested service format is supported by the SDK, or not.
+   *
+   * @param   string $serviceFormat
+   *            - The service format to be checked. (Required)
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that the requested service format, is not supported by the SDK.
+   */
+  private function _CheckServiceFormat($serviceFormat)
+  {
+    $validServiceFormat = in_array (
+      strtoupper($serviceFormat), self::$_sdkInformation['Service']['FormatList']
+    );
+
+    if (!$validServiceFormat) {
+      throw new \Exception (
+        'The requested service format is not supported by this SDK.'
+      );
+    }
+
+    return $this;
+  }
+
+  /**
+   * Checks if the requested service version is supported by the SDK, or not.
+   *
+   * @param   string $serviceVersion
+   *            - The service version to be checked. (Required)
+   *
+   * @return  FullTextSearch
+   *
+   * @since   2.0.0-dev
+   *
+   * @throws  \Exception
+   *            - In case that the requested service version, is not supported by the SDK.
+   */
+  private function _CheckServiceVersion($serviceVersion)
+  {
+    $validServiceVersion = in_array (
+      $serviceVersion, self::$_sdkInformation['Service']['VersionList']
+    );
+
+    if (!$validServiceVersion) {
+      throw new \Exception (
+        'The requested service version is not supported by this SDK.'
+      );
+    }
+
+    return $this;
+  }
+
+  /**
    * Creates the service hypermedia file.
    *
    * @param   string $filePath
@@ -907,30 +963,13 @@ class FullTextSearch
   public function Configure(array $configuration)
   {
     if (isset($configuration['Service']['Format'])) {
-      $validServiceFormat = in_array (
-        strtoupper($configuration['Service']['Format']),
-        self::$_sdkInformation['Service']['FormatList']
-      );
-
-      if (!$validServiceFormat) {
-        throw new \Exception (
-          'The requested service format is not supported by this SDK.'
-        );
-      }
+      $this->_CheckServiceFormat($configuration['Service']['Format']);
     }
 
     if (isset($configuration['Service']['Version'])) {
       $serviceVersion = (string) rtrim($configuration['Service']['Version'], '.0');
 
-      $validServiceVersion = in_array (
-        $serviceVersion, self::$_sdkInformation['Service']['VersionList']
-      );
-
-      if (!$validServiceVersion) {
-        throw new \Exception (
-          'The requested service version is not supported by this SDK.'
-        );
-      }
+      $this->_CheckServiceVersion($serviceVersion);
 
       $configuration['Service']['Version'] = $serviceVersion;
     }

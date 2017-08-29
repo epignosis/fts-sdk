@@ -1,9 +1,12 @@
 ------------------------------------------------------------------------------------------
   v2.1.5-alpha                                                              [2017-08-29]
 ------------------------------------------------------------------------------------------
-  [Add]    (xdev) More examples (valid and invalid).
-  [Change] (xdev) Reconstruct "Demo" directory.
-  [Change] (xdev) Update SDK version from 2.1.4-alpha to 2.1.5-alpha.
+  [Add]     (xdev) More examples (valid and invalid).
+  [Change]  (xdev) Reconstruct "Demo" directory.
+  [Change]  (xdev) Update SDK version from 2.1.4-alpha to 2.1.5-alpha.
+  [Improve] (xdev) Improve public method "Configure".
+  [Improve] (xdev) Improve private method "_MinifyServiceHypermediaContent".
+  [Improve] (xdev) Improve private method "_GetEndpointAndData".
 
 
 ------------------------------------------------------------------------------------------
