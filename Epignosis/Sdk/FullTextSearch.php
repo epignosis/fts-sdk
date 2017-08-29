@@ -586,45 +586,41 @@ class FullTextSearch
     foreach ($contentParsed as $entity => $contentEntity) {
       foreach ($contentEntity as $action => $contentEntityAction) {
         if ('/' != $entity) {
-          if (isset($contentEntityAction['General'])) {
-            $contentEntityActionAuth = $contentEntityAction['General']['Auth'];
+          $contentEntityActionAuth = $contentEntityAction['General']['Auth'];
 
-            $contentMinified[$entity][$action]['General'] = [
-              'Auth' => [
-                'Signature' => [
-                  'Hash' => [
-                    'Algorithm' =>
-                      $contentEntityActionAuth['Signature']['Hash']['Algorithm']
-                  ],
-                  'Name' => $contentEntityActionAuth['Signature']['Name']
-                ]
-              ],
-              'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
-              'OperationType' => $contentEntityAction['General']['OperationType']
-            ];
-          }
+          $contentMinified[$entity][$action]['General'] = [
+            'Auth' => [
+              'Signature' => [
+                'Hash' => [
+                  'Algorithm' =>
+                    $contentEntityActionAuth['Signature']['Hash']['Algorithm']
+                ],
+                'Name' => $contentEntityActionAuth['Signature']['Name']
+              ]
+            ],
+            'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
+            'OperationType' => $contentEntityAction['General']['OperationType']
+          ];
 
-          if (isset($contentEntityAction['Request'])) {
-            $entityParameterList = [];
+          $entityParameterList = [];
 
-            foreach ($contentEntityAction['Request']['ParameterList'] as $k1 => $v1) {
-              foreach ($v1 as $k2 => $v2) {
-                if (isset($v2['Endpoint'])) {
-                  $entityParameterList[$k1][$k2]['Endpoint'] = $v2['Endpoint'];
-                }
+          foreach ($contentEntityAction['Request']['ParameterList'] as $k1 => $v1) {
+            foreach ($v1 as $k2 => $v2) {
+              if (isset($v2['Endpoint'])) {
+                $entityParameterList[$k1][$k2]['Endpoint'] = $v2['Endpoint'];
+              }
 
-                if (isset($v2['List'])) {
-                  $entityParameterList[$k1][$k2]['List'] = $v2['List'];
-                }
+              if (isset($v2['List'])) {
+                $entityParameterList[$k1][$k2]['List'] = $v2['List'];
               }
             }
-
-            $contentMinified[$entity][$action]['Request'] = [
-              'EndpointList' => $contentEntityAction['Request']['EndpointList'],
-              'Method' => $contentEntityAction['Request']['Method'],
-              'ParameterList' => $entityParameterList
-            ];
           }
+
+          $contentMinified[$entity][$action]['Request'] = [
+            'EndpointList' => $contentEntityAction['Request']['EndpointList'],
+            'Method' => $contentEntityAction['Request']['Method'],
+            'ParameterList' => $entityParameterList
+          ];
         }
       }
     }
