@@ -376,28 +376,28 @@ class FullTextSearch
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
-      $endpoint = $endpointList['Multiple'];
-    } else {
-      $parameterList =
-        $this->_hypermedia[$entity][$action]['Request']['ParameterList']['Single'];
-
-      $parameterEndpointList = [];
-
-      foreach ($parameterList as $parameterName => $parameterAttributeList) {
-        if (isset($parameterAttributeList['Endpoint'])) {
-          $parameterEndpointList[$parameterAttributeList['Endpoint']] =
-            $data[$parameterName];
-
-          unset($data[$parameterName]);
-        }
-      }
-
-      ksort($parameterEndpointList);
-
-      $endpoint = sprintf (
-        '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterEndpointList)
-      );
+      return [$endpointList['Multiple'], $data];
     }
+
+    $parameterList =
+      $this->_hypermedia[$entity][$action]['Request']['ParameterList']['Single'];
+
+    $parameterEndpointList = [];
+
+    foreach ($parameterList as $parameterName => $parameterAttributeList) {
+      if (isset($parameterAttributeList['Endpoint'])) {
+        $parameterEndpointList[$parameterAttributeList['Endpoint']] =
+          $data[$parameterName];
+
+        unset($data[$parameterName]);
+      }
+    }
+
+    ksort($parameterEndpointList);
+
+    $endpoint = sprintf (
+      '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterEndpointList)
+    );
 
     return [$endpoint, $data];
   }
