@@ -323,29 +323,67 @@ $data = [
       ]
     ]
   ],
+  /**
+   * For more information: https://github.com/epignosis/fts/wiki/Permission-Policy
+   */
   'PermissionPolicy' => [
     'Delete' => [
       'Multiple' => [
-        ['Id' => 1],
-        ['Id' => 5],
+        // Valid:
+        [
+          'Id' => 1
+        ],
+        // Valid:
+        [
+          'Id' => 5
+        ],
         // Invalid:
-        ['Id' => -1],
+        [
+          'Id' => -1
+        ],
         // Invalid:
-        [],
-        ['Id' => 100]
+        [
+
+        ],
+        // Invalid:
+        [
+          'Id' => 'Id'
+        ],
+        // Valid:
+        [
+          'Id' => 100
+        ]
       ],
       'Single' => [
         // Invalid:
-        [],
-        ['Id' => 82],
-        ['Id' => 55],
+        [
+
+        ],
+        // Valid:
+        [
+          'Id' => 82
+        ],
+        // Valid:
+        [
+          'Id' => 55
+        ],
         // Invalid:
-        ['Id' => -100],
-        ['Id' => 70]
+        [
+          'Id' => -100
+        ],
+        // Invalid:
+        [
+          'Id' => 'Id'
+        ],
+        // Valid:
+        [
+          'Id' => 70
+        ]
       ]
     ],
     'Push' => [
       'Multiple' => [
+        // Valid:
         [
           'Id' => 82,
           'Policy' => '[]'
