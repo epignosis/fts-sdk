@@ -44,6 +44,12 @@ class FullTextSearch
    */
   private static $_sdkInformation = [
     'Agent' => 'Epignosis/FullTextSearch; PHP_SDK/v%s',
+    'Header' => [
+      'AcceptPattern' => 'application/vnd.epignosis.v%s+%s',
+      'X' => [
+        'TimestampName' => 'X-Service-Timestamp'
+      ]
+    ],
     'Hypermedia' => [
       'Response' => [
         'IndexKey' => 'Data',
@@ -52,13 +58,14 @@ class FullTextSearch
     ],
     'Service' => [
       'FormatList' => ['JSON'],
-      'Header' => [
-        'AcceptPattern' => 'application/vnd.epignosis.v%s+%s',
-        'X' => [
-          'TimestampName' => 'X-Service-Timestamp'
-        ]
-      ],
       'VersionList' => ['2']
+    ],
+    'Sign' => [
+      'Signature' => [
+        'RandomToken' => [
+          'Length' => 16
+        ]
+      ]
     ],
     'Version' => [
       'Extra' => 'alpha',
@@ -420,7 +427,7 @@ class FullTextSearch
   {
     $headerList = [
       'Accept' => sprintf (
-        self::$_sdkInformation['Service']['Header']['AcceptPattern'],
+        self::$_sdkInformation['Header']['AcceptPattern'],
         $this->_configuration['Service']['Version'],
         strtolower($this->_configuration['Service']['Format'])
       ),
@@ -430,10 +437,10 @@ class FullTextSearch
       'User-Agent' => sprintf (
         self::$_sdkInformation['Agent'], $this->GetSdkVersion()
       ),
-      self::$_sdkInformation['Service']['Header']['X']['TimestampName'] => time()
+      self::$_sdkInformation['Header']['X']['TimestampName'] => time()
     ];
 
-    $customUserAgent = $this->_configuration['Service']['Header']['UserAgent'];
+    $customUserAgent = $this->_configuration['Header']['UserAgent'];
 
     if (!empty($customUserAgent)) {
       if (1 != preg_match('~\R~u', $customUserAgent)) {
@@ -928,8 +935,10 @@ class FullTextSearch
    */
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
-    // @TODO 16?
-    $randomToken = $this->_GetRandomStringSecure(16);
+    $randomToken = $this->_GetRandomStringSecure (
+      self::$_sdkInformation['Sign']['Signature']['RandomToken']['Length']
+    );
+
     $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
     $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
     $keyList = $this->_configuration['Auth']['Key'];
