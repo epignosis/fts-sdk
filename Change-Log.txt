@@ -2,6 +2,8 @@
   v2.1.5-alpha                                                              [2017-08-29]
 ------------------------------------------------------------------------------------------
   [Add]     (xdev) More examples (valid and invalid).
+  [Add]     (xdev) Response code on "Failed to download the service hypermedia file."
+                   exception message.
   [Change]  (xdev) Reconstruct "Demo" directory.
   [Change]  (xdev) Update SDK version from 2.1.4-alpha to 2.1.5-alpha.
   [Improve] (xdev) Improve public method "Configure".
