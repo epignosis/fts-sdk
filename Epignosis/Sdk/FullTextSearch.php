@@ -62,10 +62,10 @@ class FullTextSearch
     ],
     'Version' => [
       'Extra' => 'alpha',
-      'Major' => 2,
-      'Minor' => 1,
-      'Patch' => 6,
-      'Release' => '2017-08-29'
+      'Major' => 3,
+      'Minor' => 0,
+      'Patch' => 0,
+      'Release' => '2017-08-30'
     ]
   ];
 
