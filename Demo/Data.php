@@ -1,10 +1,10 @@
 <?php
 
-/**
- * As of FullTextSearch PHP SDK v2.
- */
 /** @noinspection PhpUnusedLocalVariableInspection */
 $data = [
+  /**
+   * For more information: https://github.com/epignosis/fts/wiki/Account
+   */
   'Account' => [
     'Create' => [
       'Single' => [
@@ -12,29 +12,41 @@ $data = [
         [
 
         ],
+        // Valid:
         [
           'Domain' => 'https://xdev.com',
-          'Status' => 1
+          'Status' => ''
         ],
         // Invalid:
         [
-          'Status' => 1
+          'Status' => 'Enabled'
         ],
+        // Valid:
         [
           'Domain' => 'panagop.talentlms.com',
-          'Status' => 1
+          'Status' => 'Enabled'
         ],
+        // Valid:
         [
           'Domain' => 'http://papagel.talentlms.com',
-          'Status' => 0
+          'Status' => 'Disabled'
         ],
+        // Valid:
         [
           'Domain' => 'pvenakis.com',
-          'Status' => 0
+          'Status' => 'Disabled'
+        ],
+        // Invalid:
+        [
+          'Domain' => 'foobar',
+          'Status' => 'Disabled'
         ]
       ]
     ]
   ],
+  /**
+   * For more information: https://github.com/epignosis/fts/wiki/Document
+   */
   'Document' => [
     'DeIndex' => [
       'Multiple' => [
