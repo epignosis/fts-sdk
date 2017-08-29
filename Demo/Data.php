@@ -11,45 +11,45 @@ $data = [
   'Account' => [
     'Create' => [
       'Single' => [
-        // Invalid:
+        // Invalid. No Data.
         [
 
         ],
-        // Valid:
+        // Valid.
         [
           'Domain' => 'https://xdev.com',
           'Status' => ''
         ],
-        // Invalid:
+        // Invalid. No Domain.
         [
           'Status' => 'Enabled'
         ],
-        // Valid:
+        // Valid.
         [
           'Domain' => 'panagop.talentlms.com',
           'Status' => 'Enabled'
         ],
-        // Invalid:
+        // Invalid. Not valid status.
         [
           'Domain' => 'example-1.com',
           'Status' => 0
         ],
-        // Invalid:
+        // Invalid. Not valid status.
         [
           'Domain' => 'example-2.com',
           'Status' => 1
         ],
-        // Valid:
+        // Valid.
         [
           'Domain' => 'http://papagel.talentlms.com',
           'Status' => 'Disabled'
         ],
-        // Valid:
+        // Valid.
         [
           'Domain' => 'pvenakis.com',
           'Status' => 'Disabled'
         ],
-        // Invalid:
+        // Invalid.
         [
           'Domain' => 'foobar',
           'Status' => 'Disabled'
