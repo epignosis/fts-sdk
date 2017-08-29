@@ -4,6 +4,8 @@
   [Change]  (xdev) Update SDK version from 2.1.6-alpha to 2.1.7-alpha.
   [Fix]     (xdev) Critical bug-fix in sign request method.
   [Improve] (xdev) Remove hard-coded X-Service-Timestamp header name.
+  [Improve] (xdev) Remove hard-coded random token length. Now it is based on the
+                   algorithm, that is being used.
 
 
 ------------------------------------------------------------------------------------------
