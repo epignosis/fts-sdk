@@ -392,6 +392,7 @@ $data = [
         [
 
         ],
+        // Valid:
         [
           'Id' => 5,
           'Policy' => '[]'
@@ -400,6 +401,12 @@ $data = [
         [
           'Id' => 5
         ],
+        // Invalid:
+        [
+          'Id' => 5,
+          'Policy' => 'foobar'
+        ],
+        // Valid:
         [
           'Id' => 4,
           'Policy' => '[]'
@@ -408,12 +415,14 @@ $data = [
         [
           'Policy' => '[]'
         ],
+        // Valid:
         [
           'Id' => 4,
           'Policy' => '[]'
         ]
       ],
       'Single' => [
+        // Valid:
         [
           'Id' => 1,
           'Policy' => '[]'
@@ -426,18 +435,26 @@ $data = [
         [
           'Policy' => '[]'
         ],
+        // Valid:
         [
           'Id' => 1,
           'Policy' => '[]'
         ],
+        // Valid:
         [
           'Id' => 13,
           'Policy' => '[]'
         ],
         // Invalid:
         [
+          'Id' => 5,
+          'Policy' => 'foobar'
+        ],
+        // Invalid:
+        [
           'Id' => 4
         ],
+        // Valid:
         [
           'Id' => 4,
           'Policy' => '[]'
