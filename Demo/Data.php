@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * For more information: https://github.com/epignosis/fts/wiki/Service-API
+ */
 /** @noinspection PhpUnusedLocalVariableInspection */
 $data = [
   /**
@@ -50,6 +53,7 @@ $data = [
   'Document' => [
     'DeIndex' => [
       'Multiple' => [
+        // Valid:
         [
           'Id' => [
             'Course' => 1,
@@ -65,6 +69,7 @@ $data = [
         [
           'Id' => 'foo'
         ],
+        // Valid:
         [
           'Id' => [
             'Course' => 4,
@@ -80,6 +85,7 @@ $data = [
         [
           'Id' => '4-6'
         ],
+        // Valid:
         [
           'Id' => [
             'Course' => 1,
@@ -97,6 +103,7 @@ $data = [
         [
           'Id' => 'foo'
         ],
+        // Valid:
         [
           'Id' => [
             'Course' => 65536,
@@ -112,12 +119,14 @@ $data = [
         [
           'Id' => '4-6'
         ],
+        // Valid:
         [
           'Id' => [
             'Course' => 52,
             'Unit' => 666
           ]
         ],
+        // Valid:
         [
           'Id' => [
             'Course' => 1,
@@ -188,6 +197,7 @@ $data = [
           ],
           'Title' => 'Plain Text Document'
         ],
+        // Valid:
         [
           'Content' => [
             'FileList' => [],
@@ -201,6 +211,7 @@ $data = [
           ],
           'Title' => 'Plain Text Document'
         ],
+        // Valid:
         [
           'Content' => [
             'FileList' => ['https://www.talentlms.com/', 'https://www.talentcards.net/'],
@@ -276,6 +287,7 @@ $data = [
           ],
           'Title' => 'Google Adwords'
         ],
+        // Valid:
         [
           'Content' => [
             'FileList' => ['https://efrontlearning.com/'],
@@ -289,6 +301,7 @@ $data = [
           ],
           'Title' => 'Google Adwords'
         ],
+        // Valid:
         [
           'Content' => [
             'FileList' => [],
@@ -305,6 +318,27 @@ $data = [
     ],
     'Search' => [
       'Multiple' => [
+        // Valid:
+        [
+
+        ],
+        // Invalid:
+        [
+          'Source' => 'blah'
+        ],
+        // Invalid:
+        [
+          'Pagination' => [
+            'Limit' => -22
+          ]
+        ],
+        // Invalid:
+        [
+          'Pagination' => [
+            'Limit' => 'bar'
+          ]
+        ],
+        // Valid:
         [
           'Pagination' => [
             'Limit' => 5,
@@ -319,7 +353,19 @@ $data = [
           'Source' => [
             'All'
           ]
-        ]
+        ],
+        // Invalid:
+        [
+          'Pagination' => [
+            'Offset' => -7
+          ]
+        ],
+        // Invalid:
+        [
+          'Pagination' => [
+            'Offset' => 'baz'
+          ]
+        ],
       ]
     ]
   ],
