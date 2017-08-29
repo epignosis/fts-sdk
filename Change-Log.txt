@@ -1,6 +1,7 @@
 ------------------------------------------------------------------------------------------
   v3.0.0-alpha                                                              [2017-08-30]
 ------------------------------------------------------------------------------------------
+  [Add]     (xdev) Various validation/sanitization checks.
   [Change]  (xdev) Change configuration "Service.Header.UserAgent" to "Service.Agent".
   [Change]  (xdev) Change configuration "Service.Storage.*" to "Hypermedia.Storage.*".
   [Change]  (xdev) Update SDK version from 2.1.6-alpha to 2.1.7-alpha.
