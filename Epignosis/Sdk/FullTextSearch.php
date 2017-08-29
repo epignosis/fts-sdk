@@ -60,13 +60,6 @@ class FullTextSearch
       'FormatList' => ['JSON'],
       'VersionList' => ['2']
     ],
-    'Sign' => [
-      'Signature' => [
-        'RandomToken' => [
-          'Length' => 16
-        ]
-      ]
-    ],
     'Version' => [
       'Extra' => 'alpha',
       'Major' => 2,
@@ -600,16 +593,21 @@ class FullTextSearch
     foreach ($contentParsed as $entity => $contentEntity) {
       foreach ($contentEntity as $action => $contentEntityAction) {
         if ('/' != $entity) {
-          $contentEntityActionAuth = $contentEntityAction['General']['Auth'];
+          $contentEntityActionAuthSignature =
+            $contentEntityAction['General']['Auth']['Signature'];
 
           $contentMinified[$entity][$action]['General'] = [
             'Auth' => [
               'Signature' => [
                 'Hash' => [
                   'Algorithm' =>
-                    $contentEntityActionAuth['Signature']['Hash']['Algorithm']
+                    $contentEntityActionAuthSignature['Hash']['Algorithm'],
+                  'RandomToken' => [
+                    'Length' =>
+                      $contentEntityActionAuthSignature['Hash']['RandomToken']['Length']
+                  ]
                 ],
-                'Name' => $contentEntityActionAuth['Signature']['Name']
+                'Name' => $contentEntityActionAuthSignature['Name']
               ]
             ],
             'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
@@ -935,11 +933,12 @@ class FullTextSearch
    */
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
+    $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
+
     $randomToken = $this->_GetRandomStringSecure (
-      self::$_sdkInformation['Sign']['Signature']['RandomToken']['Length']
+      $authConfiguration['Signature']['Hash']['RandomToken']['Length']
     );
 
-    $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
     $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
     $keyList = $this->_configuration['Auth']['Key'];
 
