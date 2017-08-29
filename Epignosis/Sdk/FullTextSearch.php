@@ -433,11 +433,9 @@ class FullTextSearch
       self::$_sdkInformation['Header']['X']['TimestampName'] => time()
     ];
 
-    $customUserAgent = $this->_configuration['Header']['UserAgent'];
-
-    if (!empty($customUserAgent)) {
-      if (1 != preg_match('~\R~u', $customUserAgent)) {
-        $headerList['User-Agent'] = $customUserAgent;
+    if (!empty($this->_configuration['Service']['Agent'])) {
+      if (1 != preg_match('~\R~u', $this->_configuration['Service']['Agent'])) {
+        $headerList['User-Agent'] = $this->_configuration['Service']['Agent'];
       }
     }
 

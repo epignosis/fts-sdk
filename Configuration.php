@@ -126,6 +126,14 @@ $configuration = [
   'Service' => [
 
     /**
+     * The agent string to be send, for the communication with the service.
+     *
+     * @since   2.0.0-dev
+     * @var     null|string
+     */
+    'Agent' => null,
+
+    /**
      * The service base endpoint.
      *
      * @since   2.0.0-dev
@@ -140,24 +148,6 @@ $configuration = [
      * @var     string
      */
     'Format' => 'JSON',
-
-    /**
-     * The list of headers to be send, for the communication with the service.
-     *
-     * @since   2.0.0-dev
-     * @var     array
-     */
-    'Header' => [
-
-      /**
-       * The "User-Agent" header.
-       *
-       * @since   2.0.0-dev
-       * @var     null|string
-       */
-      'UserAgent' => null
-
-    ],
 
     /**
      * The default language to be used, for the communication with the service.
