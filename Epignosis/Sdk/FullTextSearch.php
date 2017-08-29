@@ -43,7 +43,7 @@ class FullTextSearch
    * @var     array
    */
   private static $_sdkInformation = [
-    'Agent' => 'Epignosis/FullTextSearch; PHP_SDK v%s',
+    'Agent' => 'Epignosis/FullTextSearch; PHP_SDK/v%s',
     'Hypermedia' => [
       'Response' => [
         'IndexKey' => 'Data',
@@ -51,8 +51,13 @@ class FullTextSearch
       ]
     ],
     'Service' => [
-      'AcceptHeaderPattern' => 'application/vnd.epignosis.v%s+%s',
       'FormatList' => ['JSON'],
+      'Header' => [
+        'AcceptPattern' => 'application/vnd.epignosis.v%s+%s',
+        'X' => [
+          'TimestampName' => 'X-Service-Timestamp'
+        ]
+      ],
       'VersionList' => ['2']
     ],
     'Version' => [
@@ -415,7 +420,7 @@ class FullTextSearch
   {
     $headerList = [
       'Accept' => sprintf (
-        self::$_sdkInformation['Service']['AcceptHeaderPattern'],
+        self::$_sdkInformation['Service']['Header']['AcceptPattern'],
         $this->_configuration['Service']['Version'],
         strtolower($this->_configuration['Service']['Format'])
       ),
@@ -425,7 +430,7 @@ class FullTextSearch
       'User-Agent' => sprintf (
         self::$_sdkInformation['Agent'], $this->GetSdkVersion()
       ),
-      'X-Service-Timestamp' => time()
+      self::$_sdkInformation['Service']['Header']['X']['TimestampName'] => time()
     ];
 
     $customUserAgent = $this->_configuration['Service']['Header']['UserAgent'];
@@ -936,12 +941,16 @@ class FullTextSearch
       base64_encode (
         hash_hmac (
           $authConfiguration['Signature']['Hash']['Algorithm'],
-          $this->_GetArrayToString($this->_GetArraySorted($data)),
+          $this->_GetArrayToString (
+            $this->_GetArraySorted(['Data' => $data, 'HeaderList' => $headerList])
+          ),
           $randomToken . $keyList['Private'][$operationType],
           true
         )
       )
     );
+
+    ECHO '<pre>'; print_r($headerList);exit;
 
     return $this;
   }
