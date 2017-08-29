@@ -10,7 +10,7 @@
 $configuration = [
 
   /**
-   * The authentication configuration.
+   * The auth configuration.
    *
    * @since   1.0.0-dev
    * @var     array
@@ -18,7 +18,7 @@ $configuration = [
   'Auth' => [
 
     /**
-     * The authentication key configuration.
+     * The auth key configuration.
      *
      * @since   1.0.0-dev
      * @var     array
@@ -26,7 +26,7 @@ $configuration = [
     'Key' => [
 
       /**
-       * The private authentication key configuration.
+       * The private auth key configuration.
        *
        * @since   1.0.0-dev
        * @var     array
@@ -52,7 +52,7 @@ $configuration = [
       ],
 
       /**
-       * The public authentication key configuration.
+       * The public auth key configuration.
        *
        * @since   1.0.0-dev
        * @var     array
@@ -81,7 +81,41 @@ $configuration = [
 
   ],
 
+  /**
+   * The hypermedia configuration.
+   *
+   * @since   2.0.0-dev
+   * @var     array
+   */
+  'Hypermedia' => [
 
+    /**
+     * The hypermedia storage configuration.
+     *
+     * @since   2.0.0-dev
+     * @var     array
+     */
+    'Storage' => [
+
+      /**
+       * The storage file path.
+       *
+       * @since   2.0.0-dev
+       * @var     string
+       */
+      'FilePath' => rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR . 'Hypermedia',
+
+      /**
+       * The storage file path permission.
+       *
+       * @since   2.0.0-dev
+       * @var     int
+       */
+      'Mode' => 0777
+
+    ]
+
+  ],
 
   /**
    * The service configuration.
@@ -132,32 +166,6 @@ $configuration = [
      * @var     string
      */
     'Language' => 'en-US',
-
-    /**
-     * The service storage configuration.
-     *
-     * @since   2.0.0-dev
-     * @var     array
-     */
-    'Storage' => [
-
-      /**
-       * The storage file path.
-       *
-       * @since   2.0.0-dev
-       * @var     string
-       */
-      'FilePath' => rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR . 'Hypermedia',
-
-      /**
-       * The storage file path permission.
-       *
-       * @since   2.0.0-dev
-       * @var     int
-       */
-      'Mode' => 0777
-
-    ],
 
     /**
      * The default interface version to be used, for the communication with the service.

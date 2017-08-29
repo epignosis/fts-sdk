@@ -560,8 +560,8 @@ class FullTextSearch
   {
     $storageDirectory = dirname(dirname(__DIR__));
 
-    if (!empty($this->_configuration['Service']['Storage']['FilePath'])) {
-      $storageDirectory = $this->_configuration['Service']['Storage']['FilePath'];
+    if (!empty($this->_configuration['Hypermedia']['Storage']['FilePath'])) {
+      $storageDirectory = $this->_configuration['Hypermedia']['Storage']['FilePath'];
     }
 
     $storageDirectory = rtrim($storageDirectory, '\/') . \DIRECTORY_SEPARATOR;
@@ -894,7 +894,7 @@ class FullTextSearch
     $filePathDirectory = dirname($filePath);
 
     if (!file_exists($filePathDirectory)) {
-      $mode = $this->_configuration['Service']['Storage']['Mode'];
+      $mode = $this->_configuration['Hypermedia']['Storage']['Mode'];
 
       if (!mkdir($filePathDirectory, $mode, true)) {
         return false;
