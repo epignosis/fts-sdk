@@ -29,6 +29,16 @@ $data = [
           'Domain' => 'panagop.talentlms.com',
           'Status' => 'Enabled'
         ],
+        // Invalid:
+        [
+          'Domain' => 'example-1.com',
+          'Status' => 0
+        ],
+        // Invalid:
+        [
+          'Domain' => 'example-2.com',
+          'Status' => 1
+        ],
         // Valid:
         [
           'Domain' => 'http://papagel.talentlms.com',
