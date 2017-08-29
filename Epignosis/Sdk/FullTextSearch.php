@@ -252,7 +252,9 @@ class FullTextSearch
     if ($invalidResponseStatusCode) {
       throw new \Exception (
         sprintf (
-          'Failed to download the service hypermedia file. (%s)', $response['Url']
+          'Failed to download the service hypermedia file. (%s, %s)',
+          $response['Url'],
+          $response['Status']
         )
       );
     }
