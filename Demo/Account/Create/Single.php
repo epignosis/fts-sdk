@@ -3,6 +3,7 @@
 /**
  * For more information: https://github.com/epignosis/fts/wiki/Account
  */
+/** @noinspection SpellCheckingInspection */
 $data['Account']['Create']['Single'] = [
   // Invalid. No Data.
   [

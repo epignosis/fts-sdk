@@ -3,6 +3,7 @@
 /**
  * For more information: https://github.com/epignosis/fts/wiki/Document
  */
+/** @noinspection SpellCheckingInspection */
 $data['Document']['Index']['Multiple'] = [
   // Invalid:
   [
