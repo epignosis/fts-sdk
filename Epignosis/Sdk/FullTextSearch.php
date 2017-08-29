@@ -47,7 +47,12 @@ class FullTextSearch
     'Header' => [
       'AcceptPattern' => 'application/vnd.epignosis.v%s+%s',
       'X' => [
-        'TimestampName' => 'X-Service-Timestamp'
+        'Endpoint' => [
+          'Name' => 'X-Service-Endpoint'
+        ],
+        'Timestamp' => [
+          'Name' => 'X-Service-Timestamp'
+        ]
       ]
     ],
     'Hypermedia' => [
@@ -247,7 +252,8 @@ class FullTextSearch
   private function _DownloadServiceHypermediaFile()
   {
     $response = $this->_RequestOptions (
-      $this->_configuration['Service']['BaseEndpoint'], $this->_GetHeaderList()
+      $this->_configuration['Service']['BaseEndpoint'],
+      $this->_GetHeaderList($this->_configuration['Service']['BaseEndpoint'])
     );
 
     $invalidResponseStatusCode =
@@ -383,7 +389,7 @@ class FullTextSearch
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
-      return [$endpointList['Multiple'], $data];
+      return [rtrim($endpointList['Multiple'], '/'), $data];
     }
 
     $parameterList =
@@ -406,17 +412,20 @@ class FullTextSearch
       '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterEndpointList)
     );
 
-    return [$endpoint, $data];
+    return [rtrim($endpoint, '/'), $data];
   }
 
   /**
    * Returns the list of headers to be sent as part of the request.
    *
+   * @param   string $endpoint
+   *            - The endpoint to send the list of headers. (Required)
+   *
    * @return  array
    *
    * @since   2.0.0-dev
    */
-  private function _GetHeaderList()
+  private function _GetHeaderList($endpoint)
   {
     $headerList = [
       'Accept' => sprintf (
@@ -430,7 +439,8 @@ class FullTextSearch
       'User-Agent' => sprintf (
         self::$_sdkInformation['Agent'], $this->GetSdkVersion()
       ),
-      self::$_sdkInformation['Header']['X']['TimestampName'] => time()
+      self::$_sdkInformation['Header']['X']['Endpoint']['Name'] => rtrim($endpoint, '/'),
+      self::$_sdkInformation['Header']['X']['Timestamp']['Name'] => time()
     ];
 
     if (!empty($this->_configuration['Service']['Agent'])) {
@@ -1014,7 +1024,7 @@ class FullTextSearch
   {
     list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
 
-    $headerList = $this->_GetHeaderList();
+    $headerList = $this->_GetHeaderList($endpoint);
 
     if ($this->_AuthRequired($entity, $action)) {
       $this->_Sign($entity, $action, $headerList, $data);
