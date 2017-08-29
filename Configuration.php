@@ -65,7 +65,7 @@ $configuration = [
          * @since   1.0.0-dev
          * @var     string
          */
-        'Read' => 'HFM/n0oSe8jqdfm6vLPB0PlAW1tFBmaU3FWjrLYOycMyw8rOijm960CvJOkSDtMB',
+        'Read' => 'HFM/n0oSe8jqdfm6vLPB0PlAW1tFBmaU',
 
         /**
          * The public write key.
@@ -73,7 +73,7 @@ $configuration = [
          * @since   1.0.0-dev
          * @var     string
          */
-        'Write' => 'GmVeZ6hfe1P+KEo63xA+kwMKgu0XW6kWGwyxCVAGpM2pG3Rmw/nirfRsYys3EtJc'
+        'Write' => 'GmVeZ6hfe1P+KEo63xA+kwMKgu0XW6kW'
 
       ]
 

@@ -923,6 +923,7 @@ class FullTextSearch
    */
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
+    // @TODO 16?
     $randomToken = $this->_GetRandomStringSecure(16);
     $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
     $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
