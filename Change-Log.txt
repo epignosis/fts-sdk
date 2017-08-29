@@ -4,8 +4,8 @@
   [Change]  (xdev) Change configuration "Service.Header.UserAgent" to "Service.Agent".
   [Change]  (xdev) Change configuration "Service.Storage.*" to "Hypermedia.Storage.*".
   [Change]  (xdev) Update SDK version from 2.1.6-alpha to 2.1.7-alpha.
-  [Fix]     (xdev) Critical bug-fix of sign request private method.
-  [Improve] (xdev) Remove hard-coded X-Service-Timestamp header name.
+  [Fix]     (xdev) Critical bug-fix in private method "_Sign".
+  [Improve] (xdev) Remove hard-coded auth header names.
   [Improve] (xdev) Remove hard-coded random token length.
 
 
