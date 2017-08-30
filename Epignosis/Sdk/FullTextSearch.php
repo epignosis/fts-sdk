@@ -987,7 +987,7 @@ class FullTextSearch
       base64_encode (
         hash_hmac (
           $signatureConfiguration['Hash']['Algorithm'],
-          $this->_GetDataToHash($entity, $action, $data, $headerList),
+          $this->_GetDataToHash($entity, $action, $headerList, $data),
           $randomToken . $this->_configuration['Auth']['Key']['Private'][$operationType],
           true
         )
