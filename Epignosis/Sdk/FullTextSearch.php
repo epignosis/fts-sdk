@@ -607,14 +607,7 @@ class FullTextSearch
           $contentMinified[$entity][$action]['General'] = [
             'Auth' => [
               'Signature' => [
-                'Hash' => [
-                  'Algorithm' =>
-                    $contentEntityActionAuthSignature['Hash']['Algorithm'],
-                  'RandomToken' => [
-                    'Length' =>
-                      $contentEntityActionAuthSignature['Hash']['RandomToken']['Length']
-                  ]
-                ],
+                'Hash' => $contentEntityActionAuthSignature['Hash'],
                 'Name' => $contentEntityActionAuthSignature['Name']
               ]
             ],
@@ -941,26 +934,34 @@ class FullTextSearch
    */
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
-    $authConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth'];
+    $signatureConfiguration =
+      $this->_hypermedia[$entity][$action]['General']['Auth']['Signature'];
 
     $randomToken = $this->_GetRandomStringSecure (
-      $authConfiguration['Signature']['Hash']['RandomToken']['Length']
+      $signatureConfiguration['Hash']['RandomToken']['Length']
     );
 
     $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
-    $keyList = $this->_configuration['Auth']['Key'];
 
-    $headerList[$authConfiguration['Signature']['Name']] = sprintf (
+    $dataToHash = [];
+
+    if (isset($signatureConfiguration['Hash']['Data']['Data'])) {
+      $dataToHash[$signatureConfiguration['Hash']['Data']['Data']] = $data;
+    }
+
+    if (isset($signatureConfiguration['Hash']['Data']['HeaderList'])) {
+      $dataToHash[$signatureConfiguration['Hash']['Data']['HeaderList']] = $headerList;
+    }
+
+    $headerList[$signatureConfiguration['Name']] = sprintf (
       '%s;%s;%s',
-      $keyList['Public'][$operationType],
+      $this->_configuration['Auth']['Key']['Public'][$operationType],
       base64_encode($randomToken),
       base64_encode (
         hash_hmac (
-          $authConfiguration['Signature']['Hash']['Algorithm'],
-          $this->_GetArrayToString (
-            $this->_GetArraySorted(['Data' => $data, 'HeaderList' => $headerList])
-          ),
-          $randomToken . $keyList['Private'][$operationType],
+          $signatureConfiguration['Hash']['Algorithm'],
+          $this->_GetArrayToString($this->_GetArraySorted($dataToHash)),
+          $randomToken . $this->_configuration['Auth']['Key']['Private'][$operationType],
           true
         )
       )
