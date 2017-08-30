@@ -350,6 +350,43 @@ class FullTextSearch
   }
 
   /**
+   * Returns the data to be hashed.
+   *
+   * @param   string $entity
+   *            - The entity to be used. (Required)
+   *
+   * @param   string $action
+   *            - The action to be used. (Required)
+   *
+   * @param   array $headerList
+   *            - The list of headers to be used. (Required)
+   *
+   * @param   array $data
+   *            - The data to be used. (Optional, [])
+   *
+   * @return  string
+   *
+   * @since   3.0.0-alpha
+   */
+  private function _GetDataToHash($entity, $action, array &$headerList, array $data = [])
+  {
+    $signatureConfiguration =
+      $this->_hypermedia[$entity][$action]['General']['Auth']['Signature'];
+
+    $dataToHash = [];
+
+    if (isset($signatureConfiguration['Hash']['Data']['Data'])) {
+      $dataToHash[$signatureConfiguration['Hash']['Data']['Data']] = $data;
+    }
+
+    if (isset($signatureConfiguration['Hash']['Data']['HeaderList'])) {
+      $dataToHash[$signatureConfiguration['Hash']['Data']['HeaderList']] = $headerList;
+    }
+
+    return $this->_GetArrayToString($this->_GetArraySorted($dataToHash));
+  }
+
+  /**
    * Returns the decoded requested response.
    *
    * @param   array $response
@@ -943,16 +980,6 @@ class FullTextSearch
 
     $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
 
-    $dataToHash = [];
-
-    if (isset($signatureConfiguration['Hash']['Data']['Data'])) {
-      $dataToHash[$signatureConfiguration['Hash']['Data']['Data']] = $data;
-    }
-
-    if (isset($signatureConfiguration['Hash']['Data']['HeaderList'])) {
-      $dataToHash[$signatureConfiguration['Hash']['Data']['HeaderList']] = $headerList;
-    }
-
     $headerList[$signatureConfiguration['Name']] = sprintf (
       '%s;%s;%s',
       $this->_configuration['Auth']['Key']['Public'][$operationType],
@@ -960,7 +987,7 @@ class FullTextSearch
       base64_encode (
         hash_hmac (
           $signatureConfiguration['Hash']['Algorithm'],
-          $this->_GetArrayToString($this->_GetArraySorted($dataToHash)),
+          $this->_GetDataToHash($entity, $action, $data, $headerList),
           $randomToken . $this->_configuration['Auth']['Key']['Private'][$operationType],
           true
         )
