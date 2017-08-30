@@ -563,14 +563,12 @@ class FullTextSearch
    */
   private function _GetRequestMethod($entity, $action)
   {
-    if (empty($this->_hypermedia[$entity][$action]['Request']['Method'])) {
-      return null;
-    }
+    $requestMethod = $this->_hypermedia[$entity][$action]['Request']['Method'];
 
-    return sprintf (
-      '_Request%s',
-      ucfirst(strtolower($this->_hypermedia[$entity][$action]['Request']['Method']))
-    );
+    return
+      empty($requestMethod)
+        ? null
+        : sprintf('_Request%s', ucfirst(strtolower($requestMethod)));
   }
 
   /**

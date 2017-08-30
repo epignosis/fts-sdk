@@ -8,6 +8,7 @@
   [Fix]     (xdev) Critical bug-fix in private method "_Sign".
   [Improve] (xdev) Remove hard-coded auth headers names.
   [Improve] (xdev) Remove hard-coded random token length.
+  [Improve] (xdev) Various optimizations.
 
 
 ------------------------------------------------------------------------------------------
