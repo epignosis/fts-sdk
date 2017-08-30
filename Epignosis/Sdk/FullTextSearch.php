@@ -432,7 +432,9 @@ class FullTextSearch
     }
 
     $parameterList =
-      $this->_hypermedia[$entity][$action]['Request']['ParameterList']['Single'];
+      $this->_hypermedia
+        [$entity][$action]
+        ['Request']['ParameterList']['Single'];
 
     $parameterEndpointList = [];
 
@@ -971,14 +973,16 @@ class FullTextSearch
    */
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
+    $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
+
     $signatureConfiguration =
-      $this->_hypermedia[$entity][$action]['General']['Auth']['Signature'];
+      $this->_hypermedia
+        [$entity][$action]
+        ['General']['Auth']['Signature'];
 
     $randomToken = $this->_GetRandomStringSecure (
       $signatureConfiguration['Hash']['RandomToken']['Length']
     );
-
-    $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
 
     $headerList[$signatureConfiguration['Name']] = sprintf (
       '%s;%s;%s',
