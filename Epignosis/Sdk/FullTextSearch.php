@@ -370,17 +370,17 @@ class FullTextSearch
    */
   private function _GetDataToHash($entity, $action, array &$headerList, array $data = [])
   {
-    $signatureConfiguration =
-      $this->_hypermedia[$entity][$action]['General']['Auth']['Signature'];
+    $signatureHashConfiguration =
+      $this->_hypermedia[$entity][$action]['General']['Auth']['Signature']['Hash'];
 
     $dataToHash = [];
 
-    if (isset($signatureConfiguration['Hash']['Data']['Data'])) {
-      $dataToHash[$signatureConfiguration['Hash']['Data']['Data']] = $data;
+    if (isset($signatureHashConfiguration['Data']['Data'])) {
+      $dataToHash[$signatureHashConfiguration['Data']['Data']] = $data;
     }
 
-    if (isset($signatureConfiguration['Hash']['Data']['HeaderList'])) {
-      $dataToHash[$signatureConfiguration['Hash']['Data']['HeaderList']] = $headerList;
+    if (isset($signatureHashConfiguration['Data']['HeaderList'])) {
+      $dataToHash[$signatureHashConfiguration['Data']['HeaderList']] = $headerList;
     }
 
     return $this->_GetArrayToString($this->_GetArraySorted($dataToHash));
