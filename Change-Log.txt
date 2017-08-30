@@ -4,7 +4,7 @@
   [Add]     (xdev) Various validation/sanitization checks.
   [Change]  (xdev) Change configuration "Service.Header.UserAgent" to "Service.Agent".
   [Change]  (xdev) Change configuration "Service.Storage.*" to "Hypermedia.Storage.*".
-  [Change]  (xdev) Update SDK version from 2.1.6-alpha to 2.1.7-alpha.
+  [Change]  (xdev) Update SDK version from 2.1.6-alpha to 3.0.0-alpha.
   [Fix]     (xdev) Critical bug-fix in private method "_Sign".
   [Improve] (xdev) Remove hard-coded auth headers names.
   [Improve] (xdev) Remove hard-coded random token length.
