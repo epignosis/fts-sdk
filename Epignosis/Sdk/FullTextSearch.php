@@ -368,7 +368,7 @@ class FullTextSearch
    *
    * @since   3.0.0-alpha
    */
-  private function _GetDataToHash($entity, $action, array &$headerList, array $data = [])
+  private function _GetDataToHash($entity, $action, array $headerList, array $data = [])
   {
     $dataToHash = [];
 
