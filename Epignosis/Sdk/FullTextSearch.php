@@ -459,6 +459,20 @@ class FullTextSearch
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
+      $getRequestMethod =
+        'GET' == strtoupper($this->_hypermedia[$entity][$action]['Request']['Method']);
+
+      if ($getRequestMethod) {
+        return [
+          sprintf (
+            '%s?%s',
+            rtrim($endpointList['Multiple'], '/'),
+            $this->_GetArrayToUrlQuery($this->_GetDataClean($data))
+          ),
+          []
+        ];
+      }
+
       return [rtrim($endpointList['Multiple'], '/'), $this->_GetDataClean($data)];
     }
 
@@ -874,14 +888,11 @@ class FullTextSearch
    * @param   array $headerList
    *            - The list of headers to be requested. (Optional, [])
    *
-   * @param   array $data
-   *            - The data to be requested. (Optional, [])
-   *
    * @return  array
    *
    * @since   2.0.0-dev
    */
-  private function _RequestGet($url, array $headerList = [], array $data = [])
+  private function _RequestGet($url, array $headerList = [])
   {
     $optionList = [
       'http' => [
@@ -889,9 +900,7 @@ class FullTextSearch
       ]
     ];
 
-    return $this->_Request (
-      sprintf('%s?%s', $url, $this->_GetArrayToUrlQuery($data)), $optionList
-    );
+    return $this->_Request($url, $optionList);
   }
 
   /**
@@ -1090,6 +1099,8 @@ class FullTextSearch
     list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
 
     $headerList = $this->_GetHeaderList($endpoint);
+
+    echo '<pre>'; print_r(['Endpoint' => $endpoint, 'Data' => $data]);
 
     if ($this->_AuthRequired($entity, $action)) {
       $this->_Sign($entity, $action, $headerList, $data);
