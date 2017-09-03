@@ -1100,8 +1100,6 @@ class FullTextSearch
 
     $headerList = $this->_GetHeaderList($endpoint);
 
-    echo '<pre>'; print_r(['Endpoint' => $endpoint, 'Data' => $data]);
-
     if ($this->_AuthRequired($entity, $action)) {
       $this->_Sign($entity, $action, $headerList, $data);
     }
