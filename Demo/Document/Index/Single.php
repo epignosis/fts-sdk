@@ -28,7 +28,7 @@ $data['Document']['Index']['Single'] = [
       'Course' => 65536,
       'Lesson' => 4096,
       'Unit' => 1024
-    ],
+    ]
   ],
   // Invalid:
   [

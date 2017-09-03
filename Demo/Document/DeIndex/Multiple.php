@@ -43,5 +43,9 @@ $data['Document']['DeIndex']['Multiple'] = [
       'Lesson' => 1,
       'Unit' => 1
     ]
+  ],
+  // Invalid:
+  [
+    'Id' => null
   ]
 ];

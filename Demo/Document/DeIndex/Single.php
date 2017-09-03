@@ -12,6 +12,10 @@ $data['Document']['DeIndex']['Single'] = [
   [
     'Id' => 'foo'
   ],
+  // Invalid:
+  [
+    'Id' => null
+  ],
   // Valid:
   [
     'Id' => [

@@ -15,7 +15,7 @@ $data['Document']['Index']['Multiple'] = [
       'FileList' => [],
       'TagList' => ['foo', 'bar'],
       'Text' => 'This is a sample plain text content ..'
-    ],
+    ]
   ],
   // Invalid:
   [
@@ -28,7 +28,7 @@ $data['Document']['Index']['Multiple'] = [
       'Course' => 1,
       'Lesson' => 2,
       'Unit' => 3
-    ],
+    ]
   ],
   // Invalid:
   [
