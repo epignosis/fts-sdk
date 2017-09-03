@@ -42,6 +42,24 @@ $data['Document']['Search']['Single'] = [
   ],
   // Invalid:
   [
+    'PermissionPolicy' => [
+      'Id' => -10
+    ]
+  ],
+  // Invalid:
+  [
+    'PermissionPolicy' => [
+      'Id' => 'foo'
+    ]
+  ],
+  // Invalid:
+  [
+    'PermissionPolicy' => [
+      'Id' => 'foo'
+    ]
+  ],
+  // Invalid:
+  [
     'Pagination' => [
       'Offset' => -7
     ]

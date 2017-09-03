@@ -367,11 +367,11 @@ class FullTextSearch
       if (is_array($value)) {
         $valueClean = $this->_GetDataClean($value);
 
-        if (!empty($valueClean) || 0 == $valueClean) {
+        if (!empty($valueClean) || 0 === $valueClean) {
           $dataClean[$key] = $valueClean;
         }
       } else {
-        if (!empty($value) || 0 == $value) {
+        if (!empty($value) || 0 === $value) {
           $dataClean[$key] = $value;
         }
       }
