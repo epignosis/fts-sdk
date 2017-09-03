@@ -350,7 +350,7 @@ class FullTextSearch
   }
 
   /**
-   * Removes the empty data from the requested data set, and returns cleaned data.
+   * Removes the empty data from the requested data set, and returns the clean data set.
    *
    * @param   array $data
    *            - The data to be cleaned. (Optional, [])
@@ -365,9 +365,13 @@ class FullTextSearch
 
     foreach ($data as $key => $value) {
       if (is_array($value)) {
-        $dataClean[$key] = $this->_GetDataClean($value);
+        $valueClean = $this->_GetDataClean($value);
+
+        if (!empty($valueClean) || 0 == $valueClean) {
+          $dataClean[$key] = $valueClean;
+        }
       } else {
-        if (null !== $value) {
+        if (!empty($value) || 0 == $value) {
           $dataClean[$key] = $value;
         }
       }

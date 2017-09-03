@@ -25,6 +25,11 @@ $data['Account']['Create']['Single'] = [
   ],
   // Invalid:
   [
+    'Domain' => 'papathe.talentlms.com',
+    'Status' => 'Enable'
+  ],
+  // Invalid:
+  [
     'Domain' => 'example-1.com',
     'Status' => 0
   ],
@@ -41,7 +46,7 @@ $data['Account']['Create']['Single'] = [
   // Valid:
   [
     'Domain' => 'pvenakis.com',
-    'Status' => 'Disabled'
+    'Status' => 'Enabled'
   ],
   // Invalid:
   [
