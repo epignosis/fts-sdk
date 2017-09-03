@@ -22,6 +22,11 @@ $data['PermissionPolicy']['Push']['Single'] = [
     'Id' => 1,
     'Policy' => '[]'
   ],
+  // Invalid:
+  [
+    'Id1' => 10,
+    'Policy' => '[]'
+  ],
   // Valid:
   [
     'Id' => 13,

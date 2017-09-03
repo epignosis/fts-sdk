@@ -5,45 +5,45 @@
  */
 /** @noinspection SpellCheckingInspection */
 $data['Account']['Create']['Single'] = [
-  // Invalid. No Data.
+  // Invalid:
   [
 
   ],
-  // Valid.
+  // Valid:
   [
     'Domain' => 'https://xdev.com',
     'Status' => ''
   ],
-  // Invalid. No Domain.
+  // Invalid:
   [
     'Status' => 'Enabled'
   ],
-  // Valid.
+  // Valid:
   [
     'Domain' => 'panagop.talentlms.com',
     'Status' => 'Enabled'
   ],
-  // Invalid. Not valid status.
+  // Invalid:
   [
     'Domain' => 'example-1.com',
     'Status' => 0
   ],
-  // Invalid. Not valid status.
+  // Invalid:
   [
     'Domain' => 'example-2.com',
     'Status' => 1
   ],
-  // Valid.
+  // Valid:
   [
     'Domain' => 'http://papagel.talentlms.com',
     'Status' => 'Disabled'
   ],
-  // Valid.
+  // Valid:
   [
     'Domain' => 'pvenakis.com',
     'Status' => 'Disabled'
   ],
-  // Invalid.
+  // Invalid:
   [
     'Domain' => 'foobar',
     'Status' => 'Disabled'

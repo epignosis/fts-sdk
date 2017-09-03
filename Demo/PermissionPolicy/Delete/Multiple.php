@@ -22,6 +22,10 @@ $data['PermissionPolicy']['Delete']['Multiple'] = [
   ],
   // Invalid:
   [
+    'Id1' => 10
+  ],
+  // Invalid:
+  [
     'Id' => 'Id'
   ],
   // Valid:

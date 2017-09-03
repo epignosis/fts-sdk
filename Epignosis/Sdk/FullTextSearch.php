@@ -69,8 +69,8 @@ class FullTextSearch
       'Extra' => 'alpha',
       'Major' => 3,
       'Minor' => 0,
-      'Patch' => 2,
-      'Release' => '2017-09-03'
+      'Patch' => 3,
+      'Release' => '2017-09-04'
     ]
   ];
 
@@ -361,12 +361,19 @@ class FullTextSearch
    */
   private function _GetDataClean(array $data = [])
   {
-    return array_filter (
-      $data,
-      function($value) {
-        return !empty($value) || 0 == $value;
+    $dataClean = [];
+
+    foreach ($data as $key => $value) {
+      if (is_array($value)) {
+        $dataClean[$key] = $this->_GetDataClean($value);
+      } else {
+        if (null !== $value) {
+          $dataClean[$key] = $value;
+        }
       }
-    );
+    }
+
+    return $dataClean;
   }
 
   /**
@@ -458,12 +465,14 @@ class FullTextSearch
 
     $parameterEndpointList = [];
 
-    foreach ($parameterList as $parameterName => $parameterAttributeList) {
-      if (isset($parameterAttributeList['Endpoint'])) {
-        $parameterEndpointList[$parameterAttributeList['Endpoint']] =
-          $data[$parameterName];
+    if (!empty($parameterList)) {
+      foreach ($parameterList as $parameterName => $parameterAttributeList) {
+        if (isset($parameterAttributeList['Endpoint'])) {
+          $parameterEndpointList[$parameterAttributeList['Endpoint']] =
+            $data[$parameterName];
 
-        unset($data[$parameterName]);
+          unset($data[$parameterName]);
+        }
       }
     }
 
