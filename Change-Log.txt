@@ -1,4 +1,13 @@
 ------------------------------------------------------------------------------------------
+  v3.0.2-alpha                                                              [2017-09-03]
+------------------------------------------------------------------------------------------
+  [Change] (xdev) Update SDK version from 3.0.1-alpha to 3.0.2-alpha.
+  [Change] (xdev) Update README.
+  [Fix]    (xdev) Remove empty values from data ("_GetEndpointAndData"). This fix, allows
+                  to authenticate the request on the server (signature mismatch).
+
+
+------------------------------------------------------------------------------------------
   v3.0.1-alpha                                                              [2017-08-30]
 ------------------------------------------------------------------------------------------
   [Change] (xdev) Update SDK version from 3.0.0-alpha to 3.0.1-alpha.

@@ -69,8 +69,8 @@ class FullTextSearch
       'Extra' => 'alpha',
       'Major' => 3,
       'Minor' => 0,
-      'Patch' => 1,
-      'Release' => '2017-08-30'
+      'Patch' => 2,
+      'Release' => '2017-09-03'
     ]
   ];
 
@@ -350,6 +350,26 @@ class FullTextSearch
   }
 
   /**
+   * Removes the empty data from the requested data set, and returns cleaned data.
+   *
+   * @param   array $data
+   *            - The data to be cleaned. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   3.0.2-alpha
+   */
+  private function _GetDataClean(array $data = [])
+  {
+    return array_filter (
+      $data,
+      function($value) {
+        return !empty($value) || 0 == $value;
+      }
+    );
+  }
+
+  /**
    * Returns the data to be hashed.
    *
    * @param   string $entity
@@ -428,7 +448,7 @@ class FullTextSearch
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
-      return [rtrim($endpointList['Multiple'], '/'), $data];
+      return [rtrim($endpointList['Multiple'], '/'), $this->_GetDataClean($data)];
     }
 
     $parameterList =
@@ -453,7 +473,7 @@ class FullTextSearch
       '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterEndpointList)
     );
 
-    return [rtrim($endpoint, '/'), $data];
+    return [rtrim($endpoint, '/'), $this->_GetDataClean($data)];
   }
 
   /**
