@@ -34,7 +34,7 @@ require
 require
   'Document' . \DIRECTORY_SEPARATOR .
   'Search' . \DIRECTORY_SEPARATOR .
-  'Multiple.php';
+  'Single.php';
 
 // Permission Policy:
 require

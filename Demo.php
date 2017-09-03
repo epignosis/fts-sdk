@@ -4,15 +4,6 @@ use Epignosis\Sdk\FullTextSearch;
 
 $now = microtime(true);
 
-require
-  'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
-require
-  'Configuration.php';
-require
-  'Epignosis' . \DIRECTORY_SEPARATOR .
-  'Sdk' . \ DIRECTORY_SEPARATOR .
-  'FullTextSearch.php';
-
 /**
  * Returns the requested argument (CLI), or the parameter (HTTP/GET) list.
  *
@@ -121,6 +112,14 @@ function PrintObjectReadable($dataStructure)
 }
 
 try {
+
+  require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
+  require 'Configuration.php';
+
+  require
+    'Epignosis' . \DIRECTORY_SEPARATOR .
+    'Sdk' . \ DIRECTORY_SEPARATOR .
+    'FullTextSearch.php';
 
   $fullTextSearchSdk = new FullTextSearch($configuration);
   $getList = Get();

@@ -3,7 +3,7 @@
 /**
  * For more information: https://github.com/epignosis/fts/wiki/Document
  */
-$data['Document']['Search']['Multiple'] = [
+$data['Document']['Search']['Single'] = [
   // Valid:
   [
 
