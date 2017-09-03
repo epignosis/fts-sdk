@@ -10,6 +10,14 @@ $data['PermissionPolicy']['Delete']['Multiple'] = [
   ],
   // Valid:
   [
+    'Id' => \PHP_INT_MAX
+  ],
+  // Invalid:
+  [
+    'Id' => \PHP_INT_MIN
+  ],
+  // Valid:
+  [
     'Id' => 5
   ],
   // Invalid:
