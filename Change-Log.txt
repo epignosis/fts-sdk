@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------------------
   v3.0.4-alpha                                                              [2017-12-09]
 ------------------------------------------------------------------------------------------
-  [Add]    (xdev) @noinspection PhpUndefinedVariableInspection (Demo.php)
+  [Add]    (xdev) @noinspection PhpUndefinedVariableInspection (Demo.php).
   [Change] (xdev) Update SDK version from 3.0.3-alpha to 3.0.4-alpha.
 
 
