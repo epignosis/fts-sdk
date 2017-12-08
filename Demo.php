@@ -131,6 +131,7 @@ try {
     true
   );
 
+  /** @noinspection PhpUndefinedVariableInspection */
   $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
 
   PrintLine('Requested Data');
