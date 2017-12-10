@@ -11,7 +11,7 @@ namespace Epignosis\Sdk;
  * @category    Epignosis\Sdk
  * @copyright   Epignosis LLC (c) Copyright 2017, All Rights Reserved
  * @package     Epignosis\Sdk
- * @since       2.0.0-dev
+ * @since       2.0.0
  */
 class FullTextSearch
 {
@@ -20,7 +20,7 @@ class FullTextSearch
    *
    * @access  private
    * @default []
-   * @since   2.0.0-dev
+   * @since   2.0.0
    * @var     array
    */
   private $_configuration = [];
@@ -30,7 +30,7 @@ class FullTextSearch
    *
    * @access  private
    * @default []
-   * @since   2.0.0-dev
+   * @since   2.0.0
    * @var     array
    */
   private $_hypermedia = [];
@@ -39,7 +39,7 @@ class FullTextSearch
    * The SDK's internal self information.
    *
    * @access  private
-   * @since   2.0.0-dev
+   * @since   2.0.0
    * @var     array
    */
   private static $_sdkInformation = [
@@ -69,8 +69,8 @@ class FullTextSearch
       'Extra' => 'alpha',
       'Major' => 3,
       'Minor' => 0,
-      'Patch' => 4,
-      'Release' => '2017-12-09'
+      'Patch' => 5,
+      'Release' => '2017-12-10'
     ]
   ];
 
@@ -81,7 +81,7 @@ class FullTextSearch
    * @param   array $configuration
    *            - The configuration to be used. (Required)
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to build the service hypermedia file.
@@ -103,7 +103,7 @@ class FullTextSearch
    *
    * @return  bool
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _AuthRequired($entity, $action)
   {
@@ -119,7 +119,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to build the hypermedia information.
@@ -145,7 +145,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that the requested service format, is not supported by the SDK.
@@ -173,7 +173,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that the requested service version, is not supported by the SDK.
@@ -201,7 +201,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to create the service hypermedia file.
@@ -230,7 +230,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _DeleteFile($filePath)
   {
@@ -244,7 +244,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to download the service hypermedia file.
@@ -281,7 +281,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetArraySorted(array $array)
   {
@@ -304,7 +304,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetArrayToString(array $array)
   {
@@ -328,7 +328,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetArrayToUrlQuery(array $array, $prefix = null)
   {
@@ -357,7 +357,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   3.0.2-alpha
+   * @since   3.0.2
    */
   private function _GetDataClean(array $data = [])
   {
@@ -397,7 +397,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   3.0.0-alpha
+   * @since   3.0.0
    */
   private function _GetDataToHash($entity, $action, array $headerList, array $data = [])
   {
@@ -427,7 +427,7 @@ class FullTextSearch
    *
    * @return  mixed
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetDecodedResponse(array $response = [])
   {
@@ -452,7 +452,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {
@@ -511,7 +511,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetHeaderList($endpoint)
   {
@@ -548,7 +548,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetHeaderListToString(array $headerList = [])
   {
@@ -574,7 +574,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to produce the random string.
@@ -610,7 +610,7 @@ class FullTextSearch
    *
    * @return  null|string
    *
-   * @since   2.1.0-dev
+   * @since   2.1.0
    */
   private function _GetRequestMethod($entity, $action)
   {
@@ -630,7 +630,7 @@ class FullTextSearch
    *
    * @return  null|int
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetResponseStatusCode(array $headerList = [])
   {
@@ -648,7 +648,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _GetServiceHypermediaFilePath()
   {
@@ -677,7 +677,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.1.0-dev
+   * @since   2.1.0
    */
   private function _MinifyServiceHypermediaContent($content = null)
   {
@@ -741,7 +741,7 @@ class FullTextSearch
    *
    * @return  null|array
    *
-   * @since   2.1.0-dev
+   * @since   2.1.0
    */
   private function _ParseServiceHypermediaContent($content = null)
   {
@@ -765,7 +765,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to parse the service hypermedia file.
@@ -793,7 +793,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to read the service hypermedia file.
@@ -824,7 +824,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _Request($url, array $optionList = [])
   {
@@ -863,7 +863,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _RequestDelete($url, array $headerList = [], array $data = [])
   {
@@ -890,7 +890,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _RequestGet($url, array $headerList = [])
   {
@@ -914,7 +914,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _RequestOptions($url, array $headerList = [])
   {
@@ -943,7 +943,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _RequestPost($url, array $headerList = [], array $data = [])
   {
@@ -969,7 +969,7 @@ class FullTextSearch
    *
    * @return  bool
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   private function _SaveFile($filePath, $content)
   {
@@ -1008,7 +1008,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that is not possible to sign the request.
@@ -1051,7 +1051,7 @@ class FullTextSearch
    *
    * @return  FullTextSearch
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    *
    * @throws  \Exception
    *            - In case that the requested configuration, is not valid.
@@ -1089,7 +1089,7 @@ class FullTextSearch
    *
    * @return  mixed
    *
-   * @since   2.1.0-dev
+   * @since   2.1.0
    *
    * @throws  \Exception
    *            - In case that is not possible to complete the requested API operation.
@@ -1122,7 +1122,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.1.4-alpha
+   * @since   2.1.4
    */
   public function GetAccountStatusOptionList()
   {
@@ -1146,7 +1146,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   public function GetConfiguration()
   {
@@ -1158,7 +1158,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   public function GetDocumentSearchSourceOptionList()
   {
@@ -1182,7 +1182,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   public function GetSdkVersion()
   {
@@ -1200,7 +1200,7 @@ class FullTextSearch
    *
    * @return  string
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   public function GetSdkVersionFull()
   {
@@ -1214,7 +1214,7 @@ class FullTextSearch
    *
    * @return  array
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    */
   public function GetServiceHypermediaInformation()
   {

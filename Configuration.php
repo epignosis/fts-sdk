@@ -3,7 +3,7 @@
 /**
  * The FullTextSearch PHP SDK configuration.
  *
- * @since   1.0.0-dev
+ * @since   1.0.0
  * @var     array
  */
 /** @noinspection PhpUnusedLocalVariableInspection */
@@ -12,7 +12,7 @@ $configuration = [
   /**
    * The auth configuration.
    *
-   * @since   1.0.0-dev
+   * @since   1.0.0
    * @var     array
    */
   'Auth' => [
@@ -20,7 +20,7 @@ $configuration = [
     /**
      * The auth key configuration.
      *
-     * @since   1.0.0-dev
+     * @since   1.0.0
      * @var     array
      */
     'Key' => [
@@ -28,7 +28,7 @@ $configuration = [
       /**
        * The private auth key configuration.
        *
-       * @since   1.0.0-dev
+       * @since   1.0.0
        * @var     array
        */
       'Private' => [
@@ -36,7 +36,7 @@ $configuration = [
         /**
          * The private read key.
          *
-         * @since   1.0.0-dev
+         * @since   1.0.0
          * @var     string
          */
         'Read' => 'pcSEcve89u2+nkLuQIbvQHenZDTL0oCWGsJePg58E0WB7jbZnGsTIkXF+hUY4ih6',
@@ -44,7 +44,7 @@ $configuration = [
         /**
          * The private write key.
          *
-         * @since   1.0.0-dev
+         * @since   1.0.0
          * @var     string
          */
         'Write' => 'gKNp4KXTRrDlA2jOj+vWIk0kT4vJh7MdMCqM7dUuOSSjnOqHvJ66TNXllxuE3ycV'
@@ -54,7 +54,7 @@ $configuration = [
       /**
        * The public auth key configuration.
        *
-       * @since   1.0.0-dev
+       * @since   1.0.0
        * @var     array
        */
       'Public' => [
@@ -62,7 +62,7 @@ $configuration = [
         /**
          * The public read key.
          *
-         * @since   1.0.0-dev
+         * @since   1.0.0
          * @var     string
          */
         'Read' => 'HFM/n0oSe8jqdfm6vLPB0PlAW1tFBmaU',
@@ -70,7 +70,7 @@ $configuration = [
         /**
          * The public write key.
          *
-         * @since   1.0.0-dev
+         * @since   1.0.0
          * @var     string
          */
         'Write' => 'GmVeZ6hfe1P+KEo63xA+kwMKgu0XW6kW'
@@ -84,7 +84,7 @@ $configuration = [
   /**
    * The hypermedia configuration.
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    * @var     array
    */
   'Hypermedia' => [
@@ -92,7 +92,7 @@ $configuration = [
     /**
      * The hypermedia storage configuration.
      *
-     * @since   2.0.0-dev
+     * @since   2.0.0
      * @var     array
      */
     'Storage' => [
@@ -100,15 +100,15 @@ $configuration = [
       /**
        * The storage file path.
        *
-       * @since   2.0.0-dev
+       * @since   2.0.0
        * @var     string
        */
-      'FilePath' => rtrim(__DIR__, '\/') . \DIRECTORY_SEPARATOR . 'Hypermedia',
+      'FilePath' => rtrim(__DIR__, \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR . 'Hypermedia',
 
       /**
        * The storage file path permission.
        *
-       * @since   2.0.0-dev
+       * @since   2.0.0
        * @var     int
        */
       'Mode' => 0777
@@ -120,7 +120,7 @@ $configuration = [
   /**
    * The service configuration.
    *
-   * @since   2.0.0-dev
+   * @since   2.0.0
    * @var     array
    */
   'Service' => [
@@ -128,7 +128,7 @@ $configuration = [
     /**
      * The agent string to be send, for the communication with the service.
      *
-     * @since   2.0.0-dev
+     * @since   2.0.0
      * @var     null|string
      */
     'Agent' => null,
@@ -136,7 +136,7 @@ $configuration = [
     /**
      * The service base endpoint.
      *
-     * @since   2.0.0-dev
+     * @since   2.0.0
      * @var     string
      */
     'BaseEndpoint' => 'http://127.0.0.1/',
@@ -144,7 +144,7 @@ $configuration = [
     /**
      * The default format to be used, for the communication with the service.
      *
-     * @since   2.0.0-dev
+     * @since   2.0.0
      * @var     string
      */
     'Format' => 'JSON',
@@ -152,7 +152,7 @@ $configuration = [
     /**
      * The default language to be used, for the communication with the service.
      *
-     * @since   2.0.0-dev
+     * @since   2.0.0
      * @var     string
      */
     'Language' => 'en-US',
@@ -160,7 +160,7 @@ $configuration = [
     /**
      * The default interface version to be used, for the communication with the service.
      *
-     * @since   2.0.0-dev
+     * @since   2.0.0
      * @var     string
      */
     'Version' => '2'

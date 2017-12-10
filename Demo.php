@@ -9,7 +9,7 @@ $now = microtime(true);
  *
  * @return  array
  *
- * @since   2.0.0-dev
+ * @since   2.0.0
  */
 function Get()
 {
@@ -39,7 +39,7 @@ function Get()
  * @param   bool $newLineAfter
  *            - Whether to print a new line after the header, or not. (Optional, false)
  *
- * @since   2.0.0-dev
+ * @since   2.0.0
  */
 function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
 {
@@ -73,7 +73,7 @@ function PrintHeader($header, $newLineBefore = false, $newLineAfter = false)
  * @param   bool $newLineAfter
  *            - Whether to print a new line after the text line, or not. (Optional, false)
  *
- * @since   2.0.0-dev
+ * @since   2.0.0
  */
 function PrintLine($textLine, $newLineBefore = false, $newLineAfter = false)
 {
@@ -100,7 +100,7 @@ function PrintLine($textLine, $newLineBefore = false, $newLineAfter = false)
  * @param   mixed $dataStructure
  *            - The data structure to be printed. (Required)
  *
- * @since   2.0.0-dev
+ * @since   2.0.0
  */
 function PrintObjectReadable($dataStructure)
 {
