@@ -153,13 +153,12 @@ class FullTextSearch
   private function _CheckServiceFormat($serviceFormat)
   {
     $validServiceFormat = in_array (
-      strtoupper($serviceFormat), self::$_sdkInformation['Service']['FormatList']
+      strtoupper($serviceFormat),
+      self::$_sdkInformation['Service']['FormatList']
     );
 
     if (!$validServiceFormat) {
-      throw new \Exception (
-        'The requested service format is not supported by this SDK.'
-      );
+      throw new \Exception('The requested service format is not supported by this SDK.');
     }
 
     return $this;
@@ -181,13 +180,12 @@ class FullTextSearch
   private function _CheckServiceVersion($serviceVersion)
   {
     $validServiceVersion = in_array (
-      $serviceVersion, self::$_sdkInformation['Service']['VersionList']
+      $serviceVersion,
+      self::$_sdkInformation['Service']['VersionList']
     );
 
     if (!$validServiceVersion) {
-      throw new \Exception (
-        'The requested service version is not supported by this SDK.'
-      );
+      throw new \Exception('The requested service version is not supported by this SDK.');
     }
 
     return $this;
@@ -459,10 +457,7 @@ class FullTextSearch
     $endpointList = $this->_hypermedia[$entity][$action]['Request']['EndpointList'];
 
     if (isset($data[0]) || !isset($endpointList['Single'])) {
-      $getRequestMethod =
-        'GET' == strtoupper($this->_hypermedia[$entity][$action]['Request']['Method']);
-
-      if ($getRequestMethod) {
+      if ('GET' == strtoupper($this->_hypermedia[$entity][$action]['Request']['Method'])) {
         return [
           sprintf (
             '%s?%s',
@@ -476,11 +471,7 @@ class FullTextSearch
       return [rtrim($endpointList['Multiple'], '/'), $this->_GetDataClean($data)];
     }
 
-    $parameterList =
-      $this->_hypermedia
-        [$entity][$action]
-        ['Request']['ParameterList']['Single'];
-
+    $parameterList = $this->_hypermedia[$entity][$action]['Request']['ParameterList']['Single'];
     $parameterEndpointList = [];
 
     if (!empty($parameterList)) {
@@ -497,7 +488,9 @@ class FullTextSearch
     ksort($parameterEndpointList);
 
     $endpoint = sprintf (
-      '%s/%s', rtrim($endpointList['Single'], '/'), implode('/', $parameterEndpointList)
+      '%s/%s',
+      rtrim($endpointList['Single'], '/'),
+      implode('/', $parameterEndpointList)
     );
 
     return [rtrim($endpoint, '/'), $this->_GetDataClean($data)];
