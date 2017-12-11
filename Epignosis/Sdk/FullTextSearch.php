@@ -1222,4 +1222,16 @@ class FullTextSearch
   {
     return $this->_hypermedia;
   }
+
+  /**
+   * Returns the batch limit of the service.
+   *
+   * @return  array
+   *
+   * @since   3.0.6
+   */
+  public function GetServiceLimitBatch()
+  {
+    return $this->_hypermedia['/']['Limit']['Batch'];
+  }
 }
