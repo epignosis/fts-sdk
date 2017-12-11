@@ -138,6 +138,38 @@ class FullTextSearch
   }
 
   /**
+   * Checks whether the requested data, exceeds the maximum allowed limit of the service API,
+   * or not.
+   *
+   * @param   string $entity
+   *            - The entity to be used. (Required)
+   *
+   * @param   string $action
+   *            - The action of the entity to be used. (Required)
+   *
+   * @param   array $data
+   *            - The data to be checked. (Optional, [])
+   *
+   * @return  FullTextSearch
+   *
+   * @since   3.0.6
+   *
+   * @throws  \Exception
+   *            - In case that the requested data, exceeds the maximum allowed limit of the service
+   *              API.
+   */
+  private function _CheckDataLimit($entity, $action, array $data = [])
+  {
+    if (count($data) > $this->GetServiceLimitBatch()[$entity][$action]) {
+      throw new \Exception (
+        'The requested data, exceeds the maximum allowed limit of the service API.'
+      );
+    }
+
+    return $this;
+  }
+
+  /**
    * Checks if the requested service format is supported by the SDK, or not.
    *
    * @param   string $serviceFormat
@@ -445,7 +477,8 @@ class FullTextSearch
    * @since   2.0.0
    *
    * @throws  \Exception
-   *            - In case that the requested data exceed the allowed limit of the service API.
+   *            - In case that the requested data, exceeds the maximum allowed limit of the service
+   *              API.
    */
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {
@@ -463,9 +496,7 @@ class FullTextSearch
         ];
       }
 
-      if (count($data) > $this->GetServiceLimitBatch()[$entity][$action]) {
-        throw new \Exception('The requested data, exceeded the allowed limit of the service API.');
-      }
+      $this->_CheckDataLimit($entity, $action, $data);
 
       return [rtrim($endpointList['Multiple'], '/'), $this->_GetDataClean($data)];
     }
