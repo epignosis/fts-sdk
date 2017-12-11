@@ -212,9 +212,7 @@ class FullTextSearch
     );
 
     if (!$saved) {
-      throw new \Exception (
-        sprintf('Failed to save the service hypermedia file. (%s)', $filePath)
-      );
+      throw new \Exception(sprintf('Failed to save the service hypermedia file. (%s)', $filePath));
     }
 
     return $this;
@@ -254,11 +252,7 @@ class FullTextSearch
       $this->_GetHeaderList($this->_configuration['Service']['BaseEndpoint'])
     );
 
-    $invalidResponseStatusCode =
-      self::$_sdkInformation['Hypermedia']['Response']['StatusCode'] !=
-      $response['Status'];
-
-    if ($invalidResponseStatusCode) {
+    if (self::$_sdkInformation['Hypermedia']['Response']['StatusCode'] != $response['Status']) {
       throw new \Exception (
         sprintf (
           'Failed to download the service hypermedia file. (%s, %s)',
@@ -402,9 +396,7 @@ class FullTextSearch
     $dataToHash = [];
 
     $dataHashConfiguration =
-      $this->_hypermedia
-        [$entity][$action]
-        ['General']['Auth']['Signature']['Hash']['Data'];
+      $this->_hypermedia[$entity][$action]['General']['Auth']['Signature']['Hash']['Data'];
 
     if (isset($dataHashConfiguration['Data'])) {
       $dataToHash[$dataHashConfiguration['Data']] = $data;
@@ -477,8 +469,7 @@ class FullTextSearch
     if (!empty($parameterList)) {
       foreach ($parameterList as $parameterName => $parameterAttributeList) {
         if (isset($parameterAttributeList['Endpoint'])) {
-          $parameterEndpointList[$parameterAttributeList['Endpoint']] =
-            $data[$parameterName];
+          $parameterEndpointList[$parameterAttributeList['Endpoint']] = $data[$parameterName];
 
           unset($data[$parameterName]);
         }
@@ -680,14 +671,11 @@ class FullTextSearch
     foreach ($contentParsed as $entity => $contentEntity) {
       foreach ($contentEntity as $action => $contentEntityAction) {
         if ('/' != $entity) {
-          $contentEntityActionAuthSignature =
-            $contentEntityAction['General']['Auth']['Signature'];
-
           $contentMinified[$entity][$action]['General'] = [
             'Auth' => [
               'Signature' => [
-                'Hash' => $contentEntityActionAuthSignature['Hash'],
-                'Name' => $contentEntityActionAuthSignature['Name']
+                'Hash' => $contentEntityAction['General']['Auth']['Signature']['Hash'],
+                'Name' => $contentEntityAction['General']['Auth']['Signature']['Name']
               ]
             ],
             'AuthRequired' => $contentEntityAction['General']['AuthRequired'],
@@ -1011,11 +999,7 @@ class FullTextSearch
   private function _Sign($entity, $action, array &$headerList, array $data = [])
   {
     $operationType = $this->_hypermedia[$entity][$action]['General']['OperationType'];
-
-    $signatureConfiguration =
-      $this->_hypermedia
-        [$entity][$action]
-        ['General']['Auth']['Signature'];
+    $signatureConfiguration = $this->_hypermedia[$entity][$action]['General']['Auth']['Signature'];
 
     $randomToken = $this->_GetRandomStringSecure (
       $signatureConfiguration['Hash']['RandomToken']['Length']
@@ -1107,9 +1091,7 @@ class FullTextSearch
       );
     }
 
-    return $this->_GetDecodedResponse (
-      $this->$requestMethod($endpoint, $headerList, $data)
-    );
+    return $this->_GetDecodedResponse($this->$requestMethod($endpoint, $headerList, $data));
   }
 
   /**
