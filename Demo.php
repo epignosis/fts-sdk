@@ -113,31 +113,52 @@ function PrintObjectReadable($dataStructure)
 
 try {
 
+  // Include Demo Data:
   require 'Demo' . \DIRECTORY_SEPARATOR . 'Data.php';
+
+  // Include SDK Configuration:
   require 'Configuration.php';
 
+  // Include SDK:
   require
     'Epignosis' . \DIRECTORY_SEPARATOR .
     'Sdk' . \ DIRECTORY_SEPARATOR .
     'FullTextSearch.php';
 
+  // Initialize SDK:
   $fullTextSearchSdk = new FullTextSearch($configuration);
-  $getList = Get();
-  $multiplicity = $getList['Multiplicity'] ? 'Multiple' : 'Single';
 
+  // Fetch GET Parameters:
+  $getList = Get();
+
+  // Check Multiplicity Parameter:
+  if (!in_array($getList['Multiplicity'], ['Multiple', 'Single'])) {
+    throw new \Exception (
+      'Parameter "Multiplicity" is not defined. ' .
+      'Please, use one of: [Multiple] or [Single].'
+    );
+  }
+
+  // Print Executed Command Information:
   PrintHeader (
-    sprintf('Execute %s %s (%s)', $getList['Entity'], $getList['Action'], $multiplicity),
+    sprintf(
+      'Execute %s %s (%s)',
+      $getList['Entity'],
+      $getList['Action'],
+      $getList['Multiplicity']
+    ),
     false,
     true
   );
 
   /** @noinspection PhpUndefinedVariableInspection */
-  $methodData = $data[$getList['Entity']][$getList['Action']][$multiplicity];
+  $methodData = $data[$getList['Entity']][$getList['Action']][$getList['Multiplicity']];
 
   PrintLine('Requested Data');
   PrintObjectReadable($methodData);
 
   if ($getList['Multiplicity']) {
+    // Multiple Execution:
     $responseData = [
       'Demo' => [],
       'Server' => $fullTextSearchSdk->Execute (
@@ -145,17 +166,19 @@ try {
       )
     ];
   } else {
+    // Single Execution:
     $responseData = [];
 
     foreach ($methodData as $methodDatum) {
-      $thisNow = microtime(true);
+      $stepNow = microtime(true);
+
       $serverResponse = $fullTextSearchSdk->Execute (
         $getList['Entity'], $getList['Action'], (array) $methodDatum
       );
 
       $responseData[] = [
         'Demo' => [
-          'Executed' => sprintf('<b>%s</b> sec.', round(microtime(true) - $thisNow, 3))
+          'Executed' => sprintf('<b>%s</b> sec.', round(microtime(true) - $stepNow, 3))
         ],
         'Server' => $serverResponse
       ];
