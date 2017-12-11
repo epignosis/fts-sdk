@@ -9,9 +9,15 @@ $data['Account']['Create']['Single'] = [
   [
 
   ],
+  // Invalid:
+  [
+    'Domain' => 'https://xdev.com',
+    'Status' => ''
+  ],
   // Valid:
   [
     'Domain' => 'https://xdev.com',
+    'Plan' => 'Hosted',
     'Status' => ''
   ],
   // Invalid:
@@ -21,6 +27,7 @@ $data['Account']['Create']['Single'] = [
   // Valid:
   [
     'Domain' => 'panagop.talentlms.com',
+    'Plan' => 'Premium Standard',
     'Status' => 'Enabled'
   ],
   // Invalid:
@@ -41,16 +48,36 @@ $data['Account']['Create']['Single'] = [
   // Valid:
   [
     'Domain' => 'http://papagel.talentlms.com',
+    'Plan' => 'Free',
     'Status' => 'Disabled'
   ],
   // Valid:
   [
     'Domain' => 'pvenakis.com',
+    'Plan' => 'Deployed',
+    'Status' => 'Enabled'
+  ],
+  // Invalid:
+  [
+    'Domain' => 'pvenakis.com',
+    'Plan' => 'Deployed',
     'Status' => 'Enabled'
   ],
   // Invalid:
   [
     'Domain' => 'foobar',
     'Status' => 'Disabled'
+  ],
+  // Invalid:
+  [
+    'Domain' => 'georgia.efrontlearning.com',
+    'Plan' => 'Basic Unlimited',
+    'Status' => 'Enabled'
+  ],
+  // Invalid:
+  [
+    'Domain' => 'georgia.talentlms.com',
+    'Plan' => 'Demo',
+    'Status' => 'Enabled'
   ]
 ];
