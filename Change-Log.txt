@@ -1,6 +1,7 @@
 ------------------------------------------------------------------------------------------
   v3.0.6-alpha                                                              [2017-12-11]
 ------------------------------------------------------------------------------------------
+  [Add]     (xdev) API batch limits.
   [Improve] (xdev) Demo.php
   [Change]  (xdev) Update SDK version from 3.0.5-alpha to 3.0.6-alpha.
   [Change]  (xdev) Update SDK release date to 2017-12-11.

@@ -720,6 +720,8 @@ class FullTextSearch
             'Method' => $contentEntityAction['Request']['Method'],
             'ParameterList' => $entityParameterList
           ];
+        } else {
+          $contentMinified['/'] = $contentEntity;
         }
       }
     }
