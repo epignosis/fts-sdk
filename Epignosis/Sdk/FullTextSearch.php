@@ -1237,7 +1237,7 @@ class FullTextSearch
   }
 
   /**
-   * Returns the batch limit of the service.
+   * Returns the batch limits of the service.
    *
    * @return  array
    *
