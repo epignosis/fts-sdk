@@ -443,6 +443,9 @@ class FullTextSearch
    * @return  array
    *
    * @since   2.0.0
+   *
+   * @throws  \Exception
+   *            - In case that the requested data exceed the allowed limit of the service API.
    */
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {
@@ -458,6 +461,10 @@ class FullTextSearch
           ),
           []
         ];
+      }
+
+      if (count($data) > $this->GetServiceLimitBatch()[$entity][$action]) {
+        throw new \Exception('The requested data, exceeded the allowed limit of the service API.');
       }
 
       return [rtrim($endpointList['Multiple'], '/'), $this->_GetDataClean($data)];
