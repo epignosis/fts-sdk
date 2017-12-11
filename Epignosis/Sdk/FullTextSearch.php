@@ -68,9 +68,9 @@ class FullTextSearch
     'Version' => [
       'Extra' => 'beta',
       'Major' => 3,
-      'Minor' => 0,
-      'Patch' => 7,
-      'Release' => '2017-12-11'
+      'Minor' => 1,
+      'Patch' => 0,
+      'Release' => '2017-12-12'
     ]
   ];
 
@@ -1130,6 +1130,30 @@ class FullTextSearch
     }
 
     return $this->_GetDecodedResponse($this->$requestMethod($endpoint, $headerList, $data));
+  }
+
+  /**
+   * Returns the list of the available account plan options.
+   *
+   * @return  array
+   *
+   * @since   3.1.0
+   */
+  public function GetAccountPlanOptionList()
+  {
+    $accountPlanOptionList =
+      $this->_hypermedia
+        ['Account']
+        ['Create']
+        ['Request']
+        ['ParameterList']
+        ['Single']
+        ['Plan']
+        ['List'];
+
+    asort($accountPlanOptionList);
+
+    return $accountPlanOptionList;
   }
 
   /**
