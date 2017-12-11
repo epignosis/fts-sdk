@@ -39,7 +39,7 @@ $configuration = [
          * @since   1.0.0
          * @var     string
          */
-        'Read' => 'pcSEcve89u2+nkLuQIbvQHenZDTL0oCWGsJePg58E0WB7jbZnGsTIkXF+hUY4ih6',
+        'Read' => 'test',
 
         /**
          * The private write key.
@@ -47,7 +47,7 @@ $configuration = [
          * @since   1.0.0
          * @var     string
          */
-        'Write' => 'gKNp4KXTRrDlA2jOj+vWIk0kT4vJh7MdMCqM7dUuOSSjnOqHvJ66TNXllxuE3ycV'
+        'Write' => 'test'
 
       ],
 
@@ -65,7 +65,7 @@ $configuration = [
          * @since   1.0.0
          * @var     string
          */
-        'Read' => 'HFM/n0oSe8jqdfm6vLPB0PlAW1tFBmaU',
+        'Read' => 'test',
 
         /**
          * The public write key.
@@ -73,7 +73,7 @@ $configuration = [
          * @since   1.0.0
          * @var     string
          */
-        'Write' => 'GmVeZ6hfe1P+KEo63xA+kwMKgu0XW6kW'
+        'Write' => 'test'
 
       ]
 

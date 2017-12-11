@@ -66,10 +66,10 @@ class FullTextSearch
       'VersionList' => ['2']
     ],
     'Version' => [
-      'Extra' => 'alpha',
+      'Extra' => 'beta',
       'Major' => 3,
       'Minor' => 0,
-      'Patch' => 6,
+      'Patch' => 7,
       'Release' => '2017-12-11'
     ]
   ];
