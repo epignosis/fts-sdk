@@ -1,49 +1,26 @@
 <?php
 
 /**
- * For more information: https://github.com/epignosis/fts/wiki/Document
+ * Invalid
+ *
+ *  - Undefined or invalid "Id.Course".
+ *  - Invalid "Id.Lesson".
+ *  - Undefined or invalid "Id.Unit".
+ *
+ * For more information call [OPTIONS] /document
  */
 $data['Document']['DeIndex']['Single'] = [
-  // Invalid:
-  [
-
-  ],
-  // Invalid:
-  [
-    'Id' => 'foo'
-  ],
-  // Invalid:
-  [
-    'Id' => null
-  ],
-  // Valid:
   [
     'Id' => [
-      'Course' => 65536,
-      'Lesson' => 4096,
-      'Unit' => 1024
+      'Course' => 454,
+      'Lesson' => 22,
+      'Unit' => 22854
     ]
   ],
-  // Invalid:
-  [
-    'Id' => 111
-  ],
-  // Invalid:
-  [
-    'Id' => '4-6'
-  ],
-  // Valid:
   [
     'Id' => [
-      'Course' => 52,
-      'Unit' => 666
-    ]
-  ],
-  // Valid:
-  [
-    'Id' => [
-      'Course' => 1,
-      'Unit' => 1
+      'Course' => 12,
+      'Unit' => 5999
     ]
   ]
 ];

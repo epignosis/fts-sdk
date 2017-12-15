@@ -69,8 +69,8 @@ class FullTextSearch
       'Extra' => 'beta',
       'Major' => 3,
       'Minor' => 1,
-      'Patch' => 0,
-      'Release' => '2017-12-11'
+      'Patch' => 1,
+      'Release' => '2017-12-16'
     ]
   ];
 
@@ -138,8 +138,7 @@ class FullTextSearch
   }
 
   /**
-   * Checks whether the requested data, exceeds the maximum allowed limit of the service API,
-   * or not.
+   * Checks whether the requested data, exceeds the maximum allowed batch limit, or not.
    *
    * @param   string $entity
    *            - The entity to be used. (Required)
@@ -155,15 +154,12 @@ class FullTextSearch
    * @since   3.0.6
    *
    * @throws  \Exception
-   *            - In case that the requested data, exceeds the maximum allowed limit of the service
-   *              API.
+   *            - In case that the requested data, exceeds the maximum allowed batch limit.
    */
   private function _CheckDataLimit($entity, $action, array $data = [])
   {
     if (count($data) > $this->GetServiceLimitBatch()[$entity][$action]) {
-      throw new \Exception (
-        'The requested data, exceeds the maximum allowed limit of the service API.'
-      );
+      throw new \Exception('The requested data, exceeds the maximum allowed batch limit.');
     }
 
     return $this;
@@ -477,8 +473,7 @@ class FullTextSearch
    * @since   2.0.0
    *
    * @throws  \Exception
-   *            - In case that the requested data, exceeds the maximum allowed limit of the service
-   *              API.
+   *            - In case that the requested data, exceeds the maximum allowed batch limit.
    */
   private function _GetEndpointAndData($entity, $action, array $data = [])
   {

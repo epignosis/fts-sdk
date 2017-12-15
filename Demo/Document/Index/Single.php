@@ -1,95 +1,42 @@
 <?php
 
 /**
- * For more information: https://github.com/epignosis/fts/wiki/Document
+ * Invalid
+ *
+ *  - Undefined or invalid "Id.Course".
+ *  - Invalid "Id.Lesson".
+ *  - Undefined or invalid "Id.Unit".
+ *  - Invalid "Content.FileList".
+ *  - Invalid "Content.TagList".
+ *  - Invalid "Content.Text".
+ *  - Undefined or invalid "Title".
+ *
+ * For more information call [OPTIONS] /document
  */
-/** @noinspection SpellCheckingInspection */
 $data['Document']['Index']['Single'] = [
-  // Invalid:
-  [
-
-  ],
-  // Invalid:
   [
     'Content' => [
-      'FileList' => ['https://efrontlearning.com/'],
-      'TagList' => ['blah'],
-      'Text' => 'Κείμενο στα Ελληνικά. Yay!'
-    ]
-  ],
-  // Invalid:
-  [
-    'Content' => [
-      'FileList' => ['https://efrontlearning.com/'],
-      'TagList' => ['blah'],
-      'Text' => 'Κείμενο στα Ελληνικά. Yay!'
+      'FileList' => [
+        'https://en.wikipedia.org/wiki/The_Evil_Within_2',
+        'https://i.ytimg.com/vi/Q_UpPkQ3Y2c/maxresdefault.jpg'
+      ],
+      'TagList' => [
+        'Horror',
+        'Game'
+      ]
     ],
     'Id' => [
-      'Course' => 65536,
-      'Lesson' => 4096,
-      'Unit' => 1024
-    ]
-  ],
-  // Invalid:
-  [
-    'Content' => [
-      'FileList' => ['https://efrontlearning.com/'],
-      'TagList' => ['blah'],
-      'Text' => 'Κείμενο στα Ελληνικά. Yay!'
+      'Course' => 12,
+      'Lesson' => 1000,
+      'Unit' => 5999
     ],
-    'Title' => 'Google Adwords'
+    'Title' => 'The Evil Withing 2'
   ],
-  // Invalid:
   [
-    'Content' => [
-      'FileList' => ['https://efrontlearning.com/'],
-      'TagList' => ['blah'],
-      'Text' => 'Κείμενο στα Ελληνικά. Yay!'
-    ],
     'Id' => [
-      'Lesson' => 4096,
-      'Unit' => 1024
+      'Course' => 454,
+      'Unit' => 22854
     ],
-    'Title' => 'Google Adwords'
-  ],
-  // Invalid:
-  [
-    'Content' => [
-      'FileList' => ['https://efrontlearning.com/'],
-      'TagList' => ['blah'],
-      'Text' => 'Κείμενο στα Ελληνικά. Yay!'
-    ],
-    'Id' => [
-      'Course' => 65536,
-      'Lesson' => 4096
-    ],
-    'Title' => 'Google Adwords'
-  ],
-  // Valid:
-  [
-    'Content' => [
-      'FileList' => ['https://efrontlearning.com/'],
-      'TagList' => ['blah'],
-      'Text' => 'Κείμενο στα Ελληνικά. Yay!'
-    ],
-    'Id' => [
-      'Course' => 65536,
-      'Lesson' => 4096,
-      'Unit' => 1024
-    ],
-    'Title' => 'Google Adwords'
-  ],
-  // Valid:
-  [
-    'Content' => [
-      'FileList' => [],
-      'TagList' => ['talentlms', 'epignosis'],
-      'Text' => 'Text? No Text ..'
-    ],
-    'Id' => [
-      'Course' => 52,
-      'Unit' => 666
-    ],
-    'Title' => 'Information Security'
+    'Title' => 'Τίτλος σε Ελληνικά'
   ]
 ];

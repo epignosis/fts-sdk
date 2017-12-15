@@ -1,35 +1,21 @@
 <?php
 
 /**
- * For more information: https://github.com/epignosis/fts/wiki/Permission-Policy
+ * Invalid
+ *
+ *  - Undefined or invalid "Id".
+ *
+ * For more information call [OPTIONS] /permission-policy
  */
 $data['PermissionPolicy']['Delete']['Single'] = [
-  // Invalid:
   [
-
+    'Id' => 7,
   ],
-  // Valid:
+  // Not Exist; Still OK:
   [
-    'Id' => 82
+    'Id' => 7,
   ],
-  // Invalid:
   [
-    'Id1' => 10
-  ],
-  // Valid:
-  [
-    'Id' => 55
-  ],
-  // Invalid:
-  [
-    'Id' => -100
-  ],
-  // Invalid:
-  [
-    'Id' => 'Id'
-  ],
-  // Valid:
-  [
-    'Id' => 70
+    'Id' => 3,
   ]
 ];

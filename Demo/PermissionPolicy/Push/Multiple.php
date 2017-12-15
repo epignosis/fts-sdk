@@ -1,49 +1,25 @@
 <?php
 
 /**
- * For more information: https://github.com/epignosis/fts/wiki/Permission-Policy
+ * Invalid
+ *
+ *  - Undefined or invalid "Id".
+ *  - Undefined or invalid "Policy".
+ *
+ * For more information call [OPTIONS] /permission-policies
  */
 $data['PermissionPolicy']['Push']['Multiple'] = [
-  // Valid:
   [
-    'Id' => 82,
+    'Id' => 9,
     'Policy' => '[]'
   ],
-  // Invalid:
   [
-
-  ],
-  // Valid:
-  [
-    'Id' => 5,
+    'Id' => 8,
     'Policy' => '[]'
   ],
-  // Invalid:
+  // Replace:
   [
-    'Id1' => 10,
-    'Policy' => '[]'
-  ],
-  // Invalid:
-  [
-    'Id' => 5
-  ],
-  // Invalid:
-  [
-    'Id' => 5,
-    'Policy' => 'foobar'
-  ],
-  // Valid:
-  [
-    'Id' => 4,
-    'Policy' => '[]'
-  ],
-  // Invalid:
-  [
-    'Policy' => '[]'
-  ],
-  // Valid:
-  [
-    'Id' => 4,
-    'Policy' => '[]'
+    'Id' => 9,
+    'Policy' => '[1, 2, 3]'
   ]
 ];

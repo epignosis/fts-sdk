@@ -1,51 +1,26 @@
 <?php
 
 /**
- * For more information: https://github.com/epignosis/fts/wiki/Document
+ * Invalid
+ *
+ *  - Undefined or invalid "Id.Course".
+ *  - Invalid "Id.Lesson".
+ *  - Undefined or invalid "Id.Unit".
+ *
+ * For more information call [OPTIONS] /documents
  */
 $data['Document']['DeIndex']['Multiple'] = [
-  // Valid:
   [
     'Id' => [
-      'Course' => 1,
-      'Lesson' => 2,
-      'Unit' => 3
+      'Course' => 12,
+      'Lesson' => 1000,
+      'Unit' => 5999
     ]
   ],
-  // Invalid:
-  [
-
-  ],
-  // Invalid:
-  [
-    'Id' => 'foo'
-  ],
-  // Valid:
   [
     'Id' => [
-      'Course' => 4,
-      'Lesson' => null,
-      'Unit' => 6
+      'Course' => 454,
+      'Unit' => 22854
     ]
-  ],
-  // Invalid:
-  [
-    'Id' => 111
-  ],
-  // Invalid:
-  [
-    'Id' => '4-6'
-  ],
-  // Valid:
-  [
-    'Id' => [
-      'Course' => 1,
-      'Lesson' => 1,
-      'Unit' => 1
-    ]
-  ],
-  // Invalid:
-  [
-    'Id' => null
   ]
 ];

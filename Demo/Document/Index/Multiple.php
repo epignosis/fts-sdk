@@ -1,96 +1,49 @@
 <?php
 
 /**
- * For more information: https://github.com/epignosis/fts/wiki/Document
+ * Invalid
+ *
+ *  - Undefined or invalid "Id.Course".
+ *  - Invalid "Id.Lesson".
+ *  - Undefined or invalid "Id.Unit".
+ *  - Invalid "Content.FileList".
+ *  - Invalid "Content.TagList".
+ *  - Invalid "Content.Text".
+ *  - Undefined or invalid "Title".
+ *
+ * For more information call [OPTIONS] /documents
  */
-/** @noinspection SpellCheckingInspection */
 $data['Document']['Index']['Multiple'] = [
-  // Invalid:
-  [
-
-  ],
-  // Invalid:
   [
     'Content' => [
-      'FileList' => [],
-      'TagList' => ['foo', 'bar'],
-      'Text' => 'This is a sample plain text content ..'
-    ]
-  ],
-  // Invalid:
-  [
-    'Content' => [
-      'FileList' => [],
-      'TagList' => ['foo', 'bar'],
-      'Text' => 'This is a sample plain text content ..'
+      'TagList' => [
+        'baz',
+        'qux'
+      ],
+      'Text' => 'This is my content!'
     ],
     'Id' => [
-      'Course' => 1,
-      'Lesson' => 2,
-      'Unit' => 3
-    ]
-  ],
-  // Invalid:
-  [
-    'Content' => [
-      'FileList' => [],
-      'TagList' => ['foo', 'bar'],
-      'Text' => 'This is a sample plain text content ..'
+      'Course' => 454,
+      'Lesson' => 22,
+      'Unit' => 22854
     ],
-    'Title' => 'Plain Text Document'
+    'Title' => 'foo bar'
   ],
-  // Invalid:
   [
     'Content' => [
-      'FileList' => [],
-      'TagList' => ['foo', 'bar'],
-      'Text' => 'This is a sample plain text content ..'
+      'FileList' => [
+        'https://i.ytimg.com/vi/5iszUCmLyW4/maxresdefault.jpg',
+        'https://en.wikipedia.org/wiki/Resident_Evil_7:_Biohazard'
+      ],
+      'TagList' => [
+        'Horror',
+        'Game'
+      ]
     ],
     'Id' => [
-      'Lesson' => 2,
-      'Unit' => 3
+      'Course' => 12,
+      'Unit' => 5999
     ],
-    'Title' => 'Plain Text Document'
-  ],
-  // Invalid:
-  [
-    'Content' => [
-      'FileList' => [],
-      'TagList' => ['foo', 'bar'],
-      'Text' => 'This is a sample plain text content ..'
-    ],
-    'Id' => [
-      'Course' => 1,
-      'Lesson' => 2
-    ],
-    'Title' => 'Plain Text Document'
-  ],
-  // Valid:
-  [
-    'Content' => [
-      'FileList' => [],
-      'TagList' => ['foo', 'bar'],
-      'Text' => 'This is a sample plain text content ..'
-    ],
-    'Id' => [
-      'Course' => 1,
-      'Lesson' => 2,
-      'Unit' => 3
-    ],
-    'Title' => 'Plain Text Document'
-  ],
-  // Valid:
-  [
-    'Content' => [
-      'FileList' => ['https://www.talentlms.com/', 'https://www.talentcards.net/'],
-      'TagList' => ['baz', 'qux'],
-      'Text' => 'This is a sample HTML content ..'
-    ],
-    'Id' => [
-      'Course' => 4,
-      'Lesson' => null,
-      'Unit' => 6
-    ],
-    'Title' => 'HTML Document'
+    'Title' => 'Resident Evil 7'
   ]
 ];

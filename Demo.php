@@ -128,14 +128,24 @@ try {
   // Initialize SDK:
   $fullTextSearchSdk = new FullTextSearch($configuration);
 
-  // Fetch GET Parameters:
+  // Fetch GET Parameter List:
   $getList = Get();
 
-  // Check Multiplicity Parameter:
+  // Check "Multiplicity" Parameter:
   if (!in_array($getList['Multiplicity'], ['Multiple', 'Single'])) {
     throw new \Exception (
       'Parameter "Multiplicity" is not defined. ' .
       'Please, use one of: [Multiple] or [Single].'
+    );
+  }
+
+  /** @noinspection PhpUndefinedVariableInspection */
+  $methodData = $data[$getList['Entity']][$getList['Action']][$getList['Multiplicity']];
+
+  // Check "Action" & "Entity" Parameters:
+  if (empty($methodData)) {
+    throw new \Exception (
+      sprintf('Action "%s" of entity "%s" does not exist.', $getList['Action'], $getList['Entity'])
     );
   }
 
@@ -151,13 +161,10 @@ try {
     true
   );
 
-  /** @noinspection PhpUndefinedVariableInspection */
-  $methodData = $data[$getList['Entity']][$getList['Action']][$getList['Multiplicity']];
-
   PrintLine('Requested Data');
   PrintObjectReadable($methodData);
 
-  if ($getList['Multiplicity']) {
+  if ('Multiple' == $getList['Multiplicity']) {
     // Multiple Execution:
     $responseData = [
       'Demo' => [],
