@@ -11,15 +11,15 @@
 $data['PermissionPolicy']['Push']['Multiple'] = [
   [
     'Id' => 9,
-    'Policy' => '[]'
+    'Policy' => json_encode([])
   ],
   [
     'Id' => 8,
-    'Policy' => '[]'
+    'Policy' => json_encode([])
   ],
   // Replace:
   [
     'Id' => 9,
-    'Policy' => '[1, 2, 3]'
+    'Policy' => json_encode([1 => [], 2 => [5, 6], 3 => []])
   ]
 ];

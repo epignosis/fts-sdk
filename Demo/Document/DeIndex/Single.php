@@ -22,5 +22,12 @@ $data['Document']['DeIndex']['Single'] = [
       'Course' => 12,
       'Unit' => 5999
     ]
+  ],
+  // Not Exist; Valid:
+  [
+    'Id' => [
+      'Course' => 666,
+      'Unit' => 999
+    ]
   ]
 ];

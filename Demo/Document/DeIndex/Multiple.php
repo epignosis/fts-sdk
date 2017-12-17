@@ -17,6 +17,14 @@ $data['Document']['DeIndex']['Multiple'] = [
       'Unit' => 5999
     ]
   ],
+  // Not Exist; Valid:
+  [
+    'Id' => [
+      'Course' => 12,
+      'Lesson' => 1000,
+      'Unit' => 5999
+    ]
+  ],
   [
     'Id' => [
       'Course' => 454,
