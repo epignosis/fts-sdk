@@ -68,9 +68,9 @@ class FullTextSearch
     'Version' => [
       'Extra' => 'beta',
       'Major' => 3,
-      'Minor' => 1,
-      'Patch' => 2,
-      'Release' => '2017-12-17'
+      'Minor' => 2,
+      'Patch' => 0,
+      'Release' => '2018-01-05'
     ]
   ];
 
@@ -974,6 +974,36 @@ class FullTextSearch
     return $this->_Request($url, $optionList);
   }
 
+  /** @noinspection PhpUnusedPrivateMethodInspection */
+  /**
+   * Performs an HTTP PUT request.
+   *
+   * @param   string $url
+   *            - The URL to be requested. (Required)
+   *
+   * @param   array $headerList
+   *            - The list of headers to be requested. (Optional, [])
+   *
+   * @param   array $data
+   *            - The data to be requested. (Optional, [])
+   *
+   * @return  array
+   *
+   * @since   2.0.0
+   */
+  private function _RequestPut($url, array $headerList = [], array $data = [])
+  {
+    $optionList = [
+      'http' => [
+        'content' => http_build_query($data),
+        'header' => $this->_GetHeaderListToString($headerList),
+        'method' => 'PUT'
+      ]
+    ];
+
+    return $this->_Request($url, $optionList);
+  }
+
   /**
    * Saves the requested content into the request file, and returns the operation result.
    *
@@ -1108,20 +1138,20 @@ class FullTextSearch
    */
   public function Execute($entity, $action, array $data = [])
   {
-    list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
-
-    $headerList = $this->_GetHeaderList($endpoint);
-
-    if ($this->_AuthRequired($entity, $action)) {
-      $this->_Sign($entity, $action, $headerList, $data);
-    }
-
     $requestMethod = $this->_GetRequestMethod($entity, $action);
 
     if (!method_exists($this, $requestMethod)) {
       throw new \Exception (
         sprintf('Entity "%s" with action "%s", does not exist.', $entity, $action)
       );
+    }
+
+    list($endpoint, $data) = $this->_GetEndpointAndData($entity, $action, $data);
+
+    $headerList = $this->_GetHeaderList($endpoint);
+
+    if ($this->_AuthRequired($entity, $action)) {
+      $this->_Sign($entity, $action, $headerList, $data);
     }
 
     return $this->_GetDecodedResponse($this->$requestMethod($endpoint, $headerList, $data));

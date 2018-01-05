@@ -3,21 +3,24 @@
 /**
  * Invalid
  *
+ *  - Undefined or invalid "Id".
  *  - Undefined or invalid "Domain".
  *  - Undefined or invalid "Plan".
  *  - Invalid "Status".
  *
  * For more information call [OPTIONS] /account
  */
-$data['Account']['Create']['Single'] = [
+$data['Account']['Update']['Single'] = [
   [
     'Domain' => 'https://xdev.com',
-    'Plan' => 'Free',
+    'Id' => 3,
+    'Plan' => 'Paid',
     'Status' => 'Enabled'
   ],
   [
-    'Domain' => 'https://panagop.com',
-    'Plan' => 'Free',
-    'Status' => 'Disabled'
-  ]
+    'Domain' => 'https://panagop.talentlms.com',
+    'Id' => 4,
+    'Plan' => 'Big',
+    'Status' => 'Enabled'
+  ],
 ];
