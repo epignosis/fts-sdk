@@ -3,8 +3,8 @@
 /**
  * Invalid
  *
- *  - Undefined or invalid "Id".
  *  - Undefined or invalid "Domain".
+ *  - Undefined or invalid "Id".
  *  - Undefined or invalid "Plan".
  *  - Invalid "Status".
  *

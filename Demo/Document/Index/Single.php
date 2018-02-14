@@ -3,12 +3,12 @@
 /**
  * Invalid
  *
- *  - Undefined or invalid "Id.Course".
- *  - Invalid "Id.Lesson".
- *  - Undefined or invalid "Id.Unit".
  *  - Invalid "Content.FileList".
  *  - Invalid "Content.TagList".
  *  - Invalid "Content.Text".
+ *  - Undefined or invalid "Id.Course".
+ *  - Invalid "Id.Lesson".
+ *  - Undefined or invalid "Id.Unit".
  *  - Undefined or invalid "Title".
  *
  * For more information call [OPTIONS] /document
