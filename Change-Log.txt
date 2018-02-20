@@ -1,18 +1,26 @@
 ------------------------------------------------------------------------------------------
+  v3.2.2-beta                                                               [2018-02-20]
+------------------------------------------------------------------------------------------
+  [Change]  (xdev) Update SDK version from 3.2.1-beta to 3.2.2-beta.
+  [Change]  (xdev) Update SDK release date to 2018-02-20.
+  [Improve] (xdev) Improve Document Search Demo.
+
+
+------------------------------------------------------------------------------------------
   v3.2.1-beta                                                               [2018-02-14]
 ------------------------------------------------------------------------------------------
-  [Fix]    (xdev) Fix demo comments.
   [Change] (xdev) Update SDK version from 3.2.0-beta to 3.2.1-beta.
   [Change] (xdev) Update SDK release date to 2018-02-14.
+  [Fix]    (xdev) Fix demo comments.
 
 
 ------------------------------------------------------------------------------------------
   v3.2.0-beta                                                               [2018-01-05]
 ------------------------------------------------------------------------------------------
   [Add]    (xdev) Account update API.
-  [Fix]    (xdev) Fix exception message on invalid entity or action.
   [Change] (xdev) Update SDK version from 3.1.2-beta to 3.2.0-beta.
   [Change] (xdev) Update SDK release date to 2018-01-05.
+  [Fix]    (xdev) Fix exception message on invalid entity or action.
 
 
 ------------------------------------------------------------------------------------------
@@ -51,17 +59,17 @@
   v3.0.6-alpha                                                              [2017-12-11]
 ------------------------------------------------------------------------------------------
   [Add]     (xdev) Service API batch limits.
-  [Improve] (xdev) Demo.php.
   [Change]  (xdev) Update SDK version from 3.0.5-alpha to 3.0.6-alpha.
   [Change]  (xdev) Update SDK release date to 2017-12-11.
+  [Improve] (xdev) Demo.php.
 
 
 ------------------------------------------------------------------------------------------
   v3.0.5-alpha                                                              [2017-12-10]
 ------------------------------------------------------------------------------------------
-  [Fix]    (xdev) Fix @since doc-comment.
   [Change] (xdev) Update SDK version from 3.0.4-alpha to 3.0.5-alpha.
   [Change] (xdev) Update SDK release date to 2017-12-10.
+  [Fix]    (xdev) Fix @since doc-comment.
 
 
 ------------------------------------------------------------------------------------------
