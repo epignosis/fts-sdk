@@ -68,9 +68,9 @@ class FullTextSearch
     'Version' => [
       'Extra' => 'beta',
       'Major' => 3,
-      'Minor' => 2,
-      'Patch' => 2,
-      'Release' => '2018-02-20'
+      'Minor' => 3,
+      'Patch' => 0,
+      'Release' => '2018-03-21'
     ]
   ];
 
@@ -844,6 +844,7 @@ class FullTextSearch
    */
   private function _Request($url, array $optionList = [])
   {
+    $optionList['http']['timeout'] = $this->_configuration['Connection']['Timeout'];
     $optionList['http']['ignore_errors'] = true;
     $optionList['http']['protocol_version'] = '1.1';
 
@@ -1110,6 +1111,12 @@ class FullTextSearch
       $this->_CheckServiceVersion($serviceVersion);
 
       $configuration['Service']['Version'] = $serviceVersion;
+    }
+
+    $configuration['Connection']['Timeout'] = (int) $configuration['Connection']['Timeout'];
+
+    if (1 > $configuration['Connection']['Timeout']) {
+      $configuration['Connection']['Timeout'] = 30;
     }
 
     $this->_configuration = $configuration;

@@ -82,6 +82,24 @@ $configuration = [
   ],
 
   /**
+   * The connection configuration.
+   *
+   * @since   3.3.0
+   * @var     array
+   */
+  'Connection' => [
+
+    /**
+     * The connection timeout in seconds.
+     *
+     * @since   3.3.0
+     * @var     int
+     */
+    'Timeout' => 10
+
+  ],
+
+  /**
    * The hypermedia configuration.
    *
    * @since   2.0.0
