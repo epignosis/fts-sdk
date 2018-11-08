@@ -30,6 +30,7 @@ $data['Document']['Index']['Single'] = [
       'Lesson' => 1000,
       'Unit' => 5999
     ],
+    'Language' => 'en-US',
     'Title' => 'The Evil Withing 2'
   ],
   [
@@ -37,6 +38,7 @@ $data['Document']['Index']['Single'] = [
       'Course' => 454,
       'Unit' => 22854
     ],
+    'Language' => 'de-DE',
     'Title' => 'Τίτλος σε Ελληνικά'
   ]
 ];

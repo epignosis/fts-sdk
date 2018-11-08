@@ -15,19 +15,22 @@ $data['Document']['DeIndex']['Single'] = [
       'Course' => 454,
       'Lesson' => 22,
       'Unit' => 22854
-    ]
+    ],
+    'Language' => 'en-US'
   ],
   [
     'Id' => [
       'Course' => 12,
       'Unit' => 5999
-    ]
+    ],
+    'Language' => 'en-US'
   ],
   // Not Exist; Valid:
   [
     'Id' => [
       'Course' => 666,
       'Unit' => 999
-    ]
+    ],
+    'Language' => 'de-DE'
   ]
 ];

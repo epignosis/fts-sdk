@@ -27,6 +27,7 @@ $data['Document']['Index']['Multiple'] = [
       'Lesson' => 22,
       'Unit' => 22854
     ],
+    'Language' => 'en-US',
     'Title' => 'foo bar'
   ],
   [
@@ -44,6 +45,7 @@ $data['Document']['Index']['Multiple'] = [
       'Course' => 12,
       'Unit' => 5999
     ],
+    'Language' => 'de-DE',
     'Title' => 'Resident Evil 7'
   ]
 ];

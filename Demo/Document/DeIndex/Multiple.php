@@ -15,7 +15,8 @@ $data['Document']['DeIndex']['Multiple'] = [
       'Course' => 12,
       'Lesson' => 1000,
       'Unit' => 5999
-    ]
+    ],
+    'Language' => 'en-US'
   ],
   // Not Exist; Valid:
   [
@@ -23,12 +24,14 @@ $data['Document']['DeIndex']['Multiple'] = [
       'Course' => 12,
       'Lesson' => 1000,
       'Unit' => 5999
-    ]
+    ],
+    'Language' => 'en-US'
   ],
   [
     'Id' => [
       'Course' => 454,
       'Unit' => 22854
-    ]
+    ],
+    'Language' => 'de-DE'
   ]
 ];

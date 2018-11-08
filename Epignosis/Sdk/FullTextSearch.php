@@ -36,7 +36,7 @@ class FullTextSearch
   private $_hypermedia = [];
 
   /**
-   * The SDK's internal self information.
+   * The SDK internal self information.
    *
    * @access  private
    * @since   2.0.0
@@ -68,9 +68,9 @@ class FullTextSearch
     'Version' => [
       'Extra' => 'beta',
       'Major' => 3,
-      'Minor' => 3,
+      'Minor' => 4,
       'Patch' => 0,
-      'Release' => '2018-03-21'
+      'Release' => '2018-11-08'
     ]
   ];
 
@@ -1249,7 +1249,7 @@ class FullTextSearch
   }
 
   /**
-   * Returns the SDK's version.
+   * Returns the SDK version.
    *
    * @return  string
    *
@@ -1267,7 +1267,7 @@ class FullTextSearch
   }
 
   /**
-   * Returns the SDK's full version.
+   * Returns the SDK full version.
    *
    * @return  string
    *
