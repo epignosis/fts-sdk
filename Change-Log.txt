@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------------------
   v3.4.0-beta                                                               [2018-11-08]
 ------------------------------------------------------------------------------------------
-  [Add]    (xdev) Add Multilingual Support (Documents API).
+  [Add]    (xdev) Add Multilingual Support (Document API).
   [Change] (xdev) Update SDK version from 3.3.0-beta to 3.4.0-beta.
   [Change] (xdev) Update SDK release date to 2018-11-08.
 
