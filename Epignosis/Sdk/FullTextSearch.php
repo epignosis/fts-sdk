@@ -1024,10 +1024,13 @@ class FullTextSearch
 
     if (!file_exists($filePathDirectory)) {
       $mode = $this->_configuration['Hypermedia']['Storage']['Mode'];
+      $mask = umask(0);
 
       if (!mkdir($filePathDirectory, $mode, true)) {
         return false;
       }
+
+      umask($mask);
     }
 
     if (false === file_put_contents($filePath, $content, \LOCK_EX)) {
