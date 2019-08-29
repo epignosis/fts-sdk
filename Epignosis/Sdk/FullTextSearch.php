@@ -69,8 +69,8 @@ class FullTextSearch
       'Extra' => 'beta',
       'Major' => 3,
       'Minor' => 4,
-      'Patch' => 0,
-      'Release' => '2018-11-08'
+      'Patch' => 1,
+      'Release' => '2019-08-29'
     ]
   ];
 
